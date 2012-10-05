@@ -22,7 +22,7 @@ if(isset($_POST['token']) || isset($_SESSION['token']))
 <html xmlns:fb="http://ogp.me/ns/fb#">
   <head>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-  <title>ZuneFit </title>
+  <title>ZuneFit  </title>
   <link href="css/style.css" rel="stylesheet" type="text/css" />
   <link href="fonts/stylesheet1.css" rel="stylesheet" type="text/css" />
   <link href="web-font/stylesheet2.css" rel="stylesheet" type="text/css" />
