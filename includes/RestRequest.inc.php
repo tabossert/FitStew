@@ -22,7 +22,7 @@ function apiCall($url,$verb,$auth,$poststr = ""){
 		}
 		if($verb == 'DELETE')
 		{
-		  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+		  curl_setopt($curl_connection, CURLOPT_CUSTOMREQUEST, "DELETE");
 		}
                 $result = curl_exec($curl_connection);
                 curl_close($curl_connection);
