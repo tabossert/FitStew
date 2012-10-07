@@ -1,5 +1,6 @@
+<!-- Header Start -->
 <?php include 'header.php'; ?>
-
+<!-- Header End -->
 <div class="main-middle-container">
     <div class="left-part">
         <h1>Pay as you go fitness...</h1>
@@ -47,5 +48,9 @@
     </div>
 </div>
 <!--</div>-->
-
+<!-- Forms Start -->
+<?php include 'forms.php'; ?>
+<!-- Forms End -->
+<!-- Footer Start -->
 <?php include 'footer.php'; ?>
+<!-- Footer End -->

@@ -31,12 +31,16 @@ if (isset($_POST['token']) || isset($_SESSION['token'])) {
             <link href="fonts/stylesheet1.css" rel="stylesheet" type="text/css" />
             <link href="web-font/stylesheet2.css" rel="stylesheet" type="text/css" />
             <link rel="stylesheet" type="text/css" href="css/ceebox.css" />
+            <link rel="stylesheet" type="text/css" href="css/widgets.css" />
+            <link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-1.3.4.css" />
 
             <script type="text/javascript" src="js/curvycorners.src.js"></script>
             <script src="js/jquery-1.7.1.js"></script>
             <script src='js/jquery.ceebox-min.js'></script>
             <script src='js/jquery.color.js'></script>
             <script src='js/jquery.metadata.js'></script>
+            <script src='fancybox/jquery.fancybox-1.3.4.js'></script>
+            <script src='js/widgets.js'></script>
             <script type="text/javascript">
                 $(function() {
                     if (typeof window.janrain !== 'object') window.janrain = {};
@@ -86,7 +90,7 @@ if (isset($_POST['token']) || isset($_SESSION['token'])) {
                     <div class="logo"><a href="#"><img src="images/logo.png" alt="" border="0"/></a></div>
                     <div class="topmenu">
                         <div class="login-link"> 
-                            <a class="janrainEngage" href="#">User Sign-In</a>| <a href="#">Gym Sign-In</a></li>
+                            <a class="janrainEngage" href="#">User Sign-In</a>| <a href="#frmOwnersLogin" id="wsn">Gym Sign-In</a></li>
                             <div class="my-box">
                                 <ul class="toplink">
                                     <li><a href="pages/how.html" class="popup" rel="width:250;height:300">How it works</a></li>
