@@ -6,7 +6,7 @@
 $(function(){
     var widgets = new Widgets();
     widgets.init();
-});
+});  
 
 var Widgets = function()
 {
