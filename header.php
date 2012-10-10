@@ -40,6 +40,8 @@ if (isset($_POST['token']) || isset($_SESSION['token'])) {
             <script src='js/jquery.color.js'></script>
             <script src='js/jquery.metadata.js'></script>
             <script src='fancybox/jquery.fancybox-1.3.4.js'></script>
+            <script src='js/SHA1.js'></script>
+            <script src='js/janrain.js'></script>
             <script src='js/widgets.js'></script>
             <script type="text/javascript">
                 $(function() {

@@ -24,7 +24,7 @@
                     <label for="loginkeeping">Keep me logged in</label>
                 </p>
                 <p class="login button"> 
-                    <input type="submit" value="Login" /> 
+                    <input type="submit" value="Login" onclick="widgets.login()"/> 
                 </p>
             </div>
         </form>

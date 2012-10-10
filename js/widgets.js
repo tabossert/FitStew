@@ -2,11 +2,36 @@
  * Implementation of the widgets and their functionalities
  */
 
+//Configuration parameters
+var JANRAIN_BASE_URL = "https://api.zunefit.com/api/";
+//Janrain API instance
+var JANRAIN = new Janrain({
+    url:JANRAIN_BASE_URL,
+    start:startAjax,
+    end:endAjax
+});
+
 //Loading widgets
 $(function(){
-    var widgets = new Widgets();
-    widgets.init();
+    this.widgets = new Widgets();
+    this.widgets.init();
 });  
+
+/**
+ *This function is calling when the ajax call is started
+ */
+var startAjax = function()
+{
+    
+}
+
+/**
+ *This function is calling when the ajax call is end
+ */
+var endAjax = function()
+{
+    
+}
 
 var Widgets = function()
 {
@@ -15,8 +40,15 @@ var Widgets = function()
      */
     this.init = function()
     {
-        lb = new LoginBox("wsn", "msg");
-        lb.bind();
+        this.lb = new LoginBox("wsn", "msg");
+        this.lb.bind();
+    }
+    
+    this.login = function()
+    {
+        un = $('#username').val();
+        pw = $('#password').val();
+        this.lb.login(un, pw);
     }
 }
 
@@ -40,4 +72,20 @@ var LoginBox = function(formId,msgId)
             }
         });
     }
+    
+    this.login = function(username,password)
+    {
+        data = {};
+        data["username"] = username;
+        data["password"] = Sha1.hash(password);
+        
+        JANRAIN.postJSON('/gymLogin',data,{
+            success:function(data){
+                alert(data);
+            },
+            error:function(){
+                //Error should be handle here
+            }
+        })
+} 
 }
