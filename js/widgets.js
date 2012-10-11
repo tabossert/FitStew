@@ -7,8 +7,12 @@ var JANRAIN_BASE_URL = "https://api.zunefit.com/api/";
 //Janrain API instance
 var JANRAIN = new Janrain({
     url:JANRAIN_BASE_URL,
-    start:startAjax,
-    end:endAjax
+    start:function(){
+        startAjax();
+    },
+    end:function(){
+        endAjax();
+    }
 });
 
 //Loading widgets
@@ -79,13 +83,15 @@ var LoginBox = function(formId,msgId)
         data["username"] = username;
         data["password"] = Sha1.hash(password);
         
-        JANRAIN.postJSON('/gymLogin',data,{
+        JANRAIN.postJSON({
+            url:'gymLogin/',
+            data:data,
             success:function(data){
                 alert(data);
             },
             error:function(){
-                //Error should be handle here
+            //Error should be handle here
             }
         })
-} 
+    } 
 }

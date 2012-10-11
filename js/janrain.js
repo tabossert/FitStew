@@ -4,6 +4,7 @@
 
 var Janrain = function(options)
 {
+    _this = this;
     _options = options;
     
     /**
@@ -11,20 +12,22 @@ var Janrain = function(options)
      */
     this.getJSON = function(opt)
     {
-        start();
-        _opt.url =_options.url + opt.url + "?callback=?";
-        _opt.datatype = 'json';
-        _opt.method = "GET";
+        _this.start();
+        _opt = {};
+        _opt.url =_options.url + opt.url + '?callback=?';
+        _opt.datatype = 'jsonp'
+        _opt.jsonpCallback =  'jsonCallback',
+        _opt.type = "GET";
         _opt.data = opt.data;
         _opt.success = function(data)
         {
             opt.success(data); 
-            end();
+            _this.end();
         }
         _opt.error = function()
         {           
             opt.error(); 
-            end();
+            _this.end();
         }
         
         $.ajax(_opt);
@@ -35,20 +38,23 @@ var Janrain = function(options)
      */
     this.postJSON = function(opt)
     {
-        start();
-        _opt.url = _options.url + opt.url + "?callback=?";
-        _opt.datatype = 'json';
-        _opt.method = "POST";
+        _this.start();
+        _opt = {};
+        _opt.url =_options.url + opt.url;
+        _opt.datatype = 'jsonp';
+        _opt.jsonpCallback =  'jsonCallback',
+        _opt.type = "POST";
         _opt.data = opt.data;
+        _opt.data["callback"] = "JQuery" + new Date().getTime();
         _opt.success = function(data)
         {
             opt.success(data); 
-            end();
+            _this.end();
         }
         _opt.error = function()
         {           
             opt.error(); 
-            end();
+            _this.end();
         }
         
         $.ajax(_opt);
@@ -59,7 +65,10 @@ var Janrain = function(options)
      */
     this.start = function()
     {
-        _options.start();
+        if(_options.start)
+        {
+            _options.start();
+        }
     }
     
     /**
@@ -67,7 +76,10 @@ var Janrain = function(options)
      */
     this.end = function()
     {
-        _options.end();
+        if(_options.end)
+        {
+            _options.end();
+        }
     }
     
 }
