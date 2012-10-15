@@ -6,7 +6,7 @@
 
 <div id="container" >    
     <div class="animate form" style="display: none;">
-        <div id="loginError"  style="display: none;">sdsd</div>
+        <div id="loginError"  style="display: none;">Error</div>
         <form  action="mysuperscript.php" autocomplete="on" name="frmOwnersLogin" id="frmOwnersLogin" class="wrapper"> 
             <div class="innerForm" style="width:300px;">
                 <h1>Sign-in</h1> 
