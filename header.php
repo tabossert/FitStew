@@ -35,6 +35,7 @@ if (isset($_POST['token']) || isset($_SESSION['token'])) {
             <link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-1.3.4.css" />
 
             <script type="text/javascript" src="js/curvycorners.src.js"></script>
+            <script type="text/javascript" src="js/validation.js"></script>
             <script src="js/jquery-1.7.1.js"></script>
             <script src='js/jquery.ceebox-min.js'></script>
             <script src='js/jquery.color.js'></script>
@@ -43,6 +44,7 @@ if (isset($_POST['token']) || isset($_SESSION['token'])) {
             <script src='js/SHA1.js'></script>
             <script src='js/janrain.js'></script>
             <script src='js/widgets.js'></script>
+            <script src='js/validation.js'></script>
             <script type="text/javascript">
                 $(function() {
                     if (typeof window.janrain !== 'object') window.janrain = {};

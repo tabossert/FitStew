@@ -50,9 +50,12 @@ var Widgets = function()
     
     this.login = function()
     {
-        un = $('#username').val();
-        pw = $('#password').val();
-        this.lb.login(un, pw);
+        if( $("#frmOwnersLogin").valid())
+            {
+                un = $('#username').val();
+                pw = $('#password').val();
+                this.lb.login(un, pw);                 
+            }      
     }
 }
 
@@ -66,6 +69,9 @@ var LoginBox = function(formId,msgId)
      */
     this.bind = function()
     {
+        
+       
+     
         $("#" + _fid).fancybox({
             'scrolling'		: 'no',
             'titleShow'		: false,
@@ -75,10 +81,14 @@ var LoginBox = function(formId,msgId)
                 $("#" + _mid).hide();
             }
         });
+        
+       
+        
     }
     
     this.login = function(username,password)
     {
+        //$("#frmOwnersLogin").validate();
         data = {};
         data["username"] = username;
         data["password"] = Sha1.hash(password);
@@ -88,10 +98,15 @@ var LoginBox = function(formId,msgId)
             data:data,
             success:function(data){
                 alert(data);
+                //var json = jQuery.parseJSON( data );
+                alert(data.message);
+                //alert(data.message);
+                
             },
             error:function(){
             //Error should be handle here
             }
         })
     } 
+    
 }
