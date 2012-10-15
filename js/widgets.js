@@ -26,7 +26,14 @@ $(function(){
  */
 var startAjax = function()
 {
-    
+    div = $("#waiting");
+    div.css({
+        //top:(screen.height + $(document).scrollTop() - 100),
+        bottom:10,
+        right:10,
+        position:'fixed'
+    });
+    div.show();
 }
 
 /**
@@ -34,7 +41,9 @@ var startAjax = function()
  */
 var endAjax = function()
 {
-    
+    div = $("#waiting");
+    div.hide();
+    div.removeAttr("style");
 }
 
 var Widgets = function()
@@ -50,12 +59,9 @@ var Widgets = function()
     
     this.login = function()
     {
-        if( $("#frmOwnersLogin").valid())
-            {
-                un = $('#username').val();
-                pw = $('#password').val();
-                this.lb.login(un, pw);                 
-            }      
+        un = $('#username').val();
+        pw = $('#password').val();
+        this.lb.login(un, pw);     
     }
 }
 
@@ -68,10 +74,7 @@ var LoginBox = function(formId,msgId)
      * Bind fancybox
      */
     this.bind = function()
-    {
-        
-       
-     
+    {                    
         $("#" + _fid).fancybox({
             'scrolling'		: 'no',
             'titleShow'		: false,
@@ -81,14 +84,16 @@ var LoginBox = function(formId,msgId)
                 $("#" + _mid).hide();
             }
         });
-        
-       
-        
+                       
     }
     
     this.login = function(username,password)
     {
-        //$("#frmOwnersLogin").validate();
+        if(!this.validate())
+        {
+            //Form is not valid
+            return;
+        }
         data = {};
         data["username"] = username;
         data["password"] = Sha1.hash(password);
@@ -97,16 +102,30 @@ var LoginBox = function(formId,msgId)
             url:'gymLogin/',
             data:data,
             success:function(data){
-                alert(data);
-                //var json = jQuery.parseJSON( data );
-                alert(data[6]);
-                //alert(data.message);
-                
+                //There is an issue in firefox.data reprecents as a string.Need to use eval() 1st
+                result = eval(data)[0];
+
+                if(result.status == "success")
+                {
+                    //Login success.Redirect to the owners home page
+                    $("#token").val(result.token);
+                    $("#frmOwnersLogin").submit();
+                    return;
+                }
+                else
+                {
+                //Login failed.Show error message     
+                }                
             },
             error:function(){
             //Error should be handle here
             }
         })
     } 
+    
+    this.validate = function()
+    {
+        return $("#frmOwnersLogin").valid();
+    }
     
 }
