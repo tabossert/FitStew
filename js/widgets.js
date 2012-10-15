@@ -99,7 +99,7 @@ var LoginBox = function(formId,msgId)
             success:function(data){
                 alert(data);
                 //var json = jQuery.parseJSON( data );
-                alert(data.message);
+                alert(data[6]);
                 //alert(data.message);
                 
             },

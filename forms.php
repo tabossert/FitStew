@@ -11,8 +11,8 @@
             <div class="innerForm" style="width:300px;">
                 <h1>Sign-in</h1> 
                 <p> 
-                    <label for="username" class="uname"> Username </label>
-                    <input id="username" name="username" class="required" required="required" type="text" placeholder="myusername or mymail@mail.com"/>
+                    <label for="username" class="uname" > Username </label>
+                    <input id="username" name="username" maxlength="12" class="required" required="required" type="text" placeholder="myusername or mymail@mail.com"/>
                     <label for="username" class="error" generated="true"></label>
                 </p>
                 <p id="msg">
@@ -20,7 +20,7 @@
                 </p>
                 <p> 
                     <label for="password" class="youpasswd"> Password </label>
-                    <input id="password" name="password" class="required" required="required" type="password" placeholder="eg. X8df!90EO" /> 
+                    <input id="password" name="password" maxlength="10" minLength="6" class="required" required="required" type="password" placeholder="eg. X8df!90EO" /> 
                     <label for="password" class="error" generated="true"></label>
                 </p>
                 <p class="keeplogin"> 
