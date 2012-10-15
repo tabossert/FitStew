@@ -41,23 +41,25 @@ var Janrain = function(options)
         _this.start();
         _opt = {};
         _opt.url =_options.url + opt.url;
-        _opt.datatype = 'jsonp';
+        _opt.datatype = 'json';
         _opt.jsonpCallback =  'jsonCallback',
         _opt.type = "POST";
         _opt.data = opt.data;
-        _opt.data["callback"] = "JQuery" + new Date().getTime();
+        _opt.beforeSend = function(xhrObj) {
+            xhrObj.setRequestHeader("ltype", "web");
+        };
         _opt.success = function(data)
         {
             opt.success(data); 
             _this.end();
-        }
+        };
         _opt.error = function()
         {           
             opt.error(); 
             _this.end();
-        }
-        
-        $.ajax(_opt);
+        };
+                                
+        $.ajax(_opt);        
     }
     
     /**
