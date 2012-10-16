@@ -84,6 +84,12 @@ var LoginBox = function(formId,msgId)
                 $("#" + _mid).hide();
             }
         });
+         $("#username , #password").keyup(function(){
+             
+              $("#loginError").html("");    
+             
+         });
+         
                        
     }
     
@@ -114,7 +120,8 @@ var LoginBox = function(formId,msgId)
                 }
                 else
                 {
-                //Login failed.Show error message     
+                //Login failed.Show error message 
+                    $("#loginError").html("Login incorrect");                    
                 }                
             },
             error:function(){

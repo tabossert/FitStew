@@ -401,3 +401,7 @@ label.error
     z-index: 9999999;
     position: absolute;
 }
+#loginError
+{
+    color: #EE5757;
+}

@@ -16,6 +16,7 @@ if(isset($_POST['token']) || isset($_SESSION['token']))
     header('Location: '.SITE_URL.'innerowner.php');
   }
   header('Location: '.SITE_URL.'innerowner.php');
+  
 } else {
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -29,7 +30,11 @@ if(isset($_POST['token']) || isset($_SESSION['token']))
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/curvycorners.src.js"></script>
     <script type="text/javascript" src="js/easy.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/janrain.js"></script>
+    <script type="text/javascript" src="js/owner.js"></script>
+    
+   
   </head>
 
   <body>
@@ -92,13 +97,13 @@ MONTH</div>
     </div>
 
     <div class="right-box">
-      <div class="right-featured-box">
+        <div class="right-featured-box" onclick="fun()">
         <h1>Quick State</h1>
 		<ul class="item-link">
 		  <li><a href="#">3 visits/day</a></li>
 		  <li><a href="#">55 profile views Today</a></li>
 		  <li><a href="#">Average Gym Rate $5.50</a></li>
-	      <li><a href="#">Some other Statistics</a></li>
+                  <li><a href="#" onclick="fun();">Some other Statistics</a></li>
 		</ul>
       </div>
     </div>
@@ -109,8 +114,11 @@ MONTH</div>
 
     Follow us on Twitter Become a fan on Facebook<br />
 
-    © 2012 Zunefit. All Rights Reserved</div>
+    ï¿½ 2012 Zunefit. All Rights Reserved</div>
   </div>
+  
+  
+
   </body>
 </html>
 
