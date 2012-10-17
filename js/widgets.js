@@ -137,7 +137,9 @@ var LoginBox = function(formId,msgId)
     
 }
 
-
+/**
+ * Class to implements gym functionaites
+ */
 var Gym = function()
 {
     this.getGymSchedule = function(start,end)

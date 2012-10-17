@@ -1,5 +1,5 @@
 <!-- Header Start -->
-<?php include 'header.php'; ?>
+<?php include 'html/header.php'; ?>
 <!-- Header End -->
 <div class="main-middle-container">
     <div class="left-part">
@@ -52,5 +52,5 @@
 <?php include 'forms.php'; ?>
 <!-- Forms End -->
 <!-- Footer Start -->
-<?php include 'footer.php'; ?>
+<?php include 'html/footer.php'; ?>
 <!-- Footer End -->
