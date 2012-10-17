@@ -82,16 +82,21 @@ session_start();
                     <div class="logo"><a href="#"><img src="images/logo.png" alt="" border="0"/></a></div>
                     <div class="topmenu">
                         <div class="login-link"> 
-                            <a class="janrainEngage" href="#">User Sign-In</a>| <a href="#frmOwnersLogin" id="wsn">Gym Sign-In</a></li>
-                            <div class="my-box">
-                                <ul class="toplink">
-                                    <li><a href="pages/how.html" class="popup" rel="width:250;height:300">How it works</a></li>
-                                    <li><a href="inner.php">Customers </a></li>
-                                    <li><a href="owner.php">Gyms</a></li>
-                                    <li><a href="pages/gymLoc.php" class="popup" rel="width:250;height:300">Locations</a></li>
+                            <?php
+                            if(!(isset($_SESSION['token']) && $_SESSION['token'] != '')){?>
+                                <a class = "janrainEngage" href = "#">User Sign-In</a>| <a href = "#frmOwnersLogin" id = "wsn">Gym Sign-In</a>
+                            <?php } else { ?>
+                                <a href = "#">Sign-out</a> 
+                            <?php } ?>
+                            <div class = "my-box">
+                                <ul class = "toplink">
+                                    <li><a href = "pages/how.html" class = "popup" rel = "width:250;height:300">How it works</a></li>
+                                    <li><a href = "inner.php">Customers </a></li>
+                                    <li><a href = "owner.php">Gyms</a></li>
+                                    <li><a href = "pages/gymLoc.php" class = "popup" rel = "width:250;height:300">Locations</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="clr"></div>
+                <div class = "clr"></div>

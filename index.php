@@ -1,5 +1,9 @@
 <!-- Header Start -->
-<?php include 'html/header.php'; ?>
+<?php 
+
+include 'html/header.php'; 
+session_unset(); 
+?>
 <!-- Header End -->
 <div class="main-middle-container">
     <div class="left-part">

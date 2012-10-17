@@ -55,6 +55,8 @@ var Widgets = function()
     {
         this.lb = new LoginBox("wsn", "msg");
         this.lb.bind();
+        this.gim = new Gym();
+        this.gim.bind();
     }
     
     this.login = function()
@@ -164,28 +166,35 @@ var Gym = function()
         data['end'] = end;
         data['token'] = $('#token').val();
         
-        JANRAIN.getJSON({
+        JANRAIN.postJSON({
             url:'gymSchedule/',
             data:data,
             success:function(data){
-                alert(data);        
+              result = eval(data)[0];
+              //alert(result);        
             },
             error:function(){
             //Error should be handle here
+             alert("no");  
             }
         });
     }
     
     this.getGymStat = function()
     {
-        
+        data = {};
         data['token'] = $('#token').val();
         
         JANRAIN.getJSON({
             url:'gymStats/',
             data:data,
             success:function(data){
-                alert(data);        
+                result = eval(data)[0];
+                //alert("yes");
+                
+                $(".right-featured-box ul").append('<li><a href="#">'+result.visits +' visits/day</li>');
+                $(".right-featured-box ul").append('<li><a href="#">'+result.views +' profile views Today</li>');
+                $(".right-featured-box ul").append('<li><a href="#"> Average Gym Rate $ '+ result.price +'</li>');       
             },
             error:function(){
             //Error should be handle here
@@ -195,14 +204,18 @@ var Gym = function()
     
     this.getGymBal = function()
     {
-        
+        data = {};
         data['token'] = $('#token').val();
-        
+        data['gid'] = 1;
         JANRAIN.getJSON({
             url:'gymBalance/',
             data:data,
             success:function(data){
-                alert(data);        
+              results = eval(data)[0];
+                
+                //res = results.balance;
+                res = 10;
+                $(".balance").html("Balance: <br />$ "+  res);
             },
             error:function(){
             //Error should be handle here
