@@ -171,7 +171,7 @@ var Gym = function()
             data:data,
             success:function(data){
               result = eval(data)[0];
-              alert(result);        
+              //alert(result);        
             },
             error:function(){
             //Error should be handle here
@@ -206,7 +206,7 @@ var Gym = function()
     {
         data = {};
         data['token'] = $('#token').val();
-        data['gid'] = 2;
+        data['gid'] = 1;
         JANRAIN.getJSON({
             url:'gymBalance/',
             data:data,
