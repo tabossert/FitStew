@@ -44,10 +44,10 @@ if ($page != 'index.php') {
             <script src='js/jquery.metadata.js'></script>
             <script src='fancybox/jquery.fancybox-1.3.4.js'></script>
             <?php if ($page != 'index.php') : ?>
-            <script src='js/SHA1.js'></script>
-            <script src='js/janrain.js'></script>
-            <script src='js/widgets.js'></script>
-            <script src='js/validation.js'></script>
+                <script src='js/SHA1.js'></script>
+                <script src='js/janrain.js'></script>
+                <script src='js/widgets.js'></script>
+                <script src='js/validation.js'></script>
             <?php endif; ?>
             <script type="text/javascript">
                 $(function() {
