@@ -10,7 +10,17 @@ if (isset($_POST['token'])) {
     $_SESSION['token'] = $_POST['token'];
 }
 ?>
+<script type="text/javascript">
+    $(document).ready(function(){
+        
+        var gym = new Gym();
+        gym.getGymStat();
+        
+        
+    })
+    
 
+</script>
 
 <div class="middle-container">
     <div class="left-part">
