@@ -74,23 +74,28 @@ var LoginBox = function(formId,msgId)
      * Bind fancybox
      */
     this.bind = function()
-    {                    
-        $("#" + _fid).fancybox({
-            'scrolling'		: 'no',
-            'titleShow'		: false,
-            'onStart'               : function() {
-            },
-            'onClosed'		: function() {
-                $("#" + _mid).hide();
-            }
-        });
-         $("#username , #password").keyup(function(){
+    {                   
+        fb = $("#" + _fid);
+        
+        if(fb)
+        {
+            fb.fancybox({
+                'scrolling'		: 'no',
+                'titleShow'		: false,
+                'onStart'               : function() {
+                },
+                'onClosed'		: function() {
+                    $("#" + _mid).hide();
+                }
+            });
+        
+            $("#username , #password").keyup(function(){
              
-              $("#loginError").html("");    
+                $("#loginError").html("");    
              
-         });
+            });
          
-                       
+        }         
     }
     
     this.login = function(username,password)
@@ -120,7 +125,7 @@ var LoginBox = function(formId,msgId)
                 }
                 else
                 {
-                //Login failed.Show error message 
+                    //Login failed.Show error message 
                     $("#loginError").html("Login incorrect");                    
                 }                
             },
@@ -137,11 +142,21 @@ var LoginBox = function(formId,msgId)
     
 }
 
-/**
- * Class to implements gym functionaites
- */
+
 var Gym = function()
 {
+    this.init = function()
+    {
+        this.bind();
+    }
+    
+    this.bind = function()
+    { 
+        this.getGymSchedule("2012-10-04 00:00:00", "2012-10-16 00:00:00");
+        this.getGymStat();
+        this.getGymBal();
+    }
+    
     this.getGymSchedule = function(start,end)
     {
         data = {};
@@ -151,6 +166,40 @@ var Gym = function()
         
         JANRAIN.getJSON({
             url:'gymSchedule/',
+            data:data,
+            success:function(data){
+                alert(data);        
+            },
+            error:function(){
+            //Error should be handle here
+            }
+        });
+    }
+    
+    this.getGymStat = function()
+    {
+        
+        data['token'] = $('#token').val();
+        
+        JANRAIN.getJSON({
+            url:'gymStats/',
+            data:data,
+            success:function(data){
+                alert(data);        
+            },
+            error:function(){
+            //Error should be handle here
+            }
+        });
+    }
+    
+    this.getGymBal = function()
+    {
+        
+        data['token'] = $('#token').val();
+        
+        JANRAIN.getJSON({
+            url:'gymBalance/',
             data:data,
             success:function(data){
                 alert(data);        

@@ -21,10 +21,35 @@ $(window).load(function ()
         
             dataType: "json",
             success: function(data){
-                //var result = eval(data);
-                alert("yes");
-                alert(data.message);  
+                result = eval(data)[0];
+                //alert("yes");
+                result.visits  
+                $(".right-featured-box ul").append('<li><a href="#">'+result.visits +' visits/day</li>');
+                $(".right-featured-box ul").append('<li><a href="#">'+result.views +' profile views Today</li>');
+                $(".right-featured-box ul").append('<li><a href="#"> Average Gym Rate $ '+ result.price +'</li>');
+                },
+            error:function(){
+                //Error should be handle here
+                alert("no");
+            }
+        });
+        
+        $.ajax({
+            beforeSend: function(xhrObj){
+               
+                xhrObj.setRequestHeader("token",first);
             },
+        
+            type: "GET",
+            url: "https://api.zunefit.com/api/gymBalance/2?callback=?",
+        
+            dataType: "json",
+            success: function(data){
+                result = eval(data)[0];
+                alert("yes");
+                  
+                alert(result.balance);
+                },
             error:function(){
                 //Error should be handle here
                 alert("no");
