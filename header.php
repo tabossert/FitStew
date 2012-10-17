@@ -7,18 +7,6 @@ include('includes/RestRequest.inc.php');
 include('includes/config.inc.php');
 
 session_start();
-if (isset($_POST['token']) || isset($_SESSION['token'])) {
-    if (isset($_POST['token'])) {
-        $pbody = json_encode(array("token" => $_POST['token'], "ltype" => "web"));
-        $request = apiCall(API_URL . 'userSignup/', 'POST', 0, $pbody);
-        $response = json_decode($request);
-        $_SESSION['token'] = $response[0]->token;
-        header('Location: ' . SITE_URL . 'inner.php');
-        exit;
-    }
-    header('Location: ' . SITE_URL . 'inner.php');
-    exit;
-}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

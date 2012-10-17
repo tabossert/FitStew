@@ -6,7 +6,7 @@
 
 <div id="container" >    
     <div class="animate form" style="display: none;">
-       <form  action="owner.php" autocomplete="on" name="frmOwnersLogin" id="frmOwnersLogin" class="wrapper"> 
+        <form  action="owner.php" autocomplete="on" name="frmOwnersLogin" id="frmOwnersLogin" class="wrapper" method="POST"> 
             <input type="hidden" name="token" id="token" value=""/>
             <div class="innerForm" style="width:300px;">
                 <h1>Sign-in</h1> 

@@ -136,3 +136,26 @@ var LoginBox = function(formId,msgId)
     }
     
 }
+
+
+var Gym = function()
+{
+    this.getGymSchedule = function(start,end)
+    {
+        data = {};
+        data['start'] = start;
+        data['end'] = end;
+        data['token'] = $('#token').val();
+        
+        JANRAIN.getJSON({
+            url:'gymSchedule/',
+            data:data,
+            success:function(data){
+                alert(data);        
+            },
+            error:function(){
+            //Error should be handle here
+            }
+        });
+    }
+}
