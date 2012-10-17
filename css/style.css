@@ -71,12 +71,12 @@ html,body{ margin:0px; padding:0px; font-family: 'Conv_itc-berkeley-oldstyle-lt-
 .logo{margin:14px 0px 0px 0px; padding:0px; width:237px; float:left;}
 .topmenu{margin:58px 0px 0px 0px; padding:0px; width:455px; float:right;}
 .my-box { margin:0px; padding:0px ; border:1px solid #9F9A9D;
-background:url(../images/top_menubg.gif) left top repeat-x; height:32px;
-border-top-right-radius: 10px;
-border-top-left-radius:10px;
-border-bottom-right-radius: 10px;
-border-bottom-left-radius: 10px;
-box-shadow:0 0 1px 1px #BABABE;
+          background:url(../images/top_menubg.gif) left top repeat-x; height:32px;
+          border-top-right-radius: 10px;
+          border-top-left-radius:10px;
+          border-bottom-right-radius: 10px;
+          border-bottom-left-radius: 10px;
+          box-shadow:0 0 1px 1px #BABABE;
 }
 
 
@@ -96,13 +96,13 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
 .left-part h1{margin:0px 0px 22px 5px; padding:0px; font-family:'Conv_helvetica-neue-condensed-bold1'; font-style:normal; text-transform:uppercase; font-size:27px; font-weight:normal; color:#fff;}
 
 .blue-box { margin:0px 0px 0px 0px; padding:10px ; border:2px solid #184A61;
-background:#34677B;
-border-top-right-radius: 10px;
-border-top-left-radius:10px;
-border-bottom-right-radius: 10px;
-border-bottom-left-radius: 10px;
-height: 380px;
-width: 950px;
+            background:#34677B;
+            border-top-right-radius: 10px;
+            border-top-left-radius:10px;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            height: 380px;
+            width: 950px;
 }
 
 .blue-box-text { margin 0px 0px 0px 0px; padding:10px; height: 300px; width:400px; } 
@@ -124,8 +124,8 @@ width: 950px;
 .right-part{margin:80px 0px 0px 0px; padding:0px; width:441px; float:right; position:relative;}
 .white-box1 { margin:0px; padding:6px ; width:441px; background:#fff; position:relative; right:14px; top:0px;}
 .black-box { margin:0px 0px 110px 0px; padding:2px ; 
-background:#FFF;
-box-shadow:0 0 2px 2px #124770; 
+             background:#FFF;
+             box-shadow:0 0 2px 2px #124770; 
 }
 
 .heading3{ margin:45px 0px 0px 0px; padding:0px ; position:relative; right:15px; top:0px; }
@@ -150,37 +150,56 @@ box-shadow:0 0 2px 2px #124770;
 
 /* Start Inner page css*/
 
-.blue-box1 { margin:0px; padding:10px 16px 16px 16px ; border:2px solid #184A61;
-background:#3A5E64;
-border-top-right-radius: 10px;
-border-top-left-radius:10px;
-border-bottom-right-radius: 10px;
-border-bottom-left-radius: 10px;
+.blue-box1 { 
+    margin:0px; padding:10px 16px 16px 16px ; border:2px solid #184A61;
+    background:#3A5E64;
+    border-top-right-radius: 10px;
+    border-top-left-radius:10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+}
+.balance { 
+    margin:18px 0px 0px 0px;
+    text-align: center;
+    padding:0px ;
+    height: 60px;
+    width:252px; 
+    float:right;
+
+    padding:0px ; 
+    border:2px solid #184A61;
+    background:#3A5E64;
+    border-radius: 10px;
+
+
+
+
 
 }
 
-
-.balance-box { margin:0px 0px 10px 0px; padding:10px 16px 16px 16px ; border:2px solid #184A61;
-background:#3A5E64;
-border-top-right-radius: 10px;
-border-top-left-radius:10px;
-border-bottom-right-radius: 10px;
-border-bottom-left-radius: 10px;
-height: 10px;
-width: 40px;
+.balance-box { 
+    margin:0px 0px 10px 0px; padding:10px 16px 16px 16px ; border:2px solid #184A61;
+    background:#3A5E64;
+    border-top-right-radius: 10px;
+    border-top-left-radius:10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    height: 10px;
+    width: 40px;
 }
 
 .inner-txt { margin:0px; padding:0px ; }
 .inner-txt h1{ margin:18px 0px 8px 0px; padding:0px ; font:bold 16px "Trebuchet MS"; text-decoration:none; text-transform:none; color:#F8E839; }
 ul.calender-link, ul.calender-link li{margin:0px; padding:0px; list-style-type:none;}
- ul.calender-link li{margin:0px; padding:0px;}
-  ul.calender-link li a{margin:0px; padding:0px 0px 0px 15px; font:bold 13px "Trebuchet MS"; text-decoration:none; line-height:23px; color:#fff; background:url(../images/link_icon.png) left 4px no-repeat;}
-   ul.calender-link li a:hover{text-decoration:none; color:#F8E839;}
-   
-   ul.calender1-link, ul.calender1-link li{margin:0px; padding:0px; list-style-type:none;}
- ul.calender1-link li{margin:0px; padding:0px;}
-  ul.calender1-link li a{margin:0px; padding:0px ; font:bold 13px "Trebuchet MS"; text-decoration:none; line-height:23px; color:#fff; }
-   ul.calender1-link li a:hover{text-decoration:none; color:#F8E839;}
+ul.calender-link li{margin:0px; padding:0px;}
+ul.calender-link li a{margin:0px; padding:0px 0px 0px 15px; font:bold 13px "Trebuchet MS"; text-decoration:none; line-height:23px; color:#fff; background:url(../images/link_icon.png) left 4px no-repeat;}
+ul.calender-link li a:hover{text-decoration:none; color:#F8E839;}
+
+ul.calender1-link, ul.calender1-link li{margin:0px; padding:0px; list-style-type:none;}
+ul.calender1-link li{margin:0px; padding:0px;}
+ul.calender1-link li a{margin:0px; padding:0px ; font:bold 13px "Trebuchet MS"; text-decoration:none; line-height:23px; color:#fff; }
+ul.calender1-link li a:hover{text-decoration:none; color:#F8E839;}
 
 .calender1{margin:0px; padding:0px; width:64px; float:left; text-align:center; font: bold 13px "Trebuchet MS"; color:#fff;}
 .calender2{margin:0px 0px 0px 110px; padding:0px; width:64px; float:left; text-align:center; font: bold 13px "Trebuchet MS"; color:#fff;}
@@ -193,58 +212,59 @@ ul.calender-link, ul.calender-link li{margin:0px; padding:0px; list-style-type:n
 ul.tabs-link, ul.tabs-link li{margin:0px; padding:0px; list-style-type:none;}
 ul.tabs-link li{margin:0px; padding:0px; }
 ul.tabs-link li a{margin:0px 0px 25px 0px; padding:15px 0px; background:#424242;
-border-top-right-radius: 3px;
-border-top-left-radius:3px;
-border-bottom-right-radius: 3px;
-border-bottom-left-radius: 3px;
-box-shadow:0 4px 0px 0px #1B1B1B; display:block; text-align:center; font: bold 16px "Trebuchet MS"; text-decoration:none;  color:#fff; }
+                  border-top-right-radius: 3px;
+                  border-top-left-radius:3px;
+                  border-bottom-right-radius: 3px;
+                  border-bottom-left-radius: 3px;
+                  box-shadow:0 4px 0px 0px #1B1B1B; display:block; text-align:center; font: bold 16px "Trebuchet MS"; text-decoration:none;  color:#fff; }
 
 ul.tabs-link li a:hover{background:#A2BF5E;
-border-top-right-radius: 3px;
-border-top-left-radius:3px;
-border-bottom-right-radius: 3px;
-border-bottom-left-radius: 3px;
-box-shadow:0 4px 0px 0px #1B1B1B; color:#2E2E2E; }
+                        border-top-right-radius: 3px;
+                        border-top-left-radius:3px;
+                        border-bottom-right-radius: 3px;
+                        border-bottom-left-radius: 3px;
+                        box-shadow:0 4px 0px 0px #1B1B1B; color:#2E2E2E; }
 
 .right-box { margin:18px 0px 0px 0px; padding:0px ; width:252px; float:right; }
 
 
 .right-featured-box { margin:0px; padding:0px ; 
-background:#fff;
-border-top-right-radius: 3px;
-border-top-left-radius:3px;
-border-bottom-right-radius: 3px;
-border-bottom-left-radius: 3px;
-box-shadow:0 0 1px 2px #0F476D;
-height:171px;
+                      background:#fff;
+                      border-top-right-radius: 3px;
+                      border-top-left-radius:3px;
+                      border-bottom-right-radius: 3px;
+                      border-bottom-left-radius: 3px;
+                      box-shadow:0 0 1px 2px #0F476D;
+                      height:171px;
+                      text-align: center;
 }
 
 .right-featured-box h1 { margin:0px; padding:5px 0px 5px 10px ; 
-background:#A2BF5E;
-border-top-right-radius: 3px;
-border-top-left-radius:3px;
-border-bottom-right-radius: 0px;
-border-bottom-left-radius: 0px;
-color:#2E2E2E;
-font: bold 16px "Trebuchet MS"; text-decoration:none;
+                         background:#A2BF5E;
+                         border-top-right-radius: 3px;
+                         border-top-left-radius:3px;
+                         border-bottom-right-radius: 0px;
+                         border-bottom-left-radius: 0px;
+                         color:#2E2E2E;
+                         font: bold 16px "Trebuchet MS"; text-decoration:none;
 }
 
 ul.item-link, ul.item-link li{margin:5px 0px 0px 0px; padding:0px; list-style-type:none;}
- ul.item-link li{margin:0px; padding:0px;}
-  ul.item-link li a{margin:0px; padding:0px 0px 0px 10px; font:bold 13px "Trebuchet MS"; text-decoration:none; line-height:19px; color:#3B3B3B;}
-   ul.item-link li a:hover{text-decoration:none; color:#186897;}
-   
-   .newletterbg{margin:0px ; padding:0px 5px 0px 8px; width:361px; vertical-align:middle; height:38px;  border:none; background:url(../images/input_bg.gif) no-repeat left top; color:#333; font: bold 16px "Trebuchet MS"; text-decoration:none; color:#3B3B3B;}
+ul.item-link li{margin:0px; padding:0px;}
+ul.item-link li a{margin:0px; padding:0px 0px 0px 10px; font:bold 13px "Trebuchet MS"; text-decoration:none; line-height:19px; color:#3B3B3B;}
+ul.item-link li a:hover{text-decoration:none; color:#186897;}
+
+.newletterbg{margin:0px ; padding:0px 5px 0px 8px; width:361px; vertical-align:middle; height:38px;  border:none; background:url(../images/input_bg.gif) no-repeat left top; color:#333; font: bold 16px "Trebuchet MS"; text-decoration:none; color:#3B3B3B;}
 .btn{margin:0px 0px 0px 0px; padding:0px; width:42px; height:38px; border:none; vertical-align:middle; background:url(../images/zoom_icon.gif) no-repeat left top; cursor:pointer; }
 
 
 /* userPreference page specific css */
 .up-blue-box { margin:0px 0px 0px 0px; padding:10px ; border:2px solid #184A61;
-background:#34677B;
-border-top-right-radius: 10px;
-border-top-left-radius:10px;
-border-bottom-right-radius: 10px;
-border-bottom-left-radius: 10px;
-height: 180px;
-width: 200px;
+               background:#34677B;
+               border-top-right-radius: 10px;
+               border-top-left-radius:10px;
+               border-bottom-right-radius: 10px;
+               border-bottom-left-radius: 10px;
+               height: 180px;
+               width: 200px;
 }

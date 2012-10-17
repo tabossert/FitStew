@@ -3,21 +3,11 @@
 <!-- Header End -->
 <?php
 if (isset($_POST['token'])) {
-    $_SESSION['token'] = $_POST['token'];
+    $_SESSION['token'] = $_POST['token'] . '';
 }
 ?>
-<script type="text/javascript">
-    $(document).ready(function(){
-        
-        var gym = new Gym();
-        gym.getGymStat();
-        
-        
-    })
-    
 
-</script>
-
+<input type="hidden" name="token" id="token" value="<?php echo $_SESSION['token']; ?>"/>
 <div class="middle-container">
     <div class="left-part">
         <div class="blue-box1">
@@ -57,15 +47,11 @@ if (isset($_POST['token'])) {
             <li><a href="#">Preferences</a></li>
         </ul>
     </div>
-
+    <div class="balance"></div>
     <div class="right-box">
-        <div class="right-featured-box" onclick="fun()">
+        <div class="right-featured-box">
             <h1>Quick State</h1>
-            <ul class="item-link">
-                <li><a href="#">3 visits/day</a></li>
-                <li><a href="#">55 profile views Today</a></li>
-                <li><a href="#">Average Gym Rate $5.50</a></li>
-                <li><a href="#" onclick="fun();">Some other Statistics</a></li>
+            <ul class="item-link">                
             </ul>
         </div>
     </div>
