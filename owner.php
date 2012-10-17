@@ -1,3 +1,7 @@
+<?php 
+    //Set title
+    $title = "ZuneFit Gym Panel"; 
+?>
 <!-- Header Start -->
 <?php include 'html/header.php'; ?>
 <!-- Header End -->
