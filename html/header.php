@@ -7,6 +7,20 @@ include('includes/RestRequest.inc.php');
 include('includes/config.inc.php');
 
 session_start();
+
+//Get current page
+$currentFile = $_SERVER["PHP_SELF"];
+$parts = Explode('/', $currentFile);
+$page = $parts[count($parts) - 1];
+
+if ($page != 'index.php') {
+    if (isset($_POST['token'])) {
+        $_SESSION['token'] = $_POST['token'];
+    }
+    if (!isset($_SESSION['token'])) {
+        header('Location: ' . SITE_URL);
+    }
+}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -29,16 +43,18 @@ session_start();
             <script src='js/jquery.color.js'></script>
             <script src='js/jquery.metadata.js'></script>
             <script src='fancybox/jquery.fancybox-1.3.4.js'></script>
+            <?php if ($page != 'index.php') : ?>
             <script src='js/SHA1.js'></script>
             <script src='js/janrain.js'></script>
             <script src='js/widgets.js'></script>
             <script src='js/validation.js'></script>
+            <?php endif; ?>
             <script type="text/javascript">
                 $(function() {
                     if (typeof window.janrain !== 'object') window.janrain = {};
                     if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
     	            
-                    janrain.settings.tokenUrl = '<?php echo SITE_URL; ?>index.php';
+                    janrain.settings.tokenUrl = '<?php echo SITE_URL; ?>inner.php';
 	
                     function isReady() { janrain.ready = true; };
                     if (document.addEventListener) {
@@ -82,12 +98,11 @@ session_start();
                     <div class="logo"><a href="#"><img src="images/logo.png" alt="" border="0"/></a></div>
                     <div class="topmenu">
                         <div class="login-link"> 
-                            <?php
-                            if(!(isset($_SESSION['token']) && $_SESSION['token'] != '')){?>
-                                <a class = "janrainEngage" href = "#">User Sign-In</a>| <a href = "#frmOwnersLogin" id = "wsn">Gym Sign-In</a>
-                            <?php } else { ?>
-                                <a href = "#">Sign-out</a> 
-                            <?php } ?>
+                            <?php if (!(isset($_SESSION['token']) && $_SESSION['token'] != '')) : ?>
+                                <a class = "janrainEngage" href = "#">User Sign-In</a> | <a href = "#frmOwnersLogin" id = "wsn">Gym Sign-In</a>
+                            <?php else : ?>
+                                <a href = "logout.php">Sign-out</a> 
+                            <?php endif; ?>
                             <div class = "my-box">
                                 <ul class = "toplink">
                                     <li><a href = "pages/how.html" class = "popup" rel = "width:250;height:300">How it works</a></li>

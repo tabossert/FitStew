@@ -70,7 +70,7 @@ html,body{ margin:0px; padding:0px; font-family: 'Conv_itc-berkeley-oldstyle-lt-
 .header-container{margin:0px auto; padding:0px; width:955px; }
 .logo{margin:14px 0px 0px 0px; padding:0px; width:237px; float:left;}
 .topmenu{margin:58px 0px 0px 0px; padding:0px; width:455px; float:right;}
-.my-box { margin:0px; padding:0px ; border:1px solid #9F9A9D;
+.my-box { margin:5px 0px; padding:0px ; border:1px solid #9F9A9D;
           background:url(../images/top_menubg.gif) left top repeat-x; height:32px;
           border-top-right-radius: 10px;
           border-top-left-radius:10px;

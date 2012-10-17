@@ -5,11 +5,6 @@
 <!-- Header Start -->
 <?php include 'html/header.php'; ?>
 <!-- Header End -->
-<?php
-if (isset($_POST['token'])) {
-    $_SESSION['token'] = $_POST['token'] . '';
-}
-?>
 
 <input type="hidden" name="token" id="token" value="<?php echo $_SESSION['token']; ?>"/>
 <div class="middle-container">

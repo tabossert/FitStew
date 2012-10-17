@@ -1,8 +1,6 @@
 <!-- Header Start -->
 <?php 
-
 include 'html/header.php'; 
-session_unset(); 
 ?>
 <!-- Header End -->
 <div class="main-middle-container">
