@@ -46,9 +46,10 @@
             <li><a href="#">Preferences</a></li>
         </ul>
     </div>
-    <div class="balance"></div>
+    
     <div class="right-box">
-        <div class="right-featured-box">
+        <div class="balance"></div>
+        <div class="right-featured-box" id="owner-right-featured-box">
             <h1>Quick State</h1>
             <ul class="item-link">                
             </ul>

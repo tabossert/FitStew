@@ -57,6 +57,8 @@ var Widgets = function()
         this.lb.bind();
         this.gim = new Gym();
         this.gim.bind();
+        this.user = new User();
+        this.user.bind();
     }
     
     this.login = function()
@@ -156,7 +158,7 @@ var Gym = function()
     { 
         this.getGymSchedule("2012-10-04 00:00:00", "2012-10-16 00:00:00");
         this.getGymStat();
-        this.getGymBal();
+        this.getGymBal();        
     }
     
     this.getGymSchedule = function(start,end)
@@ -170,12 +172,12 @@ var Gym = function()
             url:'gymSchedule/',
             data:data,
             success:function(data){
-              result = eval(data)[0];
-              //alert(result);        
+                result1 = eval(data)[0];
+            //alert(result1);        
             },
             error:function(){
-            //Error should be handle here
-             alert("no");  
+                //Error should be handle here
+                alert("no");  
             }
         });
     }
@@ -189,12 +191,11 @@ var Gym = function()
             url:'gymStats/',
             data:data,
             success:function(data){
-                result = eval(data)[0];
-                //alert("yes");
-                
-                $(".right-featured-box ul").append('<li><a href="#">'+result.visits +' visits/day</li>');
-                $(".right-featured-box ul").append('<li><a href="#">'+result.views +' profile views Today</li>');
-                $(".right-featured-box ul").append('<li><a href="#"> Average Gym Rate $ '+ result.price +'</li>');       
+                result2 = eval(data)[0];
+                //alert("yes");               
+                $("#owner-right-featured-box ul").append('<li><a href="#">'+result2.visits +' visits/day</li>');
+                $("#owner-right-featured-box ul").append('<li><a href="#">'+result2.views +' profile views Today</li>');
+                $("#owner-right-featured-box ul").append('<li><a href="#"> Average Gym Rate $ '+ result2.price +'</li>');       
             },
             error:function(){
             //Error should be handle here
@@ -206,19 +207,97 @@ var Gym = function()
     {
         data = {};
         data['token'] = $('#token').val();
-        data['gid'] = 1;
+       // data['gid'] = 1;
         JANRAIN.getJSON({
             url:'gymBalance/',
             data:data,
             success:function(data){
-              results = eval(data)[0];
-                
-                //res = results.balance;
+                result3 = eval(data)[0];                
+                //res = result3.balance;
+                //alert(res);
                 res = 10;
-                $(".balance").html("Balance: <br />$ "+  res);
+                $(".balance").html("Balance: $ "+  res);
             },
             error:function(){
             //Error should be handle here
+            }
+        });
+    }
+    
+    
+}
+var User = function()
+{
+    this.init = function()
+    {
+        this.bind();
+    }
+    
+    this.bind = function()
+    { 
+        this.getFeaturedGyms();
+        this.getUserBalance();
+        this.getUserPreferences();
+    }
+    
+    this.getFeaturedGyms = function()
+    {
+        JANRAIN.getJSON({
+            url:'featuredGyms/',
+            success:function(data){
+                result4 = eval(data);
+                op="<ul>";
+                finish = 5;
+                if(result4.length < 5 ){finish = result4.length}
+                for(i=0;i<finish;i++)
+                {       
+                    op += "<li><a href='#'>"+result4[i].name+"</a></li>";
+                }
+                op +="</ul>";
+                $("#featuredGymsBox").html(op);
+            },
+            error:function(){
+            //Error should be handle here
+            }
+        });
+    }
+    
+    this.getUserBalance = function()
+    {
+        data = {};
+        data['token'] = $('#token').val();
+        JANRAIN.getJSON({
+            url:'balance/',
+            success:function(data){
+               result5 = eval(data)[0];                
+                //res = result5.balance;
+                res = 10;
+                $(".balance-box").html("Balance: $ "+  res);
+            },
+            error:function(){
+            //Error should be handle here
+            
+            alert("error bal")
+            }
+        });
+    }
+    
+    this.getUserPreferences = function()
+    {
+        data = {};
+        data['token'] = $('#token').val();
+        JANRAIN.getJSON({
+            url:'userPreferences/',
+            success:function(data){
+               result6 = eval(data)[0];                
+                res = result6.email;
+                alert(res);
+                
+            },
+            error:function(){
+            //Error should be handle here
+            
+            alert("error pref")
             }
         });
     }

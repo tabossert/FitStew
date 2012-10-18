@@ -21,6 +21,7 @@ var Janrain = function(options)
         if(opt.token)
         {
             _opt.beforeSend = function(xhrObj) {
+                
                 xhrObj.setRequestHeader("token", opt.token);
             };
         }

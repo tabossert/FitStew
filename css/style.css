@@ -160,17 +160,13 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
 
 }
 .balance { 
-    margin:18px 0px 0px 0px;
-    text-align: center;
-    padding:0px ;
-    height: 60px;
-    width:252px; 
-    float:right;
-
-    padding:0px ; 
-    border:2px solid #184A61;
+   margin:0px 0px 10px 0px; padding:10px 16px 16px 16px ; border:2px solid #184A61;
     background:#3A5E64;
-    border-radius: 10px;
+    border-top-right-radius: 10px;
+    border-top-left-radius:10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    height: 10px;
 
 
 
@@ -186,7 +182,7 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     height: 10px;
-    width: 40px;
+   
 }
 
 .inner-txt { margin:0px; padding:0px ; }
@@ -265,6 +261,11 @@ ul.item-link li a:hover{text-decoration:none; color:#186897;}
                border-top-left-radius:10px;
                border-bottom-right-radius: 10px;
                border-bottom-left-radius: 10px;
-               height: 180px;
-               width: 200px;
+               height: auto;
+               width: 300px;
+}
+#featuredGymsBox{
+    color:#000;
+    font-style: normal;
+    
 }
