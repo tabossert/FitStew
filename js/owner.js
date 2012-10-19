@@ -34,7 +34,8 @@ $(window).load(function ()
             }
         });
         
-        $.ajax({
+            
+                $.ajax({
             beforeSend: function(xhrObj){
                
                 xhrObj.setRequestHeader("token",first);
@@ -47,8 +48,7 @@ $(window).load(function ()
             success: function(data){
                 result = eval(data)[0];
                 alert("yes");
-                  
-                alert(result.balance);
+              alert(result.balance);
                 },
             error:function(){
                 //Error should be handle here

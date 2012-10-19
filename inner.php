@@ -1,6 +1,7 @@
 <?php
 //Set title
 $title = "ZuneFit Gym Panel";
+
 ?>
 <!-- Header Start -->
 <?php include 'html/header.php'; ?>
@@ -18,8 +19,16 @@ $title = "ZuneFit Gym Panel";
                 $(div[i]).css('display', 'none');
         }
     };
+    $(document).ready(function() {
+
+ // executes when HTML-Document is loaded and DOM is ready
+
+ //alert("document is ready");
+
+});
     
 </script>
+
 <input type="hidden" name="token" id="token" value="<?php echo $_SESSION['token']; ?>"/>		  
 <div class="middle-container">
     <div class="left-part">
@@ -64,16 +73,39 @@ $title = "ZuneFit Gym Panel";
 
             <div id="preferences" style="display: none">
                 <div class="up-blue-box">
-                    <table>
-                        <tr><td> Email      </td><td> &nbsp;</td><td>   <input type="text" name="email" id="email" />       </td></tr>
-                        <tr><td> First Name </td><td> &nbsp;</td><td>   <input type="text" name="firstName" id="firstName"/></td></tr>
-                        <tr><td> Last Name  </td><td> &nbsp;</td><td>   <input type="text" name="lastName" id="lastName" /> </td></tr>
-                        <tr><td> Address    </td><td> &nbsp;</td><td>   <input type="text" name="address" id="address" />   </td></tr>
-                        <tr><td> City       </td><td> &nbsp;</td><td>   <input type="text" name="city" id="city" />         </td></tr>
-                        <tr><td> State      </td><td> &nbsp;</td><td>   <input type="text" name="state" id="state" />       </td></tr>
-                        <tr><td> Zipcode    </td><td> &nbsp;</td><td>   <input type="text" name="zipcode" id="zipcode" />   </td></tr>
-                        <tr><td><button onclick="updateUserPref();">Update</button>                                         </td></tr>
-                    </table>
+                    <form id="preferences-form">
+                        <table><tr><td>
+                            <label for="email" class="email" >  Email  </label></td><td>
+                                    <input type="text" name="email" id="email" />
+                                    <label for="email" class="error" generated="true"></label></td></tr>                        
+                        <tr><td>
+                        <label for="firstName" class="firstName" >  First Name  </label></td><td>
+                        <input type="text" name="firstName" id="firstName"/>
+                        <label for="firstName" class="error" generated="true"></label></td></tr>
+                         <tr><td>
+                            <label for="lastName" class="lastName" >  Last Name  </label></td><td>
+                         <input type="text" name="lastName" id="lastName" /> 
+                         <label for="lastName" class="error" generated="true"></label></td></tr>
+                        <tr><td>
+                            <label for="address" class="address" > Address  </label></td><td>
+                          <input type="text" name="address" id="address" /> 
+                          <label for="address" class="error" generated="true"></label></td></tr>
+                         <tr><td>
+                            <label for="city" class="city" > City  </label></td><td>
+                                   <input type="text" name="city" id="city" /> 
+                                   <label for="city" class="error" generated="true"></label></td></tr>
+                        <tr><td>
+                            <label for="state" class="state" > State  </label></td><td>
+                                 <input type="text" name="state" id="state" />   
+                                 <label for="state" class="error" generated="true"></label></td></tr>
+                       <tr><td>
+                            <label for="zipcode" class="zipcode" > Zipcode  </label></td><td>
+                               <input type="text" name="zipcode" id="zipcode" />
+                               <label for="zipcode" class="error" generated="true"></label></td></tr>
+                        <tr><td>
+                        <button onclick="updateUserPref();">Update</button></td></tr>  
+                        </table>
+                    </form>
                 </div>
             </div>
 

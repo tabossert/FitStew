@@ -177,7 +177,7 @@ var Gym = function()
             },
             error:function(){
                 //Error should be handle here
-                alert("no");  
+               // alert("no");  
             }
         });
     }
@@ -238,6 +238,7 @@ var User = function()
         this.getFeaturedGyms();
         this.getUserBalance();
         this.getUserPreferences();
+       
     }
     
     this.getFeaturedGyms = function()
@@ -265,7 +266,7 @@ var User = function()
     this.getUserBalance = function()
     {
         data = {};
-        data['token'] = $('#token').val();
+        data['token'] = $('#utoken').val();
         JANRAIN.getJSON({
             url:'balance/',
             success:function(data){
@@ -277,7 +278,7 @@ var User = function()
             error:function(){
             //Error should be handle here
             
-            alert("error bal")
+            //alert("error bal")
             }
         });
     }
@@ -285,7 +286,7 @@ var User = function()
     this.getUserPreferences = function()
     {
         data = {};
-        data['token'] = $('#token').val();
+        data['token'] = $('#utoken').val();
         JANRAIN.getJSON({
             url:'userPreferences/',
             success:function(data){
@@ -297,8 +298,9 @@ var User = function()
             error:function(){
             //Error should be handle here
             
-            alert("error pref")
+           //alert("error pref")
             }
         });
     }
+        
 }

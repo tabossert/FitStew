@@ -16,7 +16,7 @@
                     <label for="username" class="error" generated="true"></label>
                 </p>
                 <p id="msg">
-                    <label class="msg"></label>
+                    <label class="msg" ></label>
                 </p>
                 
                 <p> 
