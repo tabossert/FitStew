@@ -263,6 +263,7 @@ ul.item-link li a:hover{text-decoration:none; color:#186897;}
                border-bottom-left-radius: 10px;
                height: auto;
                width: 300px;
+               font-style: normal;
 }
 #featuredGymsBox{
     color:#000;

@@ -176,8 +176,8 @@ var Gym = function()
             //alert(result1);        
             },
             error:function(){
-                //Error should be handle here
-               // alert("no");  
+            //Error should be handle here
+            // alert("no");  
             }
         });
     }
@@ -207,7 +207,7 @@ var Gym = function()
     {
         data = {};
         data['token'] = $('#token').val();
-       // data['gid'] = 1;
+        // data['gid'] = 1;
         JANRAIN.getJSON({
             url:'gymBalance/',
             data:data,
@@ -238,6 +238,8 @@ var User = function()
         this.getFeaturedGyms();
         this.getUserBalance();
         this.getUserPreferences();
+        this.getUserWeekSchedule();
+       
        
     }
     
@@ -249,7 +251,9 @@ var User = function()
                 result4 = eval(data);
                 op="<ul>";
                 finish = 5;
-                if(result4.length < 5 ){finish = result4.length}
+                if(result4.length < 5 ){
+                    finish = result4.length
+                }
                 for(i=0;i<finish;i++)
                 {       
                     op += "<li><a href='#'>"+result4[i].name+"</a></li>";
@@ -270,7 +274,7 @@ var User = function()
         JANRAIN.getJSON({
             url:'balance/',
             success:function(data){
-               result5 = eval(data)[0];                
+                result5 = eval(data)[0];                
                 //res = result5.balance;
                 res = 10;
                 $(".balance-box").html("Balance: $ "+  res);
@@ -290,15 +294,95 @@ var User = function()
         JANRAIN.getJSON({
             url:'userPreferences/',
             success:function(data){
-               result6 = eval(data)[0];                
-                res = result6.email;
-                alert(res);
+                result6 = eval(data)[0];                
+                
+                $("#email").val(result6.email);
+                $("#firstName").val(result6.first_name);
+                $("#lastName").val(result6.last_name);
+                $("#address").val(result6.address);
+                $("#city").val(result6.city);
+                $("#state").val(result6.state);
+                $("#zipcode").val(result6.zipcode);
+                
                 
             },
             error:function(){
             //Error should be handle here
             
-           //alert("error pref")
+            //alert("error pref")
+            }
+        });
+    }
+    this.loadLeft = function(id)
+    {
+        var div = [];
+        div[0]='#infoBox';
+        div[1]='#searchbox';
+        div[2]='#preferences';
+        for(i=0;i<3;i++){
+            if(i==id)
+                $(div[i]).css('display', 'block');
+            else
+                $(div[i]).css('display', 'none');
+        }
+    }
+    
+    this.getUserDaySchedule = function()
+    {
+        var d = new Date();
+        var strDate = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+        //strDate = "2012-10-16";
+        
+        this.getUserSchedule(strDate+" 00:00:00", strDate+" 24:00:00");
+    }
+    
+    this.getUserWeekSchedule = function()
+    {
+        var curr = new Date; 
+        var first = curr.getDate() - curr.getDay(); 
+        var last = first + 6; 
+
+        var firstday = new Date(curr.setDate(first));
+        var lastday = new Date(curr.setDate(last));
+        var startDate = firstday.getFullYear() + "-" + (firstday.getMonth()+1) + "-" + firstday.getDate();
+        var endDate = lastday.getFullYear() + "-" + (lastday.getMonth()+1) + "-" + lastday.getDate();
+        
+        this.getUserSchedule(startDate+" 00:00:00", endDate+" 24:00:00");
+    }
+    
+    this.getUserMonthSchedule = function()
+    {
+        var mon= new Date();
+        
+        var firstDay = new Date(mon.getFullYear(), mon.getMonth() , 1);
+        var firstDate = firstDay.getFullYear() + "-" + (firstDay.getMonth()+1) + "-" + firstDay.getDate();
+        
+        var lastDay = new Date(mon.getFullYear(), mon.getMonth() + 1, 0);
+        var lastDate = lastDay.getFullYear() + "-" + (lastDay.getMonth()+1) + "-" + lastDay.getDate();
+        
+        this.getUserSchedule(firstDate+" 00:00:00", lastDate+" 24:00:00");
+    }
+    
+    this.getUserSchedule = function(start,end)
+    {
+        alert(start);
+        alert(end);
+        data = {};
+        data['start'] = start;
+        data['end'] = end;
+        data['token'] = $('#utoken').val();
+        
+        JANRAIN.postJSON({
+            url:'userSchedule/',
+            data:data,
+            success:function(data){
+                result7 = eval(data)[0];
+                $(".inner-txt").html(result7.date);
+            //alert(result1);        
+            },
+            error:function(){
+            //Error should be handle here
+             alert("no");  
             }
         });
     }

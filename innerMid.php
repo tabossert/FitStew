@@ -9,17 +9,17 @@
             beforeSend: function(xhrObj){
                 xhrObj.setRequestHeader("ltype", "web");
                
-                xhrObj.setRequestHeader("token",<?php echo "'".$_POST['token']."'"; ?>);
+                xhrObj.setRequestHeader("token", <?php echo "'".$_POST['token']."'"; ?>);
             },
         
-            type: "PUT",
-            url: "https://api.zunefit.com/api/userSignup/?callback=? ",
+            type: "POST",
+            url: "https://api.zunefit.com/api/userSignup/",
         
             dataType: "json",
             success: function(data){
-               // result = eval(data)[0];
+                result = eval(data)[0];
                 alert("yes");
-             // alert(result.balance);
+                alert(result.status);
                 },
             error:function(){
                 //Error should be handle here

@@ -54,7 +54,7 @@ if ($page != 'index.php') {
                     if (typeof window.janrain !== 'object') window.janrain = {};
                     if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
     	            
-                    janrain.settings.tokenUrl = '<?php echo SITE_URL; ?>innermin.php';
+                    janrain.settings.tokenUrl = '<?php echo SITE_URL; ?>innerMid.php';
 	
                     function isReady() { janrain.ready = true; };
                     if (document.addEventListener) {
