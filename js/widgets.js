@@ -365,8 +365,8 @@ var User = function()
     
     this.getUserSchedule = function(start,end)
     {
-        alert(start);
-        alert(end);
+        //alert(start);
+        //alert(end);
         data = {};
         data['start'] = start;
         data['end'] = end;

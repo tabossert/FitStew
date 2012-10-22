@@ -60,18 +60,22 @@ $title = "ZuneFit Gym Panel";
             <div id="preferences" style="display: none">
                 <div class="up-blue-box">
                     <form id="preferences-form">
+                         <div style="text-align: center"><a href = "#">Preferences</a> | <a href = "#">Billing</a></div>
+                          <hr/>
                         <table><tr><td>
-                                    <label for="email" class="email" >  Email  </label></td><td>:</td><td>
-                                    <input type="text" name="email" id="email" />
-                                    <label for="email" class="error" generated="true"></label></td></tr>                        
-                            <tr><td>
                                     <label for="firstName" class="firstName" >  First Name  </label></td><td>:</td><td>
                                     <input type="text" name="firstName" id="firstName"/>
                                     <label for="firstName" class="error" generated="true"></label></td></tr>
+                           
                             <tr><td>
                                     <label for="lastName" class="lastName" >  Last Name  </label></td><td>:</td><td>
                                     <input type="text" name="lastName" id="lastName" /> 
                                     <label for="lastName" class="error" generated="true"></label></td></tr>
+                            <tr><td>
+                                    <label for="email" class="email" >  Email  </label></td><td>:</td><td>
+                                    <input type="text" name="email" id="email" />
+                                    <label for="email" class="error" generated="true"></label></td></tr>                        
+                            
                             <tr><td>
                                     <label for="address" class="address" > Address  </label></td><td>:</td><td>
                                     <input type="text" name="address" id="address" /> 
