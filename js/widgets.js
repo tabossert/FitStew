@@ -235,12 +235,26 @@ var User = function()
     
     this.bind = function()
     { 
+        this.slider();
         this.getFeaturedGyms();
         this.getUserBalance();
-        this.getUserPreferences();
         this.getUserWeekSchedule();
        
        
+    }
+    
+    this.slider = function()
+    {
+        $( "#slider-range-min" ).slider({
+                range: "min",
+                value: 1,
+                min: 1,
+                max: 100,
+                slide: function( event, ui ) {
+                    $( "#amount" ).val( "$" + ui.value );
+                }
+            });
+            $( "#amount" ).val( "$" + $( "#slider-range-min" ).slider( "value" ) );
     }
     
     this.getFeaturedGyms = function()
@@ -327,6 +341,35 @@ var User = function()
         }
     }
     
+    this.search = function(id)
+    {
+       
+        var div = [];
+        div[0]='#search';
+        div[1]='#advSearch';
+        
+        for(i=0;i<2;i++){
+            if(i==id)
+                $(div[i]).css('display', 'block');
+            else
+                $(div[i]).css('display', 'none');
+        }
+    }
+    
+    this.preferencesBilling = function(id)
+    {
+        var div = [];
+        div[0]='#preference';
+        div[1]='#billing';
+        
+        for(i=0;i<2;i++){
+            if(i==id)
+                $(div[i]).css('display', 'block');
+            else
+                $(div[i]).css('display', 'none');
+        }
+    }
+    
     this.getUserDaySchedule = function()
     {
         var d = new Date();
@@ -382,7 +425,7 @@ var User = function()
             },
             error:function(){
             //Error should be handle here
-             alert("no");  
+            // alert("no");  
             }
         });
     }

@@ -17,8 +17,10 @@
         
             dataType: "json",
             success: function(data){
-                result = eval(data)[0];
                 alert("yes");
+                alert(data);
+                result = eval(data)[0];
+                
                 alert(result.status);
                 },
             error:function(){
