@@ -12,11 +12,10 @@ var ZuneFit = function(options)
      */
     this.getJSON = function(opt)
     {
-        alert(opt.token);
         _this.start();
         _opt = {};
-        _opt.url =_options.url + opt.url + "?callback=?";
-        _opt.dataType = 'jsonp';
+        _opt.url =_options.url + opt.url;
+        _opt.datatype = 'jsonp';
         _opt.type = "GET";
         _opt.data = opt.data;
         _opt.beforeSend = function(xhrObj) {
