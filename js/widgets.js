@@ -235,7 +235,7 @@ var User = function()
     
     this.bind = function()
     { 
-        this.slider();
+       // this.slider();
         this.getFeaturedGyms();
         this.getUserBalance();
         this.getUserWeekSchedule();
