@@ -28,18 +28,7 @@ $title = "ZuneFit Gym Panel";
                 </div>
                 <div style=" margin:15px 0px 0px 0px; border-top:1px solid #769196; height:1px;"></div>
                 <div class="inner-txt">
-                    <h1>Monday, April 1st, 2012</h1>
-                    <ul class="calender-link">
-                        <li><a href="#">Tervor Bossert</a></li>
-                        <li><a href="#">Antony Zimzores</a></li>
-                        <li><a href="#">Daniel Jensen</a></li>
-                    </ul>
-                    <h1>Monday, April 2nd, 2012</h1>
-                    <ul class="calender-link">
-                        <li><a href="#">Tervor Bossert</a></li>
-                        <li><a href="#">Antony Zimzores</a></li>
-                        <li><a href="#">Daniel Jensen</a></li>
-                    </ul>
+                    
                 </div>
             </div>
 

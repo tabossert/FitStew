@@ -17,6 +17,8 @@ $obj = json_decode($chleadresult);
 //$token = $obj[0]->{'token'};
 $token = $obj[0]->{'token'};
 echo $_SESSION['token']= $token;
+var_dump($chleadresult);
+
 header ("Location: ".SITE_URL."inner.php");
 
 //echo $chleadapierr = curl_errno($chlead);

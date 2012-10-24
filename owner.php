@@ -10,30 +10,19 @@
 <div class="middle-container">
     <div class="left-part">
         <div class="blue-box1">
-            <div>
-                <div class="calender1"><a href="#"><img src="images/calender_img1.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
-                    DAY</div>
-                <div class="calender2"><a href="#"><img src="images/calender_img2.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
-                    WEEK</div>
-                <div class="calender3"><a href="#"><img src="images/calender_img3.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
-                    MONTH</div>
-                <div class="clr"></div>
-            </div>
+             <div>
+                    <div class="calender1"><a id="day" href="#" onclick="widgets.gim.getGymDaySchedule();"><img src="images/calender_img1.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
+                        DAY</div>
+                    <div class="calender2"><a id= "week" href="#" onclick="widgets.gim.getGymWeekSchedule()"><img src="images/calender_img2.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
+                        WEEK</div>
+                    <div class="calender3"><a id= "month" href="#" onclick="widgets.gim.getGymMonthSchedule()"><img src="images/calender_img3.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
+                        MONTH</div>
+                    <div class="clr"></div>
+                </div>
             <div style=" margin:15px 0px 0px 0px; border-top:1px solid #769196; height:1px;"></div>
             <div id='gymScheduleBox'>
                 <div class="inner-txt">
-                    <h1>Monday, April 1st, 2012</h1>
-                    <ul class="calender-link">
-                        <li><a href="#">Tervor Bossert</a></li>
-                        <li><a href="#">Antony Zimzores</a></li>
-                        <li><a href="#">Daniel Jensen</a></li>
-                    </ul>
-                    <h1>Monday, April 2nd, 2012</h1>
-                    <ul class="calender-link">
-                        <li><a href="#">Tervor Bossert</a></li>
-                        <li><a href="#">Antony Zimzores</a></li>
-                        <li><a href="#">Daniel Jensen</a></li>
-                    </ul>
+                    
                 </div>
             </div>
         </div>

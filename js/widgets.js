@@ -156,7 +156,8 @@ var Gym = function()
     
     this.bind = function()
     { 
-        this.getGymSchedule("2012-10-04 00:00:00", "2012-10-16 00:00:00");
+       // this.getGymSchedule("2012-10-04 00:00:00", "2012-10-16 00:00:00");
+        this.getGymWeekSchedule();
         this.getGymStat();
         this.getGymBal();        
     }
@@ -173,8 +174,36 @@ var Gym = function()
             data:data,
             token : $('#token').val(),
             success:function(data){
-                result1 = eval(data)[0];
-            //alert(result1);        
+                $(".inner-txt").html(" ");
+                
+                result1 = eval(data);
+            //alert(result1);
+            try{
+                finish1 = result1.length;
+                op1 = "";
+                op2 = "";
+                for(i=0;i<finish1;i++)
+                {       
+                    
+                    if(op2 == result1[i].date){
+                        op1 += "<li>"+result1[i].sid+"</li>";
+                    }else{
+                        if(i!=0){
+                            op1 += "</ul>";
+                        }
+                        op1 += "<h1>"+result1[i].date+"</h1>";
+                        op1 += "<ul class='calender-link'><li><a href = '#'>"+result1[i].first_name+" "+result1[i].last_name+"</a></li>";
+                        op2 = result1[i].date;
+                    }
+                    
+                }
+                $(".inner-txt").html(op1);
+                
+            }catch(ex){
+                 $(".inner-txt").html(" ");
+                
+            }
+            
             },
             error:function(){
             //Error should be handle here
@@ -186,11 +215,12 @@ var Gym = function()
     this.getGymStat = function()
     {
         data = {};
-        data['token'] = $('#token').val();
+        
         
         ZUNEFIT.getJSON({
             url:'gymStats/',
             data:data,
+            token : $('#token').val(),
             success:function(data){
                 result2 = eval(data)[0];
                 //alert("yes");               
@@ -207,23 +237,57 @@ var Gym = function()
     this.getGymBal = function()
     {
         data = {};
-        //data['token'] = $('#token').val();
-        // data['gid'] = 1;
+        
         ZUNEFIT.getJSON({
             url:'gymBalance/',
             data:data,
             token : $('#token').val(),
             success:function(data){
                 result3 = eval(data)[0];                
-                //res = result3.balance;
-                //alert(res);
-                res = 10;
+                res = result3.balance;
+                
                 $(".balance").html("Balance: $ "+  res);
             },
             error:function(){
             //Error should be handle here
             }
         });
+    }
+    
+    this.getGymMonthSchedule = function()
+    {
+        var mon= new Date();
+        
+        var firstDay = new Date(mon.getFullYear(), mon.getMonth() , 1);
+        var firstDate = firstDay.getFullYear() + "-" + (firstDay.getMonth()+1) + "-" + firstDay.getDate();
+        
+        var lastDay = new Date(mon.getFullYear(), mon.getMonth() + 1, 0);
+        var lastDate = lastDay.getFullYear() + "-" + (lastDay.getMonth()+1) + "-" + lastDay.getDate();
+        
+        this.getGymSchedule(firstDate+" 00:00:00", lastDate+" 24:00:00");
+    }
+    
+     this.getGymDaySchedule = function()
+    {
+        var d = new Date();
+        var strDate = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+        //strDate = "2012-10-16";
+        
+        this.getGymSchedule(strDate+" 00:00:00", strDate+" 24:00:00");
+    }
+    
+    this.getGymWeekSchedule = function()
+    {
+        var curr = new Date; 
+        var first = curr.getDate() - curr.getDay(); 
+        var last = first + 6; 
+
+        var firstday = new Date(curr.setDate(first));
+        var lastday = new Date(curr.setDate(last));
+        var startDate = firstday.getFullYear() + "-" + (firstday.getMonth()+1) + "-" + firstday.getDate();
+        var endDate = lastday.getFullYear() + "-" + (lastday.getMonth()+1) + "-" + lastday.getDate();
+        
+        this.getGymSchedule(startDate+" 00:00:00", endDate+" 24:00:00");
     }
     
     
@@ -240,8 +304,9 @@ var User = function()
       
         this.getFeaturedGyms();
         this.getUserBalance();
-        this.getUserWeekSchedule();
+      //  this.getUserWeekSchedule();
         this.slider();
+        this.getUserPreferences();
        
        
     }
@@ -288,17 +353,17 @@ var User = function()
     
     this.getUserBalance = function()
     {
-        data = {};
+        data = {};  
         
         ZUNEFIT.getJSON({
             url:'balance/',
-            data : data,
+            data: data,
             token : $('#utoken').val(),
             success:function(response){
-                alert(response);
+               
             result5 = eval(response)[0];                
             res = result5.balance;
-            alert("bal"+res);
+            //alert("bal"+response);
             $(".balance-box").html("Balance: $ "+  res);
             },
             error:function(){
@@ -312,9 +377,10 @@ var User = function()
     this.getUserPreferences = function()
     {
         data = {};
-        data['token'] = $('#utoken').val();
+       
         ZUNEFIT.getJSON({
             url:'userPreferences/',
+            token : $('#utoken').val(),
             success:function(data){
                 result6 = eval(data)[0];                
                 
@@ -427,9 +493,9 @@ var User = function()
             url:'userSchedule/',
             data:data,
             token : $('#utoken').val(),
-            success:function(data){
-                result7 = eval(data)[0];
-                $(".inner-txt").html(result7.date);
+            success:function(response){
+                result7 = eval(response)[0];
+                $(".inner-txt").html(result7);
             //alert(result1);        
             },
             error:function(){
