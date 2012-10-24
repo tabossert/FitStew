@@ -166,11 +166,12 @@ var Gym = function()
         data = {};
         data['start'] = start;
         data['end'] = end;
-        data['token'] = $('#token').val();
+        //data['token'] = $('#token').val();
         
         ZUNEFIT.postJSON({
             url:'gymSchedule/',
             data:data,
+            token : $('#token').val(),
             success:function(data){
                 result1 = eval(data)[0];
             //alert(result1);        
@@ -206,11 +207,12 @@ var Gym = function()
     this.getGymBal = function()
     {
         data = {};
-        data['token'] = $('#token').val();
+        //data['token'] = $('#token').val();
         // data['gid'] = 1;
         ZUNEFIT.getJSON({
             url:'gymBalance/',
             data:data,
+            token : $('#token').val(),
             success:function(data){
                 result3 = eval(data)[0];                
                 //res = result3.balance;
@@ -235,26 +237,29 @@ var User = function()
     
     this.bind = function()
     { 
-       // this.slider();
+      
         this.getFeaturedGyms();
         this.getUserBalance();
         this.getUserWeekSchedule();
+        this.slider();
        
        
     }
     
     this.slider = function()
     {
-        $( "#slider-range-min" ).slider({
+        $(function() {
+            $( "#slider-range-min" ).slider({
                 range: "min",
-                value: 1,
+                value: 37,
                 min: 1,
-                max: 100,
+                max: 700,
                 slide: function( event, ui ) {
                     $( "#amount" ).val( "$" + ui.value );
                 }
             });
             $( "#amount" ).val( "$" + $( "#slider-range-min" ).slider( "value" ) );
+        });
     }
     
     this.getFeaturedGyms = function()
@@ -291,10 +296,10 @@ var User = function()
             token : $('#utoken').val(),
             success:function(response){
                 alert(response);
-                //result5 = eval(data)[0];                
-                //res = result5.balance;
-                //res = 10;
-                //$(".balance-box").html("Balance: $ "+  res);
+            result5 = eval(response)[0];                
+            res = result5.balance;
+            alert("bal"+res);
+            $(".balance-box").html("Balance: $ "+  res);
             },
             error:function(){
             //Error should be handle here
@@ -416,11 +421,12 @@ var User = function()
         data = {};
         data['start'] = start;
         data['end'] = end;
-        data['token'] = $('#utoken').val();
+        
         
         ZUNEFIT.postJSON({
             url:'userSchedule/',
             data:data,
+            token : $('#utoken').val(),
             success:function(data){
                 result7 = eval(data)[0];
                 $(".inner-txt").html(result7.date);
