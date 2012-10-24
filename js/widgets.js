@@ -3,10 +3,10 @@
  */
 
 //Configuration parameters
-var JANRAIN_BASE_URL = "https://api.zunefit.com/api/";
+var ZUNEFIT_BASE_URL = "https://api.zunefit.com/api/";
 //Janrain API instance
-var JANRAIN = new Janrain({
-    url:JANRAIN_BASE_URL,
+var ZUNEFIT = new Janrain({
+    url:ZUNEFIT_BASE_URL,
     start:function(){
         startAjax();
     },
@@ -113,7 +113,7 @@ var LoginBox = function(formId,msgId)
         data["username"] = username;
         data["password"] = Sha1.hash(password);
         
-        JANRAIN.postJSON({
+        ZUNEFIT.postJSON({
             url:'gymLogin/',
             data:data,
             success:function(data){
@@ -168,7 +168,7 @@ var Gym = function()
         data['end'] = end;
         data['token'] = $('#token').val();
         
-        JANRAIN.postJSON({
+        ZUNEFIT.postJSON({
             url:'gymSchedule/',
             data:data,
             success:function(data){
@@ -187,7 +187,7 @@ var Gym = function()
         data = {};
         data['token'] = $('#token').val();
         
-        JANRAIN.getJSON({
+        ZUNEFIT.getJSON({
             url:'gymStats/',
             data:data,
             success:function(data){
@@ -208,7 +208,7 @@ var Gym = function()
         data = {};
         data['token'] = $('#token').val();
         // data['gid'] = 1;
-        JANRAIN.getJSON({
+        ZUNEFIT.getJSON({
             url:'gymBalance/',
             data:data,
             success:function(data){
@@ -245,7 +245,7 @@ var User = function()
     
     this.getFeaturedGyms = function()
     {
-        JANRAIN.getJSON({
+        ZUNEFIT.getJSON({
             url:'featuredGyms/',
             success:function(data){
                 result4 = eval(data);
@@ -271,7 +271,7 @@ var User = function()
     {
         data = {};
         data['token'] = $('#utoken').val();
-        JANRAIN.getJSON({
+        ZUNEFIT.getJSON({
             url:'balance/',
             success:function(data){
                 result5 = eval(data)[0];                
@@ -291,7 +291,7 @@ var User = function()
     {
         data = {};
         data['token'] = $('#utoken').val();
-        JANRAIN.getJSON({
+        ZUNEFIT.getJSON({
             url:'userPreferences/',
             success:function(data){
                 result6 = eval(data)[0];                
@@ -372,7 +372,7 @@ var User = function()
         data['end'] = end;
         data['token'] = $('#utoken').val();
         
-        JANRAIN.postJSON({
+        ZUNEFIT.postJSON({
             url:'userSchedule/',
             data:data,
             success:function(data){

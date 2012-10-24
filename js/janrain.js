@@ -1,8 +1,8 @@
 /* 
- * Wrapper to send/recieve janrain API calls via JQuery AJAX
+ * Wrapper to send/recieve ZuneFit API calls via JQuery AJAX
  */
 
-var Janrain = function(options)
+var ZuneFit = function(options)
 {
     _this = this;
     _options = options;
@@ -18,13 +18,13 @@ var Janrain = function(options)
         _opt.datatype = 'jsonp'
         _opt.type = "GET";
         _opt.data = opt.data;
-        if(opt.token)
-        {
-            _opt.beforeSend = function(xhrObj) {
-                
+        _opt.beforeSend = function(xhrObj) {
+            xhrObj.setRequestHeader("ltype", "web");
+            if(opt.token)
+            {
                 xhrObj.setRequestHeader("token", opt.token);
-            };
-        }
+            }
+        };
         _opt.success = function(data)
         {
             opt.success(data); 
