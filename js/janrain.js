@@ -12,10 +12,11 @@ var ZuneFit = function(options)
      */
     this.getJSON = function(opt)
     {
+        alert(opt.token);
         _this.start();
         _opt = {};
-        _opt.url =_options.url + opt.url + '?callback=?';
-        _opt.datatype = 'jsonp'
+        _opt.url =_options.url + opt.url + "?callback=?";
+        _opt.dataType = 'jsonp';
         _opt.type = "GET";
         _opt.data = opt.data;
         _opt.beforeSend = function(xhrObj) {
@@ -29,12 +30,12 @@ var ZuneFit = function(options)
         {
             opt.success(data); 
             _this.end();
-        }
+        };
         _opt.error = function()
         {           
             opt.error(); 
             _this.end();
-        }
+        };
         
         $.ajax(_opt);
     }
@@ -47,8 +48,7 @@ var ZuneFit = function(options)
         _this.start();
         _opt = {};
         _opt.url =_options.url + opt.url;
-        _opt.datatype = 'json';
-        _opt.jsonpCallback =  'jsonCallback',
+        _opt.dataType = 'json';
         _opt.type = "POST";
         _opt.data = opt.data;
         _opt.beforeSend = function(xhrObj) {

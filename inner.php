@@ -11,7 +11,7 @@ $title = "ZuneFit Gym Panel";
 
 
 
-<input type="hidden" name="token" id="token" value="<?php echo $_SESSION['token']; ?>"/>		  
+<input type="hidden" name="utoken" id="utoken" value="<?php echo $_SESSION['token']; ?>"/>		  
 <div class="middle-container">
     <div class="left-part">
         <div class="blue-box1">

@@ -5,7 +5,7 @@
 //Configuration parameters
 var ZUNEFIT_BASE_URL = "https://api.zunefit.com/api/";
 //Janrain API instance
-var ZUNEFIT = new Janrain({
+var ZUNEFIT = new ZuneFit({
     url:ZUNEFIT_BASE_URL,
     start:function(){
         startAjax();
@@ -284,14 +284,17 @@ var User = function()
     this.getUserBalance = function()
     {
         data = {};
-        data['token'] = $('#utoken').val();
+        
         ZUNEFIT.getJSON({
             url:'balance/',
-            success:function(data){
-                result5 = eval(data)[0];                
+            data : data,
+            token : $('#utoken').val(),
+            success:function(response){
+                alert(response);
+                //result5 = eval(data)[0];                
                 //res = result5.balance;
-                res = 10;
-                $(".balance-box").html("Balance: $ "+  res);
+                //res = 10;
+                //$(".balance-box").html("Balance: $ "+  res);
             },
             error:function(){
             //Error should be handle here
