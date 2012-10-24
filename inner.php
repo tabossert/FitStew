@@ -5,15 +5,11 @@ $title = "ZuneFit Gym Panel";
 <!-- Header Start -->
 <?php include 'html/header.php'; ?>
 <!-- Header End -->
-<script type="text/javascript">
 
-    $(document).ready(function() {
-             
-    });
-    
-    
-    
-</script>
+<link rel="stylesheet" href="jqueryui/jqueryui.css" />
+<script src="jqueryui/jqueryui.js"></script>
+
+
 
 <input type="hidden" name="token" id="token" value="<?php echo $_SESSION['token']; ?>"/>		  
 <div class="middle-container">
@@ -48,25 +44,76 @@ $title = "ZuneFit Gym Panel";
             </div>
 
             <div id="searchbox" style="display: none">
-                <div style="text-align: center"><a href = "#">Search</a> | <a href = "#">Browse</a></div>
-                <div>
-                    <input type='text' name='address' id='address' />
-                    <button onclick="setToken('<?php echo $_SESSION['token']; ?>');gymAdvancedSearch();">Search</button>  
-                </div>
-                <div id="search-result">
+                <div class="up-blue-box">
+
+                    <div style="text-align: center"><a href = "#" onclick="widgets.user.search(0)">Search</a> | <a href = "#" onclick="widgets.user.search(1)">Advanced Search</a></div>
+                    <hr/><br/>
+                    <div id="search">
+                        <div>
+                            <input type='text' name='address' id='address' />
+                            <button onclick="setToken('<?php echo $_SESSION['token']; ?>');gymAdvancedSearch();">Search</button>  
+                        </div>
+                        <div id="search-result">
+                        </div>
+                    </div>
+
+                    <div id="advSearch" style="display: none">
+                        <div>
+                            <p class="underline_title">Type</p>
+                            <table>
+                                <tr>
+                                    <td><input type="checkbox" id="boxing" ></td><td>Boxing</td>                      
+                                    <td><input type="checkbox" id="cycling"></td> <td>Cycling</td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <p class="underline_title">Location</p>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label for="Miles" class="Miles" >  Miles  </label></td><td>
+                                        <input type="text" name="Miles" id="Miles" placeholder="within"/>
+                                        <label for="Miles" class="error" generated="true"></label></td><td>
+                                        <label for="Within" class="Within" >  Within  </label></td><td>
+                                        <input type="text" name="Within" id="Within" placeholder="zip/city"/> 
+                                        <label for="Within" class="error" generated="true"></label>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <p class="underline_title">Rate</p>
+                            <br/>
+                            <div id="slider-range-min"></div>
+                            <br/>
+                            <p>
+                                <input type="text" id="amount" name="amount" readonly style="background: none;border: none;"/>
+                            <p>Dollars (stars at 1$)</p>                                
+                            </p>
+                            <br/>
+                            <p class="underline_title">Keyword</p>
+                            <input type="text" name="keyword" id="keyword" placeholder="keyword"/>
+                            <div style="float: right;">
+                                <button onclick="widgets.user.AdvancedSearch();" >Search</button>
+                            </div>
+                        </div>
+                        <div id="advSearch-result">
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div id="preferences" style="display: none">
                 <div class="up-blue-box">
-                    <form id="preferences-form">
-                         <div style="text-align: center"><a href = "#">Preferences</a> | <a href = "#">Billing</a></div>
-                          <hr/>
-                        <table><tr><td>
+
+
+                    <div style="text-align: center"><a href = "#" onclick="widgets.user.preferencesBilling(0)">Preferences</a> | <a href = "#" onclick="widgets.user.preferencesBilling(1)">Billing</a></div>
+                    <hr/>
+                    <div id="preference">
+                        <table class="pref">
+                            <tr><td>
                                     <label for="firstName" class="firstName" >  First Name  </label></td><td>:</td><td>
                                     <input type="text" name="firstName" id="firstName"/>
                                     <label for="firstName" class="error" generated="true"></label></td></tr>
-                           
                             <tr><td>
                                     <label for="lastName" class="lastName" >  Last Name  </label></td><td>:</td><td>
                                     <input type="text" name="lastName" id="lastName" /> 
@@ -75,27 +122,40 @@ $title = "ZuneFit Gym Panel";
                                     <label for="email" class="email" >  Email  </label></td><td>:</td><td>
                                     <input type="text" name="email" id="email" />
                                     <label for="email" class="error" generated="true"></label></td></tr>                        
-                            
+
                             <tr><td>
                                     <label for="address" class="address" > Address  </label></td><td>:</td><td>
                                     <input type="text" name="address" id="address" /> 
                                     <label for="address" class="error" generated="true"></label></td></tr>
-                            <tr><td>
-                                    <label for="city" class="city" > City  </label></td><td>:</td><td>
-                                    <input type="text" name="city" id="city" /> 
-                                    <label for="city" class="error" generated="true"></label></td></tr>
-                            <tr><td>
-                                    <label for="state" class="state" > State  </label></td><td>:</td><td>
-                                    <input type="text" name="state" id="state" />   
-                                    <label for="state" class="error" generated="true"></label></td></tr>
-                            <tr><td>
-                                    <label for="zipcode" class="zipcode" > Zipcode  </label></td><td>:</td><td>
-                                    <input type="text" name="zipcode" id="zipcode" />
-                                    <label for="zipcode" class="error" generated="true"></label></td></tr>
-                            <tr><td>
-                                    <button onclick="updateUserPref();">Update</button></td></tr>  
+
                         </table>
-                    </form>
+                        <div style="float: right;">
+                            <button onclick="updateUserPref();">Update</button>
+                        </div>  
+
+                        <a href="#">Change password</a>
+
+                    </div>
+                    <div id="billing" style="display: none;">
+                        <table class="pref">
+                            <tr><td>
+                                    <label for="bfirstName" class="bfirstName" >  First Name  </label></td><td>:</td><td>
+                                    <input type="text" name="bfirstName" id="bfirstName"/>
+                                    <label for="bfirstName" class="error" generated="true"></label></td></tr>
+                            <tr><td>
+                                    <label for="blastName" class="blastName" >  Last Name  </label></td><td>:</td><td>
+                                    <input type="text" name="blastName" id="blastName" /> 
+                                    <label for="blastName" class="error" generated="true"></label></td></tr>
+                            <tr><td>
+                                    <label for="baddress" class="baddress" >  Billing Address  </label></td><td>:</td><td>
+                                    <input type="text" name="baddress" id="baddress" />
+                                    <label for="baddress" class="error" generated="true"></label></td></tr> 
+                            <tr><td>
+                                    <label for="bcredit" class="bcredit" >  Credit card  </label></td><td>:</td><td>
+                                    <input type="text" name="bcredit" id="bcredit" />
+                                    <label for="bcredit" class="error" generated="true"></label></td></tr> 
+                        </table>
+                    </div>
                 </div>
             </div>
 

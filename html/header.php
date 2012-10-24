@@ -44,17 +44,17 @@ if ($page != 'index.php') {
             <script src='js/jquery.metadata.js'></script>
             <script src='fancybox/jquery.fancybox-1.3.4.js'></script>
             <?php //if ($page != 'index.php') : ?>
-                <script src='js/SHA1.js'></script>
-                <script src='js/janrain.js'></script>
-                <script src='js/widgets.js'></script>
-                <script src='js/validation.js'></script>
-            <?php// endif; ?>
+            <script src='js/SHA1.js'></script>
+            <script src='js/janrain.js'></script>
+            <script src='js/widgets.js'></script>
+            <script src='js/validation.js'></script>
+            <?php // endif; ?>
             <script type="text/javascript">
                 $(function() {
                     if (typeof window.janrain !== 'object') window.janrain = {};
                     if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
     	            
-                    janrain.settings.tokenUrl = '<?php echo SITE_URL; ?>innermin.php';
+                    janrain.settings.tokenUrl = '<?php echo SITE_URL; ?>intermediate.php';
 	
                     function isReady() { janrain.ready = true; };
                     if (document.addEventListener) {

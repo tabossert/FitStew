@@ -1,8 +1,8 @@
 <?php
-/*
- * Intermediate file to intercept janrain user loagin ,feed the login information to zunefit api and get the token
- */
-echo $jrnToke = $_POST["token"];
+session_start();
+include('includes/config.inc.php');
+
+$jrnToke = $_POST["token"];
 $zuneFitUrl =  "https://api.zunefit.com/api/userSignup/";
 $chlead = curl_init();
 curl_setopt($chlead, CURLOPT_URL, $zuneFitUrl);
@@ -11,9 +11,13 @@ curl_setopt($chlead, CURLOPT_VERBOSE, 1);
 curl_setopt($chlead, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($chlead, CURLOPT_CUSTOMREQUEST, "POST"); 
 curl_setopt($chlead, CURLOPT_SSL_VERIFYPEER, 0);
-echo $chleadresult = curl_exec($chlead);
-echo $obj = json_decode($chleadresult);
-var_dump($chleadresult);
+$chleadresult = curl_exec($chlead);
+$obj = json_decode($chleadresult);
+
+//$token = $obj[0]->{'token'};
+$token = $obj[0]->{'token'};
+echo $_SESSION['token']= $token;
+header ("Location: ".SITE_URL."inner.php");
 
 //echo $chleadapierr = curl_errno($chlead);
 //echo $chleaderrmsg = curl_error($chlead);

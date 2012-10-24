@@ -262,11 +262,25 @@ ul.item-link li a:hover{text-decoration:none; color:#186897;}
                border-bottom-right-radius: 10px;
                border-bottom-left-radius: 10px;
                height: auto;
-               width: 300px;
+               width: auto;
                font-style: normal;
 }
 #featuredGymsBox{
     color:#000;
     font-style: normal;
+    
+}
+.pref{
+    line-height: 40px;
+    width: auto; 
+}
+#pref td{
+    width : 80px;
+     
+}
+.underline_title{
+    font-style: normal;
+    text-decoration: underline;
+    
     
 }
