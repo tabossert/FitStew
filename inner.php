@@ -171,12 +171,7 @@ $title = "ZuneFit Gym Panel";
         <div class="right-featured-box">
             <h1>Popular Workouts</h1>
             <ul class="item-link">
-                <li><a href="#">Item 1</a></li>
-                <li><a href="#">Item 2</a></li>
-                <li><a href="#">Item 3</a></li>
-                <li><a href="#">Item 4</a></li>
-                <li><a href="#">Item 5</a></li>
-                <li><a href="#">Item 6</a></li>
+                
             </ul>
         </div>
     </div>

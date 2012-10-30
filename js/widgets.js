@@ -322,6 +322,7 @@ var User = function()
         this.getUserWeekSchedule();
         this.slider();
         this.getUserPreferences();
+        this.getFeaturedWorkots();
        
        
     }
@@ -342,7 +343,9 @@ var User = function()
         });
     }
     
-    this.getFeaturedGyms = function()
+    
+    
+     this.getFeaturedWorkots = function()
     {
         ZUNEFIT.getJSON({
             url:'featuredGyms/',
@@ -516,6 +519,32 @@ var User = function()
             error:function(){
             //Error should be handle here
             // alert("no");  
+            }
+        });
+    }
+    
+    this.getFeaturedGyms = function()
+    {
+        ZUNEFIT.getJSON({
+            url:'featuredWorkouts/',
+            success:function(response){
+                result8 = eval(response);
+                //alert(result8[0].service);
+                op="<ul>";
+                finish = 5;
+                if(result8.length < 5 ){
+                    finish = result8.length
+                }
+               
+                for(i=0;i<finish;i++)
+                {       
+                     $(".item-link").append('<li><a href="#">'+result8[i].service +'</li>');
+                    
+                }
+                
+            },
+            error:function(){
+            //Error should be handle here
             }
         });
     }

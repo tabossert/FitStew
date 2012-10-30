@@ -317,8 +317,8 @@ ul.item-link li a:hover{text-decoration:none; color:#186897;}
        
     }
     .my-box2 { margin:5px 0px; padding:0px ; border:1px solid #9F9A9D;
-          background:url(../images/top_menubg.gif) left top repeat-x; height:32px;
-          border-top-right-radius: 10px;
+          background:url(../images/top_menubg.gif) left top repeat-x; 
+          height:32px;
           border-top-left-radius:10px;
           border-bottom-right-radius: 10px;
           border-bottom-left-radius: 10px;
