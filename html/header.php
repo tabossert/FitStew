@@ -8,7 +8,7 @@ include('includes/config.inc.php');
 
 session_start();
 
-//Get current page
+// Get current page
 $currentFile = $_SERVER["PHP_SELF"];
 $parts = Explode('/', $currentFile);
 $page = $parts[count($parts) - 1];

@@ -151,7 +151,9 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
 /* Start Inner page css*/
 
 .blue-box1 { 
-    margin:0px; padding:10px 16px 16px 16px ; border:2px solid #184A61;
+    margin:0px; 
+    padding:10px 16px 16px 16px ; 
+    border:2px solid #184A61;
     background:#3A5E64;
     border-top-right-radius: 10px;
     border-top-left-radius:10px;
@@ -185,17 +187,15 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
    
 }
 
-.inner-txt { margin:0px; padding:0px ; }
+.inner-txt { margin-left: 100px; padding:0px ; }
 .inner-txt h1{ margin:18px 0px 8px 0px; padding:0px ; font:bold 16px "Trebuchet MS"; text-decoration:none; text-transform:none; color:#F8E839; }
+
 ul.calender-link, ul.calender-link li{margin:0px; padding:0px; list-style-type:none;}
 ul.calender-link li{margin:0px; padding:0px;}
 ul.calender-link li a{margin:0px; padding:0px 0px 0px 15px; font:bold 13px "Trebuchet MS"; text-decoration:none; line-height:23px; color:#fff; background:url(../images/link_icon.png) left 4px no-repeat;}
 ul.calender-link li a:hover{text-decoration:none; color:#F8E839;}
 
-ul.calender1-link, ul.calender1-link li{margin:0px; padding:0px; list-style-type:none;}
-ul.calender1-link li{margin:0px; padding:0px;}
-ul.calender1-link li a{margin:0px; padding:0px ; font:bold 13px "Trebuchet MS"; text-decoration:none; line-height:23px; color:#fff; }
-ul.calender1-link li a:hover{text-decoration:none; color:#F8E839;}
+
 
 .calender1{margin:0px; padding:0px; width:64px; float:left; text-align:center; font: bold 13px "Trebuchet MS"; color:#fff;}
 .calender2{margin:0px 0px 0px 110px; padding:0px; width:64px; float:left; text-align:center; font: bold 13px "Trebuchet MS"; color:#fff;}

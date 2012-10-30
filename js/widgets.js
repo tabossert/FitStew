@@ -116,9 +116,9 @@ var LoginBox = function(formId,msgId)
         ZUNEFIT.postJSON({
             url:'gymLogin/',
             data:data,
-            success:function(data){
+            success:function(response){
                 //There is an issue in firefox.data reprecents as a string.Need to use eval() 1st
-                result = eval(data)[0];
+                result = eval(response)[0];
 
                 if(result.status == "success")
                 {
@@ -156,18 +156,29 @@ var Gym = function()
     
     this.bind = function()
     { 
-       // this.getGymSchedule("2012-10-04 00:00:00", "2012-10-16 00:00:00");
+       
         this.getGymWeekSchedule();
         this.getGymStat();
-        this.getGymBal();        
+        this.getGymBal();  
+        
+    }
+    
+    this.addType = function()
+    {
+        alert("add");
+    }
+    
+    this.profile = function()
+    {
+             
+           
     }
     
     this.getGymSchedule = function(start,end)
     {
         data = {};
         data['start'] = start;
-        data['end'] = end;
-        //data['token'] = $('#token').val();
+        data['end'] = end;        
         
         ZUNEFIT.postJSON({
             url:'gymSchedule/',
@@ -177,7 +188,7 @@ var Gym = function()
                 $(".inner-txt").html(" ");
                 
                 result1 = eval(data);
-            //alert(result1);
+            
             try{
                 finish1 = result1.length;
                 op1 = "";
@@ -186,13 +197,13 @@ var Gym = function()
                 {       
                     
                     if(op2 == result1[i].date){
-                        op1 += "<li>"+result1[i].sid+"</li>";
+                        op1 += "<li><tr><td>"+result1[i].first_name+" "+result1[i].last_name+"</td><td><button>Checkin</button></td></tr></li>";
                     }else{
                         if(i!=0){
-                            op1 += "</ul>";
+                            op1 += "</table></ul>";
                         }
                         op1 += "<h1>"+result1[i].date+"</h1>";
-                        op1 += "<ul class='calender-link'><li><a href = '#'>"+result1[i].first_name+" "+result1[i].last_name+"</a></li>";
+                        op1 += "<ul class='calender-link'><table><tr><td><li>"+result1[i].first_name+" "+result1[i].last_name+"</td><td><button>Checkin</button></td></tr></li>";
                         op2 = result1[i].date;
                     }
                     
@@ -221,12 +232,11 @@ var Gym = function()
             url:'gymStats/',
             data:data,
             token : $('#token').val(),
-            success:function(data){
-                result2 = eval(data)[0];
-                //alert("yes");               
-                $("#owner-right-featured-box ul").append('<li><a href="#">'+result2.visits +' visits/day</li>');
-                $("#owner-right-featured-box ul").append('<li><a href="#">'+result2.views +' profile views Today</li>');
-                $("#owner-right-featured-box ul").append('<li><a href="#"> Average Gym Rate $ '+ result2.price +'</li>');       
+            success:function(response){
+                result2 = eval(response)[0];      
+                $("#owner-right-featured-box ul, .analytic-box ul").append('<li><a href="#">'+result2.visits +' visits/day</li>');
+                $("#owner-right-featured-box ul, .analytic-box ul").append('<li><a href="#">'+result2.views +' profile views Today</li>');
+                $("#owner-right-featured-box ul, .analytic-box ul").append('<li><a href="#"> Average Gym Rate $ '+ result2.price +'</li>');       
             },
             error:function(){
             //Error should be handle here
@@ -242,11 +252,11 @@ var Gym = function()
             url:'gymBalance/',
             data:data,
             token : $('#token').val(),
-            success:function(data){
-                result3 = eval(data)[0];                
-                res = result3.balance;
+            success:function(response){
+                result3 = eval(response)[0];                
+                result3 = result3.balance;
                 
-                $(".balance").html("Balance: $ "+  res);
+                $(".balance").html("Balance: $ "+  result3);
             },
             error:function(){
             //Error should be handle here
@@ -291,6 +301,7 @@ var Gym = function()
     }
     
     
+    
 }
 var User = function()
 {
@@ -304,7 +315,7 @@ var User = function()
       
         this.getFeaturedGyms();
         this.getUserBalance();
-      //  this.getUserWeekSchedule();
+        this.getUserWeekSchedule();
         this.slider();
         this.getUserPreferences();
        
@@ -316,9 +327,9 @@ var User = function()
         $(function() {
             $( "#slider-range-min" ).slider({
                 range: "min",
-                value: 37,
+                value: 3,
                 min: 1,
-                max: 700,
+                max: 200,
                 slide: function( event, ui ) {
                     $( "#amount" ).val( "$" + ui.value );
                 }
