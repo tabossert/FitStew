@@ -6,6 +6,10 @@ $title = "ZuneFit Gym Panel";
 <?php include 'html/header.php'; ?>
 <!-- Header End -->
 
+
+
+
+
 <input type="hidden" name="token" id="token" value="<?php echo $_SESSION['token']; ?>"/>
 <div class="middle-container">
     <div class="left-part">
@@ -30,13 +34,22 @@ $title = "ZuneFit Gym Panel";
         </div>
 
     </div>
-    <div id="profile" >
-      
+    <div id="light" class="white_content">
+        <a class="topright" href = "javascript:void(0)" onclick = "$('#light, #fade').css('display','none');">Close</a>
+        <div class = "my-box2">
+            <ul class = "toplink">
+                <li><a href = "#">Description</a></li>
+                <li><a href = "#">Schedule</a></li>
+                <li><a href = "#">Rate</a></li>
+                <li><a href = "#" >Services</a></li>
+            </ul>
+        </div>
+        
     </div>
-
+    <div id="fade" class="black_overlay"></div>
     <div class="tabs">
         <ul class="tabs-link">
-            <li><a href="#" onclick="widgets.gim.profile();">Profile</a></li>
+            <li><a href = "javascript:void(0)" onclick = "$('#light, #fade').css('display','block');">Profile</a></li>
             <li><a href="ownerServices.php" >Services</a></li>
             <li><a href="ownerAnalytics.php" >Analytics</a></li>
             <li><a href="#" >Preferences</a></li>

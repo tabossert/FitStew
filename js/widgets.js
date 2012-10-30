@@ -170,7 +170,11 @@ var Gym = function()
     
     this.profile = function()
     {
-             
+         
+        $('#gallery').lightBox();
+
+
+     
            
     }
     

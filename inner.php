@@ -4,10 +4,11 @@ $title = "ZuneFit Gym Panel";
 ?>
 <!-- Header Start -->
 <?php include 'html/header.php'; ?>
-<!-- Header End -->
-
 <link rel="stylesheet" href="jqueryui/jqueryui.css" />
 <script src="jqueryui/jqueryui.js"></script>
+<!-- Header End -->
+
+
 
 
 
@@ -28,7 +29,7 @@ $title = "ZuneFit Gym Panel";
                 </div>
                 <div style=" margin:15px 0px 0px 0px; border-top:1px solid #769196; height:1px;"></div>
                 <div class="inner-txt">
-                    
+
                 </div>
             </div>
 
