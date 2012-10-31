@@ -6,6 +6,17 @@ $title = "ZuneFit Gym Panel";
 <?php include 'html/header.php'; ?>
 <link rel="stylesheet" href="jqueryui/jqueryui.css" />
 <script src="jqueryui/jqueryui.js"></script>
+
+
+<script>
+   $(function() {
+        $( "#datepicker" ).datepicker({
+            showOn: "button",
+            buttonImage:"jqueryui/images/calendar.gif",
+            buttonImageOnly: true
+        });
+    });
+    </script>
 <!-- Header End -->
 
 
@@ -40,10 +51,14 @@ $title = "ZuneFit Gym Panel";
                     <hr/><br/>
                     <div id="search">
                         <div>
-                            <input type='text' name='address' id='address' />
-                            <button onclick="setToken('<?php echo $_SESSION['token']; ?>');gymAdvancedSearch();">Search</button>  
+                            <input type="radio" name="searchRadio" value="activity" id="activity" checked>Fitness activity<br/>
+                            <input type="radio" name="searchRadio" value="center" id="center">Fitness center<br/><br/>
+                            <input type='text' name='searchkey' id='searchkey' />
+                            <button onclick="widgets.user.searchMe()" style="float: right;">Search</button>  
                         </div>
                         <div id="search-result">
+                            <a href = "#lightbox" class="light" onclick="alert('asdasd')">asdasd</a>
+                            <a href = "#lightbox" class="light" onclick="alert('vghgfh')">vghgfh</a>
                         </div>
                     </div>
 
@@ -123,7 +138,7 @@ $title = "ZuneFit Gym Panel";
                             <button onclick="updateUserPref();">Update</button>
                         </div>  
 
-                        <a href="#">Change password</a>
+                        <!--<a href="#">Change password</a>-->
 
                     </div>
                     <div id="billing" style="display: none;">
@@ -168,12 +183,74 @@ $title = "ZuneFit Gym Panel";
             </div>
         </div>
         <div style="height:20px;"></div>
-        <div class="right-featured-box">
+        <div class="right-featured-box" >
             <h1>Popular Workouts</h1>
-            <ul class="item-link">
-                
+            <ul class="user-item-link">
+
+
             </ul>
         </div>
+
+
+
+    </div>
+    <div style="display: none;">
+        <div name="lightbox" id="lightbox">
+            <div>
+                <div class = "my-box2" >
+                    <p>
+                    <ul class = "toplink">
+                        <li><a href = "#" onclick="widgets.user.loadBox(0)">Description</a></li>
+                        <li><a href = "#" onclick="widgets.user.loadBox(1)">Schedule</a></li>
+                        <li><a href = "#" onclick="widgets.user.loadBox(2)">Rate</a></li>
+                        <li><a href = "#" onclick="widgets.user.loadBox(3)">Services</a></li>
+                    </ul>
+                    </p>
+                </div>
+
+
+
+                <div id="box-content" style="color: green;">
+                    <div id="box-description" >Description</div>   
+                    <div id="box-Schedule" style="display: none; " >Schedule</div>   
+                    <div id="box-Rate" style="display: none ; " >Rate</div>   
+                    <div id="box-Services" style="display: none;" >Services</div>   
+                </div>
+
+            </div>
+            <div id="box-footer" style="color: blue;"><a href="#schedule-form" class="light">Add to my schedule</a></div>
+        </div>
+
+    </div>
+    <div style="display: none;">
+        <div name="schedule-form" id="schedule-form" style="color: green; width: 400px">
+            <div >
+                <label for="time">Times</label>
+                <select name="time">
+                    <option value="0" selected>Times</option>
+                    <option value="1">one</option>
+                    <option value="2">two</option>
+                    <option value="3">three</option>
+                </select>
+                <label for="date">Date</label>
+                <input type="text" id="datepicker" />
+                <br/>
+                
+                <input type="checkbox" id="reoccuring" name="reoccuring" onclick="widgets.user.reoccur();"/>
+                <label for="reoccuring">Reoccuring</label>
+                <select name="occur" id="occur" disabled>
+                    <option value="Daily">Daily</option>
+                    <option value="Weekly">Weekly</option>
+                    <option value="Monthly">Monthly</option>
+                </select>
+                
+                <p><label for="notes">Notes</label>
+                </p><p><textarea name="notes" id="notes" placeholder="Notes"></textarea></p>
+                <button>Submit</button>
+            </div>
+
+        </div>
+
     </div>
 </div>
 <div class="clr"></div>

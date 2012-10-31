@@ -326,3 +326,8 @@ ul.item-link li a:hover{text-decoration:none; color:#186897;}
           width: 400px;
           float: left;
 }
+.toggle{
+    
+    
+    display: none;
+}

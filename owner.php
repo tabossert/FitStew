@@ -6,10 +6,6 @@ $title = "ZuneFit Gym Panel";
 <?php include 'html/header.php'; ?>
 <!-- Header End -->
 
-
-
-
-
 <input type="hidden" name="token" id="token" value="<?php echo $_SESSION['token']; ?>"/>
 <div class="middle-container">
     <div class="left-part">

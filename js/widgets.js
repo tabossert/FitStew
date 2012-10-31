@@ -59,6 +59,10 @@ var Widgets = function()
         this.gim.bind();
         this.user = new User();
         this.user.bind();
+        this.lb2 = new Box("light", "Box");
+        this.lb2.bind();
+       
+        
     }
     
     this.login = function()
@@ -87,6 +91,7 @@ var LoginBox = function(formId,msgId)
                 'scrolling'		: 'no',
                 'titleShow'		: false,
                 'onStart'               : function() {
+                    
                 },
                 'onClosed'		: function() {
                     $("#" + _mid).hide();
@@ -146,6 +151,40 @@ var LoginBox = function(formId,msgId)
     
 }
 
+var Box = function(formId,msgId)
+{
+    _fid2 = formId;
+    _mid2 = msgId;
+    /**
+     * Bind fancybox
+     */
+    this.bind = function()
+    {                   
+        fb2 = $("." + _fid2);
+        
+        if(fb2)
+        {
+            fb2.fancybox({
+                'scrolling'		: 'no',
+                'titleShow'		: false,
+                'onStart'               : function() {
+                    
+                },
+                'onClosed'		: function() {
+                    $("#" + _mid2).hide();
+                }
+            });
+        
+            
+         
+        }         
+    }
+    
+    
+    
+}
+
+
 
 var Gym = function()
 {
@@ -193,31 +232,31 @@ var Gym = function()
                 
                 result1 = eval(data);
             
-            try{
-                finish1 = result1.length;
-                op1 = "";
-                op2 = "";
-                for(i=0;i<finish1;i++)
-                {       
+                try{
+                    finish1 = result1.length;
+                    op1 = "";
+                    op2 = "";
+                    for(i=0;i<finish1;i++)
+                    {       
                     
-                    if(op2 == result1[i].date){
-                        op1 += "<li><tr><td>"+result1[i].first_name+" "+result1[i].last_name+"</td><td><button>Checkin</button></td></tr></li>";
-                    }else{
-                        if(i!=0){
-                            op1 += "</table></ul>";
+                        if(op2 == result1[i].date){
+                            op1 += "<li><tr><td>"+result1[i].first_name+" "+result1[i].last_name+"</td><td><button>Checkin</button></td></tr></li>";
+                        }else{
+                            if(i!=0){
+                                op1 += "</table></ul>";
+                            }
+                            op1 += "<h1>"+result1[i].date+"</h1>";
+                            op1 += "<ul class='calender-link'><table><tr><td><li>"+result1[i].first_name+" "+result1[i].last_name+"</td><td><button>Checkin</button></td></tr></li>";
+                            op2 = result1[i].date;
                         }
-                        op1 += "<h1>"+result1[i].date+"</h1>";
-                        op1 += "<ul class='calender-link'><table><tr><td><li>"+result1[i].first_name+" "+result1[i].last_name+"</td><td><button>Checkin</button></td></tr></li>";
-                        op2 = result1[i].date;
-                    }
                     
+                    }
+                    $(".inner-txt").html(op1);
+                
+                }catch(ex){
+                    $(".inner-txt").html(" ");
+                
                 }
-                $(".inner-txt").html(op1);
-                
-            }catch(ex){
-                 $(".inner-txt").html(" ");
-                
-            }
             
             },
             error:function(){
@@ -281,7 +320,7 @@ var Gym = function()
         this.getGymSchedule(firstDate+" 00:00:00", lastDate+" 24:00:00");
     }
     
-     this.getGymDaySchedule = function()
+    this.getGymDaySchedule = function()
     {
         var d = new Date();
         var strDate = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
@@ -334,7 +373,7 @@ var User = function()
                 range: "min",
                 value: 3,
                 min: 1,
-                max: 200,
+                max: 500,
                 slide: function( event, ui ) {
                     $( "#amount" ).val( "$" + ui.value );
                 }
@@ -345,7 +384,7 @@ var User = function()
     
     
     
-     this.getFeaturedWorkots = function()
+    this.getFeaturedWorkots = function()
     {
         ZUNEFIT.getJSON({
             url:'featuredGyms/',
@@ -379,10 +418,10 @@ var User = function()
             token : $('#utoken').val(),
             success:function(response){
                
-            result5 = eval(response)[0];                
-            res = result5.balance;
-            //alert("bal"+response);
-            $(".balance-box").html("Balance: $ "+  res);
+                result5 = eval(response)[0];                
+                res = result5.balance;
+                //alert("bal"+response);
+                $(".balance-box").html("Balance: $ "+  res);
             },
             error:function(){
             //Error should be handle here
@@ -462,6 +501,34 @@ var User = function()
         }
     }
     
+    this.loadBox = function(id)
+    {
+        var div = [];
+        div[0]='#box-description';
+        div[1]='#box-Schedule';
+        div[2]='#box-Rate';
+        div[3]='#box-Services';
+        
+        for(i=0;i<5;i++){
+            if(i==id)
+                $(div[i]).css('display', 'block');
+            else
+                $(div[i]).css('display', 'none');
+        }
+    }
+    
+    this.reoccur = function()
+    {
+       
+        if ($('#reoccuring').is(':checked')) {
+            $('#occur').removeAttr('disabled');
+        } else {
+             $('#occur').attr('disabled', 'disabled');
+        }
+   
+    }
+    
+    
     this.getUserDaySchedule = function()
     {
         var d = new Date();
@@ -538,7 +605,7 @@ var User = function()
                
                 for(i=0;i<finish;i++)
                 {       
-                     $(".item-link").append('<li><a href="#">'+result8[i].service +'</li>');
+                    $(".user-item-link").append('<li><a href="#">'+result8[i].service +'</li>');
                     
                 }
                 
@@ -547,6 +614,35 @@ var User = function()
             //Error should be handle here
             }
         });
+    }
+    
+    this.searchMe = function()
+    {
+        data = {};
+        if($('input[name=searchRadio]:checked').val()== "activity"){
+            data['workouts'] = $('#searchkey').val();
+        }else{
+            data['another'] = $('#searchkey').val();
+        }
+        
+       
+        
+        
+        ZUNEFIT.postJSON({
+            url:'gymSearchAdvanced/',
+            data:data,
+          
+            success:function(response){
+                result9 = eval(response)[0];
+                $("#search-result").html(result9);
+            //alert(result1);        
+            },
+            error:function(){
+            //Error should be handle here
+            // alert("no");  
+            }
+        });
+       
     }
         
 }
