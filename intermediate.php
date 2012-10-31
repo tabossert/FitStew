@@ -1,7 +1,6 @@
 <?php
 session_start();
 include('includes/config.inc.php');
-echo "asd";
 echo $jrnToke = $_POST["token"];
 
 $zuneFitUrl =  "https://api.zunefit.com/api/userSignup/";
@@ -15,15 +14,11 @@ curl_setopt($chlead, CURLOPT_SSL_VERIFYPEER, 0);
 $chleadresult = curl_exec($chlead);
 $obj = json_decode($chleadresult);
 
-//$token = $obj[0]->{'token'};
 $token = $obj[0]->{'token'};
-echo $_SESSION['token']= $token;
-var_dump($chleadresult);
+$_SESSION['token']= $token;
 
-//header ("Location: ".SITE_URL."inner.php");
+header ("Location: ".SITE_URL."inner.php");
 
-//echo $chleadapierr = curl_errno($chlead);
-//echo $chleaderrmsg = curl_error($chlead);
 curl_close($chlead);
 
 ?>
