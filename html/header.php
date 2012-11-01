@@ -9,18 +9,18 @@ include('includes/config.inc.php');
 session_start();
 
 // Get current page
-//$currentFile = $_SERVER["PHP_SELF"];
-//$parts = Explode('/', $currentFile);
-//$page = $parts[count($parts) - 1];
-//
-//if ($page != 'index.php') {
-//    if (isset($_POST['token'])) {
-//        $_SESSION['token'] = $_POST['token'];
-//    }
-//    if (!isset($_SESSION['token'])) {
-//        header('Location: ' . SITE_URL);
-//    }
-//}
+$currentFile = $_SERVER["PHP_SELF"];
+$parts = Explode('/', $currentFile);
+$page = $parts[count($parts) - 1];
+
+if ($page != 'index.php') {
+    if (isset($_POST['token'])) {
+        $_SESSION['token'] = $_POST['token'];
+    }
+    if (!isset($_SESSION['token'])) {
+        header('Location: ' . SITE_URL);
+    }
+}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -102,16 +102,26 @@ session_start();
                             <?php if (!(isset($_SESSION['token']) && $_SESSION['token'] != '')) : ?>
                                 <a class = "janrainEngage" href = "#">User Sign-In</a> | <a href = "#frmOwnersLogin" id = "wsn">Gym Sign-In</a>
                             <?php else : ?>
-                                <a href = "logout.php">Sign-out</a> 
+                                 <div class = "header-box">
+                                
+                                     <table style="float: right;"><tr><td><a href = "pages/how.html" >How it works &nbsp;</a></td>
+                               
+                                  
+                                  <td> <a  href = "pages/gymLoc.php">Locations</a></td>
+                                  <td>  <a  href = "about.php">Abouts</a></td>
+                                     <td> <a href = "logout.php">Sign-out</a> </td></tr></table>
+                                
+                            </div>
+                               
                             <?php endif; ?>
-                            <div class = "my-box">
-                                <ul class = "toplink">
+<!--                                <div class = "header-box">
+                                <ul class = "header-link">
                                     <li><a href = "pages/how.html" class = "popup" rel = "width:250;height:300">How it works</a></li>
                                     <li><a href = "inner.php">Customers </a></li>
                                     <li><a href = "owner.php">Gyms</a></li>
                                     <li><a href = "pages/gymLoc.php" class = "popup" rel = "width:250;height:300">Locations</a></li>
-                                </ul>
-                            </div>
+                                </ul>-->
+                           
                         </div>
                     </div>
                 </div>

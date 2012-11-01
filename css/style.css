@@ -65,7 +65,24 @@ ul,ol         { margin:0px; padding:0px; list-style:none; }
 .clr{margin:0px; padding:0px; clear:both;}
 /* ======================================================================================= */
 
-html,body{ margin:0px; padding:0px; font-family: 'Conv_itc-berkeley-oldstyle-lt-medium'; font-style:italic; font-size:16px; font-weight:normal; text-decoration:none; color:#fff; background:url(../images/bg.jpg) repeat;}
+html,body{ margin:0px; 
+           padding:0px; 
+           font-family: 'Conv_itc-berkeley-oldstyle-lt-medium'; 
+           font-style:italic; font-size:16px; font-weight:normal; 
+           text-decoration:none; 
+           color: black;
+           background:url(../images/bg.jpg) repeat;
+
+
+           background: #999; /* for non-css3 browsers */
+
+
+
+
+
+
+
+}
 .headerbg{margin:0px; padding:0px; width:100%; background:url(../images/headerbg.jpg) repeat; height:139px;}
 .header-container{margin:0px auto; padding:0px; width:955px; }
 .logo{margin:14px 0px 0px 0px; padding:0px; width:237px; float:left;}
@@ -91,7 +108,9 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
 
 .main-middle-container{margin:10px auto 0px auto; padding:0px; width:955px; min-height:450px;}
 .middle-container{margin:10px auto 0px auto; padding:0px; width:955px; min-height:450px;}
+
 .left-part{margin:10px 0px 0px 0px; padding:0px; width:464px; float:left;}
+.inner-left-part{margin:10px 0px 0px 0px; padding:0px; width:680px; float:left;}
 .left-part1{margin:60px 0px 0px 35px; padding:0px; width:464px; float:left;}
 .left-part h1{margin:0px 0px 22px 5px; padding:0px; font-family:'Conv_helvetica-neue-condensed-bold1'; font-style:normal; text-transform:uppercase; font-size:27px; font-weight:normal; color:#fff;}
 
@@ -151,6 +170,7 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
 /* Start Inner page css*/
 
 .blue-box1 { 
+
     margin:0px; 
     padding:10px 16px 16px 16px ; 
     border:2px solid #184A61;
@@ -159,10 +179,18 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
     border-top-left-radius:10px;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
+   
+    background: #d1d1d1; /* for non-css3 browsers */
+
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#999', endColorstr='#d1d1d1'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#999), to(#d1d1d1)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #999,  #d1d1d1); /* for firefox 3.6+ */
+
+
 
 }
 .balance { 
-   margin:0px 0px 10px 0px; padding:10px 16px 16px 16px ; border:2px solid #184A61;
+    margin:0px 0px 10px 0px; padding:10px 16px 16px 16px ; border:2px solid #184A61;
     background:#3A5E64;
     border-top-right-radius: 10px;
     border-top-left-radius:10px;
@@ -177,18 +205,26 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
 }
 
 .balance-box { 
-    margin:0px 0px 10px 0px; padding:10px 16px 16px 16px ; border:2px solid #184A61;
-    background:#3A5E64;
+    margin:0px 0px 10px 0px; 
+    padding:10px 16px 20px 16px ; 
+    border:2px solid #184A61;
+    background:#8EB43E;
     border-top-right-radius: 10px;
     border-top-left-radius:10px;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     height: 10px;
-   
+    color: white;
+     background: #8b8b8b; /* for non-css3 browsers */
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#E6ECE0', endColorstr='#333'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#E6ECE0), to(#333)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #E6ECE0,  #333); /* for firefox 3.6+ */
 }
 
-.inner-txt { margin-left: 100px; padding:0px ; }
-.inner-txt h1{ margin:18px 0px 8px 0px; padding:0px ; font:bold 16px "Trebuchet MS"; text-decoration:none; text-transform:none; color:#F8E839; }
+.inner-txt { text-align: center; padding:0px ; }
+.inner-txt h1{ margin:18px 0px 8px 0px; padding:0px ; font:bold 16px "Trebuchet MS"; text-decoration:none; text-transform:none; color:#003f81; }
+
+
 
 ul.calender-link, ul.calender-link li{margin:0px; padding:0px; list-style-type:none;}
 ul.calender-link li{margin:0px; padding:0px;}
@@ -197,9 +233,9 @@ ul.calender-link li a:hover{text-decoration:none; color:#F8E839;}
 
 
 
-.calender1{margin:0px; padding:0px; width:64px; float:left; text-align:center; font: bold 13px "Trebuchet MS"; color:#fff;}
-.calender2{margin:0px 0px 0px 110px; padding:0px; width:64px; float:left; text-align:center; font: bold 13px "Trebuchet MS"; color:#fff;}
-.calender3{margin:0px; padding:0px; width:64px; float:right; text-align:center; font: bold 13px "Trebuchet MS"; color:#fff;}
+.calender1{margin:0px; padding:0px; width:64px; float:left; text-align:center; font: bold 13px "Trebuchet MS"; color: #cd0a0a;}
+.calender2{margin:0px 0px 0px 225px; padding:0px; width:64px; float:left; text-align:center; font: bold 13px "Trebuchet MS";color: #cd0a0a;}
+.calender3{margin:0px; padding:0px; width:64px; float:right; text-align:center; font: bold 13px "Trebuchet MS"; color: #cd0a0a;}
 
 
 
@@ -221,7 +257,7 @@ ul.tabs-link li a:hover{background:#A2BF5E;
                         border-bottom-left-radius: 3px;
                         box-shadow:0 4px 0px 0px #1B1B1B; color:#2E2E2E; }
 
-.right-box { margin:18px 0px 0px 0px; padding:0px ; width:252px; float:right; }
+.right-box { margin:10px 0px 0px 0px; padding:0px ; width:252px; float:right; }
 
 
 .right-featured-box { margin:0px; padding:0px ; 
@@ -268,7 +304,7 @@ ul.item-link li a:hover{text-decoration:none; color:#186897;}
 #featuredGymsBox{
     color:#000;
     font-style: normal;
-    
+
 }
 .pref{
     line-height: 40px;
@@ -276,58 +312,143 @@ ul.item-link li a:hover{text-decoration:none; color:#186897;}
 }
 #pref td{
     width : 80px;
-     
+
 }
 .underline_title{
     font-style: normal;
     text-decoration: underline;
-    
-    
+
+
 }
- .black_overlay{
-        display: none;
-        position: absolute;
-        top: 0%;
-        left: 0%;
-        width: 100%;
-        height: 100%;
-        background-color: black;
-        z-index:1001;
-        -moz-opacity: 0.8;
-        opacity:.80;
-        filter: alpha(opacity=80);
-    }
-    .white_content {
-        display: none;
-        position: absolute;
-        top: 25%;
-        left: 25%;
-        width: 50%;
-        height: 50%;
-        padding: 16px;
-        border: 3px solid #026593;
-        background-color: #E6ECE0;
-        z-index:1002;
-        overflow: auto;
-    }
-    .topright{
-        
-        
-        float: right;
-       
-    }
-    .my-box2 { margin:5px 0px; padding:0px ; border:1px solid #9F9A9D;
-          background:url(../images/top_menubg.gif) left top repeat-x; 
-          height:32px;
-          border-top-left-radius:10px;
-          border-bottom-right-radius: 10px;
-          border-bottom-left-radius: 10px;
-          box-shadow:0 0 1px 1px #BABABE;
-          width: 400px;
-          float: left;
+.black_overlay{
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index:1001;
+    -moz-opacity: 0.8;
+    opacity:.80;
+    filter: alpha(opacity=80);
+}
+.white_content {
+    display: none;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    padding: 16px;
+    border: 3px solid #026593;
+    background-color: #E6ECE0;
+    z-index:1002;
+    overflow: auto;
+}
+.topright{
+
+
+    float: right;
+
+}
+.my-box2 { margin:5px 0px; padding:0px ; border:1px solid #9F9A9D;
+           background:url(../images/top_menubg.gif) left top repeat-x; 
+           height:32px;
+           border-top-left-radius:10px;
+           border-bottom-right-radius: 10px;
+           border-bottom-left-radius: 10px;
+           box-shadow:0 0 1px 1px #BABABE;
+           width: 400px;
+           float: left;
 }
 .toggle{
-    
-    
+
+
     display: none;
+}
+.header-box { margin:5px 0px; 
+              padding:0px ;
+
+
+
+
+}
+.header-box table td{
+    width: 25%;
+    border-right:  solid;
+    border-right-width: 1px;
+    text-align:  center;
+}
+.header-box table td a:hover{
+    color: #8EB43E;
+}
+
+
+ul.header-link,ul.header-link li{margin:0px; padding:0px; list-style-type:none; }
+ul.header-link li{margin:0px; padding:0px; float:left;width: 100px;}
+ul.header-link li a{ margin:0px;  font: bold 15px "Trebuchet MS"; text-decoration:none; color:#026593; float:left }
+ul.header-link li a:hover{text-decoration:none; color:#000000; background-color: #8EB43E;}
+
+
+
+
+#inner-nav {
+    font-style: normal;
+    font-size: 1.2em;
+    padding-left: 140px;
+
+    height: 40px;
+    border-radius: .5em;
+
+    -webkit-border-radius: .5em;
+    -moz-border-radius: .5em;
+
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
+
+    background: #8b8b8b; /* for non-css3 browsers */
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#E6ECE0', endColorstr='#333'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#E6ECE0), to(#333)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #E6ECE0,  #333); /* for firefox 3.6+ */
+
+    border: solid 1px #6d6d6d;
+}
+#inner-nav li {
+    margin: 0 5px;
+    padding: 0 0 8px;
+    float: left;
+    position: relative;
+    list-style: none;
+}
+/* main level link */
+#inner-nav a {
+    font-weight: bold;
+    color: #e7e5e5;
+    text-decoration: none;
+    display: block;
+    padding:  8px 20px;
+    margin: 0;
+
+    border-radius: .5em;
+
+    -webkit-border-radius: .5em;
+    -moz-border-radius: .5em;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+}
+/* main level link hover */
+#inner-nav .current a, #inner-nav li:hover > a{
+    background: #d1d1d1; /* for non-css3 browsers */
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9F9A9D', endColorstr='#000'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#9F9A9D), to(#000)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #9F9A9D,  #000); /* for firefox 3.6+ */
+
+
+
+    border-top: solid 1px #f8f8f8;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+
 }

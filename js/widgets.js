@@ -355,6 +355,7 @@ var User = function()
     
     this.bind = function()
     { 
+        
       
         this.getFeaturedGyms();
         this.getUserBalance();
@@ -362,8 +363,20 @@ var User = function()
         this.slider();
         this.getUserPreferences();
         this.getFeaturedWorkots();
+        this.getDate();
+        this.getAllClasses();
        
        
+    }
+    this.getDate = function()
+    {
+        $(function() {
+            $( "#datepicker" ).datepicker({
+                showOn: "button",
+                buttonImage:"jqueryui/images/calendar.gif",
+                buttonImageOnly: true
+            });
+        });
     }
     
     this.slider = function()
@@ -523,7 +536,7 @@ var User = function()
         if ($('#reoccuring').is(':checked')) {
             $('#occur').removeAttr('disabled');
         } else {
-             $('#occur').attr('disabled', 'disabled');
+            $('#occur').attr('disabled', 'disabled');
         }
    
     }
@@ -549,7 +562,8 @@ var User = function()
         var startDate = firstday.getFullYear() + "-" + (firstday.getMonth()+1) + "-" + firstday.getDate();
         var endDate = lastday.getFullYear() + "-" + (lastday.getMonth()+1) + "-" + lastday.getDate();
         
-        this.getUserSchedule(startDate+" 00:00:00", endDate+" 24:00:00");
+        //this.getUserSchedule(startDate+" 00:00:00", endDate+" 24:00:00");
+        this.getUserSchedule("2012-10-01 00:00:00","2012-10-31 24:00:00");
     }
     
     this.getUserMonthSchedule = function()
@@ -579,9 +593,35 @@ var User = function()
             data:data,
             token : $('#utoken').val(),
             success:function(response){
-                result7 = eval(response)[0];
-                $(".inner-txt").html(result7);
-            //alert(result1);        
+                $(".inner-txt").html(" ");
+                
+                result7 = eval(response);
+            
+                try{
+                    finish7 = result7.length;
+                    date = "";
+                    content = "";
+                    for(i=0;i<finish7;i++){
+                        
+                        if(date == result7[i].date){
+                            content += "<ul><li>"+result7[i].name+"</li>";
+                        }else{
+                            if(i!=0){
+                                content += "</ul>";
+                            }                                
+                            content += "<h1>"+result7[i].date+"</h1>";
+                            content += "<ul><li>"+result7[i].name+"</li>";
+                        }
+                        
+                    }
+                    $(".inner-txt").html(content);
+                    
+                    
+                
+                }catch(ex){
+                   
+                
+                }       
             },
             error:function(){
             //Error should be handle here
@@ -636,6 +676,28 @@ var User = function()
                 result9 = eval(response)[0];
                 $("#search-result").html(result9);
             //alert(result1);        
+            },
+            error:function(){
+            //Error should be handle here
+            // alert("no");  
+            }
+        });
+       
+    }
+    
+    this.getAllClasses = function()
+    {
+        data = {};
+        data['offset'] = 0;
+        
+        ZUNEFIT.postJSON({
+            url:'getAllClasses/',
+            data:data,
+          
+            success:function(response){
+                result10 = eval(response)[0];
+                alert(result10);
+                  
             },
             error:function(){
             //Error should be handle here
