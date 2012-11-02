@@ -373,7 +373,7 @@ var User = function()
         $(function() {
             $( "#datepicker" ).datepicker({
                 showOn: "button",
-                buttonImage:"jqueryui/images/calendar.gif",
+                buttonImage:"jqueryui/images/calander.png",
                 buttonImageOnly: true
             });
         });
@@ -473,15 +473,25 @@ var User = function()
     }
     this.loadLeft = function(id)
     {
+        $('#schedule-tab').addClass('selected');
+        
         var div = [];
         div[0]='#infoBox';
         div[1]='#searchbox';
         div[2]='#preferences';
+        var li = [];
+        li[0]='#schedule-tab';
+        li[1]='#gymsearch-tab';
+        li[2]='#Preferences-tab';
         for(i=0;i<3;i++){
-            if(i==id)
+            if(i==id){
                 $(div[i]).css('display', 'block');
-            else
+                $(li[i]).addClass('selected');
+            }
+            else{
                 $(div[i]).css('display', 'none');
+                $(li[i]).removeClass('selected');
+            }
         }
     }
     
@@ -491,12 +501,18 @@ var User = function()
         var div = [];
         div[0]='#search';
         div[1]='#advSearch';
+         var li = [];
+        li[0]='#prefe';
+        li[1]='#bill';
+       
         
         for(i=0;i<2;i++){
-            if(i==id)
+            if(i==id){
                 $(div[i]).css('display', 'block');
-            else
+            $(li[i] ).css('display', 'none');}
+            else{
                 $(div[i]).css('display', 'none');
+            $(li[i] ).css('color', 'blue');}
         }
     }
     
@@ -549,6 +565,8 @@ var User = function()
         //strDate = "2012-10-16";
         
         this.getUserSchedule(strDate+" 00:00:00", strDate+" 24:00:00");
+        $(".inner-calender1").css("background-color","#565d60");
+        $(".inner-calender2, .inner-calender3").css("background-color","transparent");
     }
     
     this.getUserWeekSchedule = function()
@@ -564,6 +582,8 @@ var User = function()
         
         //this.getUserSchedule(startDate+" 00:00:00", endDate+" 24:00:00");
         this.getUserSchedule("2012-10-01 00:00:00","2012-10-31 24:00:00");
+        $(".inner-calender2").css("background-color","#565d60");
+        $(".inner-calender1, .inner-calender3").css("background-color","transparent");
     }
     
     this.getUserMonthSchedule = function()
@@ -577,6 +597,8 @@ var User = function()
         var lastDate = lastDay.getFullYear() + "-" + (lastDay.getMonth()+1) + "-" + lastDay.getDate();
         
         this.getUserSchedule(firstDate+" 00:00:00", lastDate+" 24:00:00");
+        $(".inner-calender3").css("background-color","#565d60");
+        $(".inner-calender2, .inner-calender1").css("background-color","transparent");
     }
     
     this.getUserSchedule = function(start,end)
@@ -695,9 +717,32 @@ var User = function()
             data:data,
           
             success:function(response){
-                result10 = eval(response)[0];
-                alert(result10);
-                  
+                result10 = eval(response);
+                last = result10.length;
+                op= {};
+                opw="";
+                
+                for(i=0;i<last;i++)
+                {                    
+                    bool = true;
+                    for(j=0;j<i;j++){
+                        if(op[j] == result10[i].service) {
+                            bool = false;
+                        }
+                    }
+                    if(bool){
+                        k=0;
+                        op[k]= result10[i].service;
+                        opw +="<td><input type='checkbox' id='"+result10[i].service+"' ></td><td>"+result10[i].service+"</td>";
+                        k++;
+                        if(k%6 == 0){
+                            opw +="</tr><tr>";
+                        }
+                    }
+                             
+                }
+                
+                $("#search-service").html(opw);
             },
             error:function(){
             //Error should be handle here
@@ -705,6 +750,38 @@ var User = function()
             }
         });
        
+    }
+    this.edit = function()
+    {
+        $("#firstName, #lastName, #email, #address").removeClass('transparent');
+    }
+    this.update = function()
+    {
+        $("#firstName, #lastName, #email, #address").addClass('transparent');
+        data = {};
+        data['first_name'] = $("#firstName").val();
+        data['last_name'] = $("#lastName").val();
+        data['address'] = $("#address").val();
+        data['email'] = $("#email").val();
+        
+       
+        
+        
+        ZUNEFIT.postJSON({
+            url:'updateUserPreferences/',
+            data:data,
+            token : $('#utoken').val(),
+          
+            success:function(response){
+                result11 = eval(response);
+                alert(result11.status);
+            //alert(result1);        
+            },
+            error:function(){
+            //Error should be handle here
+            // alert("no");  
+            }
+        });
     }
         
 }

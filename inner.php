@@ -8,49 +8,42 @@ $title = "ZuneFit Gym Panel";
 <script src="jqueryui/jqueryui.js"></script>
 
 <!-- Header End -->
-
-
-
-
-
 <input type="hidden" name="utoken" id="utoken" value="<?php echo $_SESSION['token']; ?>"/>
-
-
-
-
-
 <div class="middle-container">
 
     <div class="inner-left-part">
         <div >
             <ul id="inner-nav">
-                <li ><a id="schedule" href="javascript:void(0);" onclick="widgets.user.loadLeft(0)">Schedule</a></li>
-                <li><a  href="javascript:void(0);" id='gymsearch' onclick="widgets.user.loadLeft(1)">Gym Search</a></li>
-                <li><a  href="javascript:void(0);" class="popup" rel="width:250;height:300" onclick="widgets.user.loadLeft(2);">Preferences</a></li>
+                <li id="schedule-tab"><a  href="javascript:void(0);" onclick="widgets.user.loadLeft(0)">Schedule</a></li>
+                <li id='gymsearch-tab'><a  href="javascript:void(0);"  onclick="widgets.user.loadLeft(1)">Gym Search</a></li>
+                <li id="Preferences-tab"><a  href="javascript:void(0);"  onclick="widgets.user.loadLeft(2);">Preferences</a></li>
             </ul>
 
         </div>
         <div class="clr" ></div>
 
-        <div class="blue-box1">
+        <div class="blue-box1" >
 
-            <div id="infoBox" >
-                <div>
-                    <div class="calender1" style="clear: both;"><a id="day" href="#" onclick="widgets.user.getUserDaySchedule();"><img src="images/calendar_selection_day_48.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
+            <div id="infoBox" style="min-height: 340px;">
+                <div style="width: 10.5% ;float: left; border-right: solid; border-color: #565D60;">
+                    <div class="inner-calender1" style="clear: both; margin-top: 25px; "><a id="day" href="#" onclick="widgets.user.getUserDaySchedule();"><img src="images/calendar_selection_day_48.png" alt="" border="" style="margin:0px 0px 7px 0px;" /></a><br />
                         DAY</div>
-                    <div class="calender2" style="clear: both;"><a id= "week" href="#" onclick="widgets.user.getUserWeekSchedule()"><img src="images/calendar_selection_week_48.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
+
+                    <div class="inner-calender2" style="clear: both;margin-top: 25px;"><a id= "week" href="#" onclick="widgets.user.getUserWeekSchedule()"><img src="images/calendar_selection_week_48.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
                         WEEK</div>
-                    <div class="calender3" style="clear: both;"><a id= "month" href="#" onclick="widgets.user.getUserMonthSchedule()"><img src="images/calendar_selection_month_48.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
+                    <div class="inner-calender3" style="clear: both;margin-top: 25px;"><a id= "month" href="#" onclick="widgets.user.getUserMonthSchedule()"><img src="images/calendar_selection_month_48.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
                         MONTH</div>
-                    <div class="clr"></div>
-                </div>
-                <div style=" margin:15px 0px 0px 0px; border-top:1px solid black; height:1px;"></div>
-                <div class="inner-txt">
 
                 </div>
+
+                <div class="inner-txt" style="width: 70% ;float: right; margin-left: 10px;">
+
+                </div>
+
+
             </div>
 
-            <div id="searchbox" style="display: none">
+            <div id="searchbox" style="display: none ;min-height: 340px;">
                 <!--                <div class="up-blue-box">-->
 
                 <div style="text-align: center"><a href = "#" onclick="widgets.user.search(0)">Search</a> | <a href = "#" onclick="widgets.user.search(1)">Advanced Search</a></div>
@@ -58,14 +51,18 @@ $title = "ZuneFit Gym Panel";
                 <div id="search">
                     <div>
                         <label for="searchRadio">Search by</label><p style="margin-left: 50px;">
-                        <input type="radio" name="searchRadio" value="activity" id="activity" checked>Fitness activity<br/>
-                        <input type="radio" name="searchRadio" value="center" id="center">Fitness center<br/><br/></p>
-                        <input type='text' name='searchkey' id='searchkey' />
-                        <button onclick="widgets.user.searchMe()" style="float: right;">Search</button>  
+                            <input type="radio" name="searchRadio" value="activity" id="activity" checked>Fitness activity<br/>
+                            <input type="radio" name="searchRadio" value="center" id="center">Fitness center<br/><br/></p>
+                       <form class="searchform">
+                           <input class="searchfield" type="text" name='searchkey' id='searchkey' placeholder="Search..."  />
+                        <input class="searchbutton" type="button" value="Go" onclick="widgets.user.searchMe()"/>
+
+                        
+                        </form>  
                     </div>
                     <div id="search-result">
-                        <a href = "#lightbox" class="light" onclick="alert('asdasd')">asdasd</a>
-                        <a href = "#lightbox" class="light" onclick="alert('vghgfh')">vghgfh</a>
+                        <a href = "#lightbox" class="light" onclick="">Hard</a>
+                        <a href = "#lightbox" class="light" onclick=""> Coded</a>
                     </div>
                 </div>
 
@@ -73,9 +70,9 @@ $title = "ZuneFit Gym Panel";
                     <div>
                         <p class="underline_title">Type</p>
                         <table>
-                            <tr>
-                                <td><input type="checkbox" id="boxing" ></td><td>Boxing</td>                      
-                                <td><input type="checkbox" id="cycling"></td> <td>Cycling</td>
+                            <tr id="search-service">
+
+
                             </tr>
                         </table>
                         <br/>
@@ -114,36 +111,37 @@ $title = "ZuneFit Gym Panel";
                 <!--                </div>-->
             </div>
 
-            <div id="preferences" style="display: none">
+            <div id="preferences" style="display: none;min-height: 340px;">
 
 
 
-                <div style="text-align: center"><a href = "#" onclick="widgets.user.preferencesBilling(0)">Preferences</a> | <a href = "#" onclick="widgets.user.preferencesBilling(1)">Billing</a></div>
+                <div style="text-align: center"><a href = "#"  onclick="widgets.user.preferencesBilling(0)">Preferences</a> | <a href = "#"  onclick="widgets.user.preferencesBilling(1)">Billing</a></div>
                 <hr/>
                 <div id="preference">
+                    <span style="float: right;"><a href="#" onclick="widgets.user.edit()">edit</a>|<a href="#" onclick="widgets.user.update()">done</a></span>
                     <table class="pref">
                         <tr><td>
                                 <label for="firstName" class="firstName" >  First Name  </label></td><td>:</td><td>
-                                <input type="text" name="firstName" id="firstName" style="background-color:transparent;border: none;width: auto;"/>
+                                <input type="text" name="firstName" id="firstName" class="transparent"/>
                                 <label for="firstName" class="error" generated="true"></label></td></tr>
                         <tr><td>
                                 <label for="lastName" class="lastName" >  Last Name  </label></td><td>:</td><td>
-                                <input type="text" name="lastName" id="lastName" style="background-color:transparent;border: none;width: auto;"/> 
+                                <input type="text" name="lastName" id="lastName" class="transparent"/> 
                                 <label for="lastName" class="error" generated="true"></label></td></tr>
                         <tr><td>
                                 <label for="email" class="email" >  Email  </label></td><td>:</td><td>
-                                <input type="text" name="email" id="email" style="background-color:transparent;border: none;width: 500px;" />
+                                <input type="text" name="email" id="email" class="transparent"/>
                                 <label for="email" class="error" generated="true"></label></td></tr>                        
 
                         <tr><td>
                                 <label for="address" class="address" > Address  </label></td><td>:</td><td>
-                                <input type="text" name="address" id="address" style="background-color:transparent;border: 500px;"/> 
+                                <input type="text" name="address" id="address" class="transparent"/> 
                                 <label for="address" class="error" generated="true"></label></td></tr>
 
                     </table>
-                    <div style="float: right;">
-                        <button onclick="updateUserPref();">Update</button>
-                    </div>  
+                    <!--                    <div >
+                                            <button onclick="widgets.user.update()" >Update</button>
+                                        </div>  -->
 
                     <!--<a href="#">Change password</a>-->
 
@@ -152,19 +150,19 @@ $title = "ZuneFit Gym Panel";
                     <table class="pref">
                         <tr><td>
                                 <label for="bfirstName" class="bfirstName" >  First Name  </label></td><td>:</td><td>
-                                <input type="text" name="bfirstName" id="bfirstName"/>
+                                <input type="text" name="bfirstName" id="bfirstName" class="transparent"/>
                                 <label for="bfirstName" class="error" generated="true"></label></td></tr>
                         <tr><td>
                                 <label for="blastName" class="blastName" >  Last Name  </label></td><td>:</td><td>
-                                <input type="text" name="blastName" id="blastName" /> 
+                                <input type="text" name="blastName" id="blastName"  class="transparent"/> 
                                 <label for="blastName" class="error" generated="true"></label></td></tr>
                         <tr><td>
                                 <label for="baddress" class="baddress" >  Billing Address  </label></td><td>:</td><td>
-                                <input type="text" name="baddress" id="baddress" />
+                                <input type="text" name="baddress" id="baddress" class="transparent"/>
                                 <label for="baddress" class="error" generated="true"></label></td></tr> 
                         <tr><td>
                                 <label for="bcredit" class="bcredit" >  Credit card  </label></td><td>:</td><td>
-                                <input type="text" name="bcredit" id="bcredit" />
+                                <input type="text" name="bcredit" id="bcredit" class="transparent"/>
                                 <label for="bcredit" class="error" generated="true"></label></td></tr> 
                     </table>
                 </div>
@@ -196,7 +194,7 @@ $title = "ZuneFit Gym Panel";
 
     </div>
     <div style="display: none;">
-        <div name="lightbox" id="lightbox">
+        <div name="lightbox" id="lightbox" class="blue-box2">
             <div>
                 <div class = "my-box2" >
                     <p>
@@ -224,7 +222,7 @@ $title = "ZuneFit Gym Panel";
 
     </div>
     <div style="display: none;">
-        <div name="schedule-form" id="schedule-form" style="color: green; width: 400px">
+        <div name="schedule-form" id="schedule-form" class="blue-box2" style="color: green; width: 400px">
             <div >
                 <label for="time">Times</label>
                 <select name="time">
