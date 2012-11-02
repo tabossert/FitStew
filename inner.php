@@ -50,26 +50,28 @@ $title = "ZuneFit Gym Panel";
                 <hr/><br/>
                 <div id="search">
                     <div>
+                        
+
                         <label for="searchRadio">Search by</label><p style="margin-left: 50px;">
                             <input type="radio" name="searchRadio" value="activity" id="activity" checked>Fitness activity<br/>
                             <input type="radio" name="searchRadio" value="center" id="center">Fitness center<br/><br/></p>
-                       <form class="searchform">
-                           <input class="searchfield" type="text" name='searchkey' id='searchkey' placeholder="Search..."  />
-                        <input class="searchbutton" type="button" value="Go" onclick="widgets.user.searchMe()"/>
+                        <form class="searchform">
+                            <input class="searchfield" type="text" name='searchkey' id='searchkey' placeholder="Search..."  />
+                            <input class="searchbutton" type="button" value="Go" onclick="widgets.user.searchMe()"/>
 
-                        
+
                         </form>  
                     </div>
-                    <div id="search-result">
-                        <a href = "#lightbox" class="light" onclick="">Hard</a>
-                        <a href = "#lightbox" class="light" onclick=""> Coded</a>
+                    <div id="search-result" style="text-align: center;">
+                        <a href = "#lightbox" class="light" onclick="">Search</a>
+                        <a href = "#lightbox" class="light" onclick=""> Result</a>
                     </div>
                 </div>
 
                 <div id="advSearch" style="display: none">
                     <div>
                         <p class="underline_title">Type</p>
-                        <table>
+                        <table style="margin-left: 30px;">
                             <tr id="search-service">
 
 
@@ -77,14 +79,14 @@ $title = "ZuneFit Gym Panel";
                         </table>
                         <br/>
                         <p class="underline_title">Location</p>
-                        <table>
+                        <table style="margin-left: 30px;">
                             <tr>
                                 <td>
-                                    <label for="Miles" class="Miles" >  Miles  </label></td><td>
-                                    <input type="text" name="Miles" id="Miles" placeholder="within"/>
-                                    <label for="Miles" class="error" generated="true"></label></td><td>
-                                    <label for="Within" class="Within" >  Within  </label></td><td>
-                                    <input type="text" name="Within" id="Within" placeholder="zip/city"/> 
+                                    <label for="Miles"  class="style_text">  Miles  </label></td><td>
+                                    <input type="text" name="Miles" id="Miles" placeholder="within..." style="font-style: normal;"/>
+                                    <label for="Miles" class="error" generated="true"></label></td></tr><tr><td>
+                                    <label for="Within"  class="style_text">  Within  </label></td><td>
+                                    <input type="text" name="Within" id="Within" placeholder="zip / city..." style="font-style: normal;"/> 
                                     <label for="Within" class="error" generated="true"></label>
                                 </td>
                             </tr>
@@ -95,12 +97,12 @@ $title = "ZuneFit Gym Panel";
                         <div id="slider-range-min"></div>
                         <br/>
                         <p>
-                            <input type="text" id="amount" name="amount" readonly style="background: none;border: none;"/>
-                        <p>Dollars (stars at 1$)</p>                                
+                            <input type="text" class="style_text" id="amount" name="amount" readonly style="background: none;border: none;margin-left: 30px; font-size: 1em;"/>
+                        <p style="margin-left: 30px;" class="style_text">Dollars (stars at 1$)</p>                                
                         </p>
                         <br/>
-                        <p class="underline_title">Keyword</p>
-                        <input type="text" name="keyword" id="keyword" placeholder="keyword"/>
+                        <span class="underline_title" >Keyword</span>
+                            <input type="text" name="keyword" id="keyword" placeholder="keyword" style="margin-left: 30px;"/>
                         <div style="float: right;">
                             <button onclick="widgets.user.AdvancedSearch();" >Search</button>
                         </div>

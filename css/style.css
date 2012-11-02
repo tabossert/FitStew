@@ -349,7 +349,17 @@ ul.item-link li a:hover{text-decoration:none; color:#186897;}
 }
 .underline_title{
     font-style: normal;
-    text-decoration: underline;
+    text-decoration: none;
+    color: #003f81;
+    font-size: 1.2em;
+
+
+}
+.style_text{
+    font-style: normal;
+    text-decoration: none;
+    color: #7a43b6;
+    font-size: 1.2em;
 
 
 }

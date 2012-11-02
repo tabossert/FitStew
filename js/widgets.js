@@ -733,7 +733,7 @@ var User = function()
                     if(bool){
                         k=0;
                         op[k]= result10[i].service;
-                        opw +="<td><input type='checkbox' id='"+result10[i].service+"' ></td><td>"+result10[i].service+"</td>";
+                        opw +="<td><input type='checkbox' id='"+result10[i].service+"' ></td><td class='style_text'>"+result10[i].service+"</td>";
                         k++;
                         if(k%6 == 0){
                             opw +="</tr><tr>";
