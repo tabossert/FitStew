@@ -43,17 +43,17 @@ $title = "ZuneFit Gym Panel";
 
             </div>
 
-            <div id="searchbox" style="display: none ;min-height: 340px;">
+            <div id="searchbox" style="display: none ;min-height: 340px; font-size: 1.2em;">
                 <!--                <div class="up-blue-box">-->
 
-                <div style="text-align: center"><a href = "#" onclick="widgets.user.search(0)">Search</a> | <a href = "#" onclick="widgets.user.search(1)">Advanced Search</a></div>
+                <div style="text-align: center;"><a href = "#" onclick="widgets.user.search(0)">Search</a> | <a href = "#" onclick="widgets.user.search(1)">Advanced Search</a></div>
                 <hr/><br/>
                 <div id="search">
                     <div>
-                        
 
-                        <label for="searchRadio">Search by</label><p style="margin-left: 50px;">
-                            <input type="radio" name="searchRadio" value="activity" id="activity" checked>Fitness activity<br/>
+
+                        <label for="searchRadio">Search by</label><p style="margin-left: 50px;"><br/>
+                            <input type="radio" name="searchRadio" value="activity" id="activity" checked>Fitness activity<br/><br/>
                             <input type="radio" name="searchRadio" value="center" id="center">Fitness center<br/><br/></p>
                         <form class="searchform">
                             <input class="searchfield" type="text" name='searchkey' id='searchkey' placeholder="Search..."  />
@@ -102,7 +102,7 @@ $title = "ZuneFit Gym Panel";
                         </p>
                         <br/>
                         <span class="underline_title" >Keyword</span>
-                            <input type="text" name="keyword" id="keyword" placeholder="keyword" style="margin-left: 30px;"/>
+                        <input type="text" name="keyword" id="keyword" placeholder="keyword" style="margin-left: 30px;"/>
                         <div style="float: right;">
                             <button onclick="widgets.user.AdvancedSearch();" >Search</button>
                         </div>
@@ -110,7 +110,7 @@ $title = "ZuneFit Gym Panel";
                     <div id="advSearch-result">
                     </div>
                 </div>
-                <!--                </div>-->
+
             </div>
 
             <div id="preferences" style="display: none;min-height: 340px;">

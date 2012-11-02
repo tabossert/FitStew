@@ -351,15 +351,15 @@ ul.item-link li a:hover{text-decoration:none; color:#186897;}
     font-style: normal;
     text-decoration: none;
     color: #003f81;
-    font-size: 1.2em;
+    font-size: 1.1em;
 
 
 }
 .style_text{
     font-style: normal;
     text-decoration: none;
-    color: #7a43b6;
-    font-size: 1.2em;
+    color: #2E2E2E;
+    font-size: 0.85em;
 
 
 }
@@ -421,6 +421,12 @@ ul.item-link li a:hover{text-decoration:none; color:#186897;}
     width: 25%;
     border-right:  solid;
     border-right-width: 1px;
+    text-align:  center;
+}
+.header-box table #last{
+    width: 25%;
+    border-right:  none;
+   
     text-align:  center;
 }
 .header-box table td a:hover{

@@ -109,7 +109,7 @@ if ($page != 'index.php') {
                                   
                                   <td> <a  href = "pages/gymLoc.php">Locations</a></td>
                                   <td>  <a  href = "about.php">Abouts</a></td>
-                                     <td> <a href = "logout.php">Sign-out</a> </td></tr></table>
+                                  <td id="last"> <a href = "logout.php">Sign-out</a> </td></tr></table>
                                 
                             </div>
                                
