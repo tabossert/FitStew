@@ -365,6 +365,9 @@ var User = function()
         this.getFeaturedWorkots();
         this.getDate();
         this.getAllClasses();
+        //  this.addEvent();
+        this.deleteEvent();
+      
        
        
     }
@@ -501,7 +504,7 @@ var User = function()
         var div = [];
         div[0]='#search';
         div[1]='#advSearch';
-         var li = [];
+        var li = [];
         li[0]='#prefe';
         li[1]='#bill';
        
@@ -509,10 +512,12 @@ var User = function()
         for(i=0;i<2;i++){
             if(i==id){
                 $(div[i]).css('display', 'block');
-            $(li[i] ).css('display', 'none');}
+                $(li[i] ).css('display', 'none');
+            }
             else{
                 $(div[i]).css('display', 'none');
-            $(li[i] ).css('color', 'blue');}
+                $(li[i] ).css('color', 'blue');
+            }
         }
     }
     
@@ -633,6 +638,7 @@ var User = function()
                             }                                
                             content += "<h1>"+result7[i].date+"</h1>";
                             content += "<ul><li>"+result7[i].name+"</li>";
+                            date = result7[i].date;
                         }
                         
                     }
@@ -683,11 +689,12 @@ var User = function()
         data = {};
         if($('input[name=searchRadio]:checked').val()== "activity"){
             data['workouts'] = $('#searchkey').val();
+            
         }else{
             data['another'] = $('#searchkey').val();
         }
         
-       
+        
         
         
         ZUNEFIT.postJSON({
@@ -696,7 +703,9 @@ var User = function()
           
             success:function(response){
                 result9 = eval(response)[0];
-                $("#search-result").html(result9);
+                res = '<a class="light" onclick="" href="#lightbox"> Result</a>';
+               
+                $("#search-result").html(res);
             //alert(result1);        
             },
             error:function(){
@@ -781,7 +790,154 @@ var User = function()
             //Error should be handle here
             // alert("no");  
             }
+            
         });
+    }
+    
+    this.addEvent = function()
+    {
+       
+        data = {};
+        data['userid'] = $("#userid").val();
+        data['gymid'] = 22;//$("#lastName").val();
+        data['classid'] = 7;//$("#address").val();
+        data['price'] = 10;//$("#email").val();
+        
+       
+        
+        
+        ZUNEFIT.postJSON({
+            url:'addEvent/',
+            data:data,
+            token : $('#utoken').val(),
+          
+            success:function(response){
+                result11 = eval(response)[0];
+                alert(result11.status);
+            //alert(result1);        
+            },
+            error:function(){
+            //Error should be handle here
+            // alert("no");  
+            }
+            
+        });
+    }
+    
+    this.deleteEvent = function()
+    {
+       
+        data = {};
+        data['sid'] = 26;
+        
+        
+        $.ajax({
+            type: 'DELETE',
+            url: "https://api.zunefit.com/api/deleteEvent/",
+            data: data,
+            beforeSend : function(xhrObj) {
+                xhrObj.setRequestHeader("ltype", "web");
+            
+                xhrObj.setRequestHeader("token", $('#utoken').val());
+            
+            },
+            success: function(response){
+                result12 = eval(response)[0];
+                alert(result12.status);
+            //alert(result1);        
+            }
+        });
+        
+        
+        
+    }
+    
+    this.advancedSearch = function()
+    {
+        $("a.light").live("click", function(event) {
+            event.preventDefault();
+            $(this).filter(':not(.fb)').fancybox()
+            .addClass('fb');
+            $(this).triggerHandler('click');
+        });
+        data = {};
+        //data['workouts'] = $('#amount').val();
+        // data['address'] = $('#Within').val();
+        // data['maxDistance'] = $('#Miles').val();
+        data['rate'] = $('#amount').val().substr(1);
+        
+        
+        ZUNEFIT.postJSON({
+            url:'gymSearchAdvanced/',
+            data:data,
+          
+            success:function(response){
+                result13 = eval(response);
+                last=result13.length;
+                res = "<ul class='searchResult'>";
+                for(i=0;i<last;i++){
+                    res += '<li onclick="widgets.user.getInfo('+result13[i].id+')"><a href = "#lightbox" class="light" >'+result13[i].name+'</a></li>';
+                }
+                res += "</ul>";
+                $("#advSearch-result").html(res);
+            //alert(result1);        
+            },
+            error:function(){
+            //Error should be handle here
+            // alert("no");  
+            }
+        });
+       
+    }
+    this.getInfo = function(id)
+    {
+        
+       
+        ZUNEFIT.getJSON({
+            url:'gymInfo/'+id,
+            success:function(response){
+                result14 = eval(response)[0];
+                description ="";
+                description +="Gym Name:"+result14.name+"<br/>Address:"+result14.address+"<br/>City:"+result14.city+"<br/>";
+                description +="State:"+result14.state+"<br/>Zip Code:"+result14.zipcode+"<br/>Phone:"+result14.phone+"<br/>";
+                description +="email:"+result14.email+"<br/>Contact:"+result14.contact+"<br/>";
+
+                $("#box-description").html(description);
+                
+            },
+            error:function(){
+            //Error should be handle here
+            }
+        });
+        ZUNEFIT.getJSON({
+            url:'getClasses/'+id,
+            success:function(response){
+                result15 = eval(response);
+                end = result15.length;
+                schedule ="";
+                services = "<ui>";
+                for(i=0;i<end;i++){
+                     services += "<li>"+result15[i].service+"</li>";
+                    schedule +="Service:"+result15[i].service+"<br/>Price:"+result15[i].price+"<br/>Date:"+result15[i].date+"<br/>";
+                schedule +="Time:"+result15[i].time+"<br/><hr/>";
+                }
+                
+                
+                services += "</ui>";
+                $("#box-Schedule").html(schedule);
+                $("#box-Services").html(services);
+                
+            },
+            error:function(){
+            //Error should be handle here
+            }
+        });
+    
+       
+       
+        
+        
+        
     }
         
 }

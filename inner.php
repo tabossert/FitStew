@@ -6,9 +6,14 @@ $title = "ZuneFit Gym Panel";
 <?php include 'html/header.php'; ?>
 <link rel="stylesheet" href="jqueryui/jqueryui.css" />
 <script src="jqueryui/jqueryui.js"></script>
+<script>
+                      
+   
+</script>
 
 <!-- Header End -->
 <input type="hidden" name="utoken" id="utoken" value="<?php echo $_SESSION['token']; ?>"/>
+<input type="hidden" name="userid" id="userid" value="<?php echo $_SESSION['userid']; ?>"/>
 <div class="middle-container">
 
     <div class="inner-left-part">
@@ -43,7 +48,7 @@ $title = "ZuneFit Gym Panel";
 
             </div>
 
-            <div id="searchbox" style="display: none ;min-height: 340px; font-size: 1.2em;">
+            <div id="searchbox" style="display: none ;min-height: 340px; font-size: 1.1em;">
                 <!--                <div class="up-blue-box">-->
 
                 <div style="text-align: center;"><a href = "#" onclick="widgets.user.search(0)">Search</a> | <a href = "#" onclick="widgets.user.search(1)">Advanced Search</a></div>
@@ -53,9 +58,9 @@ $title = "ZuneFit Gym Panel";
 
 
                         <label for="searchRadio">Search by</label><p style="margin-left: 50px;"><br/>
-                            <input type="radio" name="searchRadio" value="activity" id="activity" checked>Fitness activity<br/><br/>
-                            <input type="radio" name="searchRadio" value="center" id="center">Fitness center<br/><br/></p>
-                        <form class="searchform">
+                            <input type="radio" name="searchRadio" value="activity" id="activity" checked><label for="activity">Fitness activity</label><br/><br/>
+                            <input type="radio" name="searchRadio" value="center" id="center"><label for="center">Fitness center</label><br/><br/></p>
+                        <form class="searchform" >
                             <input class="searchfield" type="text" name='searchkey' id='searchkey' placeholder="Search..."  />
                             <input class="searchbutton" type="button" value="Go" onclick="widgets.user.searchMe()"/>
 
@@ -84,7 +89,7 @@ $title = "ZuneFit Gym Panel";
                                 <td>
                                     <label for="Miles"  class="style_text">  Miles  </label></td><td>
                                     <input type="text" name="Miles" id="Miles" placeholder="within..." style="font-style: normal;"/>
-                                    <label for="Miles" class="error" generated="true"></label></td></tr><tr><td>
+                                    <label for="Miles" class="error" generated="true"></label></td><td>
                                     <label for="Within"  class="style_text">  Within  </label></td><td>
                                     <input type="text" name="Within" id="Within" placeholder="zip / city..." style="font-style: normal;"/> 
                                     <label for="Within" class="error" generated="true"></label>
@@ -104,20 +109,22 @@ $title = "ZuneFit Gym Panel";
                         <span class="underline_title" >Keyword</span>
                         <input type="text" name="keyword" id="keyword" placeholder="keyword" style="margin-left: 30px;"/>
                         <div style="float: right;">
-                            <button onclick="widgets.user.AdvancedSearch();" >Search</button>
+                            <button onclick="widgets.user.advancedSearch();" >Search</button>
                         </div>
                     </div>
+                    <br/>
+                    <div class="clr" style="border-bottom: solid; border-bottom-color: #184A61;"></div>
                     <div id="advSearch-result">
                     </div>
                 </div>
 
             </div>
 
-            <div id="preferences" style="display: none;min-height: 340px;">
+            <div id="preferences" style="display: none ;min-height: 340px; ">
 
 
 
-                <div style="text-align: center"><a href = "#"  onclick="widgets.user.preferencesBilling(0)">Preferences</a> | <a href = "#"  onclick="widgets.user.preferencesBilling(1)">Billing</a></div>
+                <div style="text-align: center ;font-size: 1.2em;"><a href = "#"  onclick="widgets.user.preferencesBilling(0)">Preferences</a> | <a href = "#"  onclick="widgets.user.preferencesBilling(1)">Billing</a></div>
                 <hr/>
                 <div id="preference">
                     <span style="float: right;"><a href="#" onclick="widgets.user.edit()">edit</a>|<a href="#" onclick="widgets.user.update()">done</a></span>
@@ -141,11 +148,7 @@ $title = "ZuneFit Gym Panel";
                                 <label for="address" class="error" generated="true"></label></td></tr>
 
                     </table>
-                    <!--                    <div >
-                                            <button onclick="widgets.user.update()" >Update</button>
-                                        </div>  -->
-
-                    <!--<a href="#">Change password</a>-->
+                   
 
                 </div>
                 <div id="billing" style="display: none;">

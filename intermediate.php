@@ -75,8 +75,8 @@ function handler( $errno, $errstr, $errfile, $errline ) {
         return;
 
     if(DISPLAY_ERRORS){
-        header ("Location: ".SITE_URL."erroPage.php");
-        printf('%s', $message);
+        header ("Location: ".SITE_URL."erroPage.php?msg=server error");
+        //printf('%s', $message);
         
         }
 
@@ -107,7 +107,10 @@ $obj = json_decode($chleadresult);
 
 //$token = $obj[0]->{'token'};
 $token = $obj[0]->{'token'};
+$id = $obj[0]->{'userid'};
+
 echo $_SESSION['token']= $token;
+echo $_SESSION['userid']= $id;
 var_dump($chleadresult);
 
 header ("Location: ".SITE_URL."inner.php");
