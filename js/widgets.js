@@ -896,7 +896,7 @@ var User = function()
     }
     this.getInfo = function(id)
     {
-        description ="";
+        
         schedule ="";
         services = "<ui>";
         ZUNEFIT.getJSON({
@@ -904,11 +904,18 @@ var User = function()
             success:function(response){
                 result14 = eval(response)[0];
                
-                description +="Gym Name:"+result14.name+"<br/>Address:"+result14.address+"<br/>City:"+result14.city+"<br/>";
-                description +="State:"+result14.state+"<br/>Zip Code:"+result14.zipcode+"<br/>Phone:"+result14.phone+"<br/>";
-                description +="email:"+result14.email+"<br/>Contact:"+result14.contact+"<br/>";
+                $("#gumName").val(result14.name);
+                $("#address").val(result14.address);
+                $("#city").val(result14.city);
+                $("#state").val(result14.state);
+                $("#zipcode").val(result14.zipcode);
+                $("#phone").val(result14.phone);
+                $("#email").val(result14.email);
+                
+           $("#contact").val(result14.contact);
+              
 
-                $("#box-description").html(description);
+                
                 
             },
             error:function(){

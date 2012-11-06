@@ -65,8 +65,8 @@ $title = "ZuneFit Gym Panel";
                         </form>  
                     </div>
                     <br/>
-                      <div class="clr" style="border-bottom: solid; border-bottom-color: #184A61;"></div>
-                      <br/>
+                    <div class="clr" style="border-bottom: solid; border-bottom-color: #184A61;"></div>
+                    <br/>
                     <div id="search-result" style="text-align: center;">
                         <a href = "#lightbox" class="light" onclick="">Search</a>
                         <a href = "#lightbox" class="light" onclick=""> Result</a>
@@ -216,10 +216,52 @@ $title = "ZuneFit Gym Panel";
 
 
                 <div id="divexample1" style=" color: green; height: 350px;float: left;width: 390px;">
-                    <div id="box-description" ></div>   
-                    <div id="box-Schedule" style="display: none; " ></div>   
+                    <div id="box-description" >
+                        <table class="pref">
+                            <tr><td>
+                                    <label for="gymName" > Gym Name  </label></td><td>:</td><td>
+                                    <input type="text" name="gymName" id="gymName" class="transparent"/>
+                                </td></tr>
+                            <tr><td>
+                                    <label for="address"  >  Address  </label></td><td>:</td><td>
+                                    <input type="text" name="address" id="address" class="transparent"/> 
+                                </td></tr>
+                            <tr><td>
+                                    <label for="city"  >  City  </label></td><td>:</td><td>
+                                    <input type="text" name="city" id="city" class="transparent"/>
+                                </td></tr>                        
+
+                            <tr><td>
+                                    <label for="state"  > State  </label></td><td>:</td><td>
+                                    <input type="text" name="state" id="state" class="transparent"/> 
+                                </td></tr>
+                            <tr><td>
+                                    <label for="zipcode" > Zip Code  </label></td><td>:</td><td>
+                                    <input type="text" name="zipcode" id="zipcode" class="transparent"/>
+                                </td></tr>
+                            <tr><td>
+                                    <label for="phone"  >  Phone  </label></td><td>:</td><td>
+                                    <input type="text" name="phone" id="phone" class="transparent"/> 
+                                </td></tr>
+                            <tr><td>
+                                    <label for="email"  >  email  </label></td><td>:</td><td>
+                                    <input type="text" name="email" id="email" class="transparent"/>
+                                </td></tr>                        
+
+                            <tr><td>
+                                    <label for="contact"  > Contact  </label></td><td>:</td><td>
+                                    <input type="text" name="contact" id="contact" class="transparent"/> 
+                                </td></tr>
+
+                        </table>
+                    </div>   
+                    <div id="box-Schedule" style="display: none; " >
+
+                    </div>   
                     <div id="box-Rate" style="display: none ; " >Rate</div>   
-                    <div id="box-Services" style="display: none;" ></div>   
+                    <div id="box-Services" style="display: none;" >
+
+                    </div>   
                 </div>
 
             </div>
