@@ -18,7 +18,7 @@ h3          { font-size:1.35em; line-height:1.25; margin-bottom:.45em; }
 h4          { margin:0px 0px 5px 0px; padding:0px; font-family: Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; color:#145c9d; }
 h5          { font-size:1.05em; line-height:1.35; margin-bottom:.45em; }
 h6          { font-size:1em; line-height:1.35; margin-bottom:1em; }
-hr          {  border-bottom:1px dotted #6E6E6E; height:1px;}
+hr         {}
 
 /* Forms */
 form          { display:inline; }
@@ -306,7 +306,7 @@ ul.tabs-link li a:hover{background:#A2BF5E;
                          border-bottom-right-radius: 0px;
                          border-bottom-left-radius: 0px;
                          color:#E6ECE0;
-                         font: bold 16px "Trebuchet MS"; 
+                         font: bold 16px "Georgia"; 
                          text-decoration:none;
 
                          filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#E6ECE0', endColorstr='#333'); /* for IE */
@@ -451,6 +451,7 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
 
 
 #inner-nav {
+   
     font-style: normal;
     font-size: 1.2em;
     padding-left: 140px;
@@ -480,6 +481,7 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
 }
 /* main level link */
 #inner-nav a {
+     font-family:  "Georgia";
     font-weight: bold;
     color: #e7e5e5;
     text-decoration: none;
@@ -499,14 +501,11 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9F9A9D', endColorstr='#000'); /* for IE */
     background: -webkit-gradient(linear, left top, left bottom, from(#9F9A9D), to(#000)); /* for webkit browsers */
     background: -moz-linear-gradient(top,  #9F9A9D,  #000); /* for firefox 3.6+ */
+ border-radius: 0.2em;
 
 
-
-    border-top: solid 1px #f8f8f8;
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+   
+  
 
 }
 
@@ -523,18 +522,15 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
 
 
     height: 75%;
-    border-top: solid 1px #f8f8f8;
-    border-radius: .5em;
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+   
+    border-radius: 0.2em;
 }
 
 .searchform {
+    margin-left: 200px;
     display: inline-block;
     zoom: 1; /* ie7 hack for display:inline-block */
-    *display: inline;
+   
     border: solid 1px #d2d2d2;
     padding: 3px 5px;
 
@@ -589,3 +585,44 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     -ms-filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9e9e9e', endColorstr='#454545'); /* ie8 */
     cursor: pointer;
 }
+#divexample1 {
+        overflow: auto;
+        height: 300px;
+    }
+    .round{
+        font-style: normal;
+         border-radius: 1em;
+         padding: 2px;
+         padding-left: 4px;
+         font-size: 0.8em;
+         background-color: #999;
+         border: solid;
+        
+    }
+
+.buttons {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #3d94f6), color-stop(1, #1e62d0) );
+	background:-moz-linear-gradient( center top, #3d94f6 5%, #1e62d0 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d94f6', endColorstr='#1e62d0');
+	background-color:#3d94f6;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #337fed;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Georgia;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+}.buttons:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #1e62d0), color-stop(1, #3d94f6) );
+	background:-moz-linear-gradient( center top, #1e62d0 5%, #3d94f6 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e62d0', endColorstr='#3d94f6');
+	background-color:#1e62d0;
+}.buttons:active {
+	position:relative;
+	top:1px;
+}
+

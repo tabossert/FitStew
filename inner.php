@@ -4,12 +4,9 @@ $title = "ZuneFit Gym Panel";
 ?>
 <!-- Header Start -->
 <?php include 'html/header.php'; ?>
-<link rel="stylesheet" href="jqueryui/jqueryui.css" />
-<script src="jqueryui/jqueryui.js"></script>
-<script>
-                      
-   
-</script>
+<link rel="stylesheet" type="text/css" href="jqueryui/jqueryui.css" />
+<script type="text/javascript" src="jqueryui/jqueryui.js" ></script>
+<script type="text/javascript" src="scroll/scroll.js" ></script>
 
 <!-- Header End -->
 <input type="hidden" name="utoken" id="utoken" value="<?php echo $_SESSION['token']; ?>"/>
@@ -19,7 +16,7 @@ $title = "ZuneFit Gym Panel";
     <div class="inner-left-part">
         <div >
             <ul id="inner-nav">
-                <li id="schedule-tab"><a  href="javascript:void(0);" onclick="widgets.user.loadLeft(0)">Schedule</a></li>
+                <li id="schedule-tab" class="selected"><a  href="javascript:void(0);" onclick="widgets.user.loadLeft(0)">Schedule</a></li>
                 <li id='gymsearch-tab'><a  href="javascript:void(0);"  onclick="widgets.user.loadLeft(1)">Gym Search</a></li>
                 <li id="Preferences-tab"><a  href="javascript:void(0);"  onclick="widgets.user.loadLeft(2);">Preferences</a></li>
             </ul>
@@ -67,6 +64,9 @@ $title = "ZuneFit Gym Panel";
 
                         </form>  
                     </div>
+                    <br/>
+                      <div class="clr" style="border-bottom: solid; border-bottom-color: #184A61;"></div>
+                      <br/>
                     <div id="search-result" style="text-align: center;">
                         <a href = "#lightbox" class="light" onclick="">Search</a>
                         <a href = "#lightbox" class="light" onclick=""> Result</a>
@@ -86,13 +86,14 @@ $title = "ZuneFit Gym Panel";
                         <p class="underline_title">Location</p>
                         <table style="margin-left: 30px;">
                             <tr>
-                                <td>
+                                <td style="width: 50px;">
                                     <label for="Miles"  class="style_text">  Miles  </label></td><td>
-                                    <input type="text" name="Miles" id="Miles" placeholder="within..." style="font-style: normal;"/>
-                                    <label for="Miles" class="error" generated="true"></label></td><td>
+                                    <input type="text" name="Miles" id="Miles"  class="round" placeholder="within.." style="font-style: normal;"/>
+                                </td>
+                                <td style="width: 70px; text-align: center;">
                                     <label for="Within"  class="style_text">  Within  </label></td><td>
-                                    <input type="text" name="Within" id="Within" placeholder="zip / city..." style="font-style: normal;"/> 
-                                    <label for="Within" class="error" generated="true"></label>
+                                    <input type="text" name="Within" id="Within" placeholder="zip / city.." class="round" style="font-style: normal;"/> 
+
                                 </td>
                             </tr>
                         </table>
@@ -107,9 +108,9 @@ $title = "ZuneFit Gym Panel";
                         </p>
                         <br/>
                         <span class="underline_title" >Keyword</span>
-                        <input type="text" name="keyword" id="keyword" placeholder="keyword" style="margin-left: 30px;"/>
+                        <input type="text" name="keyword" id="keyword" placeholder="keyword" class="round" style="margin-left: 30px;font-style: normal;"/>
                         <div style="float: right;">
-                            <button onclick="widgets.user.advancedSearch();" >Search</button>
+                            <span class="buttons" onclick="widgets.user.advancedSearch();" >Search</span>
                         </div>
                     </div>
                     <br/>
@@ -148,7 +149,7 @@ $title = "ZuneFit Gym Panel";
                                 <label for="address" class="error" generated="true"></label></td></tr>
 
                     </table>
-                   
+
 
                 </div>
                 <div id="billing" style="display: none;">
@@ -199,7 +200,7 @@ $title = "ZuneFit Gym Panel";
 
     </div>
     <div style="display: none;">
-        <div name="lightbox" id="lightbox" class="blue-box2">
+        <div name="lightbox" id="lightbox" class="blue-box2" style="height: 400px; width: 400px; ">
             <div>
                 <div class = "my-box2" >
                     <p>
@@ -214,20 +215,20 @@ $title = "ZuneFit Gym Panel";
 
 
 
-                <div id="box-content" style="color: green;">
-                    <div id="box-description" >Description</div>   
-                    <div id="box-Schedule" style="display: none; " >Schedule</div>   
+                <div id="divexample1" style=" color: green; height: 350px;float: left;width: 390px;">
+                    <div id="box-description" ></div>   
+                    <div id="box-Schedule" style="display: none; " ></div>   
                     <div id="box-Rate" style="display: none ; " >Rate</div>   
-                    <div id="box-Services" style="display: none;" >Services</div>   
+                    <div id="box-Services" style="display: none;" ></div>   
                 </div>
 
             </div>
-            <div id="box-footer" style="color: blue;"><a href="#schedule-form" class="light">Add to my schedule</a></div>
+            <div id="box-footer" style="color: #565D60; clear: both;" ><a href="#schedule-form" class="light">Add to my schedule</a></div>
         </div>
 
     </div>
     <div style="display: none;">
-        <div name="schedule-form" id="schedule-form" class="blue-box2" style="color: green; width: 400px">
+        <div name="schedule-form" id="schedule-form" class="blue-box2" style="color: green; width: 400px; height: 400px;">
             <div >
                 <label for="time">Times</label>
                 <select name="time">

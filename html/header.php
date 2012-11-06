@@ -27,7 +27,7 @@ if ($page != 'index.php') {
 <html xmlns="http://www.w3.org/1999/xhtml">
     <html xmlns:fb="http://ogp.me/ns/fb#">
         <head>
-            
+
             <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
             <title><?php echo (isset($title) ? $title : "ZuneFit"); ?></title>
             <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -36,6 +36,10 @@ if ($page != 'index.php') {
             <link rel="stylesheet" type="text/css" href="css/ceebox.css" />
             <link rel="stylesheet" type="text/css" href="css/widgets.css" />
             <link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-1.3.4.css" />
+
+            
+
+            
 
             <script type="text/javascript" src="js/curvycorners.src.js"></script>
             <script type="text/javascript" src="js/validation.js"></script>
@@ -102,26 +106,26 @@ if ($page != 'index.php') {
                             <?php if (!(isset($_SESSION['token']) && $_SESSION['token'] != '')) : ?>
                                 <a class = "janrainEngage" href = "#">User Sign-In</a> | <a href = "#frmOwnersLogin" id = "wsn">Gym Sign-In</a>
                             <?php else : ?>
-                                 <div class = "header-box">
-                                
-                                     <table style="float: right;"><tr><td><a href = "pages/how.html" >How it works &nbsp;</a></td>
-                               
-                                  
-                                  <td> <a  href = "pages/gymLoc.php">Locations</a></td>
-                                  <td>  <a  href = "about.php">Abouts</a></td>
-                                  <td id="last"> <a href = "logout.php">Sign-out</a> </td></tr></table>
-                                
-                            </div>
-                               
+                                <div class = "header-box">
+
+                                    <table style="float: right;"><tr><td><a href = "pages/how.html" >How it works &nbsp;</a></td>
+
+
+                                            <td> <a  href = "pages/gymLoc.php">Locations</a></td>
+                                            <td>  <a  href = "about.php">Abouts</a></td>
+                                            <td id="last"> <a href = "logout.php">Sign-out</a> </td></tr></table>
+
+                                </div>
+
                             <?php endif; ?>
-<!--                                <div class = "header-box">
-                                <ul class = "header-link">
-                                    <li><a href = "pages/how.html" class = "popup" rel = "width:250;height:300">How it works</a></li>
-                                    <li><a href = "inner.php">Customers </a></li>
-                                    <li><a href = "owner.php">Gyms</a></li>
-                                    <li><a href = "pages/gymLoc.php" class = "popup" rel = "width:250;height:300">Locations</a></li>
-                                </ul>-->
-                           
+                            <!--                                <div class = "header-box">
+                                                            <ul class = "header-link">
+                                                                <li><a href = "pages/how.html" class = "popup" rel = "width:250;height:300">How it works</a></li>
+                                                                <li><a href = "inner.php">Customers </a></li>
+                                                                <li><a href = "owner.php">Gyms</a></li>
+                                                                <li><a href = "pages/gymLoc.php" class = "popup" rel = "width:250;height:300">Locations</a></li>
+                                                            </ul>-->
+
                         </div>
                     </div>
                 </div>

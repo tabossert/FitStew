@@ -854,6 +854,7 @@ var User = function()
     
     this.advancedSearch = function()
     {
+        $("#divexample1").niceScroll();
         $("a.light").live("click", function(event) {
             event.preventDefault();
             $(this).filter(':not(.fb)').fancybox()
@@ -866,6 +867,7 @@ var User = function()
         // data['maxDistance'] = $('#Miles').val();
         data['rate'] = $('#amount').val().substr(1);
         
+        res = "<ul class='searchResult'>";
         
         ZUNEFIT.postJSON({
             url:'gymSearchAdvanced/',
@@ -874,12 +876,15 @@ var User = function()
             success:function(response){
                 result13 = eval(response);
                 last=result13.length;
-                res = "<ul class='searchResult'>";
+               if(last>0){
                 for(i=0;i<last;i++){
                     res += '<li onclick="widgets.user.getInfo('+result13[i].id+')"><a href = "#lightbox" class="light" >'+result13[i].name+'</a></li>';
                 }
                 res += "</ul>";
                 $("#advSearch-result").html(res);
+               }else{
+                    $("#advSearch-result").html("No result Found");
+               }
             //alert(result1);        
             },
             error:function(){
@@ -891,13 +896,14 @@ var User = function()
     }
     this.getInfo = function(id)
     {
-        
-       
+        description ="";
+        schedule ="";
+        services = "<ui>";
         ZUNEFIT.getJSON({
             url:'gymInfo/'+id,
             success:function(response){
                 result14 = eval(response)[0];
-                description ="";
+               
                 description +="Gym Name:"+result14.name+"<br/>Address:"+result14.address+"<br/>City:"+result14.city+"<br/>";
                 description +="State:"+result14.state+"<br/>Zip Code:"+result14.zipcode+"<br/>Phone:"+result14.phone+"<br/>";
                 description +="email:"+result14.email+"<br/>Contact:"+result14.contact+"<br/>";
@@ -914,12 +920,11 @@ var User = function()
             success:function(response){
                 result15 = eval(response);
                 end = result15.length;
-                schedule ="";
-                services = "<ui>";
+               
                 for(i=0;i<end;i++){
-                     services += "<li>"+result15[i].service+"</li>";
+                    services += "<li>"+result15[i].service+"</li>";
                     schedule +="Service:"+result15[i].service+"<br/>Price:"+result15[i].price+"<br/>Date:"+result15[i].date+"<br/>";
-                schedule +="Time:"+result15[i].time+"<br/><hr/>";
+                    schedule +="Time:"+result15[i].time+"<br/><hr/>";
                 }
                 
                 
