@@ -397,6 +397,7 @@ label.error
 
 #waiting
 {
+   
     display: none;
     z-index: 9999999;
     position: absolute;

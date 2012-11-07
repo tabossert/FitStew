@@ -14,7 +14,7 @@ if(!isset($_SESSION['token'])) {
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>ZuneFit Panel</title>
-    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../css/styleold.css" rel="stylesheet" type="text/css" />
     <script src="../js/boot.js"></script>	
     <script src="../js/jquery-1.5.2.js"></script>
   </head>

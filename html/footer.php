@@ -5,8 +5,10 @@
  * 
  */
 ?>
-<div class="clr"></div>
+<div class="clr">
 <div id="waiting"><img src="images/ajax-loader.gif" alt="Waiting..." title="Waiting..."/></div>
+</div>
+</div>
 <div class="footerbg">
   <div class="footer-container"><a href="#">How it works</a> | <a href="#">Locations</a> | <a href="#">About</a> | <a href="#">Contact Us</a> | <a href="#">Faq</a> | <a href="#">Privacy Policy</a> | <a href="#">Site Map</a><br />
 

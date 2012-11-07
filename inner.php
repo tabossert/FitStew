@@ -131,11 +131,11 @@ $title = "ZuneFit Gym Panel";
                     <span style="float: right;"><a href="#" onclick="widgets.user.edit()">edit</a>|<a href="#" onclick="widgets.user.update()">done</a></span>
                     <table class="pref">
                         <tr><td>
-                                <label for="firstName" class="firstName" >  First Name  </label></td><td>:</td><td>
+                                <label for="firstName" class="firstName" >  First&nbsp;Name  </label></td><td>:</td><td>
                                 <input type="text" name="firstName" id="firstName" class="transparent"/>
                                 <label for="firstName" class="error" generated="true"></label></td></tr>
                         <tr><td>
-                                <label for="lastName" class="lastName" >  Last Name  </label></td><td>:</td><td>
+                                <label for="lastName" class="lastName" >  Last&nbsp;Name  </label></td><td>:</td><td>
                                 <input type="text" name="lastName" id="lastName" class="transparent"/> 
                                 <label for="lastName" class="error" generated="true"></label></td></tr>
                         <tr><td>
@@ -155,19 +155,19 @@ $title = "ZuneFit Gym Panel";
                 <div id="billing" style="display: none;">
                     <table class="pref">
                         <tr><td>
-                                <label for="bfirstName" class="bfirstName" >  First Name  </label></td><td>:</td><td>
+                                <label for="bfirstName" class="bfirstName" >  First&nbsp;Name  </label></td><td>:</td><td>
                                 <input type="text" name="bfirstName" id="bfirstName" class="transparent"/>
                                 <label for="bfirstName" class="error" generated="true"></label></td></tr>
                         <tr><td>
-                                <label for="blastName" class="blastName" >  Last Name  </label></td><td>:</td><td>
+                                <label for="blastName" class="blastName" >  Last&nbsp;Name  </label></td><td>:</td><td>
                                 <input type="text" name="blastName" id="blastName"  class="transparent"/> 
                                 <label for="blastName" class="error" generated="true"></label></td></tr>
                         <tr><td>
-                                <label for="baddress" class="baddress" >  Billing Address  </label></td><td>:</td><td>
+                                <label for="baddress" class="baddress" >  Billing&nbsp;Address  </label></td><td>:</td><td>
                                 <input type="text" name="baddress" id="baddress" class="transparent"/>
                                 <label for="baddress" class="error" generated="true"></label></td></tr> 
                         <tr><td>
-                                <label for="bcredit" class="bcredit" >  Credit card  </label></td><td>:</td><td>
+                                <label for="bcredit" class="bcredit" >  Credit&nbsp;card  </label></td><td>:</td><td>
                                 <input type="text" name="bcredit" id="bcredit" class="transparent"/>
                                 <label for="bcredit" class="error" generated="true"></label></td></tr> 
                     </table>

@@ -359,7 +359,7 @@ var User = function()
       
         this.getFeaturedGyms();
         this.getUserBalance();
-        this.getUserWeekSchedule();
+        
         this.slider();
         this.getUserPreferences();
         this.getFeaturedWorkots();
@@ -367,6 +367,8 @@ var User = function()
         this.getAllClasses();
         //  this.addEvent();
         this.deleteEvent();
+        this.getUserWeekSchedule();
+        this.test();
       
        
        
@@ -882,6 +884,7 @@ var User = function()
                     }
                     res += "</ul>";
                     $("#advSearch-result").html(res);
+                    
                 }else{
                     $("#advSearch-result").html("No result Found");
                 }
@@ -896,9 +899,9 @@ var User = function()
     }
     this.getInfo = function(id)
     {
-        
+        serv = {};
         schedule ="";
-        services = "<ui>";
+        services = "<ul class='searchResult'>";
         ZUNEFIT.getJSON({
             url:'gymInfo/'+id,
             success:function(response){
@@ -928,11 +931,38 @@ var User = function()
                 end = result15.length;
                
                 for(i=0;i<end;i++){
-                    services += "<li>"+result15[i].service+"</li>";
+                   
                     schedule +="Service:"+result15[i].service+"<br/>Price:"+result15[i].price+"<br/>Date:"+result15[i].date+"<br/>";
                     schedule +="Time:"+result15[i].time+"<br/><hr/>";
                 }
+                 
+        
+                op= {};
+               
                 
+                for(i=0;i<end;i++)
+                {         
+                    op[i]=result15[i].service;
+                    bool = true;
+                    for(j=0;j<i;j++){
+                        if(op[j] == result15[i].service) {
+                            bool = false;
+                        }
+                    }
+                    if(bool){
+                        
+                        
+                        services +="<li>"+result15[i].service+"</li>";
+                        
+                        
+                    }
+                             
+                }
+          
+    
+
+
+           
                 
                 services += "</ui>";
                 $("#box-Schedule").html(schedule);
@@ -945,6 +975,32 @@ var User = function()
         });
     
        
+       
+        
+        
+        
+    }
+    
+    this.test = function()
+    {
+    //        data ={ };
+    //  
+    //         data['workouts'] = "weights";
+    //         data['rate']= 10;
+    //       $.ajax
+    //    ({
+    //        type: "POST",
+    //        
+    //        url: "https://api.zunefit.com/api/gymSearchAdvanced/",
+    //        dataType: 'json',
+    //        async: false,
+    //       
+    //        data: data,
+    //        success: function (data) {
+    //
+    //        alert(data); 
+    //        }
+    //    })
        
         
         

@@ -130,3 +130,4 @@ if ($page != 'index.php') {
                     </div>
                 </div>
                 <div class = "clr"></div>
+                <div id="backg">

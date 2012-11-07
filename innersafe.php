@@ -17,7 +17,7 @@ if(!isset($_SESSION['token'])) {
     <title>ZuneFit Panel</title>
     <link rel="stylesheet" href="css/easyprint.css" media="print" />
     <link rel="stylesheet" href="css/easy.css" media="screen" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/styleold.css" rel="stylesheet" type="text/css" />
     <script src="js/jquery-1.7.1.js"></script>
     <script type="text/javascript" src="js/curvycorners.src.js"></script>
     <script type="text/javascript" src="js/easy.js"></script>
@@ -125,7 +125,7 @@ if(!isset($_SESSION['token'])) {
 	
 	  Follow us on Twitter Become a fan on Facebook<br />
 	
-	  © 2012 Zunefit. All Rights Reserved
+	  ï¿½ 2012 Zunefit. All Rights Reserved
 	  </div>
 	</div>
   </body>
