@@ -876,15 +876,15 @@ var User = function()
             success:function(response){
                 result13 = eval(response);
                 last=result13.length;
-               if(last>0){
-                for(i=0;i<last;i++){
-                    res += '<li onclick="widgets.user.getInfo('+result13[i].id+')"><a href = "#lightbox" class="light" >'+result13[i].name+'</a></li>';
-                }
-                res += "</ul>";
-                $("#advSearch-result").html(res);
-               }else{
+                if(last>0){
+                    for(i=0;i<last;i++){
+                        res += '<li onclick="widgets.user.getInfo('+result13[i].id+')"><a href = "#lightbox" class="light" >'+result13[i].name+'</a></li>';
+                    }
+                    res += "</ul>";
+                    $("#advSearch-result").html(res);
+                }else{
                     $("#advSearch-result").html("No result Found");
-               }
+                }
             //alert(result1);        
             },
             error:function(){
@@ -904,15 +904,14 @@ var User = function()
             success:function(response){
                 result14 = eval(response)[0];
                
-                $("#gumName").val(result14.name);
-                $("#address").val(result14.address);
+                $("#gymName").val(result14.name);
+                $("#paddress").val(result14.address);
                 $("#city").val(result14.city);
                 $("#state").val(result14.state);
                 $("#zipcode").val(result14.zipcode);
                 $("#phone").val(result14.phone);
-                $("#email").val(result14.email);
-                
-           $("#contact").val(result14.contact);
+                $("#pemail").val(result14.email);
+                $("#contact").val(result14.contact);
               
 
                 

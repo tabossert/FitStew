@@ -215,16 +215,16 @@ $title = "ZuneFit Gym Panel";
 
 
 
-                <div id="divexample1" style=" color: green; height: 350px;float: left;width: 390px;">
+                <div id="divexample1" style="height: 350px;float: left;width: 390px;overflow-x: hidden;">
                     <div id="box-description" >
                         <table class="pref">
-                            <tr><td>
-                                    <label for="gymName" > Gym Name  </label></td><td>:</td><td>
+                            <tr><td style="width: 400px;">
+                                    <label for="gymName" > Gym&nbsp;Name  </label></td><td>:</td><td>
                                     <input type="text" name="gymName" id="gymName" class="transparent"/>
                                 </td></tr>
                             <tr><td>
-                                    <label for="address"  >  Address  </label></td><td>:</td><td>
-                                    <input type="text" name="address" id="address" class="transparent"/> 
+                                    <label for="paddress"  >  Address  </label></td><td>:</td><td>
+                                    <input type="text" name="paddress" id="paddress" class="transparent"/> 
                                 </td></tr>
                             <tr><td>
                                     <label for="city"  >  City  </label></td><td>:</td><td>
@@ -237,15 +237,15 @@ $title = "ZuneFit Gym Panel";
                                 </td></tr>
                             <tr><td>
                                     <label for="zipcode" > Zip Code  </label></td><td>:</td><td>
-                                    <input type="text" name="zipcode" id="zipcode" class="transparent"/>
+                                    <input type="number" name="zipcode" id="zipcode" class="transparent"/>
                                 </td></tr>
                             <tr><td>
                                     <label for="phone"  >  Phone  </label></td><td>:</td><td>
                                     <input type="text" name="phone" id="phone" class="transparent"/> 
                                 </td></tr>
                             <tr><td>
-                                    <label for="email"  >  email  </label></td><td>:</td><td>
-                                    <input type="text" name="email" id="email" class="transparent"/>
+                                    <label for="pemail"  >  email  </label></td><td>:</td><td>
+                                    <input type="email" name="pemail" id="pemail" class="transparent"/>
                                 </td></tr>                        
 
                             <tr><td>
