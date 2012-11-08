@@ -284,7 +284,7 @@ ul.calender-link li a:hover{text-decoration:none; color:#F8E839;}
 
 
 .calender1{margin:0px; padding:0px; width:64px; float:left; text-align:center; font: bold 13px "Trebuchet MS"; color: #cd0a0a;}
-.calender2{margin:0px 0px 0px 225px; padding:0px; width:64px; float:left; text-align:center; font: bold 13px "Trebuchet MS";color: #cd0a0a;}
+.calender2{margin:0px 0px 0px 125px; padding:0px; width:64px; float:left; text-align:center; font: bold 13px "Trebuchet MS";color: #cd0a0a;}
 .calender3{margin:0px; padding:0px; width:64px; float:right; text-align:center; font: bold 13px "Trebuchet MS"; color: #cd0a0a;}
 
 .inner-calender1{ float:left; text-align:center; font: bold 13px "Trebuchet MS"; color: #cd0a0a; padding: 10px;}
