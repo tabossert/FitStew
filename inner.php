@@ -110,7 +110,7 @@ $title = "ZuneFit Gym Panel";
                         <span class="underline_title" >Keyword</span>
                         <input type="text" name="keyword" id="keyword" placeholder="keyword" class="round" style="margin-left: 30px;font-style: normal;"/>
                         <div style="float: right;">
-                            <span class="buttons" onclick="widgets.user.advancedSearch();" >Search</span>
+                            <button class="buttons" onclick="widgets.user.advancedSearch();" >Search</button>
                         </div>
                     </div>
                     <br/>

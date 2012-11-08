@@ -137,7 +137,7 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
 .login-link a:hover{text-decoration:none; color:#026593;}
 
 .main-middle-container{margin:10px auto 0px auto; padding:0px; width:955px; min-height:450px; border-top: #1B1B1B solid 1px; }
-.middle-container{margin:10px auto 0px auto; padding:0px; width:955px; min-height:450px;}
+.middle-container{margin:10px auto 0px auto; padding:0px; width:955px; min-height:450px;border-top:  #1B1B1B solid 1px;}
 
 .left-part{margin:10px 0px 0px 0px; padding:0px; width:464px; float:left;}
 .inner-left-part{margin:10px 0px 0px 0px; padding:0px; width:680px; float:left;}
@@ -711,7 +711,9 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
 }
 .headingbox h1{
     font-family:'Conv_itc-berkeley-oldstyle-lt-medium'; font-size:21px; text-decoration:none; font-style:italic; text-transform:none; color:#fff;
-    background: -moz-linear-gradient(center top , #555555 0%, #000000) repeat scroll 0 0 transparent;
+   
+     
+   
     margin: -10px -10px 0px -10px;
     height: 30px;
     text-align: center;
