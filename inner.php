@@ -8,7 +8,12 @@ $title = "ZuneFit Gym Panel";
 <script type="text/javascript" src="jqueryui/jqueryui.js" ></script>
 <script type="text/javascript" src="scroll/scroll.js" ></script>
 
+
 <!-- Header End -->
+
+
+
+
 <input type="hidden" name="utoken" id="utoken" value="<?php echo $_SESSION['token']; ?>"/>
 <input type="hidden" name="userid" id="userid" value="<?php echo $_SESSION['userid']; ?>"/>
 <div class="middle-container">
@@ -132,20 +137,20 @@ $title = "ZuneFit Gym Panel";
                     <table class="pref">
                         <tr><td>
                                 <label for="firstName" class="firstName" >  First&nbsp;Name  </label></td><td>:</td><td>
-                                <input type="text" name="firstName" id="firstName" class="transparent"/>
+                                <input type="text" name="firstName" id="firstName" class="transparent" style=" width: 400px;"/>
                                 <label for="firstName" class="error" generated="true"></label></td></tr>
                         <tr><td>
                                 <label for="lastName" class="lastName" >  Last&nbsp;Name  </label></td><td>:</td><td>
-                                <input type="text" name="lastName" id="lastName" class="transparent"/> 
+                                <input type="text" name="lastName" id="lastName" class="transparent" style=" width: 400px;"/> 
                                 <label for="lastName" class="error" generated="true"></label></td></tr>
                         <tr><td>
                                 <label for="email" class="email" >  Email  </label></td><td>:</td><td>
-                                <input type="text" name="email" id="email" class="transparent"/>
+                                <input type="text" name="email" id="email" class="transparent" style=" width: 400px;"/>
                                 <label for="email" class="error" generated="true"></label></td></tr>                        
 
                         <tr><td>
                                 <label for="address" class="address" > Address  </label></td><td>:</td><td>
-                                <input type="text" name="address" id="address" class="transparent"/> 
+                                <input type="text" name="address" id="address" class="transparent" style=" width: 400px;"/> 
                                 <label for="address" class="error" generated="true"></label></td></tr>
 
                     </table>
@@ -153,24 +158,52 @@ $title = "ZuneFit Gym Panel";
 
                 </div>
                 <div id="billing" style="display: none;">
-                    <table class="pref">
-                        <tr><td>
-                                <label for="bfirstName" class="bfirstName" >  First&nbsp;Name  </label></td><td>:</td><td>
-                                <input type="text" name="bfirstName" id="bfirstName" class="transparent"/>
-                                <label for="bfirstName" class="error" generated="true"></label></td></tr>
-                        <tr><td>
-                                <label for="blastName" class="blastName" >  Last&nbsp;Name  </label></td><td>:</td><td>
-                                <input type="text" name="blastName" id="blastName"  class="transparent"/> 
-                                <label for="blastName" class="error" generated="true"></label></td></tr>
-                        <tr><td>
-                                <label for="baddress" class="baddress" >  Billing&nbsp;Address  </label></td><td>:</td><td>
-                                <input type="text" name="baddress" id="baddress" class="transparent"/>
-                                <label for="baddress" class="error" generated="true"></label></td></tr> 
-                        <tr><td>
-                                <label for="bcredit" class="bcredit" >  Credit&nbsp;card  </label></td><td>:</td><td>
-                                <input type="text" name="bcredit" id="bcredit" class="transparent"/>
-                                <label for="bcredit" class="error" generated="true"></label></td></tr> 
-                    </table>
+                    <div >
+                        <form action="https://api.samurai.feefighters.com/v1/payment_methods" method="POST">
+                            <fieldset>
+                                <input name="redirect_url" type="hidden" value="http://localhost/frontend/inner.php" />
+                                <input name="merchant_key" type="hidden" value="dbb9284e8820d495f3833e50" />
+
+                                <!-- Before populating the ‘custom’ parameter, remember to escape reserved characters
+                                     like <, > and & into their safe counterparts like &lt;, &gt; and &amp; -->
+                                <input name="custom" type="hidden" value="Any value you want us to save with this payment method" />
+
+                                <label for="credit_card_first_name">First name</label>
+                                <input id="credit_card_first_name" name="credit_card[first_name]" type="text" />
+
+                                <label for="credit_card_last_name">Last name</label>
+                                <input id="credit_card_last_name" name="credit_card[last_name]" type="text" />
+
+                                <label for="credit_card_address_1">Address 1</label>
+                                <input id="credit_card_address_1" name="credit_card[address_1]" type="text" />
+
+                                <label for="credit_card_address_2">Address 2</label>
+                                <input id="credit_card_address_2" name="credit_card[address_2]" type="text" />
+
+                                <label for="credit_card_city">City</label>
+                                <input id="credit_card_city" name="credit_card[city]" type="text" />
+
+                                <label for="credit_card_state">State</label>
+                                <input id="credit_card_state" name="credit_card[state]" type="text" />
+
+                                <label for="credit_card_zip">Zip</label>
+                                <input id="credit_card_zip" name="credit_card[zip]" type="text" />
+
+                                <label for="credit_card_card_number">Card Number</label>
+                                <input id="credit_card_card_number" name="credit_card[card_number]" type="text" />
+
+                                <label for="credit_card_cvv">Security Code</label>
+                                <input id="credit_card_cvv" name="credit_card[cvv]" type="text" />
+
+                                <label for="credit_card_month">Expires on</label>
+                                <input id="credit_card_month" name="credit_card[expiry_month]" type="text" />
+                                <input id="credit_card_year" name="credit_card[expiry_year]" type="text" />
+
+                                <button type='submit'>Submit Payment</button>
+                            </fieldset>
+                        </form>
+
+                    </div>
                 </div>
 
             </div>
@@ -200,28 +233,42 @@ $title = "ZuneFit Gym Panel";
 
     </div>
     <div style="display: none;">
+
         <div name="lightbox" id="lightbox" class="blue-box2" style="height: 400px; width: 400px; ">
+            <div id="box-header" >
+                <table class="pref2">
+                    <tr><td>
+                            <label for="g_name" class="labels"> Gym&nbsp;Name  </label> 
+                        </td><td>
+                            <input type="text" name="g_name" id="g_name" class="transparent"/>
+                        </td>  </tr>  
+                    <tr> <td>
+                            <label for="g_rate" class="labels"> Rate  </label>
+                        </td> <td>
+                            <input type="text" name="g_rate" id="g_rate" class="transparent"/>
+                        </td>  
+                    </tr>
+                </table>
+            </div>
             <div>
                 <div class = "my-box2" >
                     <p>
                     <ul class = "toplink">
                         <li><a href = "#" onclick="widgets.user.loadBox(0)">Description</a></li>
                         <li><a href = "#" onclick="widgets.user.loadBox(1)">Schedule</a></li>
-                        <li><a href = "#" onclick="widgets.user.loadBox(2)">Rate</a></li>
-                        <li><a href = "#" onclick="widgets.user.loadBox(3)">Services</a></li>
+
+                        <li><a href = "#" onclick="widgets.user.loadBox(2)">Services</a></li>
                     </ul>
                     </p>
                 </div>
 
 
 
-                <div id="divexample1" style="height: 350px;float: left;width: 390px;overflow-x: hidden;">
+                <div id="divexample1" style="height: 290px;float: left;width: 390px;overflow-x: hidden;">
+
                     <div id="box-description" >
                         <table class="pref">
-                            <tr><td style="width: 400px;">
-                                    <label for="gymName" > Gym&nbsp;Name  </label></td><td>:</td><td>
-                                    <input type="text" name="gymName" id="gymName" class="transparent"/>
-                                </td></tr>
+
                             <tr><td>
                                     <label for="paddress"  >  Address  </label></td><td>:</td><td>
                                     <input type="text" name="paddress" id="paddress" class="transparent"/> 
@@ -236,7 +283,7 @@ $title = "ZuneFit Gym Panel";
                                     <input type="text" name="state" id="state" class="transparent"/> 
                                 </td></tr>
                             <tr><td>
-                                    <label for="zipcode" > Zip Code  </label></td><td>:</td><td>
+                                    <label for="zipcode" > Zip&nbsp;Code  </label></td><td>:</td><td>
                                     <input type="number" name="zipcode" id="zipcode" class="transparent"/>
                                 </td></tr>
                             <tr><td>
@@ -258,14 +305,14 @@ $title = "ZuneFit Gym Panel";
                     <div id="box-Schedule" style="display: none; " >
 
                     </div>   
-                    <div id="box-Rate" style="display: none ; " >Rate</div>   
+
                     <div id="box-Services" style="display: none;" >
 
                     </div>   
                 </div>
 
             </div>
-            <div id="box-footer" style="color: #565D60; clear: both;" ><a href="#schedule-form" class="light">Add to my schedule</a></div>
+            <div id="box-footer" style="color: #565D60; clear: both; text-align: center;" ><a href="#schedule-form" class="light">Add to my schedule</a></div>
         </div>
 
     </div>
@@ -273,12 +320,14 @@ $title = "ZuneFit Gym Panel";
         <div name="schedule-form" id="schedule-form" class="blue-box2" style="color: green; width: 400px; height: 400px;">
             <div >
                 <label for="time">Times</label>
-                <select name="time">
-                    <option value="0" selected>Times</option>
-                    <option value="1">one</option>
-                    <option value="2">two</option>
-                    <option value="3">three</option>
-                </select>
+                <div class='styled-select'>
+                    <select name="time">
+                        <option value="0" selected>Times</option>
+                        <option value="1">one</option>
+                        <option value="2">two</option>
+                        <option value="3">three</option>
+                    </select>
+                </div>
                 <label for="date">Date</label>
                 <input type="text" id="datepicker" />
                 <br/>
@@ -293,7 +342,7 @@ $title = "ZuneFit Gym Panel";
 
                 <p><label for="notes">Notes</label>
                 </p><p><textarea name="notes" id="notes" placeholder="Notes"></textarea></p>
-                <button>Submit</button>
+                <button class="buttons"  >Submit</button>
             </div>
 
         </div>

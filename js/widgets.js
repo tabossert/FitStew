@@ -542,10 +542,10 @@ var User = function()
         var div = [];
         div[0]='#box-description';
         div[1]='#box-Schedule';
-        div[2]='#box-Rate';
-        div[3]='#box-Services';
+      
+        div[2]='#box-Services';
         
-        for(i=0;i<5;i++){
+        for(i=0;i<3;i++){
             if(i==id)
                 $(div[i]).css('display', 'block');
             else
@@ -764,11 +764,11 @@ var User = function()
     }
     this.edit = function()
     {
-        $("#firstName, #lastName, #email, #address").removeClass('transparent');
+        $("#firstName, #lastName, #email, #address").removeClass('transparent').addClass('round');
     }
     this.update = function()
     {
-        $("#firstName, #lastName, #email, #address").addClass('transparent');
+        $("#firstName, #lastName, #email, #address").addClass('transparent').removeClass('round');
         data = {};
         data['first_name'] = $("#firstName").val();
         data['last_name'] = $("#lastName").val();
@@ -899,6 +899,7 @@ var User = function()
     }
     this.getInfo = function(id)
     {
+       
         serv = {};
         schedule ="";
         services = "<ul class='searchResult'>";
@@ -915,7 +916,10 @@ var User = function()
                 $("#phone").val(result14.phone);
                 $("#pemail").val(result14.email);
                 $("#contact").val(result14.contact);
-              
+                
+                
+                  $("#g_name").val(result14.name);
+                   $("#g_rate").val(result14.rate);
 
                 
                 
@@ -931,9 +935,11 @@ var User = function()
                 end = result15.length;
                
                 for(i=0;i<end;i++){
-                   
-                    schedule +="Service:"+result15[i].service+"<br/>Price:"+result15[i].price+"<br/>Date:"+result15[i].date+"<br/>";
-                    schedule +="Time:"+result15[i].time+"<br/><hr/>";
+                   if(i!=0){
+                      schedule += "<hr/>";
+                   }
+                    schedule +="<table><tr><td class='bold'>Service</td><td class='bold'>:"+result15[i].service+"</td></tr><tr><td></td><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr><tr><td></td><td class='bold'>Date</td><td>:"+result15[i].date+"</td></tr>";
+                    schedule +="<tr><td></td><td class='bold'>Time</td><td>:"+result15[i].time+"</td></tr></table>";
                 }
                  
         
@@ -967,6 +973,7 @@ var User = function()
                 services += "</ui>";
                 $("#box-Schedule").html(schedule);
                 $("#box-Services").html(services);
+                
                 
             },
             error:function(){

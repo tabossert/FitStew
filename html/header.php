@@ -37,9 +37,9 @@ if ($page != 'index.php') {
             <link rel="stylesheet" type="text/css" href="css/widgets.css" />
             <link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-1.3.4.css" />
 
-            
 
-            
+           
+
 
             <script type="text/javascript" src="js/curvycorners.src.js"></script>
             <script type="text/javascript" src="js/validation.js"></script>

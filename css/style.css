@@ -84,7 +84,7 @@ html,body{ margin:0px;
 
 }
 #backg{
-        background-image: linear-gradient(bottom, rgb(210,219,212) 14%, rgb(180,209,65) 93%) ;
+    background-image: linear-gradient(bottom, rgb(210,219,212) 14%, rgb(180,209,65) 93%) ;
     background-image: -o-linear-gradient(bottom, rgb(210,219,212) 14%, rgb(180,209,65) 93%);
     background-image: -moz-linear-gradient(bottom, rgb(210,219,212) 14%, rgb(180,209,65) 93%);
     background-image: -webkit-linear-gradient(bottom, rgb(210,219,212) 14%, rgb(180,209,65) 93%);
@@ -99,7 +99,7 @@ html,body{ margin:0px;
         );
 }
 body{
- background-image: linear-gradient(bottom, rgb(210,219,212) 14%, rgb(180,209,65) 93%) ;
+    background-image: linear-gradient(bottom, rgb(210,219,212) 14%, rgb(180,209,65) 93%) ;
     background-image: -o-linear-gradient(bottom, rgb(210,219,212) 14%, rgb(180,209,65) 93%);
     background-image: -moz-linear-gradient(bottom, rgb(210,219,212) 14%, rgb(180,209,65) 93%);
     background-image: -webkit-linear-gradient(bottom, rgb(210,219,212) 14%, rgb(180,209,65) 93%);
@@ -129,7 +129,7 @@ body{
 
 ul.toplink,ul.toplink li{margin:0px; padding:0px; list-style-type:none;}
 ul.toplink li{margin:0px; padding:0px; float:left;}
-ul.toplink li a{margin:0px; padding:6px 16px 0px 16px; font: bold 15px "Trebuchet MS"; text-decoration:none; color:#026593; float:left }
+ul.toplink li a{margin:0px; padding:6px 40px 0px 16px; font: bold 15px "Trebuchet MS"; text-decoration:none; color:#026593; float:left }
 ul.toplink li a:hover{text-decoration:none; color:#000000; }
 
 .login-link{margin:0px 5px 14px 0px; padding:0px; font:normal 14px "Trebuchet MS"; text-decoration:none; text-align:right; color:#000;}
@@ -382,9 +382,15 @@ ul.item-link li a:hover{text-decoration:none; color:#186897;}
     width: auto; 
 }
 .pref td{
-    width : 80px;
+    width : 50px;
 
 }
+.pref2{
+    line-height: 25px;
+    width: 100%;
+    margin-left:  60px;
+}
+
 .underline_title{
     font-style: normal;
     text-decoration: none;
@@ -511,7 +517,7 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
 #inner-nav li {
 
 
-    margin: 0 5px;
+    margin: 0;
     padding: 0 0 8px;
     float: left;
     position: relative;
@@ -528,7 +534,7 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     padding:  8px 20px;
     margin: 0;
 
-    border-radius: .5em;
+/*    border-radius: .5em;*/
 
     -webkit-border-radius: .5em;
     -moz-border-radius: .5em;
@@ -541,7 +547,7 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9F9A9D', endColorstr='#000'); /* for IE */
     background: -webkit-gradient(linear, left top, left bottom, from(#9F9A9D), to(#000)); /* for webkit browsers */
     background: -moz-linear-gradient(top,  #9F9A9D,  #000); /* for firefox 3.6+ */
-    border-radius: 0.2em;
+/*    border-radius: 0.2em;*/
 
 
 
@@ -562,9 +568,9 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     background: -moz-linear-gradient(top,  #9F9A9D,  #000); /* for firefox 3.6+ */
 
 
-    height: 75%;
+    height: 77%;
 
-    border-radius: 0.2em;
+/*    border-radius: 0.2em;*/
 }
 
 .searchform {
@@ -703,7 +709,7 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     border: #2E2E2E solid 3px;
     border-radius:10px;
     background-color: #8EB43E;
-    
+
 
 }
 .headingbox p{
@@ -711,9 +717,9 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
 }
 .headingbox h1{
     font-family:'Conv_itc-berkeley-oldstyle-lt-medium'; font-size:21px; text-decoration:none; font-style:italic; text-transform:none; color:#fff;
-   
-     
-   
+
+
+
     margin: -10px -10px 0px -10px;
     height: 30px;
     text-align: center;
@@ -722,3 +728,17 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     background: transparent;
 }
 /*..................................................................*/
+#box-header{
+    border-bottom: #000 solid 1px;
+    border-top:  #000 solid 1px;
+width: 100%;
+height: 60px;float: left;overflow: hidden; 
+font-family: "Georgia";
+font-size: 1em;
+
+}
+.bold{
+  font-family: "Georgia";
+font-size: 1em;  
+height: 10px;
+}
