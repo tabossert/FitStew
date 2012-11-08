@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<log4php:configuration xmlns:log4php="http://logging.apache.org/log4php/">
+    <appender name="myAppender" class="LoggerAppenderFile">       <!-- 1 -->
+        <param name="file" value="SysLog.log" />                   <!-- 2 -->
+        <layout class="LoggerLayoutPattern">
+            <param name="conversionPattern" value="%d{Y-m-d H:i:s.u} %c %-5p %m%n" />
+        </layout>
+    </appender>
+    <root>
+        <level value="INFO" />                                    <!-- 3 -->
+        <appender_ref ref="myAppender" />                         <!-- 4 -->
+    </root>
+</log4php:configuration>
