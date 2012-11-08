@@ -1,10 +1,11 @@
 <?php
 
-header('Content-type: application/json');
+//header('Content-type: application/json');
 /**
  * Samurai payment processor
  */
 // Tell log4php to use our configuration file.
+include('../log4php/Logger.php');
 Logger::configure('../log4php.xml');
 
 // Fetch a logger, it will inherit settings from the root logger
