@@ -368,7 +368,7 @@ var User = function()
         //  this.addEvent();
         this.deleteEvent();
         this.getUserWeekSchedule();
-        this.test();
+        
       
        
        
@@ -460,12 +460,17 @@ var User = function()
                 result6 = eval(data)[0];                
                 
                 $("#email").val(result6.email);
+                
                 $("#firstName").val(result6.first_name);
+                 $("#first_name").val(result6.first_name);
                 $("#lastName").val(result6.last_name);
+                $("#last_name").val(result6.last_name);
                 $("#address").val(result6.address);
+                 $("#address_1").val(result6.address);
                 $("#city").val(result6.city);
+              
                 $("#state").val(result6.state);
-                $("#zipcode").val(result6.zipcode);
+                $("#zip").val(result6.zipcode);
                 
                 
             },
@@ -918,8 +923,8 @@ var User = function()
                 $("#contact").val(result14.contact);
                 
                 
-                  $("#g_name").val(result14.name);
-                   $("#g_rate").val(result14.rate);
+                $("#g_name").val(result14.name);
+                $("#g_rate").val(result14.rate);
 
                 
                 
@@ -935,9 +940,9 @@ var User = function()
                 end = result15.length;
                
                 for(i=0;i<end;i++){
-                   if(i!=0){
-                      schedule += "<hr/>";
-                   }
+                    if(i!=0){
+                        schedule += "<hr/>";
+                    }
                     schedule +="<table><tr><td class='bold'>Service</td><td class='bold'>:"+result15[i].service+"</td></tr><tr><td></td><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr><tr><td></td><td class='bold'>Date</td><td>:"+result15[i].date+"</td></tr>";
                     schedule +="<tr><td></td><td class='bold'>Time</td><td>:"+result15[i].time+"</td></tr></table>";
                 }
@@ -988,27 +993,39 @@ var User = function()
         
     }
     
-    this.test = function()
+    this.payment = function()
     {
-    //        data ={ };
-    //  
-    //         data['workouts'] = "weights";
-    //         data['rate']= 10;
-    //       $.ajax
-    //    ({
-    //        type: "POST",
-    //        
-    //        url: "https://api.zunefit.com/api/gymSearchAdvanced/",
-    //        dataType: 'json',
-    //        async: false,
-    //       
-    //        data: data,
-    //        success: function (data) {
-    //
-    //        alert(data); 
-    //        }
-    //    })
+        data = {};
+        data['first_name'] = $("#first_name").val();
+        data['card_number'] = $("#card_number").val();
+        data['last_name'] = $("#last_name").val();
+        data['cvv'] = $("#cvv").val();
+        data['address_1'] = $("#address_1").val();
+          data['address_2'] = $("#address_2").val();
+        data['expiry_month'] = $("#expiry_month").val();
+        data['expiry_year'] = $("#expiry_year").val();
+        data['amount'] = $("#amount").val();
+        data['city'] = $("#city").val();
+         data['state'] = $("#state").val();
+          data['zip'] = $("#zip").val();
+                      
+        
        
+        
+        
+        $.ajax({
+            type: 'POST',
+            url: "payment/processor.php",
+            data: data,
+           
+            success: function(response){
+               
+                alert(response[1]);
+               // $("#zip").val()
+            //alert(result1);        
+            }
+        });
+        
         
         
         

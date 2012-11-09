@@ -534,10 +534,9 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     padding:  8px 20px;
     margin: 0;
 
-/*    border-radius: .5em;*/
 
-    -webkit-border-radius: .5em;
-    -moz-border-radius: .5em;
+
+
     text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
 }
 /* main level link hover */
@@ -547,7 +546,7 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9F9A9D', endColorstr='#000'); /* for IE */
     background: -webkit-gradient(linear, left top, left bottom, from(#9F9A9D), to(#000)); /* for webkit browsers */
     background: -moz-linear-gradient(top,  #9F9A9D,  #000); /* for firefox 3.6+ */
-/*    border-radius: 0.2em;*/
+
 
 
 
@@ -570,7 +569,7 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
 
     height: 77%;
 
-/*    border-radius: 0.2em;*/
+
 }
 
 .searchform {
@@ -731,14 +730,57 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
 #box-header{
     border-bottom: #000 solid 1px;
     border-top:  #000 solid 1px;
-width: 100%;
-height: 60px;float: left;overflow: hidden; 
-font-family: "Georgia";
-font-size: 1em;
+    width: 100%;
+    height: 60px;float: left;overflow: hidden; 
+    font-family: "Georgia";
+    font-size: 1em;
 
 }
 .bold{
-  font-family: "Georgia";
-font-size: 1em;  
-height: 10px;
+    font-family: "Georgia";
+    font-size: 1em;  
+    height: 10px;
+}
+.bil_label{
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #D7D7D7), color-stop(1, #ABABAB) );
+    background:-moz-linear-gradient( center top, #D7D7D7 5%, #ABABAB 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d94f6', endColorstr='#1e62d0');
+    background-color:#3d94f6;
+   
+    
+    border-top-left-radius: 6px;
+    -moz-border-top-left-radius:6px;
+    -webkit-border-top-left-radius:6px;
+    
+    border-bottom-left-radius: 6px;
+     -moz-border-bottom-left-radius:6px;
+    -webkit-border-bottom-left-radius:6px;
+    
+   
+    display:inline-block;
+    color: #2E2E2E;
+    font-family:Georgia;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    width: 100%;
+}
+.bil_text{
+    height: 30px;
+     border-top-right-radius: 6px;
+    -moz-border-top-right-radius:6px;
+    -webkit-border-top-right-radius:6px;
+    
+    border-bottom-right-radius: 6px;
+     -moz-border-bottom-right-radius:6px;
+    -webkit-border-bottom-right-radius:6px;
+    border: none;
+    padding-left: 5px; 
+   
+}
+.less{
+    width: 300px;
+    float: left;
+    clear: left;
 }

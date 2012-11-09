@@ -1,52 +1,51 @@
-<?php
+<?php ?>
+<div >
+    <form action="payment/processor.php" method="POST">
+        <fieldset>
+            <input name="redirect_url" type="hidden" value="" />
+            <input name="merchant_key" type="hidden" value="dbb9284e8820d495f3833e50" />
 
+            <!-- Before populating the ‘custom’ parameter, remember to escape reserved characters
+                 like <, > and & into their safe counterparts like &lt;, &gt; and &amp; -->
+            <input name="custom" type="hidden" value="Any value you want us to save with this payment method" />
 
+            <label for="first_name">First name</label>
+            <input id="first_name" name="first_name" type="text" />
 
-?>
- <div >
-                        <form action="payment/processor.php" method="POST">
-                            <fieldset>
-                                <input name="redirect_url" type="hidden" value="" />
-                                <input name="merchant_key" type="hidden" value="dbb9284e8820d495f3833e50" />
+            <label for="last_name">Last name</label>
+            <input id="last_name" name="last_name" type="text" />
 
-                                <!-- Before populating the ‘custom’ parameter, remember to escape reserved characters
-                                     like <, > and & into their safe counterparts like &lt;, &gt; and &amp; -->
-                                <input name="custom" type="hidden" value="Any value you want us to save with this payment method" />
+            <label for="address_1">Address 1</label>
+            <input id="address_1" name="address_1" type="text" />
 
-                                <label for="credit_card_first_name">First name</label>
-                                <input id="credit_card_first_name" name="first_name" type="text" />
+            <label for="address_2">Address 2</label>
+            <input id="address_2" name="address_2" type="text" />
 
-                                <label for="credit_card_last_name">Last name</label>
-                                <input id="credit_card_last_name" name="last_name" type="text" />
+            <label for="city">City</label>
+            <input id="city" name="city" type="text" />
 
-                                <label for="credit_card_address_1">Address 1</label>
-                                <input id="credit_card_address_1" name="address_1" type="text" />
+            <label for="state">State</label>
+            <input id="state" name="state" type="text" />
 
-                                <label for="credit_card_address_2">Address 2</label>
-                                <input id="credit_card_address_2" name="address_2" type="text" />
+            <label for="zip">Zip</label>
+            <input id="zip" name="zip" type="text" />
 
-                                <label for="credit_card_city">City</label>
-                                <input id="credit_card_city" name="city" type="text" />
+            <label for="card_number">Card Number</label>
+            <input id="card_number" name="card_number" type="text" />
 
-                                <label for="credit_card_state">State</label>
-                                <input id="credit_card_state" name="state" type="text" />
+            <label for="cvv">Security Code</label>
+            <input id="cvv" name="cvv" type="text" />
 
-                                <label for="credit_card_zip">Zip</label>
-                                <input id="credit_card_zip" name="zip" type="text" />
+            <label for="credit_card_month">Expires on</label>
+            <input id="expiry_month" name="expiry_month" type="text" />
+            <input id="expiry_year" name="expiry_year" type="text" />
 
-                                <label for="credit_card_card_number">Card Number</label>
-                                <input id="credit_card_card_number" name="card_number" type="text" />
+            <label for="amount">Amount</label>
+            <input id="amount" name="amount" type="text" />
 
-                                <label for="credit_card_cvv">Security Code</label>
-                                <input id="credit_card_cvv" name="cvv" type="text" />
+            <button type='submit'>Submit Payment</button>
+        </fieldset>
+    </form>
 
-                                <label for="credit_card_month">Expires on</label>
-                                <input id="credit_card_month" name="expiry_month" type="text" />
-                                <input id="credit_card_year" name="expiry_year" type="text" />
-
-                                <button type='submit'>Submit Payment</button>
-                            </fieldset>
-                        </form>
-
-                    </div>
+</div>
 

@@ -159,47 +159,91 @@ $title = "ZuneFit Gym Panel";
                 </div>
                 <div id="billing" style="display: none;">
                     <div >
-                        <form action="https://api.samurai.feefighters.com/v1/payment_methods" method="POST">
+                        <form action="" method="POST">
                             <fieldset>
-                                <input name="redirect_url" type="hidden" value="http://localhost/frontend/inner.php" />
+
+                                <input name="redirect_url" type="hidden" value="" />
                                 <input name="merchant_key" type="hidden" value="dbb9284e8820d495f3833e50" />
 
                                 <!-- Before populating the ‘custom’ parameter, remember to escape reserved characters
                                      like <, > and & into their safe counterparts like &lt;, &gt; and &amp; -->
                                 <input name="custom" type="hidden" value="Any value you want us to save with this payment method" />
+                                <div class="less">Credit Card Details&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="$('#hide_info').toggle();" >edit</a></div>
+                                <div class="less">Refil automatically&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="$('#hide_refil').toggle();" >edit</a></div>
+                                        <div id="hide_info" style="display: none;">
+                                            <table style="border-collapse: separate;border-spacing: 0px 10px; width: 280px;float: left;clear: left;">
+                                                <tr style="padding-bottom: 5px;"><td>
+                                                        <label for="first_name" class="bil_label">First name</label></td><td>
+                                                        <input id="first_name" name="first_name" type="text" class="bil_text"/></td>
+                                                </tr>
+                                                <tr><td>
+                                                        <label for="last_name" class="bil_label">Last name</label></td><td>
+                                                        <input id="last_name" name="last_name" type="text" class="bil_text"/></td>
+                                                </tr>
+                                                <tr><td>
+                                                        <label for="address_1" class="bil_label">Address 1</label></td><td>
+                                                        <input id="address_1" name="address_1" type="text"  class="bil_text"/></td>
+                                                </tr>
+                                                <tr><td>
+                                                        <label for="address_2" class="bil_label">Address 2</label></td><td>
+                                                        <input id="address_2" name="address_2" type="text"  class="bil_text"/></td>
+                                                </tr>
+                                                <tr><td>
+                                                        <label for="city" class="bil_label">City</label></td><td>
+                                                        <input id="city" name="city" type="text"  class="bil_text"/></td></tr>
 
-                                <label for="credit_card_first_name">First name</label>
-                                <input id="credit_card_first_name" name="credit_card[first_name]" type="text" />
+                                                <tr><td><label for="state" class="bil_label">State</label></td><td>
+                                                        <input id="state" name="state" type="text"  class="bil_text"/></td></tr>
+                                                <tr><td>
+                                                        <label for="zip" class="bil_label">Zip</label></td><td>
+                                                        <input id="zip" name="zip" type="text"  class="bil_text"/></td></tr>
 
-                                <label for="credit_card_last_name">Last name</label>
-                                <input id="credit_card_last_name" name="credit_card[last_name]" type="text" />
 
-                                <label for="credit_card_address_1">Address 1</label>
-                                <input id="credit_card_address_1" name="credit_card[address_1]" type="text" />
+                                            </table>
+                                        </div>
+                                         <div id="hide_refil" style="display: none;">
+                                            <table style="border-collapse: separate;border-spacing: 0px 10px; width: 280px;float: left;clear: left;">
+                                                <tr style="padding-bottom: 5px;"><td>
+                                                        <input id="refil" name="refil" type="checkbox" />
+                                                         <label for="refil">Refil Automatically</label></td>
+                                                </tr>
+                                                <tr><td>
+                                                        <select>
+                                                            <option value="0">When to Refill</option>
+                                                             <option value="1">Below 10$</option>
+                                                              <option value="2">Below 15$</option>
+                                                               <option value="3">Below 20$</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr><td>
+                                                        <input type="text" id="auto_amount" placeholder="Refill amount"/>
+                                                    </td>
+                                                </tr>
+                                                
 
-                                <label for="credit_card_address_2">Address 2</label>
-                                <input id="credit_card_address_2" name="credit_card[address_2]" type="text" />
+                                            </table>
+                                        </div>
+                                    
+                                    <table style="border-collapse: separate;border-spacing: 0px 10px; width: 310px;"><tr><td>
+                                                <label for="card_number" class="bil_label">Card Number</label></td><td>
+                                                <input id="card_number" name="card_number" type="text"  class="bil_text"/></td></tr>
+                                        <tr><td>
+                                                <label for="cvv" class="bil_label">Security Code</label></td><td>
+                                                <input id="cvv" name="cvv" type="text"  class="bil_text"/></td></tr>
+                                        <tr> <td>
+                                                <label for="credit_card_month" class="bil_label">Expires on month</label></td><td >
+                                                <input id="expiry_month" class="bil_text" name="expiry_month" type="text" placeholder="05" /></td></tr >
+                                        <tr><td>    <label for="credit_card_year" class="bil_label">Expires on year</label></td><td >   
+                                                <input id="expiry_year" class="bil_text" name="expiry_year" type="text" placeholder="2012" width="4" /></td></tr>
+                                        <tr> <td>
+                                                <label for="amount" class="bil_label">Amount</label></td><td>
+                                                <input id="amount" name="amount" type="text"  class="bil_text"/></td></tr>
 
-                                <label for="credit_card_city">City</label>
-                                <input id="credit_card_city" name="credit_card[city]" type="text" />
+                                    </table>
+                                    <img src="images/CreditCardLogos.jpg" style="clear: right; float: right; padding-right: 35px; "/>
 
-                                <label for="credit_card_state">State</label>
-                                <input id="credit_card_state" name="credit_card[state]" type="text" />
-
-                                <label for="credit_card_zip">Zip</label>
-                                <input id="credit_card_zip" name="credit_card[zip]" type="text" />
-
-                                <label for="credit_card_card_number">Card Number</label>
-                                <input id="credit_card_card_number" name="credit_card[card_number]" type="text" />
-
-                                <label for="credit_card_cvv">Security Code</label>
-                                <input id="credit_card_cvv" name="credit_card[cvv]" type="text" />
-
-                                <label for="credit_card_month">Expires on</label>
-                                <input id="credit_card_month" name="credit_card[expiry_month]" type="text" />
-                                <input id="credit_card_year" name="credit_card[expiry_year]" type="text" />
-
-                                <button type='submit'>Submit Payment</button>
+                                    <button class="buttons" type='button' style="clear: right; float: right;margin-top: 10px;margin-right: 35px;" onclick="widgets.user.payment();">Submit Payment</button>
                             </fieldset>
                         </form>
 
@@ -239,12 +283,12 @@ $title = "ZuneFit Gym Panel";
                 <table class="pref2">
                     <tr><td>
                             <label for="g_name" class="labels"> Gym&nbsp;Name  </label> 
-                        </td><td>
+                        </td><td><td>:<td>
                             <input type="text" name="g_name" id="g_name" class="transparent"/>
                         </td>  </tr>  
                     <tr> <td>
                             <label for="g_rate" class="labels"> Rate  </label>
-                        </td> <td>
+                        </td> <td><td>:<td>
                             <input type="text" name="g_rate" id="g_rate" class="transparent"/>
                         </td>  
                     </tr>
