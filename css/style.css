@@ -784,3 +784,17 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     float: left;
     clear: left;
 }
+#message{
+    color: #900;
+    clear: both;
+    float: right;
+    border: #500 solid 1px;
+     border-radius: 6px;
+     -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    margin-right: 35px;
+    min-height: 20px;
+    min-width: 300px;
+    padding: 3px;
+    
+}

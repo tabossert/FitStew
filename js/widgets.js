@@ -995,6 +995,7 @@ var User = function()
     
     this.payment = function()
     {
+         $("#message").html("waiting...");
         data = {};
         data['first_name'] = $("#first_name").val();
         data['card_number'] = $("#card_number").val();
@@ -1020,8 +1021,9 @@ var User = function()
            
             success: function(response){
                
-                alert(response[1]);
-               // $("#zip").val()
+                
+                
+                $("#message").html(response.message);
             //alert(result1);        
             }
         });
