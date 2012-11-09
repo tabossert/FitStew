@@ -796,5 +796,6 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     min-height: 20px;
     min-width: 300px;
     padding: 3px;
+    text-align: center;
     
 }
