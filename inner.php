@@ -152,6 +152,19 @@ $title = "ZuneFit Gym Panel";
                                 <label for="address" class="address" > Address  </label></td><td>:</td><td>
                                 <input type="text" name="address" id="address" class="transparent" style=" width: 400px;"/> 
                                 <label for="address" class="error" generated="true"></label></td></tr>
+                        <tr><td>
+                                <label for="city" class="address" > City  </label></td><td>:</td><td>
+                                <input type="text" name="city" id="city" class="transparent" style=" width: 400px;"/> 
+                                <label for="city" class="error" generated="true"></label></td></tr>
+                        <tr><td>
+                                <label for="state" class="address" > State  </label></td><td>:</td><td>
+                                <input type="text" name="address" id="address" class="transparent" style=" width: 400px;"/> 
+                                <label for="address" class="error" generated="true"></label></td></tr>
+                        <tr><td>
+                                <label for="address" class="address" > Zip Code  </label></td><td>:</td><td>
+                                <input type="text" name="address" id="address" class="transparent" style=" width: 400px;"/> 
+                                <label for="address" class="error" generated="true"></label></td></tr>
+                        
 
                     </table>
 
@@ -168,83 +181,89 @@ $title = "ZuneFit Gym Panel";
                                 <!-- Before populating the ‘custom’ parameter, remember to escape reserved characters
                                      like <, > and & into their safe counterparts like &lt;, &gt; and &amp; -->
                                 <input name="custom" type="hidden" value="Any value you want us to save with this payment method" />
-                                <div class="less">Credit Card Details&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="$('#hide_info').toggle();" >edit</a></div>
-                                <div class="less">Refil automatically&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="$('#hide_refil').toggle();" >edit</a></div>
-                                        <div id="hide_info" style="display: none;">
-                                            <table style="border-collapse: separate;border-spacing: 0px 10px; width: 280px;float: left;clear: left;">
-                                                <tr style="padding-bottom: 5px;"><td>
-                                                        <label for="first_name" class="bil_label">First name</label></td><td>
-                                                        <input id="first_name" name="first_name" type="text" class="bil_text"/></td>
-                                                </tr>
-                                                <tr><td>
-                                                        <label for="last_name" class="bil_label">Last name</label></td><td>
-                                                        <input id="last_name" name="last_name" type="text" class="bil_text"/></td>
-                                                </tr>
-                                                <tr><td>
-                                                        <label for="address_1" class="bil_label">Address 1</label></td><td>
-                                                        <input id="address_1" name="address_1" type="text"  class="bil_text"/></td>
-                                                </tr>
-                                                <tr><td>
-                                                        <label for="address_2" class="bil_label">Address 2</label></td><td>
-                                                        <input id="address_2" name="address_2" type="text"  class="bil_text"/></td>
-                                                </tr>
-                                                <tr><td>
-                                                        <label for="city" class="bil_label">City</label></td><td>
-                                                        <input id="city" name="city" type="text"  class="bil_text"/></td></tr>
-
-                                                <tr><td><label for="state" class="bil_label">State</label></td><td>
-                                                        <input id="state" name="state" type="text"  class="bil_text"/></td></tr>
-                                                <tr><td>
-                                                        <label for="zip" class="bil_label">Zip</label></td><td>
-                                                        <input id="zip" name="zip" type="text"  class="bil_text"/></td></tr>
 
 
-                                            </table>
-                                        </div>
-                                         <div id="hide_refil" style="display: none;">
-                                            <table style="border-collapse: separate;border-spacing: 0px 10px; width: 280px;float: left;clear: left;">
-                                                <tr style="padding-bottom: 5px;"><td>
-                                                        <input id="refil" name="refil" type="checkbox" />
-                                                         <label for="refil">Refil Automatically</label></td>
-                                                </tr>
-                                                <tr><td>
-                                                        <select>
-                                                            <option value="0">When to Refill</option>
-                                                             <option value="1">Below 10$</option>
-                                                              <option value="2">Below 15$</option>
-                                                               <option value="3">Below 20$</option>
-                                                        </select>
-                                                    </td>
-                                                </tr>
-                                                <tr><td>
-                                                        <input type="text" id="auto_amount" placeholder="Refill amount"/>
-                                                    </td>
-                                                </tr>
-                                                
 
-                                            </table>
-                                        </div>
-                                    
-                                    <table style="border-collapse: separate;border-spacing: 0px 10px; width: 310px;"><tr><td>
-                                                <label for="card_number" class="bil_label">Card Number</label></td><td>
-                                                <input id="card_number" name="card_number" type="text"  class="bil_text"/></td></tr>
+                                <table style="border-collapse: separate;border-spacing: 0px 10px; width: 280px;float: left;clear: left;">
+                                    <tr style="padding-bottom: 5px;"><td>
+                                            <label for="first_name" class="bil_label">First name</label></td><td>
+                                            <input id="first_name" name="first_name" type="text" class="bil_text"/></td>
+                                    </tr>
+                                    <tr><td>
+                                            <label for="last_name" class="bil_label">Last name</label></td><td>
+                                            <input id="last_name" name="last_name" type="text" class="bil_text"/></td>
+                                    </tr>
+                                    <tr><td>
+                                            <label for="address_1" class="bil_label">Address 1</label></td><td>
+                                            <input id="address_1" name="address_1" type="text"  class="bil_text"/></td>
+                                    </tr>
+                                    <tr><td>
+                                            <label for="address_2" class="bil_label">Address 2</label></td><td>
+                                            <input id="address_2" name="address_2" type="text"  class="bil_text"/></td>
+                                    </tr>
+                                    <tr><td>
+                                            <label for="city" class="bil_label">City</label></td><td>
+                                            <input id="city" name="city" type="text"  class="bil_text"/></td></tr>
+
+                                    <tr><td><label for="state" class="bil_label">State</label></td><td>
+                                            <input id="state" name="state" type="text"  class="bil_text"/></td></tr>
+                                    <tr><td>
+                                            <label for="zip" class="bil_label">Zip</label></td><td>
+                                            <input id="zip" name="zip" type="text"  class="bil_text"/></td></tr>
+
+
+                                </table>
+
+                                <div class="less">Refill automatically&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="javascript:void(0);" onclick="widgets.user.creditInfo();" >edit</a>|
+                                    <a href="javascript:void(0);" onclick="widgets.user.update_refill();" >done</a>
+                                </div>
+
+                                <div id="hide_refil" style="display: none;">
+                                    <table style="border-collapse: separate;border-spacing: 0px 10px; width: 280px;float: left;clear: left;">
+                                        <tr style="padding-bottom: 5px;"><td>
+                                                <input id="refil" name="refil" type="checkbox" />
+                                                <label for="refil">Refil Automatically</label></td>
+                                        </tr>
                                         <tr><td>
-                                                <label for="cvv" class="bil_label">Security Code</label></td><td>
-                                                <input id="cvv" name="cvv" type="text"  class="bil_text"/></td></tr>
-                                        <tr> <td>
-                                                <label for="credit_card_month" class="bil_label">Expires on month</label></td><td >
-                                                <input id="expiry_month" class="bil_text" name="expiry_month" type="text" placeholder="05" /></td></tr >
-                                        <tr><td>    <label for="credit_card_year" class="bil_label">Expires on year</label></td><td >   
-                                                <input id="expiry_year" class="bil_text" name="expiry_year" type="text" placeholder="2012" width="4" /></td></tr>
-                                        <tr> <td>
-                                                <label for="amount" class="bil_label">Amount</label></td><td>
-                                                <input id="amount" name="amount" type="text"  class="bil_text"/></td></tr>
+                                                <select id="when">
+                                                    <option value="0">When to Refill</option>
+                                                    <option value="1">1st of month</option>
+                                                    <option value="15">15th of month</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr><td>
+                                                <input type="text" id="auto_amount" placeholder="Refill amount" class="round"/>
+                                            </td>
+                                        </tr>
+
 
                                     </table>
-                                    <img src="images/CreditCardLogos.jpg" style="clear: right; float: right; padding-right: 35px; "/>
+                                </div>
 
-                                    <button class="buttons" type='button' style="clear: right; float: right;margin-top: 10px;margin-right: 35px;" onclick="widgets.user.payment();">Submit Payment</button>
-                                    <div id="message"></div>
+                                <table style="border-collapse: separate;border-spacing: 0px 10px; width: 310px;"><tr><td>
+                                            <label for="card_number" class="bil_label">Card Number</label></td><td>
+                                            <input id="card_number" name="card_number" type="text"  class="bil_text"/></td></tr>
+                                    <tr><td>
+                                            <label for="cvv" class="bil_label">Security Code</label></td><td>
+                                            <input id="cvv" name="cvv" type="text"  class="bil_text"/></td></tr>
+                                    <tr> <td>
+                                            <label for="credit_card_month" class="bil_label">Expires on month</label></td><td >
+                                            <input id="expiry_month" class="bil_text" name="expiry_month" type="text" placeholder="05" /></td></tr >
+                                    <tr><td>    <label for="credit_card_year" class="bil_label">Expires on year</label></td><td >   
+                                            <input id="expiry_year" class="bil_text" name="expiry_year" type="text" placeholder="2012" width="4" /></td></tr>
+                                    <tr> <td>
+                                            <label for="amount" class="bil_label">Amount</label></td><td>
+                                            <input id="amount" name="amount" type="text"  class="bil_text"/></td></tr>
+
+                                </table>
+
+                                <img src="images/CreditCardLogos.jpg" style="clear: right;  padding-left: 110px; "/>
+
+                                <button class="buttons" type='button' style="clear: right; margin-top: 10px;margin-left: 130px;" onclick="widgets.user.payment();">Submit Payment</button>
+                                <div id="message">Message</div>
+
                             </fieldset>
                         </form>
 
@@ -315,34 +334,34 @@ $title = "ZuneFit Gym Panel";
                         <table class="pref">
 
                             <tr><td>
-                                    <label for="paddress"  >  Address  </label></td><td>:</td><td>
-                                    <input type="text" name="paddress" id="paddress" class="transparent"/> 
+                                    <label for="g_address"  >  Address  </label></td><td>:</td><td>
+                                    <input type="text" name="g_address" id="g_address" class="transparent"/> 
                                 </td></tr>
                             <tr><td>
-                                    <label for="city"  >  City  </label></td><td>:</td><td>
-                                    <input type="text" name="city" id="city" class="transparent"/>
+                                    <label for="g_city"  >  City  </label></td><td>:</td><td>
+                                    <input type="text" name="g_city" id="g_city" class="transparent"/>
                                 </td></tr>                        
 
                             <tr><td>
-                                    <label for="state"  > State  </label></td><td>:</td><td>
-                                    <input type="text" name="state" id="state" class="transparent"/> 
+                                    <label for="g_state"  > State  </label></td><td>:</td><td>
+                                    <input type="text" name="g_state" id="g_state" class="transparent"/> 
                                 </td></tr>
                             <tr><td>
-                                    <label for="zipcode" > Zip&nbsp;Code  </label></td><td>:</td><td>
-                                    <input type="number" name="zipcode" id="zipcode" class="transparent"/>
+                                    <label for="g_zipcode" > Zip&nbsp;Code  </label></td><td>:</td><td>
+                                    <input type="number" name="g_zipcode" id="g_zipcode" class="transparent"/>
                                 </td></tr>
                             <tr><td>
-                                    <label for="phone"  >  Phone  </label></td><td>:</td><td>
-                                    <input type="text" name="phone" id="phone" class="transparent"/> 
+                                    <label for="g_phone"  >  Phone  </label></td><td>:</td><td>
+                                    <input type="text" name="g_phone" id="g_phone" class="transparent"/> 
                                 </td></tr>
                             <tr><td>
-                                    <label for="pemail"  >  email  </label></td><td>:</td><td>
-                                    <input type="email" name="pemail" id="pemail" class="transparent"/>
+                                    <label for="g_email"  >  email  </label></td><td>:</td><td>
+                                    <input type="email" name="g_email" id="g_email" class="transparent"/>
                                 </td></tr>                        
 
                             <tr><td>
-                                    <label for="contact"  > Contact  </label></td><td>:</td><td>
-                                    <input type="text" name="contact" id="contact" class="transparent"/> 
+                                    <label for="g_contact"  > Contact  </label></td><td>:</td><td>
+                                    <input type="text" name="g_contact" id="g_contact" class="transparent"/> 
                                 </td></tr>
 
                         </table>
@@ -357,42 +376,11 @@ $title = "ZuneFit Gym Panel";
                 </div>
 
             </div>
-            <div id="box-footer" style="color: #565D60; clear: both; text-align: center;" ><a href="#schedule-form" class="light">Add to my schedule</a></div>
-        </div>
-
-    </div>
-    <div style="display: none;">
-        <div name="schedule-form" id="schedule-form" class="blue-box2" style="color: green; width: 400px; height: 400px;">
-            <div >
-                <label for="time">Times</label>
-                <div class='styled-select'>
-                    <select name="time">
-                        <option value="0" selected>Times</option>
-                        <option value="1">one</option>
-                        <option value="2">two</option>
-                        <option value="3">three</option>
-                    </select>
-                </div>
-                <label for="date">Date</label>
-                <input type="text" id="datepicker" />
-                <br/>
-
-                <input type="checkbox" id="reoccuring" name="reoccuring" onclick="widgets.user.reoccur();"/>
-                <label for="reoccuring">Reoccuring</label>
-                <select name="occur" id="occur" disabled>
-                    <option value="Daily">Daily</option>
-                    <option value="Weekly">Weekly</option>
-                    <option value="Monthly">Monthly</option>
-                </select>
-
-                <p><label for="notes">Notes</label>
-                </p><p><textarea name="notes" id="notes" placeholder="Notes"></textarea></p>
-                <button class="buttons"  >Submit</button>
-            </div>
 
         </div>
 
     </div>
+
 </div>
 <div class="clr"></div>
 <!-- Footer Start -->

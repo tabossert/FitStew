@@ -786,8 +786,8 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
 }
 #message{
     color: #900;
-    clear: both;
-    float: right;
+  
+  
     border: #500 solid 1px;
      border-radius: 6px;
      -moz-border-radius:6px;
@@ -797,5 +797,39 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     min-width: 300px;
     padding: 3px;
     text-align: center;
+   
+     font-family:Georgia;
+    font-size:11px;
+    font-weight:bold;
+    width: 310px;
+    float: right;
     
+    
+}
+
+.buttons_new {
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #6d6d6d), color-stop(1, #E6ECE0) );
+    background:-moz-linear-gradient( center top, #6d6d6d 5%, #E6ECE0 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6d6d6d', endColorstr='#E6ECE0');
+    background-color:#6d6d6d;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    border:none;
+    display:inline-block;
+    color:#000;
+    font-family:Georgia;
+    font-size:11px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    width: 100%;
+}.buttons_new:hover {
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #E6ECE0), color-stop(1, #6d6d6d) );
+    background:-moz-linear-gradient( center top, #E6ECE0 5%, #6d6d6d 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#E6ECE0', endColorstr='#6d6d6d');
+    background-color:#E6ECE0;
+}.buttons_new:active {
+    position:relative;
+    top:1px;
 }

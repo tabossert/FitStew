@@ -462,15 +462,22 @@ var User = function()
                 $("#email").val(result6.email);
                 
                 $("#firstName").val(result6.first_name);
-                 $("#first_name").val(result6.first_name);
+               
+                $("#first_name").val(result6.first_name);
                 $("#lastName").val(result6.last_name);
                 $("#last_name").val(result6.last_name);
                 $("#address").val(result6.address);
-                 $("#address_1").val(result6.address);
+                $("#address_1").val(result6.address);
                 $("#city").val(result6.city);
               
                 $("#state").val(result6.state);
                 $("#zip").val(result6.zipcode);
+                $("#auto_amount").val(result6.refillamount);
+                 $("#when").val(result6.schedule);
+                 if(result6.automatic==1){
+                      $('#refil').prop('checked', true);
+                 }
+                
                 
                 
             },
@@ -790,7 +797,7 @@ var User = function()
           
             success:function(response){
                 result11 = eval(response);
-                alert(result11.status);
+            //  alert(result11.stats);
             //alert(result1);        
             },
             error:function(){
@@ -801,14 +808,14 @@ var User = function()
         });
     }
     
-    this.addEvent = function()
+    this.addEvent = function(gid,cid,price)
     {
        
         data = {};
         data['userid'] = $("#userid").val();
-        data['gymid'] = 22;//$("#lastName").val();
-        data['classid'] = 7;//$("#address").val();
-        data['price'] = 10;//$("#email").val();
+        data['gymid'] = gid;
+        data['classid'] = cid;
+        data['price'] = price;
         
        
         
@@ -819,8 +826,8 @@ var User = function()
             token : $('#utoken').val(),
           
             success:function(response){
-                result11 = eval(response)[0];
-                alert(result11.status);
+               
+                alert(response.status);
             //alert(result1);        
             },
             error:function(){
@@ -835,7 +842,7 @@ var User = function()
     {
        
         data = {};
-        data['sid'] = 26;
+        data['sid'] = 25;
         
         
         $.ajax({
@@ -913,14 +920,14 @@ var User = function()
             success:function(response){
                 result14 = eval(response)[0];
                
-                $("#gymName").val(result14.name);
-                $("#paddress").val(result14.address);
-                $("#city").val(result14.city);
-                $("#state").val(result14.state);
-                $("#zipcode").val(result14.zipcode);
-                $("#phone").val(result14.phone);
-                $("#pemail").val(result14.email);
-                $("#contact").val(result14.contact);
+                
+                $("#g_address").val(result14.address);
+                $("#g_city").val(result14.city);
+                $("#g_state").val(result14.state);
+                $("#g_zipcode").val(result14.zipcode);
+                $("#g_phone").val(result14.phone);
+                $("#g_email").val(result14.email);
+                $("#g_contact").val(result14.contact);
                 
                 
                 $("#g_name").val(result14.name);
@@ -941,10 +948,13 @@ var User = function()
                
                 for(i=0;i<end;i++){
                     if(i!=0){
-                        schedule += "<hr/>";
+                        schedule += "<hr style='clear:both;'/>";
                     }
-                    schedule +="<table><tr><td class='bold'>Service</td><td class='bold'>:"+result15[i].service+"</td></tr><tr><td></td><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr><tr><td></td><td class='bold'>Date</td><td>:"+result15[i].date+"</td></tr>";
+
+                    schedule +="<table style = 'width:auto;'><tr><td class='bold'>Service</td><td class='bold'>:"+result15[i].service+"</td></tr><tr><td></td><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr><tr><td></td><td class='bold'>Date</td><td>:"+result15[i].date+"</td></tr>";
                     schedule +="<tr><td></td><td class='bold'>Time</td><td>:"+result15[i].time+"</td></tr></table>";
+                    schedule +='<div style="color: #565D60;text-align: center;" ><button class="buttons_new" onclick="widgets.user.addEvent('+id+','+result15[i].id+','+result15[i].price+')">Add to my schedule</button></div>';
+
                 }
                  
         
@@ -995,20 +1005,20 @@ var User = function()
     
     this.payment = function()
     {
-         $("#message").html("waiting...");
+        $("#message").html("waiting...");
         data = {};
         data['first_name'] = $("#first_name").val();
         data['card_number'] = $("#card_number").val();
         data['last_name'] = $("#last_name").val();
         data['cvv'] = $("#cvv").val();
         data['address_1'] = $("#address_1").val();
-          data['address_2'] = $("#address_2").val();
+        data['address_2'] = $("#address_2").val();
         data['expiry_month'] = $("#expiry_month").val();
         data['expiry_year'] = $("#expiry_year").val();
         data['amount'] = $("#amount").val();
         data['city'] = $("#city").val();
-         data['state'] = $("#state").val();
-          data['zip'] = $("#zip").val();
+        data['state'] = $("#state").val();
+        data['zip'] = $("#zip").val();
                       
         
        
@@ -1031,6 +1041,44 @@ var User = function()
         
         
         
+    }
+    this.creditInfo = function()
+    {
+        $('#hide_refil').css('display', 'block');
+         
+    }
+    
+    this.update_refill = function()
+    {
+       
+        data = {};
+     
+        if($('#refil').is(':checked'))
+        {
+            data['automatic'] = 1;
+        }else{
+            data['automatic'] = 0;
+        }
+        data['refillamount'] = $("#auto_amount").val();
+        data['schedule'] = $('#when').val();
+      
+       
+        
+             
+        ZUNEFIT.postJSON({
+            url:'updatePayment/',
+            data:data,
+            token : $('#utoken').val(),
+          
+            success:function(response){
+                  $('#hide_refil').css('display', 'none');      
+            },
+            error:function(){
+            //Error should be handle here
+            // alert("no");  
+            }
+            
+        });
     }
         
 }
