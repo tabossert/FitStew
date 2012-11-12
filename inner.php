@@ -136,35 +136,35 @@ $title = "ZuneFit Gym Panel";
                     <span style="float: right;"><a href="#" onclick="widgets.user.edit()">edit</a>|<a href="#" onclick="widgets.user.update()">done</a></span>
                     <table class="pref">
                         <tr><td>
-                                <label for="firstName" class="firstName" >  First&nbsp;Name  </label></td><td>:</td><td>
-                                <input type="text" name="firstName" id="firstName" class="transparent" style=" width: 400px;"/>
-                                <label for="firstName" class="error" generated="true"></label></td></tr>
+                                <label for="pref_firstName" class="firstName" >  First&nbsp;Name  </label></td><td>:</td><td>
+                                <input type="text" name="pref_firstName" id="pref_firstName" class="transparent" style=" width: 400px;"/>
+                                <label for="pref_firstName" class="error" generated="true"></label></td></tr>
                         <tr><td>
-                                <label for="lastName" class="lastName" >  Last&nbsp;Name  </label></td><td>:</td><td>
-                                <input type="text" name="lastName" id="lastName" class="transparent" style=" width: 400px;"/> 
-                                <label for="lastName" class="error" generated="true"></label></td></tr>
+                                <label for="pref_lastName" class="lastName" >  Last&nbsp;Name  </label></td><td>:</td><td>
+                                <input type="text" name="pref_lastName" id="pref_lastName" class="transparent" style=" width: 400px;"/> 
+                                <label for="pref_lastName" class="error" generated="true"></label></td></tr>
                         <tr><td>
-                                <label for="email" class="email" >  Email  </label></td><td>:</td><td>
-                                <input type="text" name="email" id="email" class="transparent" style=" width: 400px;"/>
-                                <label for="email" class="error" generated="true"></label></td></tr>                        
+                                <label for="pref_email" class="email" >  Email  </label></td><td>:</td><td>
+                                <input type="text" name="pref_email" id="pref_email" class="transparent" style=" width: 400px;"/>
+                                <label for="pref_email" class="error" generated="true"></label></td></tr>                        
 
                         <tr><td>
-                                <label for="address" class="address" > Address  </label></td><td>:</td><td>
-                                <input type="text" name="address" id="address" class="transparent" style=" width: 400px;"/> 
-                                <label for="address" class="error" generated="true"></label></td></tr>
+                                <label for="pref_address" class="address" > Address  </label></td><td>:</td><td>
+                                <input type="text" name="pref_address" id="pref_address" class="transparent" style=" width: 400px;"/> 
+                                <label for="pref_address" class="error" generated="true"></label></td></tr>
                         <tr><td>
-                                <label for="city" class="address" > City  </label></td><td>:</td><td>
-                                <input type="text" name="city" id="city" class="transparent" style=" width: 400px;"/> 
-                                <label for="city" class="error" generated="true"></label></td></tr>
+                                <label for="pref_city"  > City  </label></td><td>:</td><td>
+                                <input type="text" name="pref_city" id="pref_city" class="transparent" style=" width: 400px;"/> 
+                                <label for="pref_city" class="error" generated="true"></label></td></tr>
                         <tr><td>
-                                <label for="state" class="address" > State  </label></td><td>:</td><td>
-                                <input type="text" name="address" id="address" class="transparent" style=" width: 400px;"/> 
-                                <label for="address" class="error" generated="true"></label></td></tr>
+                                <label for="pref_state"  > State  </label></td><td>:</td><td>
+                                <input type="text" name="pref_state" id="pref_state" class="transparent" style=" width: 400px;"/> 
+                                <label for="pref_state" class="error" generated="true"></label></td></tr>
                         <tr><td>
-                                <label for="address" class="address" > Zip Code  </label></td><td>:</td><td>
-                                <input type="text" name="address" id="address" class="transparent" style=" width: 400px;"/> 
-                                <label for="address" class="error" generated="true"></label></td></tr>
-                        
+                                <label for="pref_zip"  > Zip Code  </label></td><td>:</td><td>
+                                <input type="text" name="pref_zip" id="pref_zip" class="transparent" style=" width: 400px;"/> 
+                                <label for="pref_zip" class="error" generated="true"></label></td></tr>
+
 
                     </table>
 

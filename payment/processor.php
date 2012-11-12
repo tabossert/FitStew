@@ -54,6 +54,7 @@ if (!$paymentMethod->hasErrors()) {
         $log->info("Successful purchase...");
         $response["status"] = 1; //success
         $response["message"] = 'Success'; //success
+         $response["ptoken"] =  $paymentMethod->token;
     } else {
         $referenceId = $paymentMethod->referenceId;
         $transaction = Samurai_Transaction::find($referenceId);
@@ -61,6 +62,7 @@ if (!$paymentMethod->hasErrors()) {
         $error = $errors[0];
         $response["status"] = -1; //Error
         $response["message"] = $error->description; //success
+          $response["ptoken"] =  $paymentMethod->token;
     }
 } else {
     $referenceId = $paymentMethod->referenceId;
@@ -69,8 +71,10 @@ if (!$paymentMethod->hasErrors()) {
     $error = $errors[0];
     $response["status"] = -1; //Error
     $response["message"] = $error->description; //success
+     $response["ptoken"] =  $paymentMethod->token;
     $log->error($error->description);
 }
 echo json_encode($response);
+
 exit;
 ?>

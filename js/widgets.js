@@ -365,9 +365,11 @@ var User = function()
         this.getFeaturedWorkots();
         this.getDate();
         this.getAllClasses();
-        //  this.addEvent();
+        
         this.deleteEvent();
         this.getUserWeekSchedule();
+        this.getcrediDetails();
+        
         
       
        
@@ -459,24 +461,24 @@ var User = function()
             success:function(data){
                 result6 = eval(data)[0];                
                 
-                $("#email").val(result6.email);
+                $("#pref_email").val(result6.email);
                 
-                $("#firstName").val(result6.first_name);
+                $("#pref_firstName").val(result6.first_name);
                
-                $("#first_name").val(result6.first_name);
-                $("#lastName").val(result6.last_name);
-                $("#last_name").val(result6.last_name);
-                $("#address").val(result6.address);
-                $("#address_1").val(result6.address);
-                $("#city").val(result6.city);
+               
+                $("#pref_lastName").val(result6.last_name);
+               
+                $("#pref_address").val(result6.address);
+                
+                $("#pref_city").val(result6.city);
               
-                $("#state").val(result6.state);
-                $("#zip").val(result6.zipcode);
+                $("#pref_state").val(result6.state);
+                $("#pref_zip").val(result6.zipcode);
                 $("#auto_amount").val(result6.refillamount);
-                 $("#when").val(result6.schedule);
-                 if(result6.automatic==1){
-                      $('#refil').prop('checked', true);
-                 }
+                $("#when").val(result6.schedule);
+                if(result6.automatic==1){
+                    $('#refil').prop('checked', true);
+                }
                 
                 
                 
@@ -776,16 +778,21 @@ var User = function()
     }
     this.edit = function()
     {
-        $("#firstName, #lastName, #email, #address").removeClass('transparent').addClass('round');
+        $("#pref_firstName, #pref_lastName, #pref_email, #pref_address, #pref_city, #pref_state, #pref_zip").removeClass('transparent').addClass('round');
     }
     this.update = function()
     {
-        $("#firstName, #lastName, #email, #address").addClass('transparent').removeClass('round');
+        $("#pref_firstName, #pref_lastName, #pref_email, #pref_address, #pref_city, #pref_state, #pref_zip").addClass('transparent').removeClass('round');
         data = {};
-        data['first_name'] = $("#firstName").val();
-        data['last_name'] = $("#lastName").val();
-        data['address'] = $("#address").val();
-        data['email'] = $("#email").val();
+        data['first_name'] = $("#pref_firstName").val();
+        data['last_name'] = $("#pref_lastName").val();
+        data['address'] = $("#pref_address").val();
+        data['email'] = $("#pref_email").val();
+        
+         data['city'] = $("#pref_city").val();
+        data['state'] = $("#pref_state").val();
+        data['zipcode'] = $("#pref_zip").val();
+      
         
        
         
@@ -1034,6 +1041,24 @@ var User = function()
                 
                 
                 $("#message").html(response.message);
+                datas = {};
+                datas['refid']=response.ptoken;
+                ZUNEFIT.postJSON({
+                   
+                    
+                    url:'paymentTransaction/',
+                    data:datas,
+                    token : $('#utoken').val(),
+          
+                    success:function(response){
+                        
+                    },
+                    error:function(){
+                    //Error should be handle here
+                    // alert("no");  
+                    }
+            
+                });
             //alert(result1);        
             }
         });
@@ -1071,7 +1096,28 @@ var User = function()
             token : $('#utoken').val(),
           
             success:function(response){
-                  $('#hide_refil').css('display', 'none');      
+                $('#hide_refil').css('display', 'none');      
+            },
+            error:function(){
+            //Error should be handle here
+            // alert("no");  
+            }
+            
+        });
+    }
+    
+    this.getcrediDetails = function()
+    {
+       
+        data = {};
+        data['Offset'] = 0;
+        ZUNEFIT.postJSON({
+            url:'getTransactions/',
+            data:data,
+            token : $('#utoken').val(),
+          
+            success:function(response){
+                alert('yp');      
             },
             error:function(){
             //Error should be handle here
