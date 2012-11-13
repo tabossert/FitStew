@@ -370,7 +370,7 @@ var User = function()
         this.getUserWeekSchedule();
         this.getcrediDetails();
         
-        
+       this.test(); 
       
        
        
@@ -883,9 +883,15 @@ var User = function()
             $(this).triggerHandler('click');
         });
         data = {};
-        //data['workouts'] = $('#amount').val();
-        // data['address'] = $('#Within').val();
-        // data['maxDistance'] = $('#Miles').val();
+     //   data['workouts'] = $('#amount').val();
+     if($('#Within').val()!=""){
+           data['address'] = $('#Within').val();
+     }
+      if($('#Miles').val()!=""){
+           data['maxDistance'] = $('#Miles').val();
+     }
+       
+        
         data['rate'] = $('#amount').val().substr(1);
         
         res = "<ul class='searchResult'>";
@@ -960,7 +966,7 @@ var User = function()
 
                     schedule +="<table style = 'width:auto;'><tr><td class='bold'>Service</td><td class='bold'>:"+result15[i].service+"</td></tr><tr><td></td><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr><tr><td></td><td class='bold'>Date</td><td>:"+result15[i].date+"</td></tr>";
                     schedule +="<tr><td></td><td class='bold'>Time</td><td>:"+result15[i].time+"</td></tr></table>";
-                    schedule +='<div style="color: #565D60;text-align: center;" ><button class="buttons_new" onclick="widgets.user.addEvent('+id+','+result15[i].id+','+result15[i].price+')">Add to my schedule</button></div>';
+                    schedule +='<div style="color: #565D60;text-align: right; left:100px;" >Add to my schedule<img src="images/schedule.png" onclick="widgets.user.addEvent('+id+','+result15[i].id+','+result15[i].price+')" style="cursor:pointer;"/></div>';
 
                 }
                  
@@ -1110,7 +1116,7 @@ var User = function()
     {
        
         data = {};
-        data['Offset'] = 0;
+        data['offset'] = 0;
         ZUNEFIT.postJSON({
             url:'getTransactions/',
             data:data,
@@ -1125,6 +1131,32 @@ var User = function()
             }
             
         });
+    }
+    
+    this.test = function()
+    {
+       
+        data = {};
+        data['sid'] = 25;
+        
+        
+        $.ajax({
+            type: 'GET',
+            url: "https://api.samurai.feefighters.com/v1/transactions/f3560ed9d1592c8df55a4d60.xml",
+           
+            beforeSend : function(xhrObj) {
+               
+            
+            },
+            success: function(response){
+                result12 = eval(response)[0];
+                alert(result12.status);
+            //alert(result1);        
+            }
+        });
+        
+        
+        
     }
         
 }
