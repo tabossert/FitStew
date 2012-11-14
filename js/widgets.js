@@ -715,7 +715,7 @@ var User = function()
             data['workouts'] = $('#searchkey').val();
             
         }else{
-            data['gymName'] = $('#searchkey').val();
+            data['name'] = $('#searchkey').val();
         }
         
        
@@ -780,7 +780,7 @@ var User = function()
                     if(bool){
                         k=0;
                         op[k]= result10[i].service;
-                        opw +="<td><input type='checkbox' class='group1' value="+result10[i].service+" id='"+result10[i].service+"'></td><td class='style_text'>"+result10[i].service+"</td>";
+                        opw +="<td><input type='checkbox' name='"+i+"' id='"+i+"' class='group1' value="+result10[i].service+" ></td><td class='style_text'><label for='"+i+"'>"+result10[i].service+"</label></td>";
                         k++;
                         if(k%6 == 0){
                             opw +="</tr><tr>";
@@ -905,22 +905,18 @@ var User = function()
             $(this).triggerHandler('click');
         });
         data = {};
-         work ="";
-        var values = $('input:checkbox:checked.group1').map(function () {
+        work ="";
+        $('input:checkbox:checked.group1').map(function () {
            
             work +=this.value;
             work +=",";
-             return this.value;
+            return this.value;
         }).get();
        
-//        for(i=0;i<values.length;i++){
-//            work +=values[i];
-//            work +=",";
-//           
-//        }
+
         
         
-        data['workouts'] = work;
+      //  data['workouts'] = work;
         if($('#Within').val()!=""){
             data['address'] = $('#Within').val();
         }
@@ -929,7 +925,7 @@ var User = function()
         }
        
         
-        //  data['rate'] = $('#amount').val().substr(1);
+        data['rate'] = $('#amount').val().substr(1);
         
         res = "<ul class='searchResult'>";
         
