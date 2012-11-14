@@ -916,7 +916,7 @@ var User = function()
 
         
         
-      //  data['workouts'] = work;
+        data['workouts'] = work;
         if($('#Within').val()!=""){
             data['address'] = $('#Within').val();
         }
