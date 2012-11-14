@@ -73,8 +73,7 @@ $title = "ZuneFit Gym Panel";
                     <div class="clr" style="border-bottom: solid; border-bottom-color: #184A61;"></div>
                     <br/>
                     <div id="search-result" style="text-align: center;">
-                        <a href = "#lightbox" class="light" onclick="">Search</a>
-                        <a href = "#lightbox" class="light" onclick=""> Result</a>
+                        
                     </div>
                 </div>
 

@@ -370,7 +370,7 @@ var User = function()
         this.getUserWeekSchedule();
         this.getcrediDetails();
         
-       this.test(); 
+        this.test(); 
       
        
        
@@ -702,15 +702,23 @@ var User = function()
     
     this.searchMe = function()
     {
+        
+        $("#divexample1").niceScroll();
+        $("a.light").live("click", function(event) {
+            event.preventDefault();
+            $(this).filter(':not(.fb)').fancybox()
+            .addClass('fb');
+            $(this).triggerHandler('click');
+        });
         data = {};
         if($('input[name=searchRadio]:checked').val()== "activity"){
             data['workouts'] = $('#searchkey').val();
             
         }else{
-            data['another'] = $('#searchkey').val();
+            data['gymName'] = $('#searchkey').val();
         }
         
-        
+       
         
         
         ZUNEFIT.postJSON({
@@ -718,15 +726,29 @@ var User = function()
             data:data,
           
             success:function(response){
-                result9 = eval(response)[0];
-                res = '<a class="light" onclick="" href="#lightbox"> Result</a>';
                
-                $("#search-result").html(res);
+                result9 = eval(response);
+                last=result9.length;
+                res = "<ul class='searchResult'>";
+                $("#search-result").html("No result Found");
+                if(last>0){
+                    for(i=0;i<last;i++){
+                        res += '<li onclick="widgets.user.getInfo('+result9[i].id+')"><a href = "#lightbox" class="light" >'+result9[i].name+'</a></li>';
+                    }
+                    res += "</ul>";
+                    $("#search-result").html(res);
+                    
+                }else{
+                    $("#search-result").html("No result Found");
+                }
+               
+               
             //alert(result1);        
             },
             error:function(){
-            //Error should be handle here
-            // alert("no");  
+            
+            
+            
             }
         });
        
@@ -758,7 +780,7 @@ var User = function()
                     if(bool){
                         k=0;
                         op[k]= result10[i].service;
-                        opw +="<td><input type='checkbox' id='"+result10[i].service+"' ></td><td class='style_text'>"+result10[i].service+"</td>";
+                        opw +="<td><input type='checkbox' class='group1' value="+result10[i].service+" id='"+result10[i].service+"'></td><td class='style_text'>"+result10[i].service+"</td>";
                         k++;
                         if(k%6 == 0){
                             opw +="</tr><tr>";
@@ -789,7 +811,7 @@ var User = function()
         data['address'] = $("#pref_address").val();
         data['email'] = $("#pref_email").val();
         
-         data['city'] = $("#pref_city").val();
+        data['city'] = $("#pref_city").val();
         data['state'] = $("#pref_state").val();
         data['zipcode'] = $("#pref_zip").val();
       
@@ -883,16 +905,31 @@ var User = function()
             $(this).triggerHandler('click');
         });
         data = {};
-     //   data['workouts'] = $('#amount').val();
-     if($('#Within').val()!=""){
-           data['address'] = $('#Within').val();
-     }
-      if($('#Miles').val()!=""){
-           data['maxDistance'] = $('#Miles').val();
-     }
+         work ="";
+        var values = $('input:checkbox:checked.group1').map(function () {
+           
+            work +=this.value;
+            work +=",";
+             return this.value;
+        }).get();
+       
+//        for(i=0;i<values.length;i++){
+//            work +=values[i];
+//            work +=",";
+//           
+//        }
+        
+        
+        data['workouts'] = work;
+        if($('#Within').val()!=""){
+            data['address'] = $('#Within').val();
+        }
+        if($('#Miles').val()!=""){
+            data['maxDistance'] = $('#Miles').val();
+        }
        
         
-        data['rate'] = $('#amount').val().substr(1);
+        //  data['rate'] = $('#amount').val().substr(1);
         
         res = "<ul class='searchResult'>";
         
@@ -1123,7 +1160,7 @@ var User = function()
             token : $('#utoken').val(),
           
             success:function(response){
-                alert('yp');      
+                
             },
             error:function(){
             //Error should be handle here
