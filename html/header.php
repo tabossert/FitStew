@@ -38,7 +38,7 @@ if ($page != 'index.php') {
             <link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-1.3.4.css" />
 
 
-           
+
 
 
             <script type="text/javascript" src="js/curvycorners.src.js"></script>
@@ -51,9 +51,23 @@ if ($page != 'index.php') {
             <?php //if ($page != 'index.php') : ?>
             <script src='js/SHA1.js'></script>
             <script src='js/janrain.js'></script>
-            <script src='js/widgets.js'></script>
+
+            <?php if (isset($_SESSION['type']) && $_SESSION['type'] == 'user') : ?>
+
+                <script src='js/userwidgets.js'></script>
+            <?php elseif (isset($_SESSION['token'])) : ?>
+
+                <script src='js/gymwidgets.js'></script>
+            <?php else: ?>
+
+                <script src='js/widgets.js'></script>
+            <?php endif; ?>
             <script src='js/validation.js'></script>
             <?php // endif; ?>
+            <link rel="stylesheet" type="text/css" href="jqueryui/jqueryui.css" />
+            <script type="text/javascript" src="jqueryui/jqueryui.js" ></script>
+            <script type="text/javascript" src="scroll/scroll.js" ></script>
+
             <script type="text/javascript">
                 $(function() {
                     if (typeof window.janrain !== 'object') window.janrain = {};
@@ -86,50 +100,49 @@ if ($page != 'index.php') {
 
         <body>
             <div id="all">
-            <!-- Facebook SDK -->
-            <div id="fb-root"></div>
-            <script>(function(d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) {return;}
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));</script>
-            <!-- Facebook SDK END -->
+                <!-- Facebook SDK -->
+                <div id="fb-root"></div>
+                <script>(function(d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) {return;}
+                    js = d.createElement(s); js.id = id;
+                    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+                <!-- Facebook SDK END -->
 
 
 
-            <div class="headerbg">
-                <div class="header-container">
-                    <div class="logo"><a href="#"><img src="images/logo.png" alt="" border="0"/></a></div>
-                    <div class="topmenu">
-                        <div class="login-link"> 
-                            <?php if (!(isset($_SESSION['token']) && $_SESSION['token'] != '')) : ?>
-                                <a class = "janrainEngage" href = "#">User Sign-In</a> | <a href = "#frmOwnersLogin" id = "wsn">Gym Sign-In</a>
-                            <?php else : ?>
-                                <div class = "header-box">
+                <div class="headerbg">
+                    <div class="header-container">
+                        <div class="logo"><a href="#"><img src="images/logo.png" alt="" border="0"/></a></div>
+                        <div class="topmenu">
+                            <div class="login-link"> 
+                                <?php if (!(isset($_SESSION['token']) && $_SESSION['token'] != '')) : ?>
+                                    <a class = "janrainEngage" href = "#">User Sign-In</a> | <a href = "#frmOwnersLogin" id = "wsn">Gym Sign-In</a>
+                                <?php else : ?>
+                                    <div class = "header-box">
 
-                                    <table style="float: right;"><tr><td><a href = "pages/how.html" >How it works &nbsp;</a></td>
+                                        <table style="float: right;"><tr><td><a href = "pages/how.html" >How it works &nbsp;</a></td>
 
 
-                                            <td> <a  href = "pages/gymLoc.php">Locations</a></td>
-                                            <td>  <a  href = "about.php">Abouts</a></td>
-                                            <td id="last"> <a href = "logout.php">Sign-out</a> </td></tr></table>
+                                                <td> <a  href = "pages/gymLoc.php">Locations</a></td>
+                                                <td>  <a  href = "about.php">Abouts</a></td>
+                                                <td id="last"> <a href = "logout.php">Sign-out</a> </td></tr></table>
 
-                                </div>
+                                    </div>
 
-                            <?php endif; ?>
-                            <!--                                <div class = "header-box">
-                                                            <ul class = "header-link">
-                                                                <li><a href = "pages/how.html" class = "popup" rel = "width:250;height:300">How it works</a></li>
-                                                                <li><a href = "inner.php">Customers </a></li>
-                                                                <li><a href = "owner.php">Gyms</a></li>
-                                                                <li><a href = "pages/gymLoc.php" class = "popup" rel = "width:250;height:300">Locations</a></li>
-                                                            </ul>-->
+                                <?php endif; ?>
+                                <!--                                <div class = "header-box">
+                                                                <ul class = "header-link">
+                                                                    <li><a href = "pages/how.html" class = "popup" rel = "width:250;height:300">How it works</a></li>
+                                                                    <li><a href = "inner.php">Customers </a></li>
+                                                                    <li><a href = "owner.php">Gyms</a></li>
+                                                                    <li><a href = "pages/gymLoc.php" class = "popup" rel = "width:250;height:300">Locations</a></li>
+                                                                </ul>-->
 
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
                 <div class = "clr"></div>
-              

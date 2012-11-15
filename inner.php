@@ -4,9 +4,6 @@ $title = "ZuneFit Gym Panel";
 ?>
 <!-- Header Start -->
 <?php include 'html/header.php'; ?>
-<link rel="stylesheet" type="text/css" href="jqueryui/jqueryui.css" />
-<script type="text/javascript" src="jqueryui/jqueryui.js" ></script>
-<script type="text/javascript" src="scroll/scroll.js" ></script>
 
 
 <!-- Header End -->

@@ -111,6 +111,7 @@ $id = $obj[0]->{'userid'};
 
 echo $_SESSION['token']= $token;
 echo $_SESSION['userid']= $id;
+echo $_SESSION['type']= "user";
 var_dump($chleadresult);
 
 header ("Location: ".SITE_URL."inner.php");

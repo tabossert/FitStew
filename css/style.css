@@ -188,7 +188,13 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
 
 .sliderbg{margin:0px auto; padding:0px; width:944px; }
 .sliderbg h1{ margin:0px 0px 10px 0px ; padding:0px ; font-weight:normal; font-family:'Conv_itc-berkeley-oldstyle-lt-medium'; font-size:21px; text-decoration:none; font-style:italic; text-transform:none; color:#fff;}
-.greybg{margin:0px; padding:0px; background:#E6ECE0; }
+.greybg{margin:0px; padding:0px; background:#E6ECE0; border-top-width: 4px;
+    border-bottom-width: 4px;
+    border-top-style: double;
+    border-bottom-style: double;
+    border-top-color: #026593;
+    border-bottom-color: #026593;
+    padding: 8px 0px; }
 .arrow-left{margin:0px; padding:0px; width:43px; float:left; position:relative; left:-20px; top:50px; }
 .logo-section{margin:0px 0px 0px 45px; padding:12px 0px; width:768px; float:left;}
 .arrow-right{margin:0px; padding:0px; width:43px; float:right; position:relative; right:-20px; top:50px;}
