@@ -85,6 +85,7 @@ if ($page != 'index.php') {
         </head>
 
         <body>
+            <div id="all">
             <!-- Facebook SDK -->
             <div id="fb-root"></div>
             <script>(function(d, s, id) {
@@ -130,4 +131,4 @@ if ($page != 'index.php') {
                     </div>
                 </div>
                 <div class = "clr"></div>
-                <div id="backg">
+              

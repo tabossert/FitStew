@@ -177,8 +177,7 @@ $title = "ZuneFit Gym Panel";
                                 <input name="redirect_url" type="hidden" value="" />
                                 <input name="merchant_key" type="hidden" value="dbb9284e8820d495f3833e50" />
 
-                                <!-- Before populating the ‘custom’ parameter, remember to escape reserved characters
-                                     like <, > and & into their safe counterparts like &lt;, &gt; and &amp; -->
+                                
                                 <input name="custom" type="hidden" value="Any value you want us to save with this payment method" />
 
 

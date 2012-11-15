@@ -916,14 +916,17 @@ var User = function()
 
         
         
-        data['workouts'] = work;
+      
         if($('#Within').val()!=""){
             data['address'] = $('#Within').val();
         }
         if($('#Miles').val()!=""){
             data['maxDistance'] = $('#Miles').val();
         }
-       
+        if($('#keyword').val()!=""){
+            work += $('#keyword').val();
+        }
+         data['workouts'] = work;
         
         data['rate'] = $('#amount').val().substr(1);
         
