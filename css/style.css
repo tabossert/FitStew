@@ -72,10 +72,10 @@ html,body{ margin:0px;
            text-decoration:none; 
            color: black;
            /*background:url(../images/bg.jpg) repeat;*/
-          
+
 
            /* for non-css3 browsers */
- 
+
 
 
 
@@ -85,12 +85,12 @@ html,body{ margin:0px;
 }
 
 html{
-   
-    
-   
-   
-    
-    
+
+
+
+
+
+
 }
 .headerbg{margin:0px; padding:0px; width:100%; height: 139px; }
 .header-container{margin:0px auto; padding:0px; width:955px; }
@@ -106,9 +106,9 @@ html{
 }
 #all{
     min-height: 100%;
-  height: auto !important;
-  height: 100%; /*for IE*/
-   
+    height: auto !important;
+    height: 100%; /*for IE*/
+
     background-image: linear-gradient(center bottom, #F7F7F7 14%, #C9D8A9 93%) ;
     background-image: -o-linear-gradient(center bottom, #F7F7F7 14%, #C9D8A9 93%);
     background-image: -moz-linear-gradient(center bottom, #F7F7F7 14%, #C9D8A9 93%);
@@ -122,9 +122,9 @@ html{
         color-stop(0.14, #F7F7F7),
         color-stop(0.93, #C9D8A9)
         );
-    
+
     background-repeat: no-repeat;
-    
+
 }
 
 
@@ -155,7 +155,7 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
             width: 950px;
 }
 
-.blue-box-text { margin 0px 0px 0px 0px; padding:10px; height: auto; width:950px; } 
+.blue-box-text { margin 0px ; padding:10px; height: auto; width:950px; } 
 
 .blue-box-text p { margin:0px; padding:0px ; font-weight:normal; font-family:'Conv_itc-berkeley-oldstyle-lt-medium'; font-style:italic;  font-size:21px; text-decoration:none; line-height:30px; color:#2E2E2E;}
 
@@ -189,18 +189,32 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
 .sliderbg{margin:0px auto; padding:0px; width:944px; }
 .sliderbg h1{ margin:0px 0px 10px 0px ; padding:0px ; font-weight:normal; font-family:'Conv_itc-berkeley-oldstyle-lt-medium'; font-size:21px; text-decoration:none; font-style:italic; text-transform:none; color:#fff;}
 .greybg{margin:0px; padding:0px; background:#E6ECE0; border-top-width: 4px;
-    border-bottom-width: 4px;
-    border-top-style: double;
-    border-bottom-style: double;
-    border-top-color: #026593;
-    border-bottom-color: #026593;
-    padding: 8px 0px; }
+        border-bottom-width: 4px;
+        border-top-style: double;
+        border-bottom-style: double;
+        border-top-color: #026593;
+        border-bottom-color: #026593;
+        padding: 8px 0px; }
 .arrow-left{margin:0px; padding:0px; width:43px; float:left; position:relative; left:-20px; top:50px; }
 .logo-section{margin:0px 0px 0px 45px; padding:12px 0px; width:768px; float:left;}
 .arrow-right{margin:0px; padding:0px; width:43px; float:right; position:relative; right:-20px; top:50px;}
 
-.footerbg{margin:0px 0px 0px 0px; padding:0px; width:100%; background:#8EB43E; border-top:2px solid #fff;}
-.footer-container{margin:0px auto; padding:12px 0px; width:944px; font:normal 12px "Trebuchet MS"; text-align:center; line-height:20px; text-decoration:none; color:#000;}
+.footerbg{margin:0px 0px 0px 0px; padding:0px; width:100%;  
+          background-image: linear-gradient(right , #F7F7F7 15%, #C9D8A9 50%, #F7F7F7 86%);
+          background-image: -o-linear-gradient(right , #F7F7F7 15%, #C9D8A9 50%, #F7F7F7 86%);
+          background-image: -moz-linear-gradient(right , #F7F7F7 15%, #C9D8A9 50%, #F7F7F7 86%);
+          background-image: -webkit-linear-gradient(right , #F7F7F7 15%, #C9D8A9 50%, #F7F7F7 86%);
+          background-image: -ms-linear-gradient(right , #F7F7F7 15%, #C9D8A9 50%, #F7F7F7 86%);
+
+          background-image: -webkit-gradient(
+              linear,
+              right top,
+              left top,
+              color-stop(0.15, #F7F7F7),
+              color-stop(0.5, #C9D8A9),
+              color-stop(0.86, #F7F7F7)
+              );}
+.footer-container{margin:0px auto; border-top:1px solid #F7F7F7; padding:12px 0px; width:944px; font:normal 12px "Trebuchet MS"; text-align:center; line-height:20px; text-decoration:none; color:#000;}
 .footer-container a{text-decoration:none; color:#000;}
 .footer-container a:hover{text-decoration:none; color:#FFFEFF;}
 
@@ -222,6 +236,26 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#999', endColorstr='#d1d1d1'); /* for IE */
     background: -webkit-gradient(linear, left top, left bottom, from(#999), to(#d1d1d1)); /* for webkit browsers */
     background: -moz-linear-gradient(top,  #999,  #d1d1d1); /* for firefox 3.6+ */
+
+
+
+}
+.blue-boxs { 
+
+    margin:0px; 
+    padding:10px 16px 16px 16px ; 
+
+    background:#3A5E64;
+    border-top-right-radius: 10px;
+     border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+    background: #d1d1d1; /* for non-css3 browsers */
+
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#999', endColorstr='#d1d1d1'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#999), to(#d1d1d1)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #8b8b8b,  #d1d1d1); /* for firefox 3.6+ */
 
 
 
@@ -294,9 +328,9 @@ ul.calender-link li a:hover{text-decoration:none; color:#F8E839;}
 .calender2{margin:0px 0px 0px 125px; padding:0px; width:64px; float:left; text-align:center; font: bold 13px "Trebuchet MS";color: #cd0a0a;}
 .calender3{margin:0px; padding:0px; width:64px; float:right; text-align:center; font: bold 13px "Trebuchet MS"; color: #cd0a0a;}
 
-.inner-calender1{ float:left; text-align:center; font: bold 13px "Trebuchet MS"; color: #cd0a0a; padding: 10px;}
-.inner-calender2{ float:left; text-align:center; font: bold 13px "Trebuchet MS";color: #cd0a0a; padding: 10px;}
-.inner-calender3{ text-align:center; float:left; font: bold 13px "Trebuchet MS"; color: #cd0a0a; padding: 10px;}
+.inner-calender1{ float:left; text-align:center; font: bold 13px "Trebuchet MS"; color: #003f81; padding: 10px;}
+.inner-calender2{ float:left; text-align:center; font: bold 13px "Trebuchet MS";color: #003f81; padding: 10px;}
+.inner-calender3{ text-align:center; float:left; font: bold 13px "Trebuchet MS"; color: #003f81; padding: 10px;}
 
 
 
@@ -328,7 +362,7 @@ ul.tabs-link li a:hover{background:#A2BF5E;
                       border-bottom-right-radius: 3px;
                       border-bottom-left-radius: 3px;
                       box-shadow:0 0 1px 2px #0F476D;
-                      height:171px;
+                      height:181px;
                       text-align: center;
 
                       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#999', endColorstr='#d1d1d1'); /* for IE */
@@ -349,6 +383,12 @@ ul.tabs-link li a:hover{background:#A2BF5E;
                          filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#E6ECE0', endColorstr='#333'); /* for IE */
                          background: -webkit-gradient(linear, left top, left bottom, from(#E6ECE0), to(#333)); /* for webkit browsers */
                          background: -moz-linear-gradient(top,  #E6ECE0,  #333); /* for firefox 3.6+ */
+}
+.right-featured-box a {
+    color:midnightblue;
+    font: bold 14px "Georgia"; 
+    text-decoration:none;
+
 }
 
 .searchResult { 
@@ -753,17 +793,17 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     background:-moz-linear-gradient( center top, #D7D7D7 5%, #ABABAB 100% );
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d94f6', endColorstr='#1e62d0');
     background-color:#3d94f6;
-   
-    
+
+
     border-top-left-radius: 6px;
     -moz-border-top-left-radius:6px;
     -webkit-border-top-left-radius:6px;
-    
+
     border-bottom-left-radius: 6px;
-     -moz-border-bottom-left-radius:6px;
+    -moz-border-bottom-left-radius:6px;
     -webkit-border-bottom-left-radius:6px;
-    
-   
+
+
     display:inline-block;
     color: #2E2E2E;
     font-family:Georgia;
@@ -775,16 +815,16 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
 }
 .bil_text{
     height: 30px;
-     border-top-right-radius: 6px;
+    border-top-right-radius: 6px;
     -moz-border-top-right-radius:6px;
     -webkit-border-top-right-radius:6px;
-    
+
     border-bottom-right-radius: 6px;
-     -moz-border-bottom-right-radius:6px;
+    -moz-border-bottom-right-radius:6px;
     -webkit-border-bottom-right-radius:6px;
     border: none;
     padding-left: 5px; 
-   
+
 }
 .less{
     width: 300px;
@@ -793,25 +833,25 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
 }
 #message{
     color: #900;
-  
-  
+
+
     border: #500 solid 1px;
-     border-radius: 6px;
-     -moz-border-radius:6px;
+    border-radius: 6px;
+    -moz-border-radius:6px;
     -webkit-border-radius:6px;
     margin-right: 35px;
     min-height: 20px;
     min-width: 300px;
     padding: 3px;
     text-align: center;
-   
-     font-family:Georgia;
+
+    font-family:Georgia;
     font-size:11px;
     font-weight:bold;
     width: 310px;
     float: right;
-    
-    
+
+
 }
 
 .buttons_new {
@@ -839,4 +879,17 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
 }.buttons_new:active {
     position:relative;
     top:1px;
+}
+.second-nav{
+    cursor:pointer;
+    float: left;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    min-width: 100px;
+    border-bottom: none;
+    padding: 8px;
+    text-align: center;
+    font-weight: bold;
+margin-left: 10px;
+
 }

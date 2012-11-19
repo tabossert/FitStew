@@ -92,11 +92,13 @@ var User = function()
         this.getUserWeekSchedule();
         this.getcrediDetails();
         
-       // this.test(); 
-      
+        this.test(); 
+     
        
        
     }
+    
+    
     this.getDate = function()
     {
         $(function() {
@@ -117,12 +119,13 @@ var User = function()
                 min: 1,
                 max: 500,
                 slide: function( event, ui ) {
-                    $( "#amount" ).val( "$" + ui.value );
+                    $( "#amount" ).val( "Maximum Cost $" + ui.value );
                 }
             });
-            $( "#amount" ).val( "$" + $( "#slider-range-min" ).slider( "value" ) );
+            $( "#amount" ).val( "Maximum Cost $" + $( "#slider-range-min" ).slider( "value" ) );
         });
     }
+    
     
     
     
@@ -132,18 +135,18 @@ var User = function()
             url:'featuredGyms/',
             success:function(data){
                 try{
-                result4 = eval(data);
-                op="<ul>";
-                finish = 5;
-                if(result4.length < 5 ){
-                    finish = result4.length
-                }
-                for(i=0;i<finish;i++)
-                {       
-                    op += "<li><a href='#'>"+result4[i].name+"</a></li>";
-                }
-                op +="</ul>";
-                $("#featuredGymsBox").html(op);
+                    result4 = eval(data);
+                    op="<ul>";
+                    finish = 5;
+                    if(result4.length < 5 ){
+                        finish = result4.length
+                    }
+                    for(i=0;i<finish;i++)
+                    {       
+                        op += "<li><a href='#'>"+result4[i].name+"</a></li>";
+                    }
+                    op +="</ul>";
+                    $("#featuredGymsBox").html(op);
                 }catch(e){
                     
                 }
@@ -163,14 +166,14 @@ var User = function()
             data: data,
             token : $('#utoken').val(),
             success:function(response){
-               try{
-                result5 = eval(response)[0];                
-                res = result5.balance;
-                //alert("bal"+response);
-                $(".balance-box").html("Balance: $ "+  res);
-               }catch(e){
+                try{
+                    result5 = eval(response)[0];                
+                    res = result5.balance;
+                    //alert("bal"+response);
+                    $(".balance-box").html("Balance: $ "+  res);
+                }catch(e){
                    
-               }
+                }
             },
             error:function(){
             //Error should be handle here
@@ -189,26 +192,26 @@ var User = function()
             token : $('#utoken').val(),
             success:function(data){
                 try{
-                result6 = eval(data)[0];                
+                    result6 = eval(data)[0];                
                 
-                $("#pref_email").val(result6.email);
+                    $("#pref_email").val(result6.email);
                 
-                $("#pref_firstName").val(result6.first_name);
+                    $("#pref_firstName").val(result6.first_name);
                
                
-                $("#pref_lastName").val(result6.last_name);
+                    $("#pref_lastName").val(result6.last_name);
                
-                $("#pref_address").val(result6.address);
+                    $("#pref_address").val(result6.address);
                 
-                $("#pref_city").val(result6.city);
+                    $("#pref_city").val(result6.city);
               
-                $("#pref_state").val(result6.state);
-                $("#pref_zip").val(result6.zipcode);
-                $("#auto_amount").val(result6.refillamount);
-                $("#when").val(result6.schedule);
-                if(result6.automatic==1){
-                    $('#refil').prop('checked', true);
-                }
+                    $("#pref_state").val(result6.state);
+                    $("#pref_zip").val(result6.zipcode);
+                    $("#auto_amount").val(result6.refillamount);
+                    $("#when").val(result6.schedule);
+                    if(result6.automatic==1){
+                        $('#refil').prop('checked', true);
+                    }
                 }catch(e){
                     
                 }
@@ -253,19 +256,25 @@ var User = function()
         var div = [];
         div[0]='#search';
         div[1]='#advSearch';
-        var li = [];
-        li[0]='#prefe';
-        li[1]='#bill';
-       
+        
+        var nav1 = [];
+        nav1[0]='.nav1';
+        nav1[1]='.nav2';
+        
         
         for(i=0;i<2;i++){
             if(i==id){
                 $(div[i]).css('display', 'block');
-                $(li[i] ).css('display', 'none');
+             
+                $(nav1[i] ).css('background-color', '#8b8b8b');
+                
+                
             }
             else{
                 $(div[i]).css('display', 'none');
-                $(li[i] ).css('color', 'blue');
+              
+                $(nav1[i] ).css('background-color', 'transparent');
+                
             }
         }
     }
@@ -275,12 +284,19 @@ var User = function()
         var div = [];
         div[0]='#preference';
         div[1]='#billing';
+        var nav2 = [];
+        nav2[0]='.nav3';
+        nav2[1]='.nav4';
         
         for(i=0;i<2;i++){
-            if(i==id)
+            if(i==id){
                 $(div[i]).css('display', 'block');
-            else
+                $(nav2[i] ).css('background-color', '#8b8b8b');
+            }
+            else{
                 $(div[i]).css('display', 'none');
+                $(nav2[i] ).css('background-color', 'transparent');
+            }
         }
     }
     
@@ -357,8 +373,7 @@ var User = function()
     
     this.getUserSchedule = function(start,end)
     {
-        //alert(start);
-        //alert(end);
+        
         data = {};
         data['start'] = start;
         data['end'] = end;
@@ -374,7 +389,7 @@ var User = function()
                
             
                 try{
-                     result7 = eval(response);
+                    result7 = eval(response);
                     finish7 = result7.length;
                     date = "";
                     content = "";
@@ -414,19 +429,19 @@ var User = function()
             url:'featuredWorkouts/',
             success:function(response){
                 try{
-                result8 = eval(response);
+                    result8 = eval(response);
                
-                op="<ul>";
-                finish = 5;
-                if(result8.length < 5 ){
-                    finish = result8.length
-                }
+                    op="<ul>";
+                    finish = 5;
+                    if(result8.length < 5 ){
+                        finish = result8.length
+                    }
                
-                for(i=0;i<finish;i++)
-                {       
-                    $(".user-item-link").append('<li><a href="#">'+result8[i].service +'</li>');
+                    for(i=0;i<finish;i++)
+                    {       
+                        $(".user-item-link").append('<li><a href="#">'+result8[i].service +'</li>');
                     
-                }
+                    }
                 }catch(e){
                     
                 }
@@ -449,12 +464,10 @@ var User = function()
             $(this).triggerHandler('click');
         });
         data = {};
-        if($('input[name=searchRadio]:checked').val()== "activity"){
-            data['workouts'] = $('#searchkey').val();
+       
+        data['workouts'] = $('#searchkey').val();
             
-        }else{
-            data['name'] = $('#searchkey').val();
-        }
+       
         
        
         
@@ -464,24 +477,24 @@ var User = function()
             data:data,
           
             success:function(response){
-               try{
-                result9 = eval(response);
-                last=result9.length;
-                res = "<ul class='searchResult'>";
-                $("#search-result").html("No result Found");
-                if(last>0){
-                    for(i=0;i<last;i++){
-                        res += '<li onclick="widgets.user.getInfo('+result9[i].id+')"><a href = "#lightbox" class="light" >'+result9[i].name+'</a></li>';
-                    }
-                    res += "</ul>";
-                    $("#search-result").html(res);
-                    
-                }else{
+                try{
+                    result9 = eval(response);
+                    last=result9.length;
+                    res = "<ul class='searchResult'>";
                     $("#search-result").html("No result Found");
-                }
-               }catch(e){
+                    if(last>0){
+                        for(i=0;i<last;i++){
+                            res += '<li onclick="widgets.user.getInfo('+result9[i].id+')"><a href = "#lightbox" class="light" >'+result9[i].name+'</a></li>';
+                        }
+                        res += "</ul>";
+                        $("#search-result").html(res);
+                    
+                    }else{
+                        $("#search-result").html("No result Found");
+                    }
+                }catch(e){
                    
-               }
+                }
                
             //alert(result1);        
             },
@@ -504,36 +517,36 @@ var User = function()
             data:data,
           
             success:function(response){
-               try{
-               result10 = eval(response);
-                last = result10.length;
-                op= {};
-                opw="";
+                try{
+                    result10 = eval(response);
+                    last = result10.length;
+                    op= {};
+                    opw="";
                 
-                for(i=0;i<last;i++)
-                {                    
-                    bool = true;
-                    for(j=0;j<i;j++){
-                        if(op[j] == result10[i].service) {
-                            bool = false;
+                    for(i=0;i<last;i++)
+                    {                    
+                        bool = true;
+                        for(j=0;j<i;j++){
+                            if(op[j] == result10[i].service) {
+                                bool = false;
+                            }
                         }
-                    }
-                    if(bool){
-                        k=0;
-                        op[k]= result10[i].service;
-                        opw +="<td><input type='checkbox' name='"+i+"' id='"+i+"' class='group1' value="+result10[i].service+" ></td><td class='style_text'><label for='"+i+"'>"+result10[i].service+"</label></td>";
-                        k++;
-                        if(k%6 == 0){
-                            opw +="</tr><tr>";
+                        if(bool){
+                            k=0;
+                            op[k]= result10[i].service;
+                            opw +="<td><input type='checkbox' name='"+i+"' id='"+i+"' class='group1' value="+result10[i].service+" ></td><td class='style_text'><label for='"+i+"'>"+result10[i].service+"</label></td>";
+                            k++;
+                            if(k%6 == 0){
+                                opw +="</tr><tr>";
+                            }
                         }
-                    }
                              
-                }
+                    }
                 
-                $("#search-service").html(opw);
-               }catch(e){
+                    $("#search-service").html(opw);
+                }catch(e){
                    
-               }
+                }
             },
             error:function(){
             //Error should be handle here
@@ -579,6 +592,44 @@ var User = function()
             
         });
     }
+    this.update_new = function()
+    {
+        data = {};
+        
+        data['first_name'] = $("#pref_firstName").val();
+        data['last_name'] = $("#pref_lastName").val();
+     
+        data['email'] = $("#pref_email").val();
+        
+        data['address'] = $("#address_1").val();
+       
+        
+        
+        data['city'] = $("#city").val();
+        data['state'] = $("#state").val();
+        data['zipcode'] = $("#zip").val();
+      
+     
+        
+       
+        
+        
+        ZUNEFIT.postJSON({
+            url:'updateUserPreferences/',
+            data:data,
+            token : $('#utoken').val(),
+          
+            success:function(response){
+               
+               
+            },
+            error:function(){
+            //Error should be handle here
+            // alert("no");  
+            }
+            
+        });
+    }
     
     this.addEvent = function(gid,cid,price)
     {
@@ -599,7 +650,7 @@ var User = function()
           
             success:function(response){
                
-                alert(response.status);
+                alert(response.stats);
               
             },
             error:function(){
@@ -669,9 +720,9 @@ var User = function()
         if($('#keyword').val()!=""){
             work += $('#keyword').val();
         }
-         data['workouts'] = work;
+        data['workouts'] = work;
         
-        data['rate'] = $('#amount').val().substr(1);
+        data['rate'] = $('#amount').val().substr(14);
         
         res = "<ul class='searchResult'>";
         
@@ -681,18 +732,18 @@ var User = function()
           
             success:function(response){
                 try{
-                result13 = eval(response);
-                last=result13.length;
-                if(last>0){
-                    for(i=0;i<last;i++){
-                        res += '<li onclick="widgets.user.getInfo('+result13[i].id+')"><a href = "#lightbox" class="light" >'+result13[i].name+'</a></li>';
-                    }
-                    res += "</ul>";
-                    $("#advSearch-result").html(res);
+                    result13 = eval(response);
+                    last=result13.length;
+                    if(last>0){
+                        for(i=0;i<last;i++){
+                            res += '<li onclick="widgets.user.getInfo('+result13[i].id+')"><a href = "#lightbox" class="light" >'+result13[i].name+'</a></li>';
+                        }
+                        res += "</ul>";
+                        $("#advSearch-result").html(res);
                     
-                }else{
-                    $("#advSearch-result").html("No result Found");
-                }
+                    }else{
+                        $("#advSearch-result").html("No result Found");
+                    }
                 }catch(e){
                     
                 }
@@ -715,20 +766,20 @@ var User = function()
             url:'gymInfo/'+id,
             success:function(response){
                 try{
-                result14 = eval(response)[0];
+                    result14 = eval(response)[0];
                
                 
-                $("#g_address").val(result14.address);
-                $("#g_city").val(result14.city);
-                $("#g_state").val(result14.state);
-                $("#g_zipcode").val(result14.zipcode);
-                $("#g_phone").val(result14.phone);
-                $("#g_email").val(result14.email);
-                $("#g_contact").val(result14.contact);
+                    $("#g_address").val(result14.address);
+                    $("#g_city").val(result14.city);
+                    $("#g_state").val(result14.state);
+                    $("#g_zipcode").val(result14.zipcode);
+                    $("#g_phone").val(result14.phone);
+                    $("#g_email").val(result14.email);
+                    $("#g_contact").val(result14.contact);
                 
                 
-                $("#g_name").val(result14.name);
-                $("#g_rate").val(result14.rate);
+                    $("#g_name").val(result14.name);
+                    $("#g_rate").val(result14.rate);
 
                 
                 }catch(e){
@@ -743,51 +794,51 @@ var User = function()
             url:'getClasses/'+id,
             success:function(response){
                 try{
-                result15 = eval(response);
-                end = result15.length;
+                    result15 = eval(response);
+                    end = result15.length;
                
-                for(i=0;i<end;i++){
-                    if(i!=0){
-                        schedule += "<hr style='clear:both;'/>";
+                    for(i=0;i<end;i++){
+                        if(i!=0){
+                            schedule += "<hr style='clear:both;'/>";
+                        }
+
+                        schedule +="<table style = 'width:auto;'><tr><td class='bold'>Service</td><td class='bold'>:"+result15[i].service+"</td></tr><tr><td></td><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr><tr><td></td><td class='bold'>Date</td><td>:"+result15[i].date+"</td></tr>";
+                        schedule +="<tr><td></td><td class='bold'>Time</td><td>:"+result15[i].time+"</td></tr></table>";
+                        schedule +='<div style="color: #565D60;text-align: right; left:100px;" >Add to my schedule<img src="images/schedule.png" onclick="widgets.user.addEvent('+id+','+result15[i].id+','+result15[i].price+')" style="cursor:pointer;"/></div>';
+
                     }
-
-                    schedule +="<table style = 'width:auto;'><tr><td class='bold'>Service</td><td class='bold'>:"+result15[i].service+"</td></tr><tr><td></td><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr><tr><td></td><td class='bold'>Date</td><td>:"+result15[i].date+"</td></tr>";
-                    schedule +="<tr><td></td><td class='bold'>Time</td><td>:"+result15[i].time+"</td></tr></table>";
-                    schedule +='<div style="color: #565D60;text-align: right; left:100px;" >Add to my schedule<img src="images/schedule.png" onclick="widgets.user.addEvent('+id+','+result15[i].id+','+result15[i].price+')" style="cursor:pointer;"/></div>';
-
-                }
                  
         
-                op= {};
+                    op= {};
                
                 
-                for(i=0;i<end;i++)
-                {         
-                    op[i]=result15[i].service;
-                    bool = true;
-                    for(j=0;j<i;j++){
-                        if(op[j] == result15[i].service) {
-                            bool = false;
+                    for(i=0;i<end;i++)
+                    {         
+                        op[i]=result15[i].service;
+                        bool = true;
+                        for(j=0;j<i;j++){
+                            if(op[j] == result15[i].service) {
+                                bool = false;
+                            }
                         }
-                    }
-                    if(bool){
+                        if(bool){
                         
                         
-                        services +="<li>"+result15[i].service+"</li>";
+                            services +="<li>"+result15[i].service+"</li>";
                         
                         
-                    }
+                        }
                              
-                }
+                    }
           
     
 
 
            
                 
-                services += "</ui>";
-                $("#box-Schedule").html(schedule);
-                $("#box-Services").html(services);
+                    services += "</ui>";
+                    $("#box-Schedule").html(schedule);
+                    $("#box-Services").html(services);
                 
                 }catch(e){
                     
@@ -821,7 +872,10 @@ var User = function()
         data['city'] = $("#city").val();
         data['state'] = $("#state").val();
         data['zip'] = $("#zip").val();
-                      
+           
+if($('#pref_address').val().length==0){
+    this.update_new();
+}           
         
        
         
@@ -925,27 +979,12 @@ var User = function()
     this.test = function()
     {
        
-        data = {};
-        data['sid'] = 25;
+     
+
+
+     
         
         
-        $.ajax({
-            type: 'GET',
-            url: "https://api.samurai.feefighters.com/v1/transactions/f3560ed9d1592c8df55a4d60.xml",
-           
-            beforeSend : function(xhrObj) {
-               
-            
-            },
-            success: function(response){
-                result12 = eval(response)[0];
-                alert(result12.status);
-            //alert(result1);        
-            }
-        });
-        
-        
-        
-    }
-        
+    
+    }   
 }
