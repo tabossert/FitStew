@@ -138,9 +138,9 @@ $title = "ZuneFit Gym Panel";
                             <span class="underline_title" >Keyword</span>
                             <input type="text" name="keyword" id="keyword" placeholder="keyword" class="round" style="margin-left: 30px;font-style: normal;"/>
                             <div style="float: right;">
-                                <button class="buttons" onclick="widgets.user.advancedSearch();" >Search</button>
+                                <div class="buttons" onclick="widgets.user.advancedSearch();" >Search</div>
                             </div>
-                            <input type="reset"/>
+                            <input type="reset" class="buttons" style="float: right;margin-right: 10px;"/>
                             </div></form>
                         <br/>
                         <div class="clr" style="border-bottom: 2px solid; border-bottom-color: #184A61;"></div>

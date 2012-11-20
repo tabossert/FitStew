@@ -122,7 +122,7 @@ var User = function()
                     $( "#amount" ).val( "Maximum Cost $" + ui.value );
                 }
             });
-            $( "#amount" ).val( "Maximum Cost $" + $( "#slider-range-min" ).slider( "value" ) );
+            $( "#amount" ).val( "" );
         });
     }
     
@@ -717,7 +717,9 @@ var User = function()
             return this.value;
         }).get();
        
-
+        if(work.length>0){
+            data['workouts'] = work;
+        }
         
         
       
@@ -730,9 +732,9 @@ var User = function()
         if($('#keyword').val()!=""){
             work += $('#keyword').val();
         }
-        data['workouts'] = work;
-        
-        data['rate'] = $('#amount').val().substr(14);
+        if($('#amount').val()!=""){
+            data['rate'] = $('#amount').val().substr(14);
+        }
         
         res = "<ul class='searchResult'>";
         
@@ -996,72 +998,331 @@ var User = function()
    
         $(function() {
             var projects = [
-            {label: "AL",desc: "Alabama (AL) United States"},
-            {label: "AK",desc: "Alaska (AK) United States"},
-            {label: "AZ",desc: "Arizona (AZ) United States"},
-            {label: "AR",desc: "Arkansas (AR) United States"},
-            {label: "CA",desc: "California (CA) United States"},
-            {label: "CO",desc: "Colorado (CO) United States"},
-            {label: "CT",desc: "Connecticut (CT) United States"},
-            {label: "DC",desc: "Dist. Columbia (DC) United States"},
-            {label: "DE",desc: "Delaware (DE) United States"},
-            {label: "FL",desc: "Florida (FL) United States"},
-            {label: "GA",desc: "Georgia (GA) United States"},
-            {label: "HI",desc: "Hawaii (HI) United States"},
-            {label: "ID",desc: "Idaho (ID) United States"},
-            {label: "IL",desc: "Illinois (IL) United States"},
-            {label: "IN",desc: "Indiana (IN) United States"},
-            {label: "IA",desc: "Iowa (IA) United States"},
-            {label: "KS",desc: "Kansas (KS) United States"},
-            {label: "KY",desc: "Kentucky (KY) United States"},
-            {label: "LA",desc: "Louisiana (LA) United States"},
-            {label: "ME",desc: "Maine (ME) United States"},
-            {label: "MD",desc: "Maryland (MD) United States"},
-            {label: "MA",desc: "Massachusetts (MA) United States"},
-            {label: "MI",desc: "Michigan (MI) United States"},
-            {label: "MN",desc: "Minnesota (MN) United States"},
-            {label: "MS",desc: "Mississippi (MS) United States"},
-            {label: "MO",desc: "Missouri (MO) United States"},
-            {label: "MT",desc: "Montana (MT) United States"},
-            {label: "NE",desc: "Nebraska (NE) United States"},
-            {label: "NV",desc: "Nevada (NV) United States"},
-            {label: "NH",desc: "New Hampshire (NH) United States"},
-            {label: "NJ",desc: "New Jersey (NJ) United States"},
-            {label: "NM",desc: "New Mexico (NM) United States"},
-            {label: "NY",desc: "New York (NY) United States"},
-            {label: "NC",desc: "North Carolina (NC) United States"},
-            {label: "ND",desc: "North Dakota (ND) United States"},
-            {label: "OH",desc: "Ohio (OH) United States"},
-            {label: "OK",desc: "Oklahoma (OK) United States"},
-            {label: "OR",desc: "Oregon (OR) United States"},
-            {label: "PA",desc: "Pennsylvania (PA) United States"},
-            {label: "RI",desc: "Rhode Island (RI) United States"},
-            {label: "SC",desc: "South Carolina (SC) United States"},
-            {label: "SD",desc: "South Dakota (SD) United States"},
-            {label: "TN",desc: "Tennessee (TN) United States"},
-            {label: "TX",desc: "Texas (TX) United States"},
-            {label: "UT",desc: "Utah (UT) United States"},
-            {label: "VT",desc: "Vermont (VT) United States"},
-            {label: "VA",desc: "Virginia (VA) United States"},
-            {label: "WA",desc: "Washington (WA) United States"},
-            {label: "WV",desc: "West Virginia (WV) United States"},
-            {label: "WI",desc: "Wisconsin (WI) United States"},
-            {label: "WY",desc: "Wyoming (WY) United States"},
+            {
+                label: "AL",
+                desc: "Alabama (AL) United States"
+            },
+
+            {
+                label: "AK",
+                desc: "Alaska (AK) United States"
+            },
+
+            {
+                label: "AZ",
+                desc: "Arizona (AZ) United States"
+            },
+
+            {
+                label: "AR",
+                desc: "Arkansas (AR) United States"
+            },
+
+            {
+                label: "CA",
+                desc: "California (CA) United States"
+            },
+
+            {
+                label: "CO",
+                desc: "Colorado (CO) United States"
+            },
+
+            {
+                label: "CT",
+                desc: "Connecticut (CT) United States"
+            },
+
+            {
+                label: "DC",
+                desc: "Dist. Columbia (DC) United States"
+            },
+
+            {
+                label: "DE",
+                desc: "Delaware (DE) United States"
+            },
+
+            {
+                label: "FL",
+                desc: "Florida (FL) United States"
+            },
+
+            {
+                label: "GA",
+                desc: "Georgia (GA) United States"
+            },
+
+            {
+                label: "HI",
+                desc: "Hawaii (HI) United States"
+            },
+
+            {
+                label: "ID",
+                desc: "Idaho (ID) United States"
+            },
+
+            {
+                label: "IL",
+                desc: "Illinois (IL) United States"
+            },
+
+            {
+                label: "IN",
+                desc: "Indiana (IN) United States"
+            },
+
+            {
+                label: "IA",
+                desc: "Iowa (IA) United States"
+            },
+
+            {
+                label: "KS",
+                desc: "Kansas (KS) United States"
+            },
+
+            {
+                label: "KY",
+                desc: "Kentucky (KY) United States"
+            },
+
+            {
+                label: "LA",
+                desc: "Louisiana (LA) United States"
+            },
+
+            {
+                label: "ME",
+                desc: "Maine (ME) United States"
+            },
+
+            {
+                label: "MD",
+                desc: "Maryland (MD) United States"
+            },
+
+            {
+                label: "MA",
+                desc: "Massachusetts (MA) United States"
+            },
+
+            {
+                label: "MI",
+                desc: "Michigan (MI) United States"
+            },
+
+            {
+                label: "MN",
+                desc: "Minnesota (MN) United States"
+            },
+
+            {
+                label: "MS",
+                desc: "Mississippi (MS) United States"
+            },
+
+            {
+                label: "MO",
+                desc: "Missouri (MO) United States"
+            },
+
+            {
+                label: "MT",
+                desc: "Montana (MT) United States"
+            },
+
+            {
+                label: "NE",
+                desc: "Nebraska (NE) United States"
+            },
+
+            {
+                label: "NV",
+                desc: "Nevada (NV) United States"
+            },
+
+            {
+                label: "NH",
+                desc: "New Hampshire (NH) United States"
+            },
+
+            {
+                label: "NJ",
+                desc: "New Jersey (NJ) United States"
+            },
+
+            {
+                label: "NM",
+                desc: "New Mexico (NM) United States"
+            },
+
+            {
+                label: "NY",
+                desc: "New York (NY) United States"
+            },
+
+            {
+                label: "NC",
+                desc: "North Carolina (NC) United States"
+            },
+
+            {
+                label: "ND",
+                desc: "North Dakota (ND) United States"
+            },
+
+            {
+                label: "OH",
+                desc: "Ohio (OH) United States"
+            },
+
+            {
+                label: "OK",
+                desc: "Oklahoma (OK) United States"
+            },
+
+            {
+                label: "OR",
+                desc: "Oregon (OR) United States"
+            },
+
+            {
+                label: "PA",
+                desc: "Pennsylvania (PA) United States"
+            },
+
+            {
+                label: "RI",
+                desc: "Rhode Island (RI) United States"
+            },
+
+            {
+                label: "SC",
+                desc: "South Carolina (SC) United States"
+            },
+
+            {
+                label: "SD",
+                desc: "South Dakota (SD) United States"
+            },
+
+            {
+                label: "TN",
+                desc: "Tennessee (TN) United States"
+            },
+
+            {
+                label: "TX",
+                desc: "Texas (TX) United States"
+            },
+
+            {
+                label: "UT",
+                desc: "Utah (UT) United States"
+            },
+
+            {
+                label: "VT",
+                desc: "Vermont (VT) United States"
+            },
+
+            {
+                label: "VA",
+                desc: "Virginia (VA) United States"
+            },
+
+            {
+                label: "WA",
+                desc: "Washington (WA) United States"
+            },
+
+            {
+                label: "WV",
+                desc: "West Virginia (WV) United States"
+            },
+
+            {
+                label: "WI",
+                desc: "Wisconsin (WI) United States"
+            },
+
+            {
+                label: "WY",
+                desc: "Wyoming (WY) United States"
+            },
             
-            {label: "AB",desc: "Alberta (AB) United States"},
-            {label: "BC",desc: "British Columbia (BC) United States"},
-            {label: "LB",desc: "Labrador (LB) United States"},
-            {label: "MB",desc: "Manitoba (MB) United States"},
-            {label: "NB",desc: "New Brunswick (NB) United States"},
-            {label: "NF",desc: "Newfoundland (NF) United States"},
-            {label: "NS",desc: "Nova Scotia (NS) United States"},
-            {label: "NU",desc: "Nunavut (NU) United States"},
-            {label: "NW",desc: "North West Terr. (NW) United States"},
-            {label: "ON",desc: "Ontario (ON) United States"},
-            {label: "PE",desc: "Prince Edward Is. (PE) United States"},
-            {label: "QC",desc: "Quebec (QC) United States"},
-            {label: "SK",desc: "Saskatchewen (SK) United States"},
-            {label: "YU",desc: "Yukon (YU) United States"},
+
+            {
+                label: "AB",
+                desc: "Alberta (AB) United States"
+            },
+
+            {
+                label: "BC",
+                desc: "British Columbia (BC) United States"
+            },
+
+            {
+                label: "LB",
+                desc: "Labrador (LB) United States"
+            },
+
+            {
+                label: "MB",
+                desc: "Manitoba (MB) United States"
+            },
+
+            {
+                label: "NB",
+                desc: "New Brunswick (NB) United States"
+            },
+
+            {
+                label: "NF",
+                desc: "Newfoundland (NF) United States"
+            },
+
+            {
+                label: "NS",
+                desc: "Nova Scotia (NS) United States"
+            },
+
+            {
+                label: "NU",
+                desc: "Nunavut (NU) United States"
+            },
+
+            {
+                label: "NW",
+                desc: "North West Terr. (NW) United States"
+            },
+
+            {
+                label: "ON",
+                desc: "Ontario (ON) United States"
+            },
+
+            {
+                label: "PE",
+                desc: "Prince Edward Is. (PE) United States"
+            },
+
+            {
+                label: "QC",
+                desc: "Quebec (QC) United States"
+            },
+
+            {
+                label: "SK",
+                desc: "Saskatchewen (SK) United States"
+            },
+
+            {
+                label: "YU",
+                desc: "Yukon (YU) United States"
+            },
                       
             ];
  
