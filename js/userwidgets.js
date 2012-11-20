@@ -92,7 +92,7 @@ var User = function()
         this.getUserWeekSchedule();
         this.getcrediDetails();
         
-        this.test(); 
+        this.state();
      
        
        
@@ -463,18 +463,28 @@ var User = function()
             .addClass('fb');
             $(this).triggerHandler('click');
         });
+        
         data = {};
+        
+        if($('.searchBy').val()=='name'){
+            data['type'] = "name";
+        }else if($('.searchBy').val()=='city'){
+            data['type'] = "city";
+        }else{
+            data['type'] = "zipcode";
+        }
+        
        
-        data['workouts'] = $('#searchkey').val();
+        data['value'] = $('#searchkey').val();
             
-       
+        data['state'] = $('#project').val();
         
        
         
-        
-        ZUNEFIT.postJSON({
-            url:'gymSearchAdvanced/',
-            data:data,
+        $("#search-result").html("Waiting for results");
+        ZUNEFIT.getJSON({
+            url:'gymSearch/'+data['type']+'/'+data['value']+'/'+data['state'],
+           
           
             success:function(response){
                 try{
@@ -493,14 +503,14 @@ var User = function()
                         $("#search-result").html("No result Found");
                     }
                 }catch(e){
-                   
+                    
                 }
                
             //alert(result1);        
             },
             error:function(){
             
-            
+                $("#search-result").html("No result Found");
             
             }
         });
@@ -557,11 +567,11 @@ var User = function()
     }
     this.edit = function()
     {
-        $("#pref_firstName, #pref_lastName, #pref_email, #pref_address, #pref_city, #pref_state, #pref_zip").removeClass('transparent').addClass('round');
+        $("#pref_firstName, #pref_lastName, #pref_address, #pref_city, #pref_state, #pref_zip").removeClass('transparent').addClass('round');
     }
     this.update = function()
     {
-        $("#pref_firstName, #pref_lastName, #pref_email, #pref_address, #pref_city, #pref_state, #pref_zip").addClass('transparent').removeClass('round');
+        $("#pref_firstName, #pref_lastName,  #pref_address, #pref_city, #pref_state, #pref_zip").addClass('transparent').removeClass('round');
         data = {};
         data['first_name'] = $("#pref_firstName").val();
         data['last_name'] = $("#pref_lastName").val();
@@ -873,9 +883,9 @@ var User = function()
         data['state'] = $("#state").val();
         data['zip'] = $("#zip").val();
            
-if($('#pref_address').val().length==0){
-    this.update_new();
-}           
+        if($('#pref_address').val().length==0){
+            this.update_new();
+        }           
         
        
         
@@ -976,10 +986,110 @@ if($('#pref_address').val().length==0){
         });
     }
     
-    this.test = function()
+    this.state = function()
     {
-       
-     
+        
+      
+        $('.searchBy').dropkick();
+	
+    
+   
+        $(function() {
+            var projects = [
+            {label: "AL",desc: "Alabama (AL) United States"},
+            {label: "AK",desc: "Alaska (AK) United States"},
+            {label: "AZ",desc: "Arizona (AZ) United States"},
+            {label: "AR",desc: "Arkansas (AR) United States"},
+            {label: "CA",desc: "California (CA) United States"},
+            {label: "CO",desc: "Colorado (CO) United States"},
+            {label: "CT",desc: "Connecticut (CT) United States"},
+            {label: "DC",desc: "Dist. Columbia (DC) United States"},
+            {label: "DE",desc: "Delaware (DE) United States"},
+            {label: "FL",desc: "Florida (FL) United States"},
+            {label: "GA",desc: "Georgia (GA) United States"},
+            {label: "HI",desc: "Hawaii (HI) United States"},
+            {label: "ID",desc: "Idaho (ID) United States"},
+            {label: "IL",desc: "Illinois (IL) United States"},
+            {label: "IN",desc: "Indiana (IN) United States"},
+            {label: "IA",desc: "Iowa (IA) United States"},
+            {label: "KS",desc: "Kansas (KS) United States"},
+            {label: "KY",desc: "Kentucky (KY) United States"},
+            {label: "LA",desc: "Louisiana (LA) United States"},
+            {label: "ME",desc: "Maine (ME) United States"},
+            {label: "MD",desc: "Maryland (MD) United States"},
+            {label: "MA",desc: "Massachusetts (MA) United States"},
+            {label: "MI",desc: "Michigan (MI) United States"},
+            {label: "MN",desc: "Minnesota (MN) United States"},
+            {label: "MS",desc: "Mississippi (MS) United States"},
+            {label: "MO",desc: "Missouri (MO) United States"},
+            {label: "MT",desc: "Montana (MT) United States"},
+            {label: "NE",desc: "Nebraska (NE) United States"},
+            {label: "NV",desc: "Nevada (NV) United States"},
+            {label: "NH",desc: "New Hampshire (NH) United States"},
+            {label: "NJ",desc: "New Jersey (NJ) United States"},
+            {label: "NM",desc: "New Mexico (NM) United States"},
+            {label: "NY",desc: "New York (NY) United States"},
+            {label: "NC",desc: "North Carolina (NC) United States"},
+            {label: "ND",desc: "North Dakota (ND) United States"},
+            {label: "OH",desc: "Ohio (OH) United States"},
+            {label: "OK",desc: "Oklahoma (OK) United States"},
+            {label: "OR",desc: "Oregon (OR) United States"},
+            {label: "PA",desc: "Pennsylvania (PA) United States"},
+            {label: "RI",desc: "Rhode Island (RI) United States"},
+            {label: "SC",desc: "South Carolina (SC) United States"},
+            {label: "SD",desc: "South Dakota (SD) United States"},
+            {label: "TN",desc: "Tennessee (TN) United States"},
+            {label: "TX",desc: "Texas (TX) United States"},
+            {label: "UT",desc: "Utah (UT) United States"},
+            {label: "VT",desc: "Vermont (VT) United States"},
+            {label: "VA",desc: "Virginia (VA) United States"},
+            {label: "WA",desc: "Washington (WA) United States"},
+            {label: "WV",desc: "West Virginia (WV) United States"},
+            {label: "WI",desc: "Wisconsin (WI) United States"},
+            {label: "WY",desc: "Wyoming (WY) United States"},
+            
+            {label: "AB",desc: "Alberta (AB) United States"},
+            {label: "BC",desc: "British Columbia (BC) United States"},
+            {label: "LB",desc: "Labrador (LB) United States"},
+            {label: "MB",desc: "Manitoba (MB) United States"},
+            {label: "NB",desc: "New Brunswick (NB) United States"},
+            {label: "NF",desc: "Newfoundland (NF) United States"},
+            {label: "NS",desc: "Nova Scotia (NS) United States"},
+            {label: "NU",desc: "Nunavut (NU) United States"},
+            {label: "NW",desc: "North West Terr. (NW) United States"},
+            {label: "ON",desc: "Ontario (ON) United States"},
+            {label: "PE",desc: "Prince Edward Is. (PE) United States"},
+            {label: "QC",desc: "Quebec (QC) United States"},
+            {label: "SK",desc: "Saskatchewen (SK) United States"},
+            {label: "YU",desc: "Yukon (YU) United States"},
+                      
+            ];
+ 
+            $( "#project" ).autocomplete({
+                minLength: 0,
+                source: projects,
+                focus: function( event, ui ) {
+                $( "#project" ).val( ui.item.label );
+                return false;
+                },
+                select: function( event, ui ) {
+                $( "#project" ).val( ui.item.label );
+                $( "#project-id" ).val( ui.item.value );
+            
+              
+ 
+                return false;
+                }
+                })
+            .data( "autocomplete" )._renderItem = function( ul, item ) {
+                return $( "<li>" )
+                .data( "item.autocomplete", item )
+                .append( "<a>" + item.desc + "</a>" )
+                .appendTo( ul );
+            };
+        });
+
+   
 
 
      

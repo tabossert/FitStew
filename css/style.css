@@ -247,7 +247,7 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
 
     background:#3A5E64;
     border-top-right-radius: 10px;
-     border-top-left-radius: 10px;
+    border-top-left-radius: 10px;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
 
@@ -623,7 +623,7 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     margin-left: 200px;
     display: inline-block;
     zoom: 1; /* ie7 hack for display:inline-block */
-
+    clear: both;
     border: solid 1px #d2d2d2;
     padding: 3px 5px;
 
@@ -890,6 +890,18 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     padding: 8px;
     text-align: center;
     font-weight: bold;
-margin-left: 10px;
+    margin-left: 10px;
 
 }
+#project{
+    display: block;
+   
+    margin-bottom: 1em;
+    float: left;
+    border-radius: 6px;
+    padding: 2px;
+    font-size: 1em;
+    width: 160px;
+  
+}
+

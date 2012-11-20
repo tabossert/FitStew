@@ -64,10 +64,12 @@ if ($page != 'index.php') {
             <?php endif; ?>
             <script src='js/validation.js'></script>
             <?php // endif; ?>
+
+            <link rel="stylesheet" type="text/css" href="css/combo.css" />
             <link rel="stylesheet" type="text/css" href="jqueryui/jqueryui.css" />
             <script type="text/javascript" src="jqueryui/jqueryui.js" ></script>
             <script type="text/javascript" src="scroll/scroll.js" ></script>
-
+            <script src="js/combo.js" type="text/javascript" charset="utf-8"></script>
             <script type="text/javascript">
                 $(function() {
                     if (typeof window.janrain !== 'object') window.janrain = {};

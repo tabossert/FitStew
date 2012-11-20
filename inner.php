@@ -11,6 +11,8 @@ $title = "ZuneFit Gym Panel";
 
 
 
+
+
 <input type="hidden" name="utoken" id="utoken" value="<?php echo $_SESSION['token']; ?>"/>
 <input type="hidden" name="userid" id="userid" value="<?php echo $_SESSION['userid']; ?>"/>
 <div class="middle-container">
@@ -30,6 +32,12 @@ $title = "ZuneFit Gym Panel";
         <div class="blue-box1" >
 
             <div id="infoBox" style="min-height: 360px;">
+
+
+
+
+
+
                 <div style="width: 10.5% ;float: left; border-right: solid; border-color: #565D60;">
                     <div class="inner-calender1" style="clear: both; margin-top: 25px; "><a id="day" href="#" onclick="widgets.user.getUserDaySchedule();"><img src="images/calendar_selection_day_49.png" alt="" border="" style="margin:0px 0px 7px 0px;" /></a><br />
                         DAY</div>
@@ -57,9 +65,26 @@ $title = "ZuneFit Gym Panel";
                     <div id="search" class="blue-boxs" style="min-height: 310px;padding: 5px;border: none;">
                         <br/><br/>
                         <div >
+                            <div>
+                                <label  style="float: left;width: 110px;">Search By</label>
+
+                                <select name="searchBy" class="searchBy" style="float: left;" onclick="alert('asda');">
+                                    <option value="name">Gym Name</option>
+                                    <option value="name">Gym Name</option>
+                                    <option value="city">City</option>
+                                    <option value="zipcode">Zip Code</option>
+                                </select></div><br/><br/>
+
+                            <div >
 
 
 
+                                <label  style="clear:both;float: left;width: 110px;">State</label>
+                                <input id="project" />
+                                <input type="hidden" id="project-id" />
+                            </div>
+
+                            <br/><br/>
                             <form class="searchform" >
                                 <input class="searchfield" type="text" name='searchkey' id='searchkey' placeholder="Search..." onchange="widgets.user.searchMe()" />
                                 <input  type="text" style="display: none;" />
@@ -77,7 +102,7 @@ $title = "ZuneFit Gym Panel";
                     </div>
 
                     <div id="advSearch" class="blue-boxs" style="display: none;padding: 6px;border: none;">
-                        <div>
+                        <form> <div>
                             <p class="underline_title">Type</p>
                             <table style="margin-left: 30px;">
                                 <tr id="search-service">
@@ -115,7 +140,8 @@ $title = "ZuneFit Gym Panel";
                             <div style="float: right;">
                                 <button class="buttons" onclick="widgets.user.advancedSearch();" >Search</button>
                             </div>
-                        </div>
+                            <input type="reset"/>
+                            </div></form>
                         <br/>
                         <div class="clr" style="border-bottom: 2px solid; border-bottom-color: #184A61;"></div>
                         <div id="advSearch-result">
@@ -135,6 +161,10 @@ $title = "ZuneFit Gym Panel";
                         <span style="float: right;"><a href="#" onclick="widgets.user.edit()">edit</a>|<a href="#" onclick="widgets.user.update()">done</a></span>
                         <table class="pref">
                             <tr><td>
+                                    <label for="pref_email" class="email" >  Email  </label></td><td>:</td><td>
+                                    <input type="text" name="pref_email" id="pref_email" class="transparent" style=" width: 300px;" readonly="readonly" />
+                                    <label for="pref_email" class="error" generated="true"></label></td></tr> 
+                            <tr><td>
                                     <label for="pref_firstName" class="firstName" >  First&nbsp;Name  </label></td><td>:</td><td>
                                     <input type="text" name="pref_firstName" id="pref_firstName" class="transparent" style=" width: 300px;"/>
                                     <label for="pref_firstName" class="error" generated="true"></label></td></tr>
@@ -142,10 +172,7 @@ $title = "ZuneFit Gym Panel";
                                     <label for="pref_lastName" class="lastName" >  Last&nbsp;Name  </label></td><td>:</td><td>
                                     <input type="text" name="pref_lastName" id="pref_lastName" class="transparent" style=" width: 300px;"/> 
                                     <label for="pref_lastName" class="error" generated="true"></label></td></tr>
-                            <tr><td>
-                                    <label for="pref_email" class="email" >  Email  </label></td><td>:</td><td>
-                                    <input type="text" name="pref_email" id="pref_email" class="transparent" style=" width: 300px;"/>
-                                    <label for="pref_email" class="error" generated="true"></label></td></tr>                        
+
 
                             <tr><td>
                                     <label for="pref_address" class="address" > Address  </label></td><td>:</td><td>
