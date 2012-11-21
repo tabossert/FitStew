@@ -101,26 +101,26 @@ $title = "ZuneFit Gym Panel";
                         </div>
                     </div>
 
-                    <div id="advSearch" class="blue-boxs" style="display: none;padding: 6px;border: none;">
-                        <form> <div>
-                                <p class="underline_title">Type</p>
+                    <div id="advSearch" class="blue-boxs" style="display: none;padding: 6px;border: none;min-height: 340px;">
+                        <form> <div >
+<!--                                <p class="underline_title">Type</p>
                                 <table style="margin-left: 30px;">
                                     <tr id="search-service">
 
 
                                     </tr>
                                 </table>
-                                <br/>
+                                <br/>-->
                                 <p class="underline_title">Location</p>
                                 <table style="margin-left: 30px;">
                                     <tr>
                                         <td style="width: 50px;">
                                             <label for="Miles"  class="style_text">  Miles  </label></td><td>
-                                            <input type="text" name="Miles" id="Miles"  class="round" placeholder="within.." style="font-style: normal;"/>
+                                            <input type="text" name="Miles" id="Miles"  class="round" placeholder="within.." style="font-style: normal;" onchange="widgets.user.advancedSearch()"/>
                                         </td>
                                         <td style="width: 70px; text-align: center;">
                                             <label for="Within"  class="style_text">  Within  </label></td><td>
-                                            <input type="text" name="Within" id="Within" placeholder="zip / city.." class="round" style="font-style: normal;"/> 
+                                            <input type="text" name="Within" id="Within" placeholder="zip / city.." class="round" style="font-style: normal;" onchange="widgets.user.advancedSearch()"/> 
 
                                         </td>
                                     </tr>
@@ -131,12 +131,12 @@ $title = "ZuneFit Gym Panel";
                                 <div id="slider-range-min"></div>
                                 <br/>
                                 <p>
-                                    <input type="text" class="style_text" id="amount" name="amount" readonly style="background: none;border: none;margin-left: 30px; font-size: 1em;"/>
+                                    <input type="text" class="style_text" id="amount" name="amount" readonly style="background: none;border: none;margin-left: 30px; font-size: 0.8em;"/>
 
                                 </p>
                                 <br/>
                                 <span class="underline_title" >Keyword</span>
-                                <input type="text" name="keyword" id="keyword" placeholder="karate, yoga etc..." class="round" style="margin-left: 30px;font-style: normal;"/>
+                                <input type="text" name="keyword" id="keyword" placeholder="karate, kickboxing, yoga etc..." class="round" style="margin-left: 30px;font-style: normal;width: 200px;" onchange="widgets.user.advancedSearch()"/>
                                 <div style="float: right;">
                                     <div class="buttons" onclick="widgets.user.advancedSearch();" >Search</div>
                                 </div>

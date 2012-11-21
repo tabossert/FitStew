@@ -840,7 +840,7 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     border-radius: 6px;
     -moz-border-radius:6px;
     -webkit-border-radius:6px;
-    margin-right: 25px;
+    margin-right: 20px;
     min-height: 10px;
     min-width: 270px;
     padding: 3px;
@@ -912,7 +912,7 @@ float: right;
   color: #3B3B3B;
 }
 #searchkey:-moz-placeholder {
-  color: #3B3B3B;
+  color: #999;
 }
 #searchkey:-ms-input-placeholder {
   color: #3B3B3B;
@@ -931,6 +931,6 @@ float: right;
     cursor: pointer;
     padding-bottom: 6px;
     border-radius: 4px; 
-    margin-right:  0.4em;
+    margin-right:  5px;
     
 }

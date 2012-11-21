@@ -86,7 +86,7 @@ var User = function()
         this.getUserPreferences();
         this.getFeaturedWorkots();
         this.getDate();
-        this.getAllClasses();
+        //this.getAllClasses();
         
         this.deleteEvent();
         this.getUserWeekSchedule();
@@ -713,17 +713,17 @@ var User = function()
             $(this).triggerHandler('click');
         });
         data = {};
-        work ="";
-        $('input:checkbox:checked.group1').map(function () {
-           
-            work +=this.value;
-            work +=",";
-            return this.value;
-        }).get();
        
-        if(work.length>0){
-            data['workouts'] = work;
-        }
+//        $('input:checkbox:checked.group1').map(function () {
+//           
+//            work +=this.value;
+//            work +=",";
+//            return this.value;
+//        }).get();
+//       
+//        if(work.length>0){
+//            data['workouts'] = work;
+//        }
         
         
       
@@ -734,7 +734,7 @@ var User = function()
             data['maxDistance'] = $('#Miles').val();
         }
         if($('#keyword').val()!=""){
-            work += $('#keyword').val();
+             data['workouts'] = $('#keyword').val();
         }
         if($('#amount').val()!=""){
             data['rate'] = $('#amount').val().substr(14);
@@ -934,6 +934,7 @@ var User = function()
     }
     this.creditInfo = function()
     {
+          $('#when').dropkick();
         $('#hide_refil').css('display', 'block');
         $('#edit_fil').css('display', 'none');
         $('#done_fil').css('display', 'block');
@@ -1002,7 +1003,7 @@ var User = function()
         
       
         $('.searchBy').dropkick();
-         $('#when').dropkick();
+       
 	
     
    
