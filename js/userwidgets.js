@@ -568,9 +568,13 @@ var User = function()
     this.edit = function()
     {
         $("#pref_firstName, #pref_lastName, #pref_address, #pref_city, #pref_state, #pref_zip").removeClass('transparent').addClass('round');
+        $('#edit').css("display","none");
+        $('#done').css("display","block");
     }
     this.update = function()
     {
+        $('#done').css("display","none");
+        $('#edit').css("display","block");
         $("#pref_firstName, #pref_lastName,  #pref_address, #pref_city, #pref_state, #pref_zip").addClass('transparent').removeClass('round');
         data = {};
         data['first_name'] = $("#pref_firstName").val();
@@ -931,11 +935,14 @@ var User = function()
     this.creditInfo = function()
     {
         $('#hide_refil').css('display', 'block');
+        $('#edit_fil').css('display', 'none');
+        $('#done_fil').css('display', 'block');
          
     }
     
     this.update_refill = function()
     {
+      
        
         data = {};
      
@@ -957,7 +964,9 @@ var User = function()
             token : $('#utoken').val(),
           
             success:function(response){
-                $('#hide_refil').css('display', 'none');      
+                $('#hide_refil').css('display', 'none');
+                 $('#done_fil').css('display', 'none');
+                  $('#edit_fil').css('display', 'block');
             },
             error:function(){
             //Error should be handle here
@@ -993,6 +1002,7 @@ var User = function()
         
       
         $('.searchBy').dropkick();
+         $('#when').dropkick();
 	
     
    

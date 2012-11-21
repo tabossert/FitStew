@@ -117,7 +117,7 @@ if ($page != 'index.php') {
 
                 <div class="headerbg">
                     <div class="header-container">
-                        <div class="logo"><a href="#"><img src="images/logo.png" alt="" border="0"/></a></div>
+                        <div class="logo"><a href="#"><img src="images/log_png.png" alt="" border="0"/></a></div>
                         <div class="topmenu">
                             <div class="login-link"> 
                                 <?php if (!(isset($_SESSION['token']) && $_SESSION['token'] != '')) : ?>

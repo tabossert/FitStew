@@ -711,6 +711,7 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     font-weight:bold;
     padding:6px 24px;
     text-decoration:none;
+    cursor: pointer;
 }.buttons:hover {
     background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #1e62d0), color-stop(1, #3d94f6) );
     background:-moz-linear-gradient( center top, #1e62d0 5%, #3d94f6 100% );
@@ -839,17 +840,19 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     border-radius: 6px;
     -moz-border-radius:6px;
     -webkit-border-radius:6px;
-    margin-right: 35px;
-    min-height: 20px;
-    min-width: 300px;
+    margin-right: 25px;
+    min-height: 10px;
+    min-width: 270px;
     padding: 3px;
     text-align: center;
-
+float: right;
     font-family:Georgia;
     font-size:11px;
     font-weight:bold;
-    width: 310px;
-    float: right;
+   
+    position: relative;
+  
+    
 
 
 }
@@ -905,3 +908,29 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
   
 }
 
+#searchkey::-webkit-input-placeholder {
+  color: #3B3B3B;
+}
+#searchkey:-moz-placeholder {
+  color: #3B3B3B;
+}
+#searchkey:-ms-input-placeholder {
+  color: #3B3B3B;
+}
+.common{
+    background: #d1d1d1;
+    border: #999 solid  1px;
+  -webkit-box-shadow: 0 8px 6px -6px black;
+	   -moz-box-shadow: 0 8px 6px -6px black;
+	        box-shadow: 0 8px 6px -6px black;
+    width: 60px;
+    height: 1em;
+    padding: 3px;
+    float: right;
+    text-align: center;
+    cursor: pointer;
+    padding-bottom: 6px;
+    border-radius: 4px; 
+    margin-right:  0.4em;
+    
+}
