@@ -118,6 +118,7 @@ var LoginBox = function(formId,msgId)
         ZUNEFIT.postJSON({
             url:'gymLogin/',
             data:data,
+            dataType:'jsonp',
             success:function(response){
                 //There is an issue in firefox.data reprecents as a string.Need to use eval() 1st
                 result = eval(response)[0];
@@ -126,6 +127,9 @@ var LoginBox = function(formId,msgId)
                 {
                     //Login success.Redirect to the owners home page
                     $("#token").val(result.token);
+                    $("#gid").val(result.gymid);
+                    $("#gname").val(result.name);
+                  
                    
                     $("#frmOwnersLogin").submit();
                     return;

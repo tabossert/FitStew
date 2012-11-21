@@ -8,6 +8,8 @@
     <div class="animate form" style="display: none;">
         <form  action="owner.php" autocomplete="on" name="frmOwnersLogin" id="frmOwnersLogin" class="wrapper" method="POST"> 
             <input type="hidden" name="token" id="token" value=""/>
+             <input type="hidden" name="gid" id="gid" />
+              <input type="hidden" name="gname" id="gname" />
             <div class="innerForm" style="width:300px;">
                 <h1>Sign-in</h1> 
                

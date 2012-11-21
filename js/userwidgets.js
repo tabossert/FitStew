@@ -774,7 +774,7 @@ var User = function()
     }
     this.getInfo = function(id)
     {
-       
+       FB.XFBML.parse();
         serv = {};
         schedule ="";
         services = "<ul class='searchResult'>";

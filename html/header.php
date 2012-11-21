@@ -16,7 +16,12 @@ $page = $parts[count($parts) - 1];
 if ($page != 'index.php') {
     if (isset($_POST['token'])) {
         $_SESSION['token'] = $_POST['token'];
+        
     }
+    if(isset($_POST['gname'])){
+            $_SESSION['gid'] = $_POST['gid'];
+            $_SESSION['gname'] = $_POST['gname'];
+        }
     if (!isset($_SESSION['token'])) {
         header('Location: ' . SITE_URL);
     }

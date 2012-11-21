@@ -164,24 +164,114 @@ var Gym = function()
        
         this.getGymWeekSchedule();
         this.getGymStat();
-        this.getGymBal();  
+        this.getGymBal(); 
+        this.getGymInfo(); 
+        this.getSchedule();
+    }
+    
+    this.getGymInfo = function()
+    {
+       
+       
+           
+        
+        ZUNEFIT.getJSON({
+            url:'gymInfo/'+$('#gid').val(),
+          
+          
+            success:function(data){
+                results = eval(data)[0];
+              
+                $("#g_address").val(results.address);
+                $("#g_city").val(results.city);
+                $("#g_state").val(results.state);
+                $("#g_zipcode").val(results.zipcode);
+                $("#g_phone").val(results.phone);
+                $("#g_email").val(results.email);
+                $("#g_contact").val(results.contact);
+                
+                
+                $("#g_name").val(results.name);
+                $("#g_rate").val(results.rate);
+               
+            
+            },
+            error:function(){
+          
+            }
+        });
+        
         
     }
-    
-    this.addType = function()
+    this.getSchedule = function()
     {
-        alert("add");
-    }
     
-    this.profile = function()
-    {
-         
-        $('#gallery').lightBox();
+        ZUNEFIT.getJSON({
+            url:'getClasses/'+$('#gid').val(),
+            dataType:'jsonp',
+            success:function(response){
+                try{
+                    schedule ="";
+        services = "<ul class='searchResult'>";
+                    result15 = eval(response);
+                    end = result15.length;
+                  
+                    for(i=0;i<end;i++){
+                        if(i!=0){
+                            schedule += "<hr style='clear:both;'/>";
+                        }
 
-
-     
-           
+                        schedule +="<table style = 'width:auto;'><tr><td class='bold'>Service</td><td class='bold'>:"+result15[i].service+"</td></tr><tr><td></td><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr><tr><td></td><td class='bold'>Date</td><td>:"+result15[i].date+"</td></tr>";
+                        schedule +="<tr><td></td><td class='bold'>Time</td><td>:"+result15[i].time+"</td></tr></table>";
+                       
+                    }
+                    op= {};
+                    for(i=0;i<end;i++)
+                    {         
+                        op[i]=result15[i].service;
+                        bool = true;
+                        for(j=0;j<i;j++){
+                            if(op[j] == result15[i].service) {
+                                bool = false;
+                            }
+                        }
+                        if(bool){
+                        
+                         
+                            services +="<li>"+result15[i].service+"</li>";
+                        
+                        }                           
+                    }
+                    services += "</ui>";
+                    
+                    $("#box-Services").html(services);
+                       $("#box-Schedule").html(schedule);
+                
+                }catch(e){
+                    
+                }
+            },
+            error:function(){
+                alert('no');
+            }
+        });
     }
+    this.loadBox = function(id)
+    {
+        var div = [];
+        div[0]='#box-description';
+        div[1]='#box-Schedule';
+      
+        div[2]='#box-Services';
+        
+        for(i=0;i<3;i++){
+            if(i==id)
+                $(div[i]).css('display', 'block');
+            else
+                $(div[i]).css('display', 'none');
+        }
+    }   
+    
     
     this.getGymSchedule = function(start,end)
     {
@@ -199,7 +289,7 @@ var Gym = function()
                
             
                 try{
-                     result1 = eval(data);
+                    result1 = eval(data);
                     finish1 = result1.length;
                     op1 = "";
                     op2 = "";
@@ -234,7 +324,16 @@ var Gym = function()
     }
     
     this.getGymStat = function()
-    {
+    
+    {   
+        $("#divexample1").niceScroll();
+        $("a.light").live("click", function(event) {
+            event.preventDefault();
+            $(this).filter(':not(.fb)').fancybox()
+            .addClass('fb');
+            $(this).triggerHandler('click');
+        });
+        
         data = {};
         
         
@@ -244,10 +343,10 @@ var Gym = function()
             token : $('#token').val(),
             success:function(response){
                 try{
-                result2 = eval(response)[0];      
-                $("#owner-right-featured-box ul, .analytic-box ul").append('<li><a href="#">'+result2.visits +' visits/day</li>');
-                $("#owner-right-featured-box ul, .analytic-box ul").append('<li><a href="#">'+result2.views +' profile views Today</li>');
-                $("#owner-right-featured-box ul, .analytic-box ul").append('<li><a href="#"> Average Gym Rate $ '+ result2.price +'</li>');       
+                    result2 = eval(response)[0];      
+                    $("#owner-right-featured-box ul, .analytic-box ul").append('<li><a href="#">'+result2.visits +' visits/day</li>');
+                    $("#owner-right-featured-box ul, .analytic-box ul").append('<li><a href="#">'+result2.views +' profile views Today</li>');
+                    $("#owner-right-featured-box ul, .analytic-box ul").append('<li><a href="#"> Average Gym Rate $ '+ result2.price +'</li>');       
                 }catch(e){
                     
                 }
@@ -268,10 +367,10 @@ var Gym = function()
             token : $('#token').val(),
             success:function(response){
                 try{
-                result3 = eval(response)[0];                
-                result3 = result3.balance;
+                    result3 = eval(response)[0];                
+                    result3 = result3.balance;
                 
-                $(".balance").html("Balance: $ "+  result3);
+                    $(".balance").html("Balance: $ "+  result3);
                 }catch(e){
                     
                 }
@@ -293,6 +392,8 @@ var Gym = function()
         var lastDate = lastDay.getFullYear() + "-" + (lastDay.getMonth()+1) + "-" + lastDay.getDate();
         
         this.getGymSchedule(firstDate+" 00:00:00", lastDate+" 24:00:00");
+        $(".inner-calender3").css("background-color","#565d60");
+        $(".inner-calender2, .inner-calender1").css("background-color","transparent");
     }
     
     this.getGymDaySchedule = function()
@@ -302,6 +403,8 @@ var Gym = function()
         //strDate = "2012-10-16";
         
         this.getGymSchedule(strDate+" 00:00:00", strDate+" 24:00:00");
+        $(".inner-calender1").css("background-color","#565d60");
+        $(".inner-calender2, .inner-calender3").css("background-color","transparent");
     }
     
     this.getGymWeekSchedule = function()
@@ -315,7 +418,10 @@ var Gym = function()
         var startDate = firstday.getFullYear() + "-" + (firstday.getMonth()+1) + "-" + firstday.getDate();
         var endDate = lastday.getFullYear() + "-" + (lastday.getMonth()+1) + "-" + lastday.getDate();
         
-        this.getGymSchedule(startDate+" 00:00:00", endDate+" 24:00:00");
+        //  this.getGymSchedule(startDate+" 00:00:00", endDate+" 24:00:00");
+        this.getGymSchedule("2012-10-01 00:00:00", "2012-10-30 24:00:00");
+        $(".inner-calender2").css("background-color","#565d60");
+        $(".inner-calender1, .inner-calender3").css("background-color","transparent");
     }
     
     

@@ -29,15 +29,9 @@ $title = "ZuneFit Gym Panel";
         </div>
         <div class="clr" ></div>
 
-        <div class="blue-box1" >
+        <div class="blue-box1" style="">
 
-            <div id="infoBox" style="min-height: 360px;">
-
-
-
-
-
-
+            <div id="infoBox" style="min-height: 310px;padding: 5px;border: none;">
                 <div style="width: 10.5% ;float: left; border-right: solid; border-color: #565D60;">
                     <div class="inner-calender1" style="clear: both; margin-top: 25px; "><a id="day" href="#" onclick="widgets.user.getUserDaySchedule();"><img src="images/calendar_selection_day_49.png" alt="" border="" style="margin:0px 0px 7px 0px;" /></a><br />
                         DAY</div>
@@ -49,7 +43,7 @@ $title = "ZuneFit Gym Panel";
 
                 </div>
 
-                <div class="inner-txt" style="width: 70% ;float: right; margin-left: 10px;">
+                <div class="inner-txt" style="width: 70% ;float: right; margin-left: 10px; ">
 
                 </div>
 
@@ -327,6 +321,9 @@ $title = "ZuneFit Gym Panel";
     <div style="display: none;">
 
         <div name="lightbox" id="lightbox" class="blue-box2" style="height: 400px; width: 400px; ">
+            
+            <div class="fb-like" data-href="https://www.facebook.com/zunefit" data-send="false" data-width="400" data-show-faces="false"></div>
+
             <div id="box-header" >
                 <table class="pref2">
                     <tr><td>
