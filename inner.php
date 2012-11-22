@@ -33,12 +33,12 @@ $title = "ZuneFit Gym Panel";
 
             <div id="infoBox" style="min-height: 310px;padding: 5px;border: none;">
                 <div style="width: 10.5% ;float: left; border-right: solid; border-color: #565D60;">
-                    <div class="inner-calender1" style="clear: both; margin-top: 25px; "><a id="day" href="#" onclick="widgets.user.getUserDaySchedule();"><img src="images/calendar_selection_day_49.png" alt="" border="" style="margin:0px 0px 7px 0px;" /></a><br />
+                    <div class="inner-calender1" style="clear: both; margin-top: 25px; "><a id="day" href="#" onclick="widgets.user.getUserDaySchedule();"><img src="images/day.png" alt="" border="" style="margin:0px 0px 7px 0px;" /></a><br />
                         DAY</div>
 
-                    <div class="inner-calender2" style="clear: both;margin-top: 25px;"><a id= "week" href="#" onclick="widgets.user.getUserWeekSchedule()"><img src="images/calendar_selection_week_49.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
+                    <div class="inner-calender2" style="clear: both;margin-top: 25px;"><a id= "week" href="#" onclick="widgets.user.getUserWeekSchedule()"><img src="images/week.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
                         WEEK</div>
-                    <div class="inner-calender3" style="clear: both;margin-top: 25px;"><a id= "month" href="#" onclick="widgets.user.getUserMonthSchedule()"><img src="images/calendar_selection_month_49.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
+                    <div class="inner-calender3" style="clear: both;margin-top: 25px;"><a id= "month" href="#" onclick="widgets.user.getUserMonthSchedule()"><img src="images/month.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
                         MONTH</div>
 
                 </div>
@@ -152,8 +152,8 @@ $title = "ZuneFit Gym Panel";
 
 
                     <div id="preference" class="blue-boxs">
-                        <span id="edit" style="float: right;cursor: pointer;"><img src="images/edit.png" onclick="widgets.user.edit()" /></span>
-                        <span id="done" style="float: right;cursor: pointer;display: none;" ><img src="images/done.png" onclick="widgets.user.update()" /></span>
+                        <span id="edit" style="float: right;cursor: pointer;"><img src="images/edits.png" onclick="widgets.user.edit()" /></span>
+                        <span id="done" style="float: right;cursor: pointer;display: none;" ><img src="images/dones.png" onclick="widgets.user.update()" /></span>
 
 
                         <table class="pref">
