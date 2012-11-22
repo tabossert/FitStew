@@ -8,7 +8,14 @@ $title = "ZuneFit Gym Panel";
 
 <!-- Header End -->
 
+<script>
+ var dt=   new Date();
+ alert(dt.getUTCFullYear ());
 
+
+
+alert(dt);
+</script>
 
 
 
@@ -52,69 +59,25 @@ $title = "ZuneFit Gym Panel";
 
             <div id="searchbox" style="display: none ;min-height: 360px; font-size: 1.1em;">
                 <!--                <div class="up-blue-box">-->
-                <div class="second-nav nav1" style="background-color: #8b8b8b;" onclick="widgets.user.search(0)">Search</div><div  class="second-nav nav2" onclick="widgets.user.search(1)">Advanced Search</div>
+               
 
                 <div style="clear: both;">
 
-                    <div id="search" class="blue-boxs" style="min-height: 310px;padding: 5px;border: none;">
-                        <br/><br/>
-                        <div >
-                            <div>
-                                <label  style="float: left;width: 110px;">Search By</label>
-
-                                <select name="searchBy" class="searchBy" style="float: left;" onclick="alert('asda');">
-                                    <option value="name">Gym Name</option>
-                                    <option value="name">Gym Name</option>
-                                    <option value="city">City</option>
-                                    <option value="zipcode">Zip Code</option>
-                                </select></div><br/><br/>
-
-                            <div >
 
 
-
-                                <label  style="clear:both;float: left;width: 110px;">State</label>
-                                <input id="project" />
-                                <input type="hidden" id="project-id" />
-                            </div>
-
-                            <br/><br/>
-                            <form class="searchform" >
-                                <input class="searchfield" type="text" name='searchkey' id='searchkey' placeholder="karate, kickboxing, yoga etc..." style="color: black;" onchange="widgets.user.searchMe()" />
-                                <input  type="text" style="display: none;" />
-                                <input class="searchbutton" type="button" value="Go" onclick="widgets.user.searchMe()"/>
-
-
-                            </form>  
-                        </div>
-                        <br/>
-                        <div class="clr" style="border-bottom: 2px solid; border-bottom-color: #184A61;"></div>
-                        <br/>
-                        <div id="search-result" style="text-align: center;">
-
-                        </div>
-                    </div>
-
-                    <div id="advSearch" class="blue-boxs" style="display: none;padding: 6px;border: none;min-height: 340px;">
+                    <div id="advSearch" class="blue-boxs" style="padding: 6px;border: none;min-height: 340px;">
                         <form> <div >
-<!--                                <p class="underline_title">Type</p>
-                                <table style="margin-left: 30px;">
-                                    <tr id="search-service">
 
-
-                                    </tr>
-                                </table>
-                                <br/>-->
                                 <p class="underline_title">Location</p>
                                 <table style="margin-left: 30px;">
                                     <tr>
                                         <td style="width: 50px;">
                                             <label for="Miles"  class="style_text">  Miles  </label></td><td>
-                                            <input type="text" name="Miles" id="Miles"  class="round" placeholder="within.." style="font-style: normal;" onchange="widgets.user.advancedSearch()"/>
+                                            <input type="text" name="Miles" id="Miles"  class="round" placeholder="within.." style="font-style: normal;" />
                                         </td>
                                         <td style="width: 70px; text-align: center;">
                                             <label for="Within"  class="style_text">  Within  </label></td><td>
-                                            <input type="text" name="Within" id="Within" placeholder="zip / city.." class="round" style="font-style: normal;" onchange="widgets.user.advancedSearch()"/> 
+                                            <input type="text" name="Within" id="Within" placeholder="zip / city.." class="round" style="font-style: normal;"/> 
 
                                         </td>
                                     </tr>
@@ -126,15 +89,16 @@ $title = "ZuneFit Gym Panel";
                                 <br/>
                                 <p>
                                     <input type="text" class="style_text" id="amount" name="amount" readonly style="background: none;border: none;margin-left: 30px; font-size: 0.8em;"/>
+                                    <input type="text" class="style_text" id="amounts" name="amounts" readonly style="background: none;border: none;margin-left: 30px; font-size: 0.8em;display: none;"/>
 
                                 </p>
                                 <br/>
                                 <span class="underline_title" >Keyword</span>
-                                <input type="text" name="keyword" id="keyword" placeholder="karate, kickboxing, yoga etc..." class="round" style="margin-left: 30px;font-style: normal;width: 200px;" onchange="widgets.user.advancedSearch()"/>
+                                <input type="text" name="keyword" id="keyword" placeholder="karate, kickboxing, yoga etc..." class="round" style="margin-left: 30px;font-style: normal;width: 200px;" />
                                 <div style="float: right;">
-                                    <div class="buttons" onclick="widgets.user.advancedSearch();" >Search</div>
+                                    <div class="buttons" id="searching" onclick="widgets.user.advancedSearch();" >Search</div>
                                 </div>
-                                <input type="reset" class="buttons" style="float: right;margin-right: 10px;"/>
+                                <input type="reset" class="buttons" style="float: right;margin-right: 10px;" onclick="$('#advSearch-result').html('');"/>
                             </div></form>
                         <br/>
                         <div class="clr" style="border-bottom: 2px solid; border-bottom-color: #184A61;"></div>

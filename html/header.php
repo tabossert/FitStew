@@ -56,6 +56,7 @@ if ($page != 'index.php') {
             <?php //if ($page != 'index.php') : ?>
             <script src='js/SHA1.js'></script>
             <script src='js/janrain.js'></script>
+           
 
             <?php if (isset($_SESSION['type']) && $_SESSION['type'] == 'user') : ?>
 
@@ -69,12 +70,13 @@ if ($page != 'index.php') {
             <?php endif; ?>
             <script src='js/validation.js'></script>
             <?php // endif; ?>
-
+ <script type="text/javascript" src='js/datetime.js'></script>
             <link rel="stylesheet" type="text/css" href="css/combo.css" />
             <link rel="stylesheet" type="text/css" href="jqueryui/jqueryui.css" />
             <script type="text/javascript" src="jqueryui/jqueryui.js" ></script>
             <script type="text/javascript" src="scroll/scroll.js" ></script>
             <script src="js/combo.js" type="text/javascript" charset="utf-8"></script>
+            
             <script type="text/javascript">
                 $(function() {
                     if (typeof window.janrain !== 'object') window.janrain = {};

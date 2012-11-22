@@ -167,6 +167,7 @@ var Gym = function()
         this.getGymBal(); 
         this.getGymInfo(); 
         this.getSchedule();
+        this.getAllClasses();
     }
     
     this.getGymInfo = function()
@@ -197,6 +198,55 @@ var Gym = function()
         
         
     }
+    
+    this.getAllClasses = function()
+    {
+        data = {};
+        data['offset'] = 0;
+        
+        ZUNEFIT.postJSON({
+            url:'getAllClasses/',
+            data:data,
+          
+            success:function(response){
+                try{
+                    result10 = eval(response);
+                    last = result10.length;
+                    op= {};
+                    opw=" <p class='underline_title'>Type</p><table ><tr>";
+                
+                    for(i=0;i<last;i++)
+                    {                    
+                        bool = true;
+                        for(j=0;j<i;j++){
+                            if(op[j] == result10[i].service) {
+                                bool = false;
+                            }
+                        }
+                        if(bool){
+                            k=0;
+                            op[k]= result10[i].service;
+                            opw +="<td style='min-width:30px;'><input type='checkbox' name='"+i+"' id='"+i+"' class='group1' value="+result10[i].service+" style='float:right;'></td><td class='style_text'><label for='"+i+"'>"+result10[i].service+"</label></td>";
+                            k++;
+                            if(k%6 == 0){
+                                opw +="</tr><tr>";
+                            }
+                        }
+                             
+                    }
+                opw +="</tr></table>";
+                    $("#all_service").html(opw);
+                }catch(e){
+                   
+                }
+            },
+            error:function(){
+            //Error should be handle here
+            // alert("no");  
+            }
+        });
+       
+    }
     this.getSchedule = function()
     {
     
@@ -206,7 +256,7 @@ var Gym = function()
             success:function(response){
                 try{
                     schedule ="";
-        services = "<ul class='searchResult'>";
+                    services = "<ul class='searchResult'>";
                     result15 = eval(response);
                     end = result15.length;
                   
@@ -239,7 +289,7 @@ var Gym = function()
                     services += "</ui>";
                     
                     $("#box-Services").html(services);
-                       $("#box-Schedule").html(schedule);
+                    $("#box-Schedule").html(schedule);
                 
                 }catch(e){
                     
