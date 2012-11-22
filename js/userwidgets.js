@@ -350,8 +350,8 @@ var User = function()
         var startDate = firstday.getFullYear() + "-" + (firstday.getMonth()+1) + "-" + firstday.getDate();
         var endDate = lastday.getFullYear() + "-" + (lastday.getMonth()+1) + "-" + lastday.getDate();
         
-        //this.getUserSchedule(startDate+" 00:00:00", endDate+" 24:00:00");
-        this.getUserSchedule("2012-10-01 00:00:00","2012-10-31 24:00:00");
+        this.getUserSchedule(startDate+" 00:00:00", endDate+" 24:00:00");
+       
         $(".inner-calender2").css("background-color","#565d60");
         $(".inner-calender1, .inner-calender3").css("background-color","transparent");
     }
