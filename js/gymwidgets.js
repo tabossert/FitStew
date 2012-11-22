@@ -171,21 +171,21 @@ var Gym = function()
     this.addType = function()
     {
         
-       var add = $('#all_service').html();
+        var add = $('#all_service').html();
       
          
     }
     this.search = function()
     {
         
-       var add = $('#all_service').html();
+        var add = $('#all_service').html();
       
          
     }
     this.save = function()
     {
         
-       var add = $('#all_service').html();
+        var add = $('#all_service').html();
       
          
     }
@@ -254,7 +254,7 @@ var Gym = function()
                         }
                              
                     }
-                opw +="</tr></table>";
+                    opw +="</tr></table>";
                     $("#all_service").html(opw);
                 }catch(e){
                    
@@ -489,14 +489,17 @@ var Gym = function()
     }
     
     
-     this.edit = function()
+    this.edit = function()
     {
         $("#pref_phone, #pref_email, #pref_firstName, #pref_lastName, #pref_address, #pref_city, #pref_state, #pref_zip").removeClass('transparent').addClass('round');
         $('#edit').css("display","none");
         $('#done').css("display","block");
+        
+$("#pref_phone, #pref_email, #pref_firstName, #pref_lastName, #pref_address, #pref_city, #pref_state, #pref_zip").removeAttr('readonly');
     }
     this.update = function()
     {
+        $("#pref_phone, #pref_email, #pref_firstName, #pref_lastName, #pref_address, #pref_city, #pref_state, #pref_zip").attr('readonly','readonly');
         $('#done').css("display","none");
         $('#edit').css("display","block");
         $("#pref_phone, #pref_email, #pref_firstName, #pref_lastName,  #pref_address, #pref_city, #pref_state, #pref_zip").addClass('transparent').removeClass('round');
@@ -505,11 +508,11 @@ var Gym = function()
         data['last_name'] = $("#pref_lastName").val();
         data['address'] = $("#pref_address").val();
         data['email'] = $("#pref_email").val();
-         data['phone'] = $("#pref_phone").val();
+        data['phone'] = $("#pref_phone").val();
         data['city'] = $("#pref_city").val();
         data['state'] = $("#pref_state").val();
         data['zipcode'] = $("#pref_zip").val();
-       data['gymid'] = $('#gid').val();
+        data['gymid'] = $('#gid').val();
         
        
         

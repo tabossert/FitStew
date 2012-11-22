@@ -86,7 +86,7 @@ var User = function()
         this.getUserPreferences();
         this.getFeaturedWorkots();
         this.getDate();
-        this.getAllClasses();
+       
         
         this.deleteEvent();
         this.getUserWeekSchedule();
@@ -525,9 +525,13 @@ var User = function()
         $("#pref_firstName, #pref_lastName, #pref_address, #pref_city, #pref_state, #pref_zip").removeClass('transparent').addClass('round');
         $('#edit').css("display","none");
         $('#done').css("display","block");
+        $(" #pref_firstName, #pref_lastName, #pref_address, #pref_city, #pref_state, #pref_zip").removeAttr('readonly');
+
     }
     this.update = function()
     {
+        $("#pref_phone,  #pref_firstName, #pref_lastName, #pref_address, #pref_city, #pref_state, #pref_zip").attr('readonly','readonly');
+
         $('#done').css("display","none");
         $('#edit').css("display","block");
         $("#pref_firstName, #pref_lastName,  #pref_address, #pref_city, #pref_state, #pref_zip").addClass('transparent').removeClass('round');
