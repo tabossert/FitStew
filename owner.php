@@ -13,11 +13,13 @@ $title = "ZuneFit Gym Panel";
     <div class="inner-left-part">
         
         <div >
-            <ul id="inner-nav" style="padding-left: 90px;">
+            <ul id="inner-nav" style="padding-left: 14px;">
                 <li><a href = "#lightbox" class="light" >Profile</a></li>
+                <li><a href="owner.php" class="selected">Schedule</a></li>
                 <li><a href="ownerServices.php" >Services</a></li>
                 <li><a href="ownerAnalytics.php" >Analytics</a></li>
-                <li><a href="#" >Preferences</a></li>
+                <li><a href="ownerProfile.php" >Preferences</a></li>
+                
             </ul>
 
         </div>

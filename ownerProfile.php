@@ -7,80 +7,172 @@ $title = "ZuneFit Gym Panel";
 <!-- Header End -->
 
 <input type="hidden" name="token" id="token" value="<?php echo $_SESSION['token']; ?>"/>
+<input type="hidden" name="gid" id="gid" value="<?php echo $_SESSION['gid']; ?>" />
+<input type="hidden" name="gname" id="gname" value="<?php echo $_SESSION['gname']; ?>"/>
 <div class="middle-container">
-    <div class="left-part">
+    <div class="inner-left-part">
+
+        <div >
+            <ul id="inner-nav" style="padding-left: 14px;">
+                <li><a href = "#lightbox" class="light" >Profile</a></li>
+                <li><a href="owner.php" >Schedule</a></li>
+                <li><a href="ownerServices.php" >Services</a></li>
+                <li><a href="ownerAnalytics.php" >Analytics</a></li>
+                <li><a href="ownerProfile.php" class="selected">Preferences</a></li>
+            </ul>
+
+        </div>
+        <div class="clr" ></div>
         <div class="blue-box1">
-            <div id="shedule">
+            <div id="shedule" style="min-height: 360px;">
+                <span id="edit" style="float: right;cursor: pointer;"><img src="images/edits.png" onclick="widgets.gim.edit()" /></span>
+                <span id="done" style="float: right;cursor: pointer;display: none;" ><img src="images/dones.png" onclick="widgets.gim.update()" /></span>
+
+                <span class="underline_title" >Billing address</span>
+                <table class="pref">
+                    <tr><td>
+                            <label for="pref_firstName" class="firstName" >  First&nbsp;Name  </label></td><td>:</td><td>
+                            <input type="text" name="pref_firstName" id="pref_firstName" class="transparent" style=" width: 400px;"/>
+                            <label for="pref_firstName" class="error" generated="true"></label></td></tr>
+                    <tr><td>
+                            <label for="pref_lastName" class="lastName" >  Last&nbsp;Name  </label></td><td>:</td><td>
+                            <input type="text" name="pref_lastName" id="pref_lastName" class="transparent" style=" width: 400px;"/> 
+                            <label for="pref_lastName" class="error" generated="true"></label></td></tr>
+
+
+                    <tr><td>
+                            <label for="pref_address" class="address" > Address  </label></td><td>:</td><td>
+                            <input type="text" name="pref_address" id="pref_address" class="transparent" style=" width: 400px;" /> 
+                            <label for="pref_address" class="error" generated="true"></label></td></tr>
+                    <tr><td>
+                            <label for="pref_city"  > City  </label></td><td>:</td><td>
+                            <input type="text" name="pref_city" id="pref_city" class="transparent" style=" width: 400px;"/> 
+                            <label for="pref_city" class="error" generated="true"></label></td></tr>
+                    <tr><td>
+                            <label for="pref_state"  > State  </label></td><td>:</td><td>
+                            <input type="text" name="pref_state" id="pref_state" class="transparent" style=" width: 400px;"/> 
+                            <label for="pref_state" class="error" generated="true"></label></td></tr>
+                    <tr><td>
+                            <label for="pref_zip"  > Zip Code  </label></td><td>:</td><td>
+                            <input type="text" name="pref_zip" id="pref_zip" class="transparent" style=" width: 400px;"/> 
+                            <label for="pref_zip" class="error" generated="true"></label></td></tr>
+                    <tr><td>
+                            <label for="pref_phone"  > Phone&nbsp;number  </label></td><td>:</td><td>
+                            <input type="text" name="pref_phone" id="pref_phone" class="transparent" style=" width: 400px;"/> 
+                            <label for="pref_phone" class="error" generated="true"></label></td></tr>
+                    <tr><td>
+                            <label for="pref_email" class="email" >  Email  </label></td><td>:</td><td>
+                            <input type="text" name="pref_email" id="pref_email" class="transparent" style=" width: 400px;" readonly="readonly" />
+                            <label for="pref_email" class="error" generated="true"></label></td></tr> 
+
+                </table>
                 <div>
-                    <div class="calender1"><a id="day" href="#" onclick="widgets.gim.getGymDaySchedule();"><img src="images/calender_img1.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
-                        DAY</div>
-                    <div class="calender2"><a id= "week" href="#" onclick="widgets.gim.getGymWeekSchedule()"><img src="images/calender_img2.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
-                        WEEK</div>
-                    <div class="calender3"><a id= "month" href="#" onclick="widgets.gim.getGymMonthSchedule()"><img src="images/calender_img3.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
-                        MONTH</div>
-                    <div class="clr"></div>
+                    <span class="underline_title" >Disbursement Method</span><br/>
+                    <input type="checkbox" id="monthly" style="margin-left: 20px;margin-top: 5px;"/><label for="monthly" style="margin-left: 10px;">Monthly check</label><br/>
+                    <input type="checkbox" id="reach" style="margin-left: 20px;margin-top: 5px;"/><label for="reach" style="margin-left: 10px;">When the amount reaches</label>
                 </div>
-                <div style=" margin:15px 0px 0px 0px; border-top:1px solid #769196; height:1px;"></div>
-                <div id='gymScheduleBox'>
-                    <div class="inner-txt">
-
-                    </div>
+                <div>
+                    <span class="underline_title" >Payment Method</span><br/>
+                    <input type="checkbox" id="method" style="margin-left: 20px;margin-top: 5px;"/><label for="method" style="margin-left: 10px;">Check</label>
                 </div>
             </div>
+        </div>
+
+    </div>
+    <div style="display: none;">
+
+        <div name="lightbox" id="lightbox" class="blue-box2" style="height: 400px; width: 400px; ">
 
 
-            <div id="Servicebox" style="display: none">
-                <div class="blue-box1">
-
-                    <div id="service">
-                        <div>
-                            <p class="underline_title">Type</p>
-                            <table>
-                                <tr>
-                                    <td><input type="checkbox" id="boxing" ></td><td>Boxing</td>                      
-                                    <td><input type="checkbox" id="cycling"></td> <td>Cycling</td>
-                                    <td><input type="checkbox" id="cycling"></td> <td>Etc</td>
-                                </tr>
-                            </table>
-                            <br/>
-                            <p class="underline_title">New Type</p>
-
-                            <input type="text" name="newType" id="newType" placeholder="Type"/> &nbsp; <button onclick="widgets.gim.addType();"> add </button>
-
-                            <br/>
-                            <p class="underline_title">Keywords</p>
-                            <input type="text" name="keywords" id="keywords" placeholder="Keywords"/>
-
-                            <button onclick="widgets.gim.Search();" >Search</button>
-                        </div>
-                    </div>
-                    <div id="keyword-result"></div>
-                </div>
+            <div id="box-header" >
+                <table class="pref2">
+                    <tr><td>
+                            <label for="g_name" class="labels"> Gym&nbsp;Name  </label> 
+                        </td><td><td>:<td>
+                            <input type="text" name="g_name" id="g_name" class="transparent"/>
+                        </td>  </tr>  
+                    <tr> <td>
+                            <label for="g_rate" class="labels"> Rate  </label>
+                        </td> <td><td>:<td>
+                            <input type="text" name="g_rate" id="g_rate" class="transparent"/>
+                        </td>  
+                    </tr>
+                </table>
             </div>
+            <div>
+                <div class = "my-box2" >
+                    <p>
+                    <ul class = "toplink">
+                        <li><a href = "#" onclick="widgets.gim.loadBox(0)">Description</a></li>
+                        <li><a href = "#" onclick="widgets.gim.loadBox(1)">Schedule</a></li>
 
-            <div id="analytic" style="display: none">
-                <div class="blue-box1">
-
-                    <div class="analytic-box" >
-                        <h1>Quick Stats</h1>
-                        <ul class="item-link">                
-                        </ul>
-                    </div>
+                        <li><a href = "#" onclick="widgets.gim.loadBox(2)">Services</a></li>
+                    </ul>
+                    </p>
                 </div>
+
+
+
+                <div id="divexample1" style="height: 290px;float: left;width: 390px;overflow-x: hidden;">
+
+                    <div id="box-description" >
+                        <table class="pref">
+
+                            <tr><td>
+                                    <label for="g_address"  >  Address  </label></td><td>:</td><td>
+                                    <input type="text" name="g_address" id="g_address" class="transparent"/> 
+                                </td></tr>
+                            <tr><td>
+                                    <label for="g_city"  >  City  </label></td><td>:</td><td>
+                                    <input type="text" name="g_city" id="g_city" class="transparent"/>
+                                </td></tr>                        
+
+                            <tr><td>
+                                    <label for="g_state"  > State  </label></td><td>:</td><td>
+                                    <input type="text" name="g_state" id="g_state" class="transparent"/> 
+                                </td></tr>
+                            <tr><td>
+                                    <label for="g_zipcode" > Zip&nbsp;Code  </label></td><td>:</td><td>
+                                    <input type="number" name="g_zipcode" id="g_zipcode" class="transparent"/>
+                                </td></tr>
+                            <tr><td>
+                                    <label for="g_phone"  >  Phone  </label></td><td>:</td><td>
+                                    <input type="text" name="g_phone" id="g_phone" class="transparent"/> 
+                                </td></tr>
+                            <tr><td>
+                                    <label for="g_email"  >  email  </label></td><td>:</td><td>
+                                    <input type="email" name="g_email" id="g_email" class="transparent"/>
+                                </td></tr>                        
+
+                            <tr><td>
+                                    <label for="g_contact"  > Contact  </label></td><td>:</td><td>
+                                    <input type="text" name="g_contact" id="g_contact" class="transparent"/> 
+                                </td></tr>
+
+                        </table>
+                    </div>   
+                    <div id="box-Schedule" style="display: none; " >
+
+                    </div>   
+
+                    <div id="box-Services" style="display: none;" >
+
+                    </div>   
+                </div>
+
             </div>
 
         </div>
 
     </div>
-
-    <div class="tabs">
-        <ul class="tabs-link">
-            <li><a href="#" >Profile</a></li>
-            <li><a href="#" >Services</a></li>
-            <li><a href="#" >Analytics</a></li>
-            <li><a href="#" >Preferences</a></li>
-        </ul>
-    </div>
+    <!--    <div class="tabs">
+            <ul class="tabs-link">
+                <li><a href = "javascript:void(0)" onclick = "$('#light, #fade').css('display','block');">Profile</a></li>
+                <li><a href="ownerServices.php" >Services</a></li>
+                <li><a href="ownerAnalytics.php" >Analytics</a></li>
+                <li><a href="#" >Preferences</a></li>
+            </ul>
+        </div>-->
 
     <div class="right-box">
         <div class="balance"></div>

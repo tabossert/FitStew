@@ -119,24 +119,23 @@ var LoginBox = function(formId,msgId)
             url:'gymLogin/',
             data:data,
             success:function(response){
-                //There is an issue in firefox.data reprecents as a string.Need to use eval() 1st
                 result = eval(response)[0];
 
                 if(result.status == "success")
                 {
-                    //Login success.Redirect to the owners home page
+                  
                     $("#token").val(result.token);
                     $("#frmOwnersLogin").submit();
                     return;
                 }
                 else
                 {
-                    //Login failed.Show error message 
+                   
                     $("#loginError").html("Login incorrect");                    
                 }                
             },
             error:function(){
-            //Error should be handle here
+          
             }
         })
     } 
@@ -168,6 +167,27 @@ var Gym = function()
         this.getGymInfo(); 
         this.getSchedule();
         this.getAllClasses();
+    }
+    this.addType = function()
+    {
+        
+       var add = $('#all_service').html();
+      
+         
+    }
+    this.search = function()
+    {
+        
+       var add = $('#all_service').html();
+      
+         
+    }
+    this.save = function()
+    {
+        
+       var add = $('#all_service').html();
+      
+         
     }
     
     this.getGymInfo = function()
@@ -469,5 +489,45 @@ var Gym = function()
     }
     
     
-    
+     this.edit = function()
+    {
+        $("#pref_phone, #pref_email, #pref_firstName, #pref_lastName, #pref_address, #pref_city, #pref_state, #pref_zip").removeClass('transparent').addClass('round');
+        $('#edit').css("display","none");
+        $('#done').css("display","block");
+    }
+    this.update = function()
+    {
+        $('#done').css("display","none");
+        $('#edit').css("display","block");
+        $("#pref_phone, #pref_email, #pref_firstName, #pref_lastName,  #pref_address, #pref_city, #pref_state, #pref_zip").addClass('transparent').removeClass('round');
+        data = {};
+        data['first_name'] = $("#pref_firstName").val();
+        data['last_name'] = $("#pref_lastName").val();
+        data['address'] = $("#pref_address").val();
+        data['email'] = $("#pref_email").val();
+         data['phone'] = $("#pref_phone").val();
+        data['city'] = $("#pref_city").val();
+        data['state'] = $("#pref_state").val();
+        data['zipcode'] = $("#pref_zip").val();
+       data['gymid'] = $('#gid').val();
+        
+       
+        
+        
+        ZUNEFIT.postJSON({
+            url:'updateGymProfile/',
+            data:data,
+            token : $('#token').val(),
+          
+            success:function(response){
+               
+               
+            },
+            error:function(){
+            //Error should be handle here
+            // alert("no");  
+            }
+            
+        });
+    }
 }
