@@ -519,7 +519,7 @@ $("#pref_phone, #pref_email, #pref_firstName, #pref_lastName, #pref_address, #pr
         
         ZUNEFIT.postJSON({
             url:'updateGymProfile/',
-            data:data,
+            data:data,               
             token : $('#token').val(),
           
             success:function(response){
