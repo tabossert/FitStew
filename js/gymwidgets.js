@@ -170,11 +170,7 @@ var Gym = function()
     }
     
     this.getGymInfo = function()
-    {
-       
-       
-           
-        
+    {        
         ZUNEFIT.getJSON({
             url:'gymInfo/'+$('#gid').val(),
           
@@ -188,9 +184,7 @@ var Gym = function()
                 $("#g_zipcode").val(results.zipcode);
                 $("#g_phone").val(results.phone);
                 $("#g_email").val(results.email);
-                $("#g_contact").val(results.contact);
-                
-                
+                $("#g_contact").val(results.contact);   
                 $("#g_name").val(results.name);
                 $("#g_rate").val(results.rate);
                
