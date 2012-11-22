@@ -159,34 +159,42 @@ $title = "ZuneFit Gym Panel";
                         <table class="pref">
                             <tr><td>
                                     <label for="pref_email" class="email" >  Email  </label></td><td>:</td><td>
-                                    <input type="text" name="pref_email" id="pref_email" class="transparent" style=" width: 300px;" readonly="readonly" />
+                                    <input type="text" name="pref_email" id="pref_email" class="transparent" style=" width: 400px;" readonly="readonly" />
                                     <label for="pref_email" class="error" generated="true"></label></td></tr> 
                             <tr><td>
                                     <label for="pref_firstName" class="firstName" >  First&nbsp;Name  </label></td><td>:</td><td>
-                                    <input type="text" name="pref_firstName" id="pref_firstName" class="transparent" style=" width: 300px;"/>
+                                    <input type="text" name="pref_firstName" id="pref_firstName" class="transparent" style=" width: 400px;"/>
                                     <label for="pref_firstName" class="error" generated="true"></label></td></tr>
                             <tr><td>
                                     <label for="pref_lastName" class="lastName" >  Last&nbsp;Name  </label></td><td>:</td><td>
-                                    <input type="text" name="pref_lastName" id="pref_lastName" class="transparent" style=" width: 300px;"/> 
+                                    <input type="text" name="pref_lastName" id="pref_lastName" class="transparent" style=" width: 400px;"/> 
                                     <label for="pref_lastName" class="error" generated="true"></label></td></tr>
 
 
                             <tr><td>
                                     <label for="pref_address" class="address" > Address  </label></td><td>:</td><td>
-                                    <input type="text" name="pref_address" id="pref_address" class="transparent" style=" width: 300px;" /> 
+                                    <input type="text" name="pref_address" id="pref_address" class="transparent" style=" width: 400px;" /> 
                                     <label for="pref_address" class="error" generated="true"></label></td></tr>
                             <tr><td>
                                     <label for="pref_city"  > City  </label></td><td>:</td><td>
-                                    <input type="text" name="pref_city" id="pref_city" class="transparent" style=" width: 300px;"/> 
+                                    <input type="text" name="pref_city" id="pref_city" class="transparent" style=" width: 400px;"/> 
                                     <label for="pref_city" class="error" generated="true"></label></td></tr>
                             <tr><td>
                                     <label for="pref_state"  > State  </label></td><td>:</td><td>
-                                    <input type="text" name="pref_state" id="pref_state" class="transparent" style=" width: 300px;"/> 
+                                    <input type="text" name="pref_state" id="pref_state" class="transparent" style=" width: 400px;"/> 
                                     <label for="pref_state" class="error" generated="true"></label></td></tr>
                             <tr><td>
                                     <label for="pref_zip"  > Zip Code  </label></td><td>:</td><td>
-                                    <input type="text" name="pref_zip" id="pref_zip" class="transparent" style=" width: 300px;"/> 
+                                    <input type="text" name="pref_zip" id="pref_zip" class="transparent" style=" width: 400px;"/> 
                                     <label for="pref_zip" class="error" generated="true"></label></td></tr>
+                            <tr><td>
+                                    <label for="pref_phone"  > Phone&nbsp;number  </label></td><td>:</td><td>
+                                    <input type="text" name="pref_phone" id="pref_phone" class="transparent" style=" width: 400px;"/> 
+                                    <label for="pref_phone" class="error" generated="true"></label></td></tr>
+                            <tr><td>
+                                    <label for="pref_pin"  > Pin Code  </label></td><td>:</td><td>
+                                    <input type="text" name="pref_pin" id="pref_pin" class="transparent" style=" width: 400px;"/> 
+                                    <label for="pref_pin" class="error" generated="true"></label></td></tr>
 
 
                         </table>

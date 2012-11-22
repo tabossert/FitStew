@@ -425,7 +425,7 @@ ul.item-link li a:hover{text-decoration:none; color:#186897;}
 
 }
 .pref{
-    line-height: 40px;
+    line-height: 31px;
     width: auto; 
 }
 .pref td{
@@ -684,7 +684,7 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
 }
 .round{
     font-style: normal;
-    border-radius: 1em;
+    border-radius: 6px;
     padding: 2px;
     padding-left: 4px;
     font-size: 0.8em;
