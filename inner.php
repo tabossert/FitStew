@@ -9,12 +9,16 @@ $title = "ZuneFit Gym Panel";
 <!-- Header End -->
 
 <script>
- var dt=   new Date();
- alert(dt.getUTCFullYear ());
 
 
+var rightNow = new Date();
+var jan1 = new Date(rightNow.getFullYear(), 0, 1, 0, 0, 0, 0);
+var temp = jan1.toGMTString();
+var jan2 = new Date(temp.substring(0, temp.lastIndexOf(" ")-1));
+var std_time_offset = (jan1 - jan2) / (1000 * 60 * 60);
 
-alert(dt);
+alert(std_time_offset);
+
 </script>
 
 
@@ -38,7 +42,7 @@ alert(dt);
 
         <div class="blue-box1" style="">
 
-            <div id="infoBox" style="min-height: 310px;padding: 5px;border: none;">
+            <div id="infoBox" style="min-height: 350px;padding: 5px;border: none;">
                 <div style="width: 10.5% ;float: left; border-right: solid; border-color: #565D60;">
                     <div class="inner-calender1" style="clear: both; margin-top: 25px; "><a id="day" href="#" onclick="widgets.user.getUserDaySchedule();"><img src="images/day.png" alt="" border="" style="margin:0px 0px 7px 0px;" /></a><br />
                         DAY</div>
@@ -151,6 +155,12 @@ alert(dt);
                                     <label for="pref_zip"  > Zip Code  </label></td><td>:</td><td>
                                     <input type="text" name="pref_zip" id="pref_zip" class="transparent" style=" width: 400px;" readonly="readonly"/> 
                                     <label for="pref_zip" class="error" generated="true"></label></td></tr>
+                           </table>
+                        <hr/>
+                         <span id="phone_edit" style="float: right;cursor: pointer;"><img src="images/edits.png" onclick="widgets.user.phone_edit()" /></span>
+                        <span id="phone_done" style="float: right;cursor: pointer;display: none;" ><img src="images/dones.png" onclick="widgets.user.phone_update()" /></span>
+
+                        <table class="pref">
                             <tr><td>
                                     <label for="pref_phone"  > Phone&nbsp;number  </label></td><td>:</td><td>
                                     <input type="text" name="pref_phone" id="pref_phone" class="transparent" style=" width: 400px;" readonly="readonly"/> 

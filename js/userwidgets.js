@@ -95,7 +95,7 @@ var User = function()
         this.enter();
      
        
-       
+        
     }
     
     
@@ -520,6 +520,44 @@ var User = function()
     }
     
     
+    this.phone_edit = function()
+    {
+        $("#pref_phone, #pref_pin").removeClass('transparent').addClass('round');
+        $('#phone_edit').css("display","none");
+        $('#phone_done').css("display","block");
+        $("#pref_phone, #pref_pin").removeAttr('readonly');
+
+    }
+    this.phone_update = function()
+    {
+        $("#pref_phone, #pref_pin").attr('readonly','readonly');
+
+        $('#phone_done').css("display","none");
+        $('#phone_edit').css("display","block");
+        $("#pref_phone, #pref_pin").addClass('transparent').removeClass('round');
+        data = {};
+     
+       
+        data['phone'] = $('#pref_phone').val();
+        data['pincode'] = $('#pref_pin').val();
+       
+        
+             
+        ZUNEFIT.postJSON({
+            url:'setPinCode/',
+            data:data,
+            token : $('#utoken').val(),
+          
+            success:function(response){
+                alert('asdas');
+            },
+            error:function(){
+            //Error should be handle here
+            // alert("no");  
+            }
+            
+        });
+    }
     this.edit = function()
     {
         $("#pref_firstName, #pref_lastName, #pref_address, #pref_city, #pref_state, #pref_zip").removeClass('transparent').addClass('round');
@@ -970,6 +1008,6 @@ var User = function()
             
         });
     }
-    
+   
     
 }
