@@ -807,6 +807,18 @@ var User = function()
                 
                     $("#g_name").val(result14.name);
                     $("#g_rate").val(result14.rate);
+                   
+                    facebook = result14.facebook;
+                    if(result14.facebook== null || result14.facebook== "undefined"){
+                        facebook = 'zunefit';
+                    }
+                    twitter = result14.twitter;
+                    if(result14.twitter== null || result14.twitter=="undefined") {
+                        twitter = 'zunefit';
+                    }
+                    $(".tweet").html('<iframe allowtransparency="true" frameborder="0" scrolling="no"src="//platform.twitter.com/widgets/follow_button.html?screen_name='+twitter+'" style="width:300px; height:20px;"></iframe>');
+           
+                    $(".like").html('<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2F'+facebook+'&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21&amp;" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>');
 
                 
                 }catch(e){

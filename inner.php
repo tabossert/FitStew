@@ -8,22 +8,6 @@ $title = "ZuneFit Gym Panel";
 
 <!-- Header End -->
 
-<script>
-
-
-var rightNow = new Date();
-var jan1 = new Date(rightNow.getFullYear(), 0, 1, 0, 0, 0, 0);
-var temp = jan1.toGMTString();
-var jan2 = new Date(temp.substring(0, temp.lastIndexOf(" ")-1));
-var std_time_offset = (jan1 - jan2) / (1000 * 60 * 60);
-
-alert(std_time_offset);
-
-</script>
-
-
-
-
 <input type="hidden" name="utoken" id="utoken" value="<?php echo $_SESSION['token']; ?>"/>
 <input type="hidden" name="userid" id="userid" value="<?php echo $_SESSION['userid']; ?>"/>
 <div class="middle-container">
@@ -63,7 +47,7 @@ alert(std_time_offset);
 
             <div id="searchbox" style="display: none ;min-height: 360px; font-size: 1.1em;">
                 <!--                <div class="up-blue-box">-->
-               
+
 
                 <div style="clear: both;">
 
@@ -155,9 +139,10 @@ alert(std_time_offset);
                                     <label for="pref_zip"  > Zip Code  </label></td><td>:</td><td>
                                     <input type="text" name="pref_zip" id="pref_zip" class="transparent" style=" width: 400px;" readonly="readonly"/> 
                                     <label for="pref_zip" class="error" generated="true"></label></td></tr>
-                           </table>
+                      
+                        </table>
                         <hr/>
-                         <span id="phone_edit" style="float: right;cursor: pointer;"><img src="images/edits.png" onclick="widgets.user.phone_edit()" /></span>
+                        <span id="phone_edit" style="float: right;cursor: pointer;"><img src="images/edits.png" onclick="widgets.user.phone_edit()" /></span>
                         <span id="phone_done" style="float: right;cursor: pointer;display: none;" ><img src="images/dones.png" onclick="widgets.user.phone_update()" /></span>
 
                         <table class="pref">
@@ -167,7 +152,7 @@ alert(std_time_offset);
                                     <label for="pref_phone" class="error" generated="true"></label></td></tr>
                             <tr><td>
                                     <label for="pref_pin"  > Pin Code  </label></td><td>:</td><td>
-                                    <input type="text" name="pref_pin" id="pref_pin" class="transparent" style=" width: 400px;" readonly="readonly"/> 
+                                    <input type="password" name="pref_pin" id="pref_pin" class="transparent" style=" width: 400px;" readonly="readonly"/> 
                                     <label for="pref_pin" class="error" generated="true"></label></td></tr>
 
 
@@ -302,10 +287,12 @@ alert(std_time_offset);
     </div>
     <div style="display: none;">
 
-        <div name="lightbox" id="lightbox" class="blue-box2" style="height: 400px; width: 400px; ">
-            
-            <div class="fb-like" data-href="https://www.facebook.com/zunefit" data-send="false" data-width="400" data-show-faces="false"></div>
-
+        <div name="lightbox" id="lightbox" class="blue-box2" style="height: 450px; width: 400px; ">
+            <div style="height: 60px;">
+                <div class="tweet" style="display: inline;"></div>
+                <div class="like" style="display: inline;"></div>
+                <div class="plus" ></div>
+            </div>
             <div id="box-header" >
                 <table class="pref2">
                     <tr><td>

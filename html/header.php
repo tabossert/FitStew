@@ -105,9 +105,11 @@ if ($page != 'index.php') {
                     s.parentNode.insertBefore(e, s);
                 });
             </script>
+           
         </head>
 
         <body>
+          
             <div id="all">
                 <!-- Facebook SDK -->
                 <div id="fb-root"></div>

@@ -166,12 +166,27 @@ var Gym = function()
         this.getGymBal(); 
         this.getGymInfo(); 
         this.getSchedule();
-        this.getAllClasses();
+    //   this.getAllClasses();
+       
     }
     this.addType = function()
     {
-        
-        var add = $('#all_service').html();
+        data = {};
+        data['tag'] = $('#newServe').val();
+         ZUNEFIT.postJSON({
+            url:'addTag/',
+              token : $('#token').val(),
+              data : data,
+            success:function(data){
+                results = eval(data);
+                alert(results.status);
+                
+              
+            },
+            error:function(){
+          
+            }
+        });
       
          
     }
@@ -202,14 +217,39 @@ var Gym = function()
                 $("#g_address").val(results.address);
                 $("#g_city").val(results.city);
                 $("#g_state").val(results.state);
-                $("#g_zipcode").val(results.zipcode);
+                $("#g_zip").val(results.zipcode);
                 $("#g_phone").val(results.phone);
                 $("#g_email").val(results.email);
                 $("#g_contact").val(results.contact);   
                 $("#g_name").val(results.name);
                 $("#g_rate").val(results.rate);
+                $("#g_fb").val(results.facebook);
+                $("#g_twt").val(results.twitter);
+                
+               
                
             
+            },
+            error:function(){
+          
+            }
+        });
+        
+        servicess = "<ul>";
+        ZUNEFIT.getJSON({
+            url:'getTags/'+$('#gid').val(),
+            success:function(data){
+                results = eval(data);
+                end = results.length;
+                for(i=0;i<end;i++){
+                   
+                    servicess += '<li>'+results[i].tag+'</li>';
+                }
+               servicess += "</ul>";
+              
+                $("#box-Services").html(servicess);
+             $("#all_service").html(servicess);
+              
             },
             error:function(){
           
@@ -219,54 +259,7 @@ var Gym = function()
         
     }
     
-    this.getAllClasses = function()
-    {
-        data = {};
-        data['offset'] = 0;
-        
-        ZUNEFIT.postJSON({
-            url:'getAllClasses/',
-            data:data,
-          
-            success:function(response){
-                try{
-                    result10 = eval(response);
-                    last = result10.length;
-                    op= {};
-                    opw=" <p class='underline_title'>Type</p><table ><tr>";
-                
-                    for(i=0;i<last;i++)
-                    {                    
-                        bool = true;
-                        for(j=0;j<i;j++){
-                            if(op[j] == result10[i].service) {
-                                bool = false;
-                            }
-                        }
-                        if(bool){
-                            k=0;
-                            op[k]= result10[i].service;
-                            opw +="<td style='min-width:30px;'><input type='checkbox' name='"+i+"' id='"+i+"' class='group1' value="+result10[i].service+" style='float:right;'></td><td class='style_text'><label for='"+i+"'>"+result10[i].service+"</label></td>";
-                            k++;
-                            if(k%6 == 0){
-                                opw +="</tr><tr>";
-                            }
-                        }
-                             
-                    }
-                    opw +="</tr></table>";
-                    $("#all_service").html(opw);
-                }catch(e){
-                   
-                }
-            },
-            error:function(){
-            //Error should be handle here
-            // alert("no");  
-            }
-        });
-       
-    }
+  
     this.getSchedule = function()
     {
     
@@ -308,7 +301,7 @@ var Gym = function()
                     }
                     services += "</ui>";
                     
-                    $("#box-Services").html(services);
+                   // $("#box-Services").html(services);
                     $("#box-Schedule").html(schedule);
                 
                 }catch(e){
@@ -488,33 +481,35 @@ var Gym = function()
         $(".inner-calender1, .inner-calender3").css("background-color","transparent");
     }
     
-    
+     
     this.edit = function()
     {
-        $("#pref_phone, #pref_email, #pref_firstName, #pref_lastName, #pref_address, #pref_city, #pref_state, #pref_zip").removeClass('transparent').addClass('round');
-        $('#edit').css("display","none");
-        $('#done').css("display","block");
+        $("#g_phone, #g_email, #g_name, #g_rate, #g_address, #g_city, #g_state, #g_zip, #g_fb, #g_twt,#g_contact ").removeClass('transparent').addClass('round');
+        $('#g_edit').css("display","none");
+        $('#g_done').css("display","block");
         
-$("#pref_phone, #pref_email, #pref_firstName, #pref_lastName, #pref_address, #pref_city, #pref_state, #pref_zip").removeAttr('readonly');
+        $("#g_phone, #g_email, #g_name, #g_address, #g_city, #g_state, #g_rate, #g_zip, #g_fb, #g_twt,#g_contact").removeAttr('readonly');
     }
     this.update = function()
     {
-        $("#pref_phone, #pref_email, #pref_firstName, #pref_lastName, #pref_address, #pref_city, #pref_state, #pref_zip").attr('readonly','readonly');
-        $('#done').css("display","none");
-        $('#edit').css("display","block");
-        $("#pref_phone, #pref_email, #pref_firstName, #pref_lastName,  #pref_address, #pref_city, #pref_state, #pref_zip").addClass('transparent').removeClass('round');
+        $("#g_phone, #g_email, #g_name, #g_rate, #g_address, #g_city, #g_state, #g_zip, #g_fb, #g_twt,#g_contact").attr('readonly','readonly');
+        $('#g_done').css("display","none");
+        $('#g_edit').css("display","block");
+        $("#g_phone, #g_email, #g_name, #g_rate, #g_address, #g_city, #g_state, #g_zip, #g_fb, #g_twt,#g_contact").addClass('transparent').removeClass('round');
         data = {};
-        data['first_name'] = $("#pref_firstName").val();
-        data['last_name'] = $("#pref_lastName").val();
-        data['address'] = $("#pref_address").val();
-        data['email'] = $("#pref_email").val();
-        data['phone'] = $("#pref_phone").val();
-        data['city'] = $("#pref_city").val();
-        data['state'] = $("#pref_state").val();
-        data['zipcode'] = $("#pref_zip").val();
+        data['name'] = $("#g_name").val();
+        data['rate'] = $("#g_rate").val();
+        data['address'] = $("#g_address").val();
+        data['email'] = $("#g_email").val();
+        data['phone'] = $("#g_phone").val();
+        data['city'] = $("#g_city").val();
+        data['contact'] = $("#g_contact").val();
+        data['state'] = $("#g_state").val();
+        data['zipcode'] = $("#g_zip").val();
         data['gymid'] = $('#gid').val();
         
-       
+        data['facebook'] = $('#g_fb').val();
+        data['twitter'] = $('#g_twt').val();
         
         
         ZUNEFIT.postJSON({
