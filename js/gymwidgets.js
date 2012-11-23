@@ -166,7 +166,12 @@ var Gym = function()
         this.getGymBal(); 
         this.getGymInfo(); 
         this.getSchedule();
-    //   this.getAllClasses();
+       this.addImage();
+    
+       
+    }
+    this.addImage = function()
+    {
        
     }
     this.addType = function()
