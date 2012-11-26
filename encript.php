@@ -23,9 +23,9 @@ if ((($_FILES["file"]["type"] == "image/gif")
     echo "Invalid file";
 }
 $datatopost = array (
-"gymid" => $results,
+"gymid" => $_SESSION['gid'],
 "iName" => $name,
-"image" => $_POST['gid'],
+"image" => $results,
 );
 
 $jrnToke = $_SESSION["token"];
@@ -40,19 +40,19 @@ curl_setopt($chlead, CURLOPT_CUSTOMREQUEST, "POST");
 curl_setopt($chlead, CURLOPT_SSL_VERIFYPEER, 0);
 $chleadresult = curl_exec($chlead);
 
-//$obj = json_decode($chleadresult);
-//f($obj[0]->{'status'} === 'success')
-////$path = $obj[0]->{'path'};
+$obj = json_decode($chleadresult, true);
+if($obj['status'] === 'success'){
+echo $_SESSION['img']=$obj['path'];
+
+}
 
 
 
-var_dump($chleadresult);
 
-//header ("Location: ".SITE_URL."owner.php");
 
-//echo $chleadapierr = curl_errno($chlead);
-//echo $chleaderrmsg = curl_error($chlead);
+
+
 curl_close($chlead);
 
-
+header ("Location: ".SITE_URL."owner.php");
 ?>

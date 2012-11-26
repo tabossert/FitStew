@@ -23,13 +23,7 @@ $title = "ZuneFit Gym Panel";
             </ul>
 
         </div>
-        <form action="encript.php" method="post"
-              enctype="multipart/form-data">
-            <label for="file">Filename:</label>
-            <input type="file" name="file" id="file"><br>
-            <input type="hidden" name="gid" id="gid" value="<?php echo $_SESSION['gid']; ?>" />
-            <input type="submit" name="submit" value="Submit">
-        </form>
+       
         <div class="clr" ></div>
         <div class="blue-box1">
             <div id="shedule" style="min-height: 360px;">
@@ -57,6 +51,16 @@ $title = "ZuneFit Gym Panel";
 
 
             <div id="box-header" >
+<!--                 <form action="encript.php" method="post"
+              enctype="multipart/form-data">
+           
+            <input type="file" name="file" id="file" style="background: transparent;border: none;"><br>
+           
+            <input type="submit" name="submit" value="Submit" style="background: transparent;">
+        </form>-->
+                <div id="g_image" style="float: left;width: 70px;"></div>
+                <div style="float: left;width: 100px;">
+                    <div id="head">
                 <table class="pref2">
                     <tr><td>
                             <label for="g_name" class="labels"> Gym&nbsp;Name  </label> 
@@ -69,7 +73,18 @@ $title = "ZuneFit Gym Panel";
                             <input type="text" name="g_rate" id="g_rate" class="transparent" readonly=""/>
                         </td>  
                     </tr>
-                </table>
+                </table></div>
+                    <div id="image" style="display: none;width: 200px;">
+                        
+                        <form action="encript.php" method="post"
+              enctype="multipart/form-data">
+           
+            <input type="file" name="file" id="file" >
+            <input type="hidden" name="im_old" id="im_old" value="<?php if(isset($_SESSION['img'])){echo $_SESSION['img'];} ?>"/>
+            <input type="button" onclick="widgets.gim.cancel()" value="Cancel" style="float: left;"/>
+            <input type="submit" name="submit" value="Submit" style="float: right;"/>
+                        </form>
+                    </div></div>
             </div>
             <div>
                 <div class = "my-box2" >
@@ -90,8 +105,8 @@ $title = "ZuneFit Gym Panel";
                     <div id="box-description" >
                         <span id="g_edit" style="float: right;cursor: pointer;"><img src="images/edits.png" onclick="widgets.gim.edit()" /></span>
                         <span id="g_done" style="float: right;cursor: pointer;display: none;" ><img src="images/dones.png" onclick="widgets.gim.update()" /></span>
-
-                        <table class="pref">
+                        <div style="width: 300px;float: left;overflow: hidden;">
+                        <table class="pref" >
 
                             <tr><td>
                                     <label for="g_address"  >  Address  </label></td><td>:</td><td>
@@ -133,6 +148,7 @@ $title = "ZuneFit Gym Panel";
                                 </td></tr>
 
                         </table>
+                         </div>
                     </div>   
                     <div id="box-Schedule" style="display: none; " >
 

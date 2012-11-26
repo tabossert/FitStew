@@ -202,6 +202,7 @@ var User = function()
                
                
                     $("#pref_lastName").val(result6.last_name);
+                     $("#pref_phone").val(result6.phone);
                
                     $("#pref_address").val(result6.address);
                 
@@ -539,7 +540,8 @@ var User = function()
      
        
         data['phone'] = $('#pref_phone').val();
-        data['pincode'] = $('#pref_pin').val();
+         data["pincode"] = Sha1.hash($('#pref_pin').val());
+        
        
         
              

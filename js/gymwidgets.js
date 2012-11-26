@@ -166,25 +166,60 @@ var Gym = function()
         this.getGymBal(); 
         this.getGymInfo(); 
         this.getSchedule();
-       this.addImage();
+      this.allTags();
     
-       
+       this.delTag();
     }
-    this.addImage = function()
+    this.image = function()
     {
-       
+         $('#head').hide();
+        $('#image').show();
+        
+        
+    }
+     this.cancel = function()
+    {
+          $('#image').hide();
+         $('#head').show();
+      
+        
+        
+    }
+    this.delTag = function()
+    {
+        data = {};
+        data['tid'] = 39;
+        
+        
+        $.ajax({
+            type: 'DELETE',
+            url: "https://api.zunefit.com/api/deleteTag/",
+            data: data,
+            beforeSend : function(xhrObj) {
+                xhrObj.setRequestHeader("ltype", "web");
+            
+                xhrObj.setRequestHeader("token", $('#token').val());
+            
+            },
+            success: function(response){
+                result12 = eval(response)[0];
+                alert(result12.status);
+           
+            }
+        });
     }
     this.addType = function()
     {
         data = {};
         data['tag'] = $('#newServe').val();
+        data['gymid'] = $('#gid').val();
          ZUNEFIT.postJSON({
             url:'addTag/',
               token : $('#token').val(),
               data : data,
             success:function(data){
                 results = eval(data);
-                alert(results.status);
+                
                 
               
             },
@@ -192,7 +227,7 @@ var Gym = function()
           
             }
         });
-      
+      this.allTags();
          
     }
     this.search = function()
@@ -202,10 +237,29 @@ var Gym = function()
       
          
     }
-    this.save = function()
+    this.allTags = function()
     {
         
-        var add = $('#all_service').html();
+        servicess = "<ul>";
+        ZUNEFIT.getJSON({
+            url:'getTags/'+$('#gid').val(),
+            success:function(data){
+                results = eval(data);
+                end = results.length;
+                for(i=0;i<end;i++){
+                   
+                    servicess += '<li>'+results[i].tag+'</li>';
+                }
+               servicess += "</ul>";
+              
+                $("#box-Services").html(servicess);
+             $("#all_service").html(servicess);
+              
+            },
+            error:function(){
+          
+            }
+        });
       
          
     }
@@ -230,6 +284,9 @@ var Gym = function()
                 $("#g_rate").val(results.rate);
                 $("#g_fb").val(results.facebook);
                 $("#g_twt").val(results.twitter);
+                 $("#im_old").val(results.image);
+                  image = '<a href="#" onclick="widgets.gim.image()"><img src="'+results.image+'" width="60" height="60" /></a>';
+                  $("#g_image").html(image);
                 
                
                
@@ -240,26 +297,7 @@ var Gym = function()
             }
         });
         
-        servicess = "<ul>";
-        ZUNEFIT.getJSON({
-            url:'getTags/'+$('#gid').val(),
-            success:function(data){
-                results = eval(data);
-                end = results.length;
-                for(i=0;i<end;i++){
-                   
-                    servicess += '<li>'+results[i].tag+'</li>';
-                }
-               servicess += "</ul>";
-              
-                $("#box-Services").html(servicess);
-             $("#all_service").html(servicess);
-              
-            },
-            error:function(){
-          
-            }
-        });
+       
         
         
     }
@@ -515,7 +553,7 @@ var Gym = function()
         
         data['facebook'] = $('#g_fb').val();
         data['twitter'] = $('#g_twt').val();
-        
+          data['image'] = $('#im_old').val();
         
         ZUNEFIT.postJSON({
             url:'updateGymProfile/',
