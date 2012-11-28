@@ -93,7 +93,7 @@ var User = function()
         this.getcrediDetails();
         
         this.enter();
-     
+    
        
         
     }
@@ -202,7 +202,7 @@ var User = function()
                
                
                     $("#pref_lastName").val(result6.last_name);
-                     $("#pref_phone").val(result6.phone);
+                    $("#pref_phone").val(result6.phone);
                
                     $("#pref_address").val(result6.address);
                 
@@ -540,7 +540,7 @@ var User = function()
      
        
         data['phone'] = $('#pref_phone').val();
-         data["pincode"] = Sha1.hash($('#pref_pin').val());
+        data["pincode"] = Sha1.hash($('#pref_pin').val());
         
        
         
@@ -585,7 +585,7 @@ var User = function()
         data['state'] = $("#pref_state").val();
         data['zipcode'] = $("#pref_zip").val();
       
-        
+      
        
         
         
@@ -607,6 +607,8 @@ var User = function()
     }
     this.update_new = function()
     {
+        
+        
         data = {};
         
         data['first_name'] = $("#pref_firstName").val();
@@ -896,34 +898,119 @@ var User = function()
         
         
     }
+    this.onload = function()
+    {
+        $("#message").html("waiting...");
+        Stripe.setPublishableKey('pk_test_b6UX3N4Ew26Yxmtf2pdZ84yT');
+        // disable the submit button to prevent repeated clicks
+        $('.submit-button').attr("disabled", "disabled");
+        if($('#pref_address').val().length==0){
+            this.update_new();
+        }
+        // createToken returns immediately - the supplied callback submits the form if there are no errors
+        Stripe.createToken({
+            name : $("#first_name").val(),
+            address_line1 : $("#address_1").val(),
+            address_line2 :$("#address_2").val(),
+            address_city : $("#city").val(),
+            address_state :  $("#state").val(),
+            address_zip : $("#zip").val(),
+                
+            number: $('.card-number').val(),
+            cvc: $('.card-cvc').val(),
+            exp_month: $('.card-expiry-month').val(),
+            exp_year: $('.card-expiry-year').val()
+        }, stripeResponseHandler);
+        return false; // submit from callback
+        
+        function stripeResponseHandler(status, response) {
+            if (response.error) {
+                // re-enable the submit button
+                $('.submit-button').removeAttr("disabled");
+                // show the errors on the form
+                $(".payment-errors").html(response.error.message);
+            } else {
+                var form$ = $("#payment-form");
+                // token contains id, last4, and card type
+                try{ 
+                   
+                    $('#tok').remove();
+                }catch(e){}
+                var token = response['id'];
+              
+                // insert the token into the form so it gets submitted to the server
+                form$.append("<input type='hidden' id ='tok' name='stripeToken' value='" + token + "' />");
+                // and submit
+                data = {};
+       
+   
+ 
+                data['stripeToken'] = $("#tok").val();
+                data['amount'] = $("#pay_amount").val();
+                $.ajax({
+                    type: 'POST',
+                    url: "card.php",
+                    data: data,
+                    dataType:'json',
+           
+                    success: function(response){
+               
+                
+                
+                        $("#message").html(response.message);
+                        $('.submit-button').removeAttr("disabled");
+                        datas = {};
+                        datas['refid']=response.id;
+                        ZUNEFIT.postJSON({
+                   
+                    
+                            url:'paymentTransaction/',
+                            data:datas,
+                            token : $('#utoken').val(),
+          
+                            success:function(response){
+                              //  alert('paid');
+                            },
+                            error:function(){
+                                //Error should be handle here
+                              //  alert("no");  
+                            }
+            
+                        });
+                    //alert(result1);        
+                    }
+                });
+        
+        
+            }
+        }
+    }
     
     this.payment = function()
     {
-        $("#message").html("waiting...");
+       
+
+    
+
+  
+       
         data = {};
-        data['first_name'] = $("#first_name").val();
-        data['card_number'] = $("#card_number").val();
-        data['last_name'] = $("#last_name").val();
-        data['cvv'] = $("#cvv").val();
-        data['address_1'] = $("#address_1").val();
-        data['address_2'] = $("#address_2").val();
-        data['expiry_month'] = $("#expiry_month").val();
-        data['expiry_year'] = $("#expiry_year").val();
+       
+   
+ 
+        data['stripeToken'] = $("#tok").val();
         data['amount'] = $("#amount").val();
-        data['city'] = $("#city").val();
-        data['state'] = $("#state").val();
-        data['zip'] = $("#zip").val();
+      
+      
+     
            
-        if($('#pref_address').val().length==0){
-            this.update_new();
-        }           
-        
+       
        
         
         
         $.ajax({
             type: 'POST',
-            url: "payment/processor.php",
+            url: "card.php",
             data: data,
            
             success: function(response){
@@ -941,11 +1028,11 @@ var User = function()
                     token : $('#utoken').val(),
           
                     success:function(response){
-                        
+                        alert('paid');
                     },
                     error:function(){
-                    //Error should be handle here
-                    // alert("no");  
+                        //Error should be handle here
+                        alert("no");  
                     }
             
                 });

@@ -4,7 +4,11 @@ $title = "ZuneFit Gym Panel";
 ?>
 <!-- Header Start -->
 <?php include 'html/header.php'; ?>
-
+<script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+<script type="text/javascript">
+    // this identifies your website in the createToken call below
+    
+</script>
 
 <!-- Header End -->
 
@@ -139,7 +143,7 @@ $title = "ZuneFit Gym Panel";
                                     <label for="pref_zip"  > Zip Code  </label></td><td>:</td><td>
                                     <input type="text" name="pref_zip" id="pref_zip" class="transparent" style=" width: 400px;" readonly="readonly"/> 
                                     <label for="pref_zip" class="error" generated="true"></label></td></tr>
-                      
+
                         </table>
                         <hr/>
                         <span id="phone_edit" style="float: right;cursor: pointer;"><img src="images/edits.png" onclick="widgets.user.phone_edit()" /></span>
@@ -160,9 +164,10 @@ $title = "ZuneFit Gym Panel";
 
 
                     </div>
-                    <div id="billing" class="blue-boxs" style="display: none;">
+                    <div id="billing" class="blue-boxs" style="display: none;" >
                         <div >
-                            <form action="" method="POST">
+                            <span class="payment-errors"></span>
+                            <form action="" method="POST" id="payment-form">
                                 <fieldset>
 
                                     <input name="redirect_url" type="hidden" value="" />
@@ -228,152 +233,166 @@ $title = "ZuneFit Gym Panel";
                                             </tr>
 
 
+
                                         </table>
                                     </div>
 
                                     <table style="border-collapse: separate;border-spacing: 0px 10px; width: 310px;"><tr><td>
                                                 <label for="card_number" class="bil_label">Card Number</label></td><td>
-                                                <input id="card_number" name="card_number" type="text"  class="bil_text"/></td></tr>
+                                                <input  size="20" autocomplete="off" class="card-number bil_text" type="text" /></td></tr>
                                         <tr><td>
                                                 <label for="cvv" class="bil_label">Security Code</label></td><td>
-                                                <input id="cvv" name="cvv" type="text"  class="bil_text"/></td></tr>
+                                                <input  type="text"  size="4" autocomplete="off" class="card-cvc bil_text"/></td></tr>
                                         <tr> <td>
                                                 <label for="credit_card_month" class="bil_label">Expires on month</label></td><td >
-                                                <input id="expiry_month" class="bil_text" name="expiry_month" type="text" placeholder="05" /></td></tr >
+                                                <input size="2" class="card-expiry-month bil_text"  type="text" placeholder="05" /></td></tr >
                                         <tr><td>    <label for="credit_card_year" class="bil_label">Expires on year</label></td><td >   
-                                                <input id="expiry_year" class="bil_text" name="expiry_year" type="text" placeholder="2012" width="4" /></td></tr>
+                                                <input  size="4" class="card-expiry-year bil_text"  type="text" placeholder="2012" /></td></tr>
                                         <tr> <td>
                                                 <label for="amount" class="bil_label">Amount</label></td><td>
-                                                <input id="amount" name="amount" type="text"  class="bil_text"/></td></tr>
+                                                <input id="pay_amount" name="pay_amount" type="text"  class="bil_text"/></td></tr>
 
                                     </table>
+
                                     <div>
                                         <img src="images/CreditCardLogos.jpg" style="clear: right;  padding-left: 110px; "/>
 
-                                        <button class="buttons" type='button' style="clear: right; margin-top: 10px;margin-left: 130px;" onclick="widgets.user.payment();">Submit Payment</button>
+                                        <button class="buttons submit-button" type='button' style="clear: right; margin-top: 10px;margin-left: 130px;" onclick="widgets.user.onload();">Submit Payment</button>
                                         <div id="message">Message</div>
                                     </div>
                                 </fieldset>
                             </form>
 
-                        </div>
+
+
+
+
+
+
+                          
+                           
+                           
+                          
+                            
+                      
                     </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--</div>-->
-
-    <div class="right-box">
-        <div class="balance-box" id="balanceBox">
-        </div>
-        <div class="right-featured-box">
-            <h1>Featured Gyms</h1>
-            <div id="featuredGymsBox">
-            </div>
-        </div>
-        <div style="height:20px;"></div>
-        <div class="right-featured-box" >
-            <h1>Popular Workouts</h1>
-            <ul class="user-item-link">
-
-
-            </ul>
-        </div>
-
-
-
-    </div>
-    <div style="display: none;">
-
-        <div name="lightbox" id="lightbox" class="blue-box2" style="height: 450px; width: 400px; ">
-            <div style="height: 60px;">
-                <div class="tweet" style="display: inline;"></div>
-                <div class="like" style="display: inline;"></div>
-                <div class="plus" ></div>
-            </div>
-            <div id="box-header" >
-                <table class="pref2">
-                    <tr><td>
-                            <label for="g_name" class="labels"> Gym&nbsp;Name  </label> 
-                        </td><td><td>:<td>
-                            <input type="text" name="g_name" id="g_name" class="transparent"/>
-                        </td>  </tr>  
-                    <tr> <td>
-                            <label for="g_rate" class="labels"> Rate  </label>
-                        </td> <td><td>:<td>
-                            <input type="text" name="g_rate" id="g_rate" class="transparent"/>
-                        </td>  
-                    </tr>
-                </table>
-            </div>
-            <div>
-                <div class = "my-box2" >
-                    <p>
-                    <ul class = "toplink">
-                        <li><a href = "#" onclick="widgets.user.loadBox(0)">Description</a></li>
-                        <li><a href = "#" onclick="widgets.user.loadBox(1)">Schedule</a></li>
-
-                        <li><a href = "#" onclick="widgets.user.loadBox(2)">Services</a></li>
-                    </ul>
-                    </p>
-                </div>
-
-
-
-                <div id="divexample1" style="height: 290px;float: left;width: 390px;overflow-x: hidden;">
-
-                    <div id="box-description" >
-                        <table class="pref">
-
-                            <tr><td>
-                                    <label for="g_address"  >  Address  </label></td><td>:</td><td>
-                                    <input type="text" name="g_address" id="g_address" class="transparent"/> 
-                                </td></tr>
-                            <tr><td>
-                                    <label for="g_city"  >  City  </label></td><td>:</td><td>
-                                    <input type="text" name="g_city" id="g_city" class="transparent"/>
-                                </td></tr>                        
-
-                            <tr><td>
-                                    <label for="g_state"  > State  </label></td><td>:</td><td>
-                                    <input type="text" name="g_state" id="g_state" class="transparent"/> 
-                                </td></tr>
-                            <tr><td>
-                                    <label for="g_zipcode" > Zip&nbsp;Code  </label></td><td>:</td><td>
-                                    <input type="number" name="g_zipcode" id="g_zipcode" class="transparent"/>
-                                </td></tr>
-                            <tr><td>
-                                    <label for="g_phone"  >  Phone  </label></td><td>:</td><td>
-                                    <input type="text" name="g_phone" id="g_phone" class="transparent"/> 
-                                </td></tr>
-                            <tr><td>
-                                    <label for="g_email"  >  email  </label></td><td>:</td><td>
-                                    <input type="email" name="g_email" id="g_email" class="transparent"/>
-                                </td></tr>                        
-
-                            <tr><td>
-                                    <label for="g_contact"  > Contact  </label></td><td>:</td><td>
-                                    <input type="text" name="g_contact" id="g_contact" class="transparent"/> 
-                                </td></tr>
-
-                        </table>
-                    </div>   
-                    <div id="box-Schedule" style="display: none; " >
-
-                    </div>   
-
-                    <div id="box-Services" style="display: none;" >
-
-                    </div>   
                 </div>
 
             </div>
+        </div>
+    </div>
+</div>
+<!--</div>-->
+
+<div class="right-box">
+    <div class="balance-box" id="balanceBox">
+    </div>
+    <div class="right-featured-box">
+        <h1>Featured Gyms</h1>
+        <div id="featuredGymsBox">
+        </div>
+    </div>
+    <div style="height:20px;"></div>
+    <div class="right-featured-box" >
+        <h1>Popular Workouts</h1>
+        <ul class="user-item-link">
+
+
+        </ul>
+    </div>
+
+
+
+</div>
+<div style="display: none;">
+
+    <div name="lightbox" id="lightbox" class="blue-box2" style="height: 450px; width: 400px; ">
+        <div style="height: 60px;">
+            <div class="tweet" style="display: inline;"></div>
+            <div class="like" style="display: inline;"></div>
+            <div class="plus" ></div>
+        </div>
+        <div id="box-header" >
+            <table class="pref2">
+                <tr><td>
+                        <label for="g_name" class="labels"> Gym&nbsp;Name  </label> 
+                    </td><td><td>:<td>
+                        <input type="text" name="g_name" id="g_name" class="transparent"/>
+                    </td>  </tr>  
+                <tr> <td>
+                        <label for="g_rate" class="labels"> Rate  </label>
+                    </td> <td><td>:<td>
+                        <input type="text" name="g_rate" id="g_rate" class="transparent"/>
+                    </td>  
+                </tr>
+            </table>
+        </div>
+        <div>
+            <div class = "my-box2" >
+                <p>
+                <ul class = "toplink">
+                    <li><a href = "#" onclick="widgets.user.loadBox(0)">Description</a></li>
+                    <li><a href = "#" onclick="widgets.user.loadBox(1)">Schedule</a></li>
+
+                    <li><a href = "#" onclick="widgets.user.loadBox(2)">Services</a></li>
+                </ul>
+                </p>
+            </div>
+
+
+
+            <div id="divexample1" style="height: 290px;float: left;width: 390px;overflow-x: hidden;">
+
+                <div id="box-description" >
+                    <table class="pref">
+
+                        <tr><td>
+                                <label for="g_address"  >  Address  </label></td><td>:</td><td>
+                                <input type="text" name="g_address" id="g_address" class="transparent"/> 
+                            </td></tr>
+                        <tr><td>
+                                <label for="g_city"  >  City  </label></td><td>:</td><td>
+                                <input type="text" name="g_city" id="g_city" class="transparent"/>
+                            </td></tr>                        
+
+                        <tr><td>
+                                <label for="g_state"  > State  </label></td><td>:</td><td>
+                                <input type="text" name="g_state" id="g_state" class="transparent"/> 
+                            </td></tr>
+                        <tr><td>
+                                <label for="g_zipcode" > Zip&nbsp;Code  </label></td><td>:</td><td>
+                                <input type="number" name="g_zipcode" id="g_zipcode" class="transparent"/>
+                            </td></tr>
+                        <tr><td>
+                                <label for="g_phone"  >  Phone  </label></td><td>:</td><td>
+                                <input type="text" name="g_phone" id="g_phone" class="transparent"/> 
+                            </td></tr>
+                        <tr><td>
+                                <label for="g_email"  >  email  </label></td><td>:</td><td>
+                                <input type="email" name="g_email" id="g_email" class="transparent"/>
+                            </td></tr>                        
+
+                        <tr><td>
+                                <label for="g_contact"  > Contact  </label></td><td>:</td><td>
+                                <input type="text" name="g_contact" id="g_contact" class="transparent"/> 
+                            </td></tr>
+
+                    </table>
+                </div>   
+                <div id="box-Schedule" style="display: none; " >
+
+                </div>   
+
+                <div id="box-Services" style="display: none;" >
+
+                </div>   
+            </div>
 
         </div>
 
     </div>
+
+</div>
 
 </div>
 <div class="clr"></div>
