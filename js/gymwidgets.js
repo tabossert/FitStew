@@ -166,21 +166,54 @@ var Gym = function()
         this.getGymBal(); 
         this.getGymInfo(); 
         this.getSchedule();
-      this.allTags();
+        this.allTags();
     
-       this.delTag();
+        this.delTag();
+       
+      //this.addclass();
+       
+    }
+    this.addclass = function()
+    {
+        data = {};
+        data['gymid'] = '22';
+        data['service'] = 'yoga';
+        data['price'] = '12';
+        data['monday'] = '02:00:00';
+        data['tuesday'] = '02:00:00';
+        data['wednesday'] = '02:00:00';
+        data['thursday'] = '02:00:00';
+        data['friday'] = '02:00:00';
+        data['saturday'] = '02:00:00';
+        data['sunday'] = '02:00:00';
+        ZUNEFIT.postJSON({
+            url:'addClass/',
+            token : $('#token').val(),
+            data : data,
+            success:function(data){
+                results = eval(data);
+                
+                
+              
+            },
+            error:function(){
+          
+            }
+        });
+        
+        
     }
     this.image = function()
     {
-         $('#head').hide();
+        $('#head').hide();
         $('#image').show();
         
         
     }
-     this.cancel = function()
+    this.cancel = function()
     {
-          $('#image').hide();
-         $('#head').show();
+        $('#image').hide();
+        $('#head').show();
       
         
         
@@ -213,10 +246,10 @@ var Gym = function()
         data = {};
         data['tag'] = $('#newServe').val();
         data['gymid'] = $('#gid').val();
-         ZUNEFIT.postJSON({
+        ZUNEFIT.postJSON({
             url:'addTag/',
-              token : $('#token').val(),
-              data : data,
+            token : $('#token').val(),
+            data : data,
             success:function(data){
                 results = eval(data);
                 
@@ -227,7 +260,7 @@ var Gym = function()
           
             }
         });
-      this.allTags();
+        this.allTags();
          
     }
     this.search = function()
@@ -250,10 +283,10 @@ var Gym = function()
                    
                     servicess += '<li>'+results[i].tag+'</li>';
                 }
-               servicess += "</ul>";
+                servicess += "</ul>";
               
                 $("#box-Services").html(servicess);
-             $("#all_service").html(servicess);
+                $("#all_service").html(servicess);
               
             },
             error:function(){
@@ -284,9 +317,9 @@ var Gym = function()
                 $("#g_rate").val(results.rate);
                 $("#g_fb").val(results.facebook);
                 $("#g_twt").val(results.twitter);
-                 $("#im_old").val(results.image);
-                  image = '<a href="#" onclick="widgets.gim.image()"><img src="'+results.image+'" width="60" height="60" /></a>';
-                  $("#g_image").html(image);
+                $("#im_old").val(results.image);
+                image = '<a href="#" onclick="widgets.gim.image()"><img src="'+results.image+'" width="60" height="60" /></a>';
+                $("#g_image").html(image);
                 
                
                
@@ -321,8 +354,8 @@ var Gym = function()
                             schedule += "<hr style='clear:both;'/>";
                         }
 
-                        schedule +="<table style = 'width:auto;'><tr><td class='bold'>Service</td><td class='bold'>:"+result15[i].service+"</td></tr><tr><td></td><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr><tr><td></td><td class='bold'>Date</td><td>:"+result15[i].date+"</td></tr>";
-                        schedule +="<tr><td></td><td class='bold'>Time</td><td>:"+result15[i].time+"</td></tr></table>";
+                        schedule +="<table style = 'width:280px;float:left;'><tr><td class='bold'>Service</td><td>:"+result15[i].service+"</td></tr><tr><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr><tr><td class='bold'>Monday</td><td>:"+result15[i].monday+"</td></tr><tr><td class='bold'>Tuesday</td><td>:"+result15[i].tuesday+"</td></tr>";
+                        schedule +="<tr><td class='bold'>Wednesday</td><td>:"+result15[i].wednesday+"</td></tr><tr><td class='bold'>Thursday</td><td>:"+result15[i].thursday+"</td></tr><tr><td class='bold'>Friday</td><td>:"+result15[i].friday+"</td></tr><tr><td class='bold'>Saturday</td><td>:"+result15[i].saturday+"</td></tr><tr><td class='bold'>Sunday</td><td>:"+result15[i].time+"</td></tr></table>";
                        
                     }
                     op= {};
@@ -344,7 +377,7 @@ var Gym = function()
                     }
                     services += "</ui>";
                     
-                   // $("#box-Services").html(services);
+                    // $("#box-Services").html(services);
                     $("#box-Schedule").html(schedule);
                 
                 }catch(e){
@@ -486,10 +519,10 @@ var Gym = function()
         var mon= new Date();
         
         var firstDay = new Date(mon.getFullYear(), mon.getMonth() , 1);
-        var firstDate = firstDay.getFullYear() + "-" + (firstDay.getMonth()+1) + "-" + firstDay.getDate();
+        var firstDate = firstDay.getUTCFullYear() + "-" + (firstDay.getUTCMonth()+1) + "-" + firstDay.getUTCDate();
         
-        var lastDay = new Date(mon.getFullYear(), mon.getMonth() + 1, 0);
-        var lastDate = lastDay.getFullYear() + "-" + (lastDay.getMonth()+1) + "-" + lastDay.getDate();
+        var lastDay = new Date(mon.getFullYear(), mon.getMonth() + 1, 1);
+        var lastDate = lastDay.getUTCFullYear() + "-" + (lastDay.getUTCMonth()+1) + "-" + lastDay.getUTCDate();
         
         this.getGymSchedule(firstDate+" 00:00:00", lastDate+" 24:00:00");
         $(".inner-calender3").css("background-color","#565d60");
@@ -499,7 +532,7 @@ var Gym = function()
     this.getGymDaySchedule = function()
     {
         var d = new Date();
-        var strDate = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+        var strDate = d.getUTCFullYear() + "-" + (d.getUTCMonth()+1) + "-" + d.getUTCDate();
         //strDate = "2012-10-16";
         
         this.getGymSchedule(strDate+" 00:00:00", strDate+" 24:00:00");
@@ -515,8 +548,8 @@ var Gym = function()
 
         var firstday = new Date(curr.setDate(first));
         var lastday = new Date(curr.setDate(last));
-        var startDate = firstday.getFullYear() + "-" + (firstday.getMonth()+1) + "-" + firstday.getDate();
-        var endDate = lastday.getFullYear() + "-" + (lastday.getMonth()+1) + "-" + lastday.getDate();
+        var startDate = firstday.getUTCFullYear() + "-" + (firstday.getUTCMonth()+1) + "-" + firstday.getUTCDate();
+        var endDate = lastday.getUTCFullYear() + "-" + (lastday.getUTCMonth()+1) + "-" + lastday.getUTCDate();
         
         this.getGymSchedule(startDate+" 00:00:00", endDate+" 24:00:00");
        
@@ -553,7 +586,7 @@ var Gym = function()
         
         data['facebook'] = $('#g_fb').val();
         data['twitter'] = $('#g_twt').val();
-          data['image'] = $('#im_old').val();
+        data['image'] = $('#im_old').val();
         
         ZUNEFIT.postJSON({
             url:'updateGymProfile/',

@@ -166,7 +166,7 @@ $title = "ZuneFit Gym Panel";
                     </div>
                     <div id="billing" class="blue-boxs" style="display: none;" >
                         <div >
-                            <span class="payment-errors"></span>
+                            <span class="payment-errors" style="color: #900;font-weight: bold;"></span>
                             <form action="" method="POST" id="payment-form">
                                 <fieldset>
 
@@ -180,13 +180,10 @@ $title = "ZuneFit Gym Panel";
 
                                     <table style="border-collapse: separate;border-spacing: 0px 10px; width: 280px;float: left;clear: left;">
                                         <tr style="padding-bottom: 5px;"><td>
-                                                <label for="first_name" class="bil_label">First name</label></td><td>
+                                                <label for="first_name" class="bil_label">Name</label></td><td>
                                                 <input id="first_name" name="first_name" type="text" class="bil_text"/></td>
                                         </tr>
-                                        <tr><td>
-                                                <label for="last_name" class="bil_label">Last name</label></td><td>
-                                                <input id="last_name" name="last_name" type="text" class="bil_text"/></td>
-                                        </tr>
+                                       
                                         <tr><td>
                                                 <label for="address_1" class="bil_label">Address 1</label></td><td>
                                                 <input id="address_1" name="address_1" type="text"  class="bil_text"/></td>
@@ -257,7 +254,7 @@ $title = "ZuneFit Gym Panel";
                                     <div>
                                         <img src="images/CreditCardLogos.jpg" style="clear: right;  padding-left: 110px; "/>
 
-                                        <button class="buttons submit-button" type='button' style="clear: right; margin-top: 10px;margin-left: 130px;" onclick="widgets.user.onload();">Submit Payment</button>
+                                        <button class="buttons submit-button" type='button' style="clear: right; margin-top: 10px;margin-bottom: 10px;margin-left: 105px;" onclick="widgets.user.onload();">Submit Payment</button>
                                         <div id="message">Message</div>
                                     </div>
                                 </fieldset>
@@ -313,6 +310,8 @@ $title = "ZuneFit Gym Panel";
             <div class="plus" ></div>
         </div>
         <div id="box-header" >
+               <div id="g_image" style="float: left;width: 70px;"></div>
+               <div style="width: 170px;float: left;">
             <table class="pref2">
                 <tr><td>
                         <label for="g_name" class="labels"> Gym&nbsp;Name  </label> 
@@ -325,7 +324,7 @@ $title = "ZuneFit Gym Panel";
                         <input type="text" name="g_rate" id="g_rate" class="transparent"/>
                     </td>  
                 </tr>
-            </table>
+            </table></div>
         </div>
         <div>
             <div class = "my-box2" >

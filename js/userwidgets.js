@@ -77,7 +77,8 @@ var User = function()
     
     this.bind = function()
     { 
-        
+        //        var d=new Date('t'+" UTC");
+        //        document.write(d.toString());
       
         this.getFeaturedGyms();
         this.getUserBalance();
@@ -102,7 +103,7 @@ var User = function()
     this.getDate = function()
     {
         $(function() {
-            $( "#datepicker" ).datepicker({
+            $( ".datepicker" ).datepicker({
                 showOn: "button",
                 buttonImage:"jqueryui/images/calander.png",
                 buttonImageOnly: true
@@ -334,8 +335,8 @@ var User = function()
     this.getUserDaySchedule = function()
     {
         var d = new Date();
-        var strDate = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
-        //strDate = "2012-10-16";
+        var strDate = d.getUTCFullYear() + "-" + (d.getUTCMonth()+1) + "-" + d.getUTCDate();
+        
         
         this.getUserSchedule(strDate+" 00:00:00", strDate+" 24:00:00");
         $(".inner-calender1").css("background-color","#565d60");
@@ -350,8 +351,8 @@ var User = function()
 
         var firstday = new Date(curr.setDate(first));
         var lastday = new Date(curr.setDate(last));
-        var startDate = firstday.getFullYear() + "-" + (firstday.getMonth()+1) + "-" + firstday.getDate();
-        var endDate = lastday.getFullYear() + "-" + (lastday.getMonth()+1) + "-" + lastday.getDate();
+        var startDate = firstday.getUTCFullYear() + "-" + (firstday.getUTCMonth()+1) + "-" + firstday.getUTCDate();
+        var endDate = lastday.getUTCFullYear() + "-" + (lastday.getUTCMonth()+1) + "-" + lastday.getUTCDate();
         
         this.getUserSchedule(startDate+" 00:00:00", endDate+" 24:00:00");
        
@@ -364,11 +365,11 @@ var User = function()
         var mon= new Date();
         
         var firstDay = new Date(mon.getFullYear(), mon.getMonth() , 1);
-        var firstDate = firstDay.getFullYear() + "-" + (firstDay.getMonth()+1) + "-" + firstDay.getDate();
+        var firstDate = firstDay.getUTCFullYear() + "-" + (firstDay.getUTCMonth()+1) + "-" + firstDay.getUTCDate();
         
-        var lastDay = new Date(mon.getFullYear(), mon.getMonth() + 1, 0);
-        var lastDate = lastDay.getFullYear() + "-" + (lastDay.getMonth()+1) + "-" + lastDay.getDate();
-        
+        var lastDay = new Date(mon.getFullYear(), mon.getMonth() + 1, 1);
+        var lastDate = lastDay.getUTCFullYear() + "-" + (lastDay.getUTCMonth()+1) + "-" + lastDay.getUTCDate();
+        //firstDate = "2012-10-01";
         this.getUserSchedule(firstDate+" 00:00:00", lastDate+" 24:00:00");
         $(".inner-calender3").css("background-color","#565d60");
         $(".inner-calender2, .inner-calender1").css("background-color","transparent");
@@ -455,6 +456,9 @@ var User = function()
             }
         });
     }
+    
+        
+   
     
     this.searchMe = function()
     {
@@ -655,7 +659,7 @@ var User = function()
         data['classid'] = cid;
         data['price'] = price;
         
-       
+        data['datetime'] = '2012-11-20';
         
         
         ZUNEFIT.postJSON({
@@ -798,7 +802,7 @@ var User = function()
             success:function(response){
                 try{
                     result14 = eval(response)[0];
-               
+                    image = "";
                 
                     $("#g_address").val(result14.address);
                     $("#g_city").val(result14.city);
@@ -811,6 +815,8 @@ var User = function()
                 
                     $("#g_name").val(result14.name);
                     $("#g_rate").val(result14.rate);
+                    image = '<img src="'+result14.image+'" width="60" height="60" />';
+                    $("#g_image").html(image);
                    
                     facebook = result14.facebook;
                     if(result14.facebook== null || result14.facebook== "undefined"){
@@ -844,51 +850,64 @@ var User = function()
                         if(i!=0){
                             schedule += "<hr style='clear:both;'/>";
                         }
+                       
+                        var mon = result15[i].monday;
+                        if(mon != null) mon = mon.substr(0, 5);
+                        var tue = result15[i].tuesday;
+                        if(mon != null) tue = tue.substr(0, 5);
+                        var wed = result15[i].wednesday;
+                        if(mon != null) wed = wed.substr(0, 5);
+                        var thu = result15[i].thursday;
+                        if(mon != null) thu = thu.substr(0, 5);
+                        var fri = result15[i].friday;
+                        if(mon != null) fri = fri.substr(0, 5);
+                        var sat = result15[i].saturday;
+                        if(mon != null) sat = sat.substr(0, 5);
+                        var sun = result15[i].time;
+                        if(mon != null) sun = sun.substr(0, 5);
+                        
+                        
+                        schedule +="<table class ='time' style = 'width:200px;float:left;'><tr><td class='bold'>Service</td><td>:"+result15[i].service+"</td><td style='width:10px;'></td><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr></table><br/><table><tr><td class='bold'>Mon</td><td class='bold'>Tue</td><td class='bold'>Wed</td><td class='bold'>Thu</td><td class='bold'>Fri</td><td class='bold'>Sat</td><td class='bold'>Sun</td></tr><tr><td>"+mon+"</td><td>"+tue+"</td>";
+                        
+                        schedule +="<td>"+wed+"</td><td>"+thu+"</td><td>"+fri+"</td><td>"+sat+"</td><td>"+sun+"</td></tr></table>";
+                        schedule +='<div style="float: left;width: 200px;" ><p>Date: <input type="text" class="datepicker" /></p></div>';
 
-                        schedule +="<table style = 'width:auto;'><tr><td class='bold'>Service</td><td class='bold'>:"+result15[i].service+"</td></tr><tr><td></td><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr><tr><td></td><td class='bold'>Date</td><td>:"+result15[i].date+"</td></tr>";
-                        schedule +="<tr><td></td><td class='bold'>Time</td><td>:"+result15[i].time+"</td></tr></table>";
-                        schedule +='<div style="color: #565D60;text-align: right; left:100px;" >Add to my schedule<img src="images/schedule.png" onclick="widgets.user.addEvent('+id+','+result15[i].id+','+result15[i].price+')" style="cursor:pointer;"/></div>';
+                        schedule +='<div style="color: #565D60;float: right;text-align: center;" >Add to my schedule<img src="images/schedule.png" onclick="widgets.user.addEvent('+id+','+result15[i].id+','+result15[i].price+')" style="cursor:pointer;"/></div>';
 
                     }
-                 
-        
-                    op= {};
-               
-                
-                    for(i=0;i<end;i++)
-                    {         
-                        op[i]=result15[i].service;
-                        bool = true;
-                        for(j=0;j<i;j++){
-                            if(op[j] == result15[i].service) {
-                                bool = false;
-                            }
-                        }
-                        if(bool){
-                        
-                        
-                            services +="<li>"+result15[i].service+"</li>";
-                        
-                        
-                        }
-                             
-                    }
-          
-    
-
-
-           
-                
                     services += "</ui>";
                     $("#box-Schedule").html(schedule);
-                    $("#box-Services").html(services);
+                   
                 
                 }catch(e){
                     
                 }
+                $( ".datepicker" ).datepicker();
+                $( ".datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd");
+               
             },
             error:function(){
             //Error should be handle here
+            }
+        });
+        servicess = "<ul>";
+        ZUNEFIT.getJSON({
+            url:'getTags/'+id,
+            success:function(data){
+                results = eval(data);
+                end = results.length;
+                for(i=0;i<end;i++){
+                   
+                    servicess += '<li>'+results[i].tag+'</li>';
+                }
+                servicess += "</ul>";
+              
+             
+                $("#box-Services").html(servicess);
+              
+            },
+            error:function(){
+          
             }
         });
     
@@ -947,6 +966,7 @@ var User = function()
  
                 data['stripeToken'] = $("#tok").val();
                 data['amount'] = $("#pay_amount").val();
+                data['name'] = $("#pref_email").val();
                 $.ajax({
                     type: 'POST',
                     url: "card.php",
@@ -959,24 +979,26 @@ var User = function()
                 
                         $("#message").html(response.message);
                         $('.submit-button').removeAttr("disabled");
-                        datas = {};
-                        datas['refid']=response.id;
-                        ZUNEFIT.postJSON({
+                        if(response.id!=0){
+                            datas = {};
+                            datas['refid']=response.id;
+                            ZUNEFIT.postJSON({
                    
                     
-                            url:'paymentTransaction/',
-                            data:datas,
-                            token : $('#utoken').val(),
+                                url:'paymentTransaction/',
+                                data:datas,
+                                token : $('#utoken').val(),
           
-                            success:function(response){
-                              //  alert('paid');
-                            },
-                            error:function(){
+                                success:function(response){
+                                //  alert('paid');
+                                },
+                                error:function(){
                                 //Error should be handle here
-                              //  alert("no");  
-                            }
+                                //  alert("no");  
+                                }
             
-                        });
+                            });
+                        }
                     //alert(result1);        
                     }
                 });
@@ -1100,7 +1122,30 @@ var User = function()
             token : $('#utoken').val(),
           
             success:function(response){
+                result = eval(response)[0];
+                datas ={};
+                datas['id']=result['refid'];
+                $.ajax({
+                    type: 'POST',
+                    url: "cardDetails.php",
+                    data:datas,           
+                    success: function(responses){
+               
+                        $("#first_name").val(responses.name),
+                        $("#address_1").val(responses.add1),
+                        $("#address_2").val(responses.add2),
+                        $("#city").val(responses.city),
+                        $("#state").val(responses.state),
+                        $("#zip").val(responses.zip),
                 
+                        $('.card-number').val('********'+responses.last4),
+                       
+                        $('.card-expiry-month').val(responses.month),
+                        $('.card-expiry-year').val(responses.year)
+                
+                    }
+                       
+                });
             },
             error:function(){
             //Error should be handle here

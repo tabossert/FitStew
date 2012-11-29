@@ -774,6 +774,12 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
 #waiting{
     background: transparent;
 }
+.time{
+    
+    
+    color: #500;
+    font-weight: bold;
+}
 /*..................................................................*/
 #box-header{
     border-bottom: #000 solid 1px;
@@ -785,9 +791,13 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
 
 }
 .bold{
-    font-family: "Georgia";
+    font-family: Times New Roman;
     font-size: 1em;  
     height: 10px;
+    width: 70px;
+    font-weight: bold;
+    color: midnightblue;
+    
 }
 .bil_label{
     background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #D7D7D7), color-stop(1, #ABABAB) );
