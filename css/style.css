@@ -776,7 +776,7 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
 }
 .time{
     
-    
+    padding: 10px;
     color: #500;
     font-weight: bold;
 }

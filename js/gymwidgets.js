@@ -170,14 +170,14 @@ var Gym = function()
     
         this.delTag();
        
-      //this.addclass();
+    //  this.addclass();
        
     }
     this.addclass = function()
     {
         data = {};
         data['gymid'] = '22';
-        data['service'] = 'yoga';
+        data['service'] = 'weights';
         data['price'] = '12';
         data['monday'] = '02:00:00';
         data['tuesday'] = '02:00:00';
@@ -519,10 +519,12 @@ var Gym = function()
         var mon= new Date();
         
         var firstDay = new Date(mon.getFullYear(), mon.getMonth() , 1);
-        var firstDate = firstDay.getUTCFullYear() + "-" + (firstDay.getUTCMonth()+1) + "-" + firstDay.getUTCDate();
+        fday = (firstDay.getUTCDate() < 10) ? '0'+firstDay.getUTCDate() : firstDay.getUTCDate() ;
+        var firstDate = firstDay.getUTCFullYear() + "-" + (firstDay.getUTCMonth()+1) + "-" + fday;
         
         var lastDay = new Date(mon.getFullYear(), mon.getMonth() + 1, 1);
-        var lastDate = lastDay.getUTCFullYear() + "-" + (lastDay.getUTCMonth()+1) + "-" + lastDay.getUTCDate();
+        lday = (lastDay.getUTCDate() < 10) ? '0'+lastDay.getUTCDate() : lastDay.getUTCDate() ;
+        var lastDate = lastDay.getUTCFullYear() + "-" + (lastDay.getUTCMonth()+1) + "-" + lday;
         
         this.getGymSchedule(firstDate+" 00:00:00", lastDate+" 24:00:00");
         $(".inner-calender3").css("background-color","#565d60");
@@ -532,7 +534,8 @@ var Gym = function()
     this.getGymDaySchedule = function()
     {
         var d = new Date();
-        var strDate = d.getUTCFullYear() + "-" + (d.getUTCMonth()+1) + "-" + d.getUTCDate();
+        fday = (d.getUTCDate() < 10) ? '0'+d.getUTCDate() : d.getUTCDate() ;
+        var strDate = d.getUTCFullYear() + "-" + (d.getUTCMonth()+1) + "-" + fday;
         //strDate = "2012-10-16";
         
         this.getGymSchedule(strDate+" 00:00:00", strDate+" 24:00:00");
@@ -547,9 +550,11 @@ var Gym = function()
         var last = first + 6; 
 
         var firstday = new Date(curr.setDate(first));
+        fday = (firstday.getUTCDate() < 10) ? '0'+firstday.getUTCDate() : firstday.getUTCDate() ;
         var lastday = new Date(curr.setDate(last));
-        var startDate = firstday.getUTCFullYear() + "-" + (firstday.getUTCMonth()+1) + "-" + firstday.getUTCDate();
-        var endDate = lastday.getUTCFullYear() + "-" + (lastday.getUTCMonth()+1) + "-" + lastday.getUTCDate();
+        lday = (lastday.getUTCDate() < 10) ? '0'+lastday.getUTCDate() : lastday.getUTCDate() ;
+        var startDate = firstday.getUTCFullYear() + "-" + (firstday.getUTCMonth()+1) + "-" + fday;
+        var endDate = lastday.getUTCFullYear() + "-" + (lastday.getUTCMonth()+1) + "-" + lday;
         
         this.getGymSchedule(startDate+" 00:00:00", endDate+" 24:00:00");
        
