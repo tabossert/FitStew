@@ -436,7 +436,7 @@ var Gym = function()
                                 op1 += "</table></ul>";
                             }
                             op1 += "<h1>"+result1[i].date+"</h1>";
-                            op1 += "<ul class='calender-link'><table><tr><td><li>"+result1[i].first_name+" "+result1[i].last_name+"</td><td><button>Checkin</button></td></tr></li>";
+                            op1 += "<ul class='calender-link'><table><tr><td><li>"+result1[i].first_name+" "+result1[i].last_name+"</td></tr></li>";
                             op2 = result1[i].date;
                         }
                     
