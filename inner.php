@@ -5,10 +5,7 @@ $title = "ZuneFit Gym Panel";
 <!-- Header Start -->
 <?php include 'html/header.php'; ?>
 <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
-<script type="text/javascript">
-    // this identifies your website in the createToken call below
-    
-</script>
+
 
 <!-- Header End -->
 

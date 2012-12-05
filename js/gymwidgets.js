@@ -167,12 +167,13 @@ var Gym = function()
         this.getGymInfo(); 
         this.getSchedule();
         this.allTags();
-    
-        this.delTag();
        
-    //  this.addclass();
+       this.delClass(12);
+        this.getdisbursement();
+    // this.addclass();
        
     }
+     
     this.addclass = function()
     {
         data = {};
@@ -203,6 +204,60 @@ var Gym = function()
         
         
     }
+    this.getdisbursement = function()
+    {
+       
+        ZUNEFIT.getJSON({
+            url:'disbursement/',
+            token : $('#token').val(),
+           
+            success:function(data){
+                results = eval(data)[0];
+                
+                $( "#amounts" ).val( "$"+results.paylimit );
+                $( "#slider-range-min" ).slider({
+                    range: "min",
+                    value: results.paylimit,
+                    min: 0,
+                    max: 9000,
+                    step : 10,
+                    slide: function( event, ui ) {
+                        $( "#amounts" ).val( "$" + ui.value );
+                    
+                    }
+                });
+            },
+            error:function(){
+          
+            }
+        });
+        
+        
+    }
+    this.disbursement = function()
+    {
+        data = {};
+        data['type']=1;
+        data['paylimit']=$('#amounts').val().substr(1);
+        ;
+        ZUNEFIT.postJSON({
+            url:'updateDisbursement/',
+            token : $('#token').val(),
+            data:data,
+           
+            success:function(data){
+                results = eval(data);
+                
+                
+              
+            },
+            error:function(){
+          
+            }
+        });
+        
+        
+    }
     this.image = function()
     {
         $('#head').hide();
@@ -218,10 +273,10 @@ var Gym = function()
         
         
     }
-    this.delTag = function()
+    this.delTag = function(id)
     {
         data = {};
-        data['tid'] = 39;
+        data['tid'] = id;
         
         
         $.ajax({
@@ -240,6 +295,31 @@ var Gym = function()
            
             }
         });
+        this.allTags();
+    }
+    this.delClass = function(id)
+    {
+        data = {};
+        data['classid'] = '2';
+      //   data['gymid'] = '22';
+        
+        $.ajax({
+            type: 'DELETE',
+            url: "https://api.zunefit.com/api/deleteClass/",
+            data: data,
+            beforeSend : function(xhrObj) {
+                xhrObj.setRequestHeader("ltype", "web");
+            
+                xhrObj.setRequestHeader("token", $('#token').val());
+            
+            },
+            success: function(response){
+                result12 = eval(response)[0];
+                alert(result12.status);
+           
+            }
+        });
+      
     }
     this.addType = function()
     {
@@ -273,7 +353,8 @@ var Gym = function()
     this.allTags = function()
     {
         
-        servicess = "<ul>";
+        servicess = "<table>";
+        servicessp = "<ul>"
         ZUNEFIT.getJSON({
             url:'getTags/'+$('#gid').val(),
             success:function(data){
@@ -281,11 +362,12 @@ var Gym = function()
                 end = results.length;
                 for(i=0;i<end;i++){
                    
-                    servicess += '<li>'+results[i].tag+'</li>';
-                }
+                    servicess += '<tr><td>'+results[i].tag+'</td><td><img src="images/delete.png" onclick="widgets.gim.delTag('+results[i].id+')" /></td></tr> </li>';
+                     servicessp += '<li>'+results[i].tag+'</li>';    
+           }
                 servicess += "</ul>";
-              
-                $("#box-Services").html(servicess);
+              servicessp += "</ul>";
+                $("#box-Services").html(servicessp);
                 $("#all_service").html(servicess);
               
             },
@@ -310,10 +392,18 @@ var Gym = function()
                 $("#g_city").val(results.city);
                 $("#g_state").val(results.state);
                 $("#g_zip").val(results.zipcode);
+                
+                $("#pref_address").val(results.address);
+                $("#pref_city").val(results.city);
+                $("#pref_state").val(results.state);
+                $("#pref_zip").val(results.zipcode);
+                
                 $("#g_phone").val(results.phone);
                 $("#g_email").val(results.email);
                 $("#g_contact").val(results.contact);   
                 $("#g_name").val(results.name);
+                $("#pref_name").val(results.name);
+                
                 $("#g_rate").val(results.rate);
                 $("#g_fb").val(results.facebook);
                 $("#g_twt").val(results.twitter);

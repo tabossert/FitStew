@@ -61,6 +61,7 @@ if ($page != 'index.php') {
             <?php if (isset($_SESSION['type']) && $_SESSION['type'] == 'user') : ?>
 
                 <script src='js/userwidgets.js'></script>
+                
             <?php elseif (isset($_SESSION['token'])) : ?>
 
                 <script src='js/gymwidgets.js'></script>
