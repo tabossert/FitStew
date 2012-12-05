@@ -16,12 +16,11 @@ $page = $parts[count($parts) - 1];
 if ($page != 'index.php') {
     if (isset($_POST['token'])) {
         $_SESSION['token'] = $_POST['token'];
-        
     }
-    if(isset($_POST['gname'])){
-            $_SESSION['gid'] = $_POST['gid'];
-            $_SESSION['gname'] = $_POST['gname'];
-        }
+    if (isset($_POST['gname'])) {
+        $_SESSION['gid'] = $_POST['gid'];
+        $_SESSION['gname'] = $_POST['gname'];
+    }
     if (!isset($_SESSION['token'])) {
         header('Location: ' . SITE_URL);
     }
@@ -32,7 +31,7 @@ if ($page != 'index.php') {
 <html xmlns="http://www.w3.org/1999/xhtml">
     <html xmlns:fb="http://ogp.me/ns/fb#">
         <head>
-
+   
             <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
             <title><?php echo (isset($title) ? $title : "ZuneFit"); ?></title>
             <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -41,6 +40,7 @@ if ($page != 'index.php') {
             <link rel="stylesheet" type="text/css" href="css/ceebox.css" />
             <link rel="stylesheet" type="text/css" href="css/widgets.css" />
             <link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-1.3.4.css" />
+          
 
 
 
@@ -53,34 +53,34 @@ if ($page != 'index.php') {
             <script src='js/jquery.color.js'></script>
             <script src='js/jquery.metadata.js'></script>
             <script src='fancybox/jquery.fancybox-1.3.4.js'></script>
-            <?php //if ($page != 'index.php') : ?>
+            <?php //if ($page != 'index.php') :  ?>
             <script src='js/SHA1.js'></script>
             <script src='js/janrain.js'></script>
-           
+
 
             <?php if (isset($_SESSION['type']) && $_SESSION['type'] == 'user') : ?>
 
                 <script src='js/userwidgets.js'></script>
-                
-            <?php elseif (isset($_SESSION['token'])) : ?>
 
+            <?php elseif (isset($_SESSION['token'])) : ?>
+            
                 <script src='js/gymwidgets.js'></script>
             <?php else: ?>
 
                 <script src='js/widgets.js'></script>
             <?php endif; ?>
             <script src='js/validation.js'></script>
-            <?php // endif; ?>
- <script type="text/javascript" src='js/datetime.js'></script>
+            <?php // endif;  ?>
+            <script type="text/javascript" src='js/datetime.js'></script>
             <link rel="stylesheet" type="text/css" href="css/combo.css" />
             <link rel="stylesheet" type="text/css" href="jqueryui/jqueryui.css" />
             <script type="text/javascript" src="jqueryui/jqueryui.js" ></script>
             <script type="text/javascript" src="scroll/scroll.js" ></script>
             <script src="js/combo.js" type="text/javascript" charset="utf-8"></script>
-            
-          
-            
-            
+
+
+
+
             <script type="text/javascript">
                 $(function() {
                     if (typeof window.janrain !== 'object') window.janrain = {};
@@ -109,11 +109,11 @@ if ($page != 'index.php') {
                     s.parentNode.insertBefore(e, s);
                 });
             </script>
-           
+
         </head>
 
         <body>
-          
+
             <div id="all">
                 <!-- Facebook SDK -->
                 <div id="fb-root"></div>

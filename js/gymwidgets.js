@@ -170,23 +170,23 @@ var Gym = function()
        
        this.delClass(12);
         this.getdisbursement();
-    // this.addclass();
+    
        
     }
      
     this.addclass = function()
     {
         data = {};
-        data['gymid'] = '22';
-        data['service'] = 'weights';
-        data['price'] = '12';
-        data['monday'] = '02:00:00';
-        data['tuesday'] = '02:00:00';
-        data['wednesday'] = '02:00:00';
-        data['thursday'] = '02:00:00';
-        data['friday'] = '02:00:00';
-        data['saturday'] = '02:00:00';
-        data['sunday'] = '02:00:00';
+        data['gymid'] = $('#gid').val();
+        data['service'] = $('#class_name').val();
+        data['price'] = $('#class_price').val();
+        data['monday'] = $('#class_mon').val();
+        data['tuesday'] = $('#class_tue').val();
+        data['wednesday'] = $('#class_wed').val();
+        data['thursday'] = $('#class_thu').val();
+        data['friday'] = $('#class_fri').val();
+        data['saturday'] =$('#class_sat').val();
+        data['sunday'] = $('#class_sun').val();
         ZUNEFIT.postJSON({
             url:'addClass/',
             token : $('#token').val(),
@@ -321,6 +321,7 @@ var Gym = function()
         });
       
     }
+   
     this.addType = function()
     {
         data = {};
