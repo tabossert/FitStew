@@ -26,18 +26,10 @@ $title = "ZuneFit Gym Panel";
         <div class="clr" ></div>
         <div class="blue-box1">
             <div id="shedule" style="min-height: 360px;">
-                <div style="width: 10.5% ;float: left; border-right: solid; border-color: #565D60;">
-                    <div class="inner-calender1" style="clear: both; margin-top: 25px; "><a id="day" href="#" onclick="widgets.gim.getGymDaySchedule();"><img src="images/day_cal.png" alt="" border="" style="margin:0px 0px 7px 0px;" /></a><br />
-                        DAY</div>
-
-                    <div class="inner-calender2" style="clear: both;margin-top: 25px;"><a id= "week" href="#" onclick="widgets.gim.getGymWeekSchedule()"><img src="images/week_cal.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
-                        WEEK</div>
-                    <div class="inner-calender3" style="clear: both;margin-top: 25px;"><a id= "month" href="#" onclick="widgets.gim.getGymMonthSchedule()"><img src="images/month_cal.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
-                        MONTH</div>
-
-                </div>
-                <div><a href = "#lightboxw" class="light" style="color: midnightblue;font: bold 14px 'Georgia' ;">New Schedule<img src="images/new.png"/></a></div>
-                <div class="inner-txt" style="width: 70% ;float: right; margin-left: 10px;">
+              
+                <div style="float: left;"><a href = "#lightboxw" class="light" style="float: left;color: midnightblue;font: bold 14px 'Georgia' ;">New Class<img src="images/new.png"/></a></div>
+                <div style="float: right;padding: 15px;color: midnightblue;font: bold 14px 'Georgia' ;"><label for="class_day" style="padding: 5px;">Select day</label><input type="text" id="class_day" class="round datepicker" onchange="widgets.gim.getDayclasses($('#class_day').val());"/></div>
+                <div class="inner-txt" style="width: 80% ;float: right; margin-left: 10px;">
 
                 </div>
             </div>

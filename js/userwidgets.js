@@ -468,7 +468,7 @@ var User = function()
     this.searchMe = function()
     {
         
-        $("#divexample1").niceScroll();
+       // $("#divexample1").niceScroll();
         $("a.light").live("click", function(event) {
             event.preventDefault();
             $(this).filter(':not(.fb)').fancybox()
@@ -729,7 +729,7 @@ var User = function()
     
     this.advancedSearch = function()
     {
-        $("#divexample1").niceScroll();
+     //   $("#divexample1").niceScroll();
         $("a.light").live("click", function(event) {
             event.preventDefault();
             $(this).filter(':not(.fb)').fancybox()

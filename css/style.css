@@ -955,3 +955,12 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     
     
 }
+::-webkit-scrollbar {
+	background:#9F9A9D;
+        width: 6px;
+}
+::-webkit-scrollbar-thumb {
+	background:#000;
+	border-top:1px solid #dec470;
+	border-bottom:1px solid #dec470;
+}

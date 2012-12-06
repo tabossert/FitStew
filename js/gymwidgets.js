@@ -161,19 +161,72 @@ var Gym = function()
     this.bind = function()
     { 
        
-        this.getGymWeekSchedule();
+    this.getGymDaySchedule(new Date());
         this.getGymStat();
         this.getGymBal(); 
         this.getGymInfo(); 
         this.getSchedule();
         this.allTags();
        
-       this.delClass(12);
+        this.delClass(12);
         this.getdisbursement();
+         this.getDayclasses();
     
        
     }
-     
+    this.getDayclasses = function(dates){
+         ZUNEFIT.getJSON({
+            url:'getClasses/'+$('#gid').val(),
+            dataType:'jsonp',
+            success:function(response){
+                date = new Date(dates)
+                day = date.getDay();
+                try{
+                    schedule ="";
+                    services = "<ul class='searchResult'>";
+                    result15 = eval(response);
+                    end = result15.length;
+                  
+                    for(i=0;i<end;i++){
+                       alert(result15[i].day);
+                        if(result15[i].day != "00:00:00"){
+                        schedule +="<table style = 'width:280px;float:left;'><tr><td class='bold'>Service</td><td>:"+result15[i].service+"</td></tr><tr><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr><tr><td class='bold'>Monday</td><td>:"+result15[i].monday+"</td></tr><tr><td class='bold'>Tuesday</td><td>:"+result15[i].tuesday+"</td></tr>";
+                        schedule +="<tr><td class='bold'>Wednesday</td><td>:"+result15[i].wednesday+"</td></tr><tr><td class='bold'>Thursday</td><td>:"+result15[i].thursday+"</td></tr><tr><td class='bold'>Friday</td><td>:"+result15[i].friday+"</td></tr><tr><td class='bold'>Saturday</td><td>:"+result15[i].saturday+"</td></tr><tr><td class='bold'>Sunday</td><td>:"+result15[i].time+"</td></tr></table>";
+                        }
+                    }
+                    op= {};
+                    for(i=0;i<end;i++)
+                    {         
+                        op[i]=result15[i].service;
+                        bool = true;
+                        for(j=0;j<i;j++){
+                            if(op[j] == result15[i].service) {
+                                bool = false;
+                            }
+                        }
+                        if(bool){
+                        
+                         
+                            services +="<li>"+result15[i].service+"</li>";
+                        
+                        }                           
+                    }
+                    services += "</ui>";
+                    
+                    // $("#box-Services").html(services);
+               
+                     $(".inner-txt").html(schedule);
+                }catch(e){
+                    
+                }
+            },
+            error:function(){
+                alert('no');
+            }
+        });
+        
+        
+    }
     this.addclass = function()
     {
         data = {};
@@ -300,8 +353,8 @@ var Gym = function()
     this.delClass = function(id)
     {
         data = {};
-        data['classid'] = '2';
-      //   data['gymid'] = '22';
+        data['classid'] = 8;
+        //   data['gymid'] = 22;
         
         $.ajax({
             type: 'DELETE',
@@ -364,10 +417,10 @@ var Gym = function()
                 for(i=0;i<end;i++){
                    
                     servicess += '<tr><td>'+results[i].tag+'</td><td><img src="images/delete.png" onclick="widgets.gim.delTag('+results[i].id+')" /></td></tr> </li>';
-                     servicessp += '<li>'+results[i].tag+'</li>';    
-           }
+                    servicessp += '<li>'+results[i].tag+'</li>';    
+                }
                 servicess += "</ul>";
-              servicessp += "</ul>";
+                servicessp += "</ul>";
                 $("#box-Services").html(servicessp);
                 $("#all_service").html(servicess);
               
@@ -550,7 +603,7 @@ var Gym = function()
     this.getGymStat = function()
     
     {   
-        $("#divexample1").niceScroll();
+       
         $("a.light").live("click", function(event) {
             event.preventDefault();
             $(this).filter(':not(.fb)').fancybox()
@@ -622,9 +675,13 @@ var Gym = function()
         $(".inner-calender2, .inner-calender1").css("background-color","transparent");
     }
     
-    this.getGymDaySchedule = function()
+    this.getGymDaySchedule = function(date)
     {
-        var d = new Date();
+        
+        $( ".datepicker" ).datepicker();
+        $( ".datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd");
+        
+        var d = new Date(date);
         fday = (d.getUTCDate() < 10) ? '0'+d.getUTCDate() : d.getUTCDate() ;
         var strDate = d.getUTCFullYear() + "-" + (d.getUTCMonth()+1) + "-" + fday;
         //strDate = "2012-10-16";
@@ -636,11 +693,15 @@ var Gym = function()
     
     this.getGymWeekSchedule = function()
     {
+        
+        $( ".datepicker" ).datepicker();
+        $( ".datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd");
+        
         var curr = new Date; 
         var first = curr.getDate() - curr.getDay(); 
         var last = first + 6; 
 
-        var firstday = new Date(curr.setDate(first));
+        var firstday = new Date(curr.setDate(first)) ;
         fday = (firstday.getUTCDate() < 10) ? '0'+firstday.getUTCDate() : firstday.getUTCDate() ;
         var lastday = new Date(curr.setDate(last));
         lday = (lastday.getUTCDate() < 10) ? '0'+lastday.getUTCDate() : lastday.getUTCDate() ;
