@@ -161,7 +161,7 @@ var Gym = function()
     this.bind = function()
     { 
        
-    this.getGymDaySchedule(new Date());
+      //  this.getGymDaySchedule(new Date());
         this.getGymStat();
         this.getGymBal(); 
         this.getGymInfo(); 
@@ -170,52 +170,148 @@ var Gym = function()
        
         this.delClass(12);
         this.getdisbursement();
-         this.getDayclasses();
+        this.getDayclasses(new Date());
     
        
     }
-    this.getDayclasses = function(dates){
-         ZUNEFIT.getJSON({
-            url:'getClasses/'+$('#gid').val(),
-            dataType:'jsonp',
-            success:function(response){
-                date = new Date(dates)
-                day = date.getDay();
+    this.update_class = function(cid)
+    {
+        data = {};
+        //  data['gymid'] = $('#gid').val();
+         data['classid'] = cid;
+        data['service'] = $('#up_class_name').val();
+        data['price'] = $('#up_class_price').val();
+        
+        data['monday']     = $('#up_class_mon').val().length>0 ? $('#up_class_mon').val()    : null;
+        data['tuesday']     = $('#up_class_tue').val().length>0 ? $('#up_class_tue').val()    : null;
+        data['wednesday']   = $('#up_class_wed').val().length>0 ? $('#up_class_wed').val()    : null;
+        data['thursday']    = $('#up_class_thu').val().length>0 ? $('#up_class_thu').val()    : null;
+        data['friday']      = $('#up_class_fri').val().length>0 ? $('#up_class_fri').val()    : null;
+        data['saturday']    =$('#up_class_sat').val().length>0 ? $('#up_class_sat').val()     : null;
+        data['sunday']      = $('#up_class_sun').val().length>0 ? $('#up_class_sun').val()    : null;
+        ZUNEFIT.postJSON({
+            url:'updateClass/',
+            token : $('#token').val(),
+            data : data,
+            success:function(data){
+                results = eval(data)[0];
+                
+               
+              
+            },
+            error:function(){
+          
+            }
+        });
+    }
+    
+    this.getInfo = function(cid)
+    {
+        ZUNEFIT.getJSON({
+            url:'getClass/'+cid,
+           
+            success:function(data){
+                results = eval(data)[0];
+                
+                class_info ="<h1>Class Information</h1><table style = 'width:240px;float:left;line-height:30px;'><tr><td class='bold'>Service</td><td>:<input type='text' class= 'round' id='up_class_name' value='"+results.service+"'/></td></tr><tr><td class='bold'>Price</td><td>:<input type='text'  class= 'round' id='up_class_price' value='"+results.price+"'/></td></tr><tr><td class='bold'>Monday</td><td>:<input type='text' class= 'round' id='up_class_mon' value='"+results.monday+"'/></td></tr><tr><td class='bold'>Tuesday</td><td>:<input type='text' class= 'round' id='up_class_tue' value='"+results.tuesday+"'/></td></tr>";
+                class_info +="<tr><td class='bold'>Wednesday</td><td>:<input type='text' class= 'round' id='up_class_wed' value='"+results.wednesday+"'/></td></tr><tr><td class='bold'>Thursday</td><td>:<input type='text' id='up_class_thu' class= 'round' value='"+results.thursday+"'/></td></tr><tr><td class='bold'>Friday</td><td>:<input type='text' class= 'round' id='up_class_fri' value='"+results.friday+"'/></td></tr><tr><td class='bold'>Saturday</td><td>:<input type='text' id='up_class_sat' class= 'round'  value='"+results.saturday+"'/></td></tr><tr><td class='bold'>Sunday</td><td>:<input class= 'round' type='text' id='up_class_sun' class= 'round' value='"+results.sunday+"'/></td></tr></table>";
+                class_info += "<div class='buttons' style='float:left;clear:both;' onclick='widgets.gim.update_class("+results.id+")'>Update</div>";
+                $('#class_info').html(class_info);
+              
+            },
+            error:function(){
+          
+            }
+        });
+         data = {};
+        data['start'] = $('#class_day').val()+' 00:00:00';
+        data['end'] = $('#class_day').val()+' 24:00:00';      
+        
+        ZUNEFIT.postJSON({
+            url:'gymSchedule/',
+            data:data,
+            token : $('#token').val(),
+            success:function(data){
+                $("#class_sched").html(" ");
+                
+               
+            
                 try{
-                    schedule ="";
-                    services = "<ul class='searchResult'>";
+                    result1 = eval(data);
+                    finish1 = result1.length;
+                    op1 = "<h1>List of Users</h1>";
+                    op2 = "";
+                    for(i=0;i<finish1;i++)
+                    {       
+                    
+                        if(op2 == result1[i].date){
+                            op1 += "<li><tr><td>"+result1[i].first_name+" "+result1[i].last_name+"</td><td><button>Checkin</button></td></tr></li>";
+                        }else{
+                            if(i!=0){
+                                op1 += "</table></ul>";
+                            }
+                            op1 += "<h1>"+result1[i].date+"</h1>";
+                            op1 += "<ul class='calender-link'><table><tr><td><li>"+result1[i].first_name+" "+result1[i].last_name+"</td></tr></li>";
+                            op2 = result1[i].date;
+                        }
+                    
+                    }
+                    $("#class_sched").html(op1);
+                
+                }catch(ex){
+                    $("#class_sched").html(" ");
+                
+                }
+            
+            },
+            error:function(){
+            //Error should be handle here
+            // alert("no");  
+            }
+        });
+    }
+    this.getDayclasses = function(dates){
+        data = {};
+        date = new Date(dates)
+        day = date.getDay();
+        data['gymid']=$('#gid').val();
+       
+        days = {};
+        days[0]="sunday";
+        days[1] = "monday";
+        days[2] = "Tuesday";
+        days[3] = "Wednesday";
+        days[4] = "Thursday";
+        days[5] = "Friday";
+        days[6] = "Saturday";
+              
+        data['day']= days[day];
+         
+        ZUNEFIT.postJSON({
+            url:'getDayClasses/',
+            dataType:'jsonp',
+            data :data,
+            success:function(response){
+               
+                try{
+                    schedules ="<table style = 'width:280px;float:left;line-height:30px;'>";
+                   
                     result15 = eval(response);
                     end = result15.length;
                   
                     for(i=0;i<end;i++){
-                       alert(result15[i].day);
+                       
                         if(result15[i].day != "00:00:00"){
-                        schedule +="<table style = 'width:280px;float:left;'><tr><td class='bold'>Service</td><td>:"+result15[i].service+"</td></tr><tr><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr><tr><td class='bold'>Monday</td><td>:"+result15[i].monday+"</td></tr><tr><td class='bold'>Tuesday</td><td>:"+result15[i].tuesday+"</td></tr>";
-                        schedule +="<tr><td class='bold'>Wednesday</td><td>:"+result15[i].wednesday+"</td></tr><tr><td class='bold'>Thursday</td><td>:"+result15[i].thursday+"</td></tr><tr><td class='bold'>Friday</td><td>:"+result15[i].friday+"</td></tr><tr><td class='bold'>Saturday</td><td>:"+result15[i].saturday+"</td></tr><tr><td class='bold'>Sunday</td><td>:"+result15[i].time+"</td></tr></table>";
+                            schedules +="<tr><td class='bold'>Service</td><td>:"+result15[i].service+"</td><td class='bold'>Price</td><td>:"+result15[i].price+"$</td><td><span onclick='widgets.gim.getInfo("+result15[i].id+")'><a  href = '#lightboxes' class='light' >select</a></span></td></tr>";
+                          
                         }
                     }
-                    op= {};
-                    for(i=0;i<end;i++)
-                    {         
-                        op[i]=result15[i].service;
-                        bool = true;
-                        for(j=0;j<i;j++){
-                            if(op[j] == result15[i].service) {
-                                bool = false;
-                            }
-                        }
-                        if(bool){
-                        
-                         
-                            services +="<li>"+result15[i].service+"</li>";
-                        
-                        }                           
-                    }
-                    services += "</ui>";
+                   
+                  
+                    schedules +="</table>";
                     
-                    // $("#box-Services").html(services);
-               
-                     $(".inner-txt").html(schedule);
+                    
+                    $(".inner-txt").html(schedules);
                 }catch(e){
                     
                 }
@@ -233,13 +329,16 @@ var Gym = function()
         data['gymid'] = $('#gid').val();
         data['service'] = $('#class_name').val();
         data['price'] = $('#class_price').val();
-        data['monday'] = $('#class_mon').val();
-        data['tuesday'] = $('#class_tue').val();
-        data['wednesday'] = $('#class_wed').val();
-        data['thursday'] = $('#class_thu').val();
-        data['friday'] = $('#class_fri').val();
-        data['saturday'] =$('#class_sat').val();
-        data['sunday'] = $('#class_sun').val();
+        if($('#class_mon').val().length>0){
+            data['monday'] = $('#class_mon').val();
+        }
+     
+        data['tuesday']     = $('#class_tue').val().length>0 ? $('#class_tue').val()    : null;
+        data['wednesday']   = $('#class_wed').val().length>0 ? $('#class_wed').val()    : null;
+        data['thursday']    = $('#class_thu').val().length>0 ? $('#class_thu').val()    : null;
+        data['friday']      = $('#class_fri').val().length>0 ? $('#class_fri').val()    : null;
+        data['saturday']    =$('#class_sat').val().length>0 ? $('#class_sat').val()     : null;
+        data['sunday']      = $('#class_sun').val().length>0 ? $('#class_sun').val()    : null;
         ZUNEFIT.postJSON({
             url:'addClass/',
             token : $('#token').val(),
@@ -292,7 +391,7 @@ var Gym = function()
         data = {};
         data['type']=1;
         data['paylimit']=$('#amounts').val().substr(1);
-        ;
+        
         ZUNEFIT.postJSON({
             url:'updateDisbursement/',
             token : $('#token').val(),
@@ -353,7 +452,7 @@ var Gym = function()
     this.delClass = function(id)
     {
         data = {};
-        data['classid'] = 8;
+        data['classid'] = 9;
         //   data['gymid'] = 22;
         
         $.ajax({
