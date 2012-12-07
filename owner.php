@@ -28,7 +28,7 @@ $title = "ZuneFit Gym Panel";
             <div id="shedule" style="min-height: 360px;">
               
                 <div style="float: left;"><a href = "#lightboxw" class="light" style="float: left;color: midnightblue;font: bold 14px 'Georgia' ;">New Class<img src="images/new.png"/></a></div>
-                <div style="float: right;padding: 15px;color: midnightblue;font: bold 14px 'Georgia' ;"><label for="class_day" style="padding: 5px;">Select day</label><input type="text" id="class_day" class="round datepicker" value="<?php echo date('Y-m-d'); ?>" onchange="widgets.gim.getDayclasses($('#class_day').val());"/></div>
+                <div style="float: right;padding: 15px;color: midnightblue;font: bold 14px 'Georgia' ;"><label for="class_day" style="padding: 5px;">Select day</label><input value="<?php echo date('y-m-d'); ?>" type="text" id="class_day" class="round datepicker"  onchange="widgets.gim.getDayclasses($('#class_day').val());"/></div>
                 <div class="inner-txt" style="width: 80% ;float: right; margin-left: 10px;">
 
                 </div>
