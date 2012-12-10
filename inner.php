@@ -163,7 +163,7 @@ $title = "ZuneFit Gym Panel";
                     </div>
                     <div id="billing" class="blue-boxs" style="display: none;" >
                         <div >
-                            <span class="payment-errors" style="color: #900;font-weight: bold;"></span>
+                           
                             <form action="" method="POST" id="payment-form">
                                 <fieldset>
 
