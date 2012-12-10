@@ -14,43 +14,43 @@
                 <tr> <td>
                         <label for="class_mon" class="clslabels"> Monday  </label>
                     </td> <td><td>:<td>
-                        <input type="text" name="class_mon" id="class_mon" class="round" placeholder="02:30"/>
+                        <input type="text" name="class_mon" id="class_mon" class="round sch" placeholder="02:30"/>
                     </td>  
                 </tr>
                 <tr> <td>
                         <label for="class_tue" class="clslabels"> Tuesday  </label>
                     </td> <td><td>:<td>
-                        <input type="text" name="class_tue" id="class_tue" class="round" placeholder="02:30"/>
+                        <input type="text" name="class_tue" id="class_tue" class="round sch" placeholder="02:30"/>
                     </td>  
                 </tr>
                 <tr> <td>
                         <label for="class_wed" class="clslabels"> Wednesday  </label>
                     </td> <td><td>:<td>
-                        <input type="text" name="class_wed" id="class_wed" class="round" placeholder="02:30"/>
+                        <input type="text" name="class_wed" id="class_wed" class="round sch" placeholder="02:30"/>
                     </td>  
                 </tr>
                 <tr> <td>
                         <label for="class_thu" class="clslabels"> Thursday  </label>
                     </td> <td><td>:<td>
-                        <input type="text" name="class_thu" id="class_thu" class="round" placeholder="02:30"/>
+                        <input type="text" name="class_thu" id="class_thu" class="round sch" placeholder="02:30"/>
                     </td>  
                 </tr>
                 <tr> <td>
                         <label for="class_fri" class="clslabels"> Friday  </label>
                     </td> <td><td>:<td>
-                        <input type="text" name="class_fri" id="class_fri" class="round" placeholder="02:30"/>
+                        <input type="text" name="class_fri" id="class_fri" class="round sch" placeholder="02:30"/>
                     </td>  
                 </tr>
                 <tr> <td>
                         <label for="class_sat" class="clslabels"> Saturday  </label>
                     </td> <td><td>:<td>
-                        <input type="text" name="class_sat" id="class_sat" class="round" placeholder="02:30"/>
+                        <input type="text" name="class_sat" id="class_sat" class="round sch" placeholder="02:30"/>
                     </td>  
                 </tr>
                 <tr> <td>
                         <label for="class_sun" class="clslabels"> Sunday  </label>
                     </td> <td><td>:<td>
-                        <input type="text" name="class_sun" id="class_sun" class="round" placeholder="02:30"/>
+                        <input type="text" name="class_sun" id="class_sun" class="round sch" placeholder="02:30"/>
                     </td>  
                 </tr>
             </table>

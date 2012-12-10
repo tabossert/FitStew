@@ -161,7 +161,7 @@ var Gym = function()
     this.bind = function()
     { 
        
-       // this.getGymDaySchedule(new Date());
+      
         this.getGymStat();
         this.getGymBal(); 
         this.getGymInfo(); 
@@ -213,11 +213,11 @@ var Gym = function()
             success:function(data){
                 results = eval(data)[0];
                 
-                class_info ="<h1>Class Information</h1><table style = 'width:250px;float:left;line-height:30px;'><tr><td class='bold'>Service</td><td>:<input type='text' class= 'round' id='up_class_name' value='"+results.service+"'/></td></tr><tr><td class='bold'>Price</td><td>:<input type='text'  class= 'round' id='up_class_price' value='"+results.price+"'/></td></tr><tr><td class='bold'>Monday</td><td>:<input type='text' class= 'round' id='up_class_mon' value='"+results.monday+"'/></td></tr><tr><td class='bold'>Tuesday</td><td>:<input type='text' class= 'round' id='up_class_tue' value='"+results.tuesday+"'/></td></tr>";
-                class_info +="<tr><td class='bold'>Wednesday</td><td>:<input type='text' class= 'round' id='up_class_wed' value='"+results.wednesday+"'/></td></tr><tr><td class='bold'>Thursday</td><td>:<input type='text' id='up_class_thu' class= 'round' value='"+results.thursday+"'/></td></tr><tr><td class='bold'>Friday</td><td>:<input type='text' class= 'round' id='up_class_fri' value='"+results.friday+"'/></td></tr><tr><td class='bold'>Saturday</td><td>:<input type='text' id='up_class_sat' class= 'round'  value='"+results.saturday+"'/></td></tr><tr><td class='bold'>Sunday</td><td>:<input class= 'round' type='text' id='up_class_sun' class= 'round' value='"+results.sunday+"'/></td></tr></table>";
+                class_info ="<h1>Class Information</h1><table style = 'width:250px;float:left;line-height:30px;'><tr><td class='bold'>Service</td><td>:<input type='text' class= 'round' id='up_class_name' value='"+results.service+"'/></td></tr><tr><td class='bold'>Price</td><td>:<input type='text'  class= 'round' id='up_class_price' value='"+results.price+"'/></td></tr><tr><td class='bold'>Monday</td><td>:<input type='text' class= 'round sch' id='up_class_mon' value='"+results.monday+"'/></td></tr><tr><td class='bold'>Tuesday</td><td>:<input type='text' class= 'round sch' id='up_class_tue' value='"+results.tuesday+"'/></td></tr>";
+                class_info +="<tr><td class='bold'>Wednesday</td><td>:<input type='text' class= 'round sch' id='up_class_wed' value='"+results.wednesday+"'/></td></tr><tr><td class='bold'>Thursday</td><td>:<input type='text' id='up_class_thu' class= 'round sch' value='"+results.thursday+"'/></td></tr><tr><td class='bold'>Friday</td><td>:<input type='text' class= 'round sch' id='up_class_fri' value='"+results.friday+"'/></td></tr><tr><td class='bold'>Saturday</td><td>:<input type='text' id='up_class_sat' class= 'round sch'  value='"+results.saturday+"'/></td></tr><tr><td class='bold'>Sunday</td><td>:<input class= 'round' type='text' id='up_class_sun' class= 'round sch' value='"+results.sunday+"'/></td></tr></table>";
                 class_info += "<div class='buttons' style='float:left;clear:both;' onclick='widgets.gim.update_class("+results.id+")'>Update</div>";
                 $('#class_info').html(class_info);
-              
+               $('.sch').timepicker();
             },
             error:function(){
           
@@ -321,7 +321,7 @@ var Gym = function()
                 }
             },
             error:function(){
-                alert('no');
+              
             }
         });
         
@@ -632,7 +632,7 @@ var Gym = function()
                 }
             },
             error:function(){
-                alert('no');
+              
             }
         });
     }
@@ -706,6 +706,8 @@ var Gym = function()
     this.getGymStat = function()
     
     {   
+        $('.sch').timepicker();
+        
          $( ".datepicker" ).datepicker();
         $( ".datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd");
        

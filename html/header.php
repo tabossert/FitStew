@@ -80,7 +80,8 @@ if ($page != 'index.php') {
                 <script type="text/javascript" src="scroll/scroll.js" ></script>
                 <script src="js/combo.js" type="text/javascript" charset="utf-8"></script>
 
-
+  <script src="js/jquery-ui-sliderAccess.js"></script>  
+  <script src="js/jquery-ui-timepicker-addon.js"></script>
 
 
                 <script type="text/javascript">

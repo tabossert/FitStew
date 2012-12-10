@@ -171,7 +171,7 @@ var User = function()
                 try{
                     result5 = eval(response)[0];                
                     res = result5.balance;
-                    //alert("bal"+response);
+                   
                     $(".balance-box").html("Balance: $ "+  res);
                 }catch(e){
                    
@@ -180,7 +180,7 @@ var User = function()
             error:function(){
             //Error should be handle here
             
-            //alert("error bal")
+           
             }
         });
     }
@@ -225,7 +225,7 @@ var User = function()
             error:function(){
             //Error should be handle here
             
-            //alert("error pref")
+           
             }
         });
     }
@@ -426,7 +426,7 @@ var User = function()
             },
             error:function(){
             //Error should be handle here
-            // alert("no");  
+           
             }
         });
     }
@@ -517,7 +517,7 @@ var User = function()
                     
                 }
                
-            //alert(result1);        
+             
             },
             error:function(){
             
@@ -607,7 +607,7 @@ var User = function()
             },
             error:function(){
             //Error should be handle here
-            // alert("no");  
+            
             }
             
         });
@@ -647,7 +647,7 @@ var User = function()
             },
             error:function(){
             //Error should be handle here
-            // alert("no");  
+           
             }
             
         });
@@ -677,7 +677,7 @@ var User = function()
             },
             error:function(){
             //Error should be handle here
-            // alert("no");  
+           
             }
             
         });
@@ -727,7 +727,7 @@ var User = function()
     
     this.advancedSearch = function()
     {
-     //   $("#divexample1").niceScroll();
+ 
         $("a.light").live("click", function(event) {
             event.preventDefault();
             $(this).filter(':not(.fb)').fancybox()
@@ -736,16 +736,7 @@ var User = function()
         });
         data = {};
        
-        //        $('input:checkbox:checked.group1').map(function () {
-        //           
-        //            work +=this.value;
-        //            work +=",";
-        //            return this.value;
-        //        }).get();
-        //       
-        //        if(work.length>0){
-        //            data['workouts'] = work;
-        //        }
+      
         
         
       
@@ -785,11 +776,11 @@ var User = function()
                 }catch(e){
                     
                 }
-            //alert(result1);        
+                
             },
             error:function(){
             //Error should be handle here
-            // alert("no");  
+          
             }
         });
        
@@ -1035,16 +1026,16 @@ var User = function()
                                 token : $('#utoken').val(),
           
                                 success:function(response){
-                                //  alert('paid');
+                               
                                 },
                                 error:function(){
                                 //Error should be handle here
-                                //  alert("no");  
+                               ;  
                                 }
             
                             });
                         }
-                    //alert(result1);        
+                         
                     }
                 });
         
@@ -1095,11 +1086,11 @@ var User = function()
                     token : $('#utoken').val(),
           
                     success:function(response){
-                        alert('paid');
+                      
                     },
                     error:function(){
                         //Error should be handle here
-                        alert("no");  
+                       
                     }
             
                 });
@@ -1150,7 +1141,7 @@ var User = function()
             },
             error:function(){
             //Error should be handle here
-            // alert("no");  
+           
             }
             
         });
@@ -1194,7 +1185,7 @@ var User = function()
             },
             error:function(){
             //Error should be handle here
-            // alert("no");  
+          
             }
             
         });
