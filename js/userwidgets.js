@@ -77,8 +77,7 @@ var User = function()
     
     this.bind = function()
     { 
-        //        var d=new Date('t'+" UTC");
-        //        document.write(d.toString());
+        
       
         this.getFeaturedGyms();
         this.getUserBalance();
@@ -560,11 +559,10 @@ var User = function()
             token : $('#utoken').val(),
           
             success:function(response){
-                alert('asdas');
+                
             },
             error:function(){
-            //Error should be handle here
-            // alert("no");  
+            
             }
             
         });

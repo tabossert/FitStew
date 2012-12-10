@@ -274,6 +274,8 @@ var Gym = function()
         data = {};
         date = new Date(dates)
         day = date.getDay();
+        
+        $('#class_day').val(date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate());
         data['gymid']=$('#gid').val();
        
         days = {};
@@ -286,7 +288,7 @@ var Gym = function()
         days[6] = "Saturday";
               
         data['day']= days[day];
-         
+       var d = days[day];
         ZUNEFIT.postJSON({
             url:'getDayClasses/',
             dataType:'jsonp',
@@ -300,10 +302,12 @@ var Gym = function()
                     end = result15.length;
                   
                     for(i=0;i<end;i++){
-                       
-                        if(result15[i].day != "00:00:00"){
-                            schedules +="<tr><td class='bold'>Service</td><td>:"+result15[i].service+"</td><td class='bold'>Price</td><td>:"+result15[i].price+"$</td><td><span onclick='widgets.gim.getInfo("+result15[i].id+")'><a  href = '#lightboxes' class='light' >select</a></span></td></tr>";
+                      
+                        if(result15[i].monday == "00:00:00" ||result15[i].Tuesday == "00:00:00"||result15[i].Wednesday == "00:00:00" ||result15[i].Thursday == "00:00:00"|| result15[i].Friday == "00:00:00" ||result15[i].Saturday == "00:00:00"||result15[i].sunday == "00:00:00"){
                           
+                        }else{
+                            schedules +="<tr><td class='bold'>Service</td><td>:"+result15[i].service+"</td><td><span onclick='widgets.gim.getInfo("+result15[i].id+")'><a  href = '#lightboxes' class='light' >select</a></span></td></tr>";
+
                         }
                     }
                    
