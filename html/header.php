@@ -31,84 +31,86 @@ if ($page != 'index.php') {
 <html xmlns="http://www.w3.org/1999/xhtml">
     <html xmlns:fb="http://ogp.me/ns/fb#">
         <head>
-   
-            <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-            <title><?php echo (isset($title) ? $title : "ZuneFit"); ?></title>
-            <link href="css/style.css" rel="stylesheet" type="text/css" />
-            <link href="fonts/stylesheet1.css" rel="stylesheet" type="text/css" />
-            <link href="web-font/stylesheet2.css" rel="stylesheet" type="text/css" />
-            <link rel="stylesheet" type="text/css" href="css/ceebox.css" />
-            <link rel="stylesheet" type="text/css" href="css/widgets.css" />
-            <link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-1.3.4.css" />
-          
+            <link rel="icon" 
+                  type="image/png" 
+                  href="http://133ebe4227c90a13f1dc-8c7ec5384ed7d5bfa249897c03b2f07c.r72.cf2.rackcdn.com/favicon.ico"/>
+                <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+                <title><?php echo (isset($title) ? $title : "ZuneFit"); ?></title>
+                <link href="css/style.css" rel="stylesheet" type="text/css" />
+                <link href="fonts/stylesheet1.css" rel="stylesheet" type="text/css" />
+                <link href="web-font/stylesheet2.css" rel="stylesheet" type="text/css" />
+                <link rel="stylesheet" type="text/css" href="css/ceebox.css" />
+                <link rel="stylesheet" type="text/css" href="css/widgets.css" />
+                <link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-1.3.4.css" />
 
 
 
 
 
-            <script type="text/javascript" src="js/curvycorners.src.js"></script>
-            <script type="text/javascript" src="js/validation.js"></script>
-            <script src="js/jquery-1.7.1.js"></script>
-            <script src='js/jquery.ceebox-min.js'></script>
-            <script src='js/jquery.color.js'></script>
-            <script src='js/jquery.metadata.js'></script>
-            <script src='fancybox/jquery.fancybox-1.3.4.js'></script>
-            <?php //if ($page != 'index.php') :  ?>
-            <script src='js/SHA1.js'></script>
-            <script src='js/janrain.js'></script>
+
+                <script type="text/javascript" src="js/curvycorners.src.js"></script>
+                <script type="text/javascript" src="js/validation.js"></script>
+                <script src="js/jquery-1.7.1.js"></script>
+                <script src='js/jquery.ceebox-min.js'></script>
+                <script src='js/jquery.color.js'></script>
+                <script src='js/jquery.metadata.js'></script>
+                <script src='fancybox/jquery.fancybox-1.3.4.js'></script>
+                <?php //if ($page != 'index.php') :  ?>
+                <script src='js/SHA1.js'></script>
+                <script src='js/janrain.js'></script>
 
 
-            <?php if (isset($_SESSION['type']) && $_SESSION['type'] == 'user') : ?>
+                <?php if (isset($_SESSION['type']) && $_SESSION['type'] == 'user') : ?>
 
-                <script src='js/userwidgets.js'></script>
+                    <script src='js/userwidgets.js'></script>
 
-            <?php elseif (isset($_SESSION['token'])) : ?>
-            
-                <script src='js/gymwidgets.js'></script>
-            <?php else: ?>
+                <?php elseif (isset($_SESSION['token'])) : ?>
 
-                <script src='js/widgets.js'></script>
-            <?php endif; ?>
-            <script src='js/validation.js'></script>
-            <?php // endif;  ?>
-            <script type="text/javascript" src='js/datetime.js'></script>
-            <link rel="stylesheet" type="text/css" href="css/combo.css" />
-            <link rel="stylesheet" type="text/css" href="jqueryui/jqueryui.css" />
-            <script type="text/javascript" src="jqueryui/jqueryui.js" ></script>
-            <script type="text/javascript" src="scroll/scroll.js" ></script>
-            <script src="js/combo.js" type="text/javascript" charset="utf-8"></script>
+                    <script src='js/gymwidgets.js'></script>
+                <?php else: ?>
 
-
+                    <script src='js/widgets.js'></script>
+                <?php endif; ?>
+                <script src='js/validation.js'></script>
+                <?php // endif;  ?>
+                <script type="text/javascript" src='js/datetime.js'></script>
+                <link rel="stylesheet" type="text/css" href="css/combo.css" />
+                <link rel="stylesheet" type="text/css" href="jqueryui/jqueryui.css" />
+                <script type="text/javascript" src="jqueryui/jqueryui.js" ></script>
+                <script type="text/javascript" src="scroll/scroll.js" ></script>
+                <script src="js/combo.js" type="text/javascript" charset="utf-8"></script>
 
 
-            <script type="text/javascript">
-                $(function() {
-                    if (typeof window.janrain !== 'object') window.janrain = {};
-                    if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
+
+
+                <script type="text/javascript">
+                    $(function() {
+                        if (typeof window.janrain !== 'object') window.janrain = {};
+                        if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
     	            
-                    janrain.settings.tokenUrl = '<?php echo SITE_URL; ?>intermediate.php';
+                        janrain.settings.tokenUrl = '<?php echo SITE_URL; ?>intermediate.php';
 	
-                    function isReady() { janrain.ready = true; };
-                    if (document.addEventListener) {
-                        document.addEventListener("DOMContentLoaded", isReady, false);
-                    } else {
-                        window.attachEvent('onload', isReady);
-                    }
+                        function isReady() { janrain.ready = true; };
+                        if (document.addEventListener) {
+                            document.addEventListener("DOMContentLoaded", isReady, false);
+                        } else {
+                            window.attachEvent('onload', isReady);
+                        }
 	
-                    var e = document.createElement('script');
-                    e.type = 'text/javascript';
-                    e.id = 'janrainAuthWidget';
+                        var e = document.createElement('script');
+                        e.type = 'text/javascript';
+                        e.id = 'janrainAuthWidget';
 	
-                    if (document.location.protocol === 'https:') {
-                        e.src = 'https://rpxnow.com/js/lib/zunefittesting/engage.js';
-                    } else {
-                        e.src = 'http://widget-cdn.rpxnow.com/js/lib/zunefittesting/engage.js';
-                    }
+                        if (document.location.protocol === 'https:') {
+                            e.src = 'https://rpxnow.com/js/lib/zunefittesting/engage.js';
+                        } else {
+                            e.src = 'http://widget-cdn.rpxnow.com/js/lib/zunefittesting/engage.js';
+                        }
 	
-                    var s = document.getElementsByTagName('script')[0];
-                    s.parentNode.insertBefore(e, s);
-                });
-            </script>
+                        var s = document.getElementsByTagName('script')[0];
+                        s.parentNode.insertBefore(e, s);
+                    });
+                </script>
 
         </head>
 
