@@ -336,8 +336,8 @@ var User = function()
         var d = new Date();
      
         
-          fday = (d.getUTCDate() < 10) ? '0'+d.getUTCDate() : d.getUTCDate() ;
-             var strDate = d.getUTCFullYear() + "-" + (d.getUTCMonth()+1) + "-" + fday;
+        fday = (d.getUTCDate() < 10) ? '0'+d.getUTCDate() : d.getUTCDate() ;
+        var strDate = d.getUTCFullYear() + "-" + (d.getUTCMonth()+1) + "-" + fday;
         this.getUserSchedule(strDate+" 00:00:00", strDate+" 24:00:00");
         $(".inner-calender1").css("background-color","#565d60");
         $(".inner-calender2, .inner-calender3").css("background-color","transparent");
@@ -350,9 +350,9 @@ var User = function()
         var last = first + 6; 
 
         var firstday = new Date(curr.setDate(first));
-         fday = (firstday.getUTCDate() < 10) ? '0'+firstday.getUTCDate() : firstday.getUTCDate() ;
+        fday = (firstday.getUTCDate() < 10) ? '0'+firstday.getUTCDate() : firstday.getUTCDate() ;
         var lastday = new Date(curr.setDate(last));
-          lday = (lastday.getUTCDate() < 10) ? '0'+lastday.getUTCDate() : lastday.getUTCDate() ;
+        lday = (lastday.getUTCDate() < 10) ? '0'+lastday.getUTCDate() : lastday.getUTCDate() ;
         var startDate = firstday.getUTCFullYear() + "-" + (firstday.getUTCMonth()+1) + "-" + fday;
         var endDate = lastday.getUTCFullYear() + "-" + (lastday.getUTCMonth()+1) + "-" + lday;
         
@@ -367,7 +367,7 @@ var User = function()
         var mon= new Date();
         
         var firstDay = new Date(mon.getFullYear(), mon.getMonth() , 1);
-         fday = (firstDay.getUTCDate() < 10) ? '0'+firstDay.getUTCDate() : firstDay.getUTCDate() ;
+        fday = (firstDay.getUTCDate() < 10) ? '0'+firstDay.getUTCDate() : firstDay.getUTCDate() ;
         var firstDate = firstDay.getUTCFullYear() + "-" + (firstDay.getUTCMonth()+1) + "-" + fday;
         
         var lastDay = new Date(mon.getFullYear(), mon.getMonth() + 1, 1);
@@ -467,7 +467,7 @@ var User = function()
     this.searchMe = function()
     {
         
-       // $("#divexample1").niceScroll();
+        // $("#divexample1").niceScroll();
         $("a.light").live("click", function(event) {
             event.preventDefault();
             $(this).filter(':not(.fb)').fancybox()
@@ -681,6 +681,7 @@ var User = function()
             }
             
         });
+        this.getUserWeekSchedule();
     }
     
     this.deleteEvent = function()
@@ -1030,7 +1031,7 @@ var User = function()
                                 },
                                 error:function(){
                                 //Error should be handle here
-                               ;  
+                                ;  
                                 }
             
                             });
@@ -1089,7 +1090,7 @@ var User = function()
                       
                     },
                     error:function(){
-                        //Error should be handle here
+                    //Error should be handle here
                        
                     }
             
