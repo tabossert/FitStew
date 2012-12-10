@@ -956,7 +956,7 @@ var User = function()
     }
     this.onload = function()
     {
-        $("#message").html("waiting...");
+        $("#message").html("processing please wait..");
         Stripe.setPublishableKey('pk_test_b6UX3N4Ew26Yxmtf2pdZ84yT');
         // disable the submit button to prevent repeated clicks
         $('.submit-button').attr("disabled", "disabled");

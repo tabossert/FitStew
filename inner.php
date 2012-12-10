@@ -252,7 +252,7 @@ $title = "ZuneFit Gym Panel";
                                         <img src="images/CreditCardLogos.jpg" style="clear: right;  padding-left: 110px; "/>
 
                                         <button class="buttons submit-button" type='button' style="clear: right; margin-top: 10px;margin-bottom: 10px;margin-left: 105px;" onclick="widgets.user.onload();">Submit Payment</button>
-                                        <div id="message">Message</div>
+                                        <div id="message" class="payment-errors">Message</div>
                                     </div>
                                 </fieldset>
                             </form>
