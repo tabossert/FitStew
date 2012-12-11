@@ -727,7 +727,7 @@ var User = function()
      
         
         });
-        $("#pref_pin, #pref_zip").keydown(function(event) {
+        $("#pref_pin, #pref_zip, #zip, .card-number, .card-cvc, .card-expiry-month, .card-expiry-year, #pay_amount").keydown(function(event) {
             // Allow: backspace, delete, tab, escape, and enter
             if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || 
                 // Allow: Ctrl+A

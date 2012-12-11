@@ -340,7 +340,7 @@ $title = "ZuneFit Gym Panel";
                                                </td></tr>
                                         <tr><td>
                                                 <label for="zip" class="bil_label">Zip</label></td><td>
-                                                <input id="zip" name="zip" type="text"  class="bil_text"/></td></tr>
+                                                <input id="zip" name="zip" type="text"  class="bil_text" maxlength="5"/></td></tr>
 
 
                                     </table>
@@ -381,12 +381,12 @@ $title = "ZuneFit Gym Panel";
                                                 <input  size="20" autocomplete="off" class="card-number bil_text" type="text" /></td></tr>
                                         <tr><td>
                                                 <label for="cvv" class="bil_label">Security Code</label></td><td>
-                                                <input  type="text"  size="4" autocomplete="off" class="card-cvc bil_text"/></td></tr>
+                                                <input  type="text"  maxlength="4" autocomplete="off" class="card-cvc bil_text"/></td></tr>
                                         <tr> <td>
                                                 <label for="credit_card_month" class="bil_label">Expires on month</label></td><td >
-                                                <input size="2" class="card-expiry-month bil_text"  type="text" placeholder="05" /></td></tr >
+                                                <input maxlength="2" class="card-expiry-month bil_text"  type="text" placeholder="05" /></td></tr >
                                         <tr><td>    <label for="credit_card_year" class="bil_label">Expires on year</label></td><td >   
-                                                <input  size="4" class="card-expiry-year bil_text"  type="text" placeholder="2012" /></td></tr>
+                                                <input  maxlength="4" class="card-expiry-year bil_text"  type="text" placeholder="2012" /></td></tr>
                                         <tr> <td>
                                                 <label for="amount" class="bil_label">Amount</label></td><td>
                                                 <input id="pay_amount" name="pay_amount" type="text"  class="bil_text"/></td></tr>
