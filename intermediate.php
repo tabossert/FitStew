@@ -114,7 +114,14 @@ echo $_SESSION['userid']= $id;
 echo $_SESSION['type']= "user";
 var_dump($chleadresult);
 
-header ("Location: ".SITE_URL."inner.php");
+try { 
+     
+    header ("Location: ".SITE_URL."inner.php");  
+    
+    }  
+catch (Exception $ex){
+   header ("Location: inner.php"); 
+}
 
 //echo $chleadapierr = curl_errno($chlead);
 //echo $chleaderrmsg = curl_error($chlead);

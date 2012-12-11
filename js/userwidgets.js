@@ -161,6 +161,7 @@ var User = function()
     
     this.getUserBalance = function()
     {
+        
         data = {};  
         
         ZUNEFIT.getJSON({
@@ -215,6 +216,7 @@ var User = function()
                     if(result6.automatic==1){
                         $('#refil').prop('checked', true);
                     }
+                     $('#when').dropkick();
                 }catch(e){
                     
                 }
@@ -956,6 +958,7 @@ var User = function()
     }
     this.onload = function()
     {
+        $("#message").css('display','block')
         $("#message").html("processing please wait..");
         Stripe.setPublishableKey('pk_test_b6UX3N4Ew26Yxmtf2pdZ84yT');
         // disable the submit button to prevent repeated clicks
@@ -1105,10 +1108,27 @@ var User = function()
     }
     this.creditInfo = function()
     {
-        $('#when').dropkick();
-        $('#hide_refil').css('display', 'block');
+        $('#auto_amount').removeAttr('disabled');
+        $('#refil').removeAttr('disabled');
         $('#edit_fil').css('display', 'none');
         $('#done_fil').css('display', 'block');
+         $("#auto_amount").keydown(function(event) {
+        // Allow: backspace, delete, tab, escape, and enter
+        if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || 
+             // Allow: Ctrl+A
+            (event.keyCode == 65 && event.ctrlKey === true) || 
+             // Allow: home, end, left, right
+            (event.keyCode >= 35 && event.keyCode <= 39)) {
+                 // let it happen, don't do anything
+                 return;
+        }
+        else {
+            // Ensure that it is a number and stop the keypress
+            if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+                event.preventDefault(); 
+            }   
+        }
+    });
          
     }
     
@@ -1136,9 +1156,11 @@ var User = function()
             token : $('#utoken').val(),
           
             success:function(response){
-                $('#hide_refil').css('display', 'none');
+               
                 $('#done_fil').css('display', 'none');
                 $('#edit_fil').css('display', 'block');
+                 $('#refil').attr('disabled','disabled');
+                 $('#auto_amount').attr('disabled','disabled');
             },
             error:function(){
             //Error should be handle here

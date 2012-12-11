@@ -6,7 +6,6 @@ $title = "ZuneFit Gym Panel";
 <?php include 'html/header.php'; ?>
 <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
 
-
 <!-- Header End -->
 
 <input type="hidden" name="utoken" id="utoken" value="<?php echo $_SESSION['token']; ?>"/>
@@ -207,14 +206,14 @@ $title = "ZuneFit Gym Panel";
                                         <span id="done_fil" onclick="widgets.user.update_refill();" class="common" style="display: none;width: 110px;">Finished editing</span>
                                     </div>
 
-                                    <div id="hide_refil" style="display: none;">
+                                    <div id="hide_refil">
                                         <table style="border-collapse: separate;border-spacing: 0px 10px; width: 280px;float: left;clear: left;">
                                             <tr style="padding-bottom: 5px;"><td>
-                                                    <input id="refil" name="refil" type="checkbox" />
+                                                    <input id="refil" name="refil" type="checkbox" disabled=""/>
                                                     <label for="refil">Refil Automatically</label></td>
                                             </tr>
                                             <tr><td>
-                                                    <select id="when">
+                                                    <select id="when" disabled="">
                                                         <option value="0">When to Refill</option>
                                                         <option value="1">1st of month</option>
                                                         <option value="15">15th of month</option>
@@ -222,7 +221,8 @@ $title = "ZuneFit Gym Panel";
                                                 </td>
                                             </tr>
                                             <tr><td>
-                                                    <input type="text" id="auto_amount" placeholder="Refill amount" class="round" style="text-align: right;"/>
+                                                    <label for="refil">Amount&nbsp;&nbsp;:</label>
+                                                    <input type="text" id="auto_amount" placeholder="Refill amount" class="round" style="text-align: right;" disabled=""/>
                                                 </td>
                                             </tr>
 
@@ -252,7 +252,7 @@ $title = "ZuneFit Gym Panel";
                                         <img src="images/CreditCardLogos.jpg" style="clear: right;  padding-left: 110px; "/>
 
                                         <button class="buttons submit-button" type='button' style="clear: right; margin-top: 10px;margin-bottom: 10px;margin-left: 105px;" onclick="widgets.user.onload();">Submit Payment</button>
-                                        <div id="message" class="payment-errors">Message</div>
+                                        <div id="message" class="payment-errors" style="display: none;">Message</div>
                                     </div>
                                 </fieldset>
                             </form>
