@@ -28,12 +28,12 @@ $title = "ZuneFit Gym Panel";
 
             <div id="infoBox" style="min-height: 350px;padding: 5px;border: none;">
                 <div style="width: 10.5% ;float: left; border-right: solid; border-color: #565D60;">
-                    <div class="inner-calender1" style="clear: both; margin-top: 25px; "><a id="day" href="#" onclick="widgets.user.getUserDaySchedule();"><img src="images/day.png" alt="" border="" style="margin:0px 0px 7px 0px;" /></a><br />
+                    <div class="inner-calender1" style="clear: both; margin-top: 25px; "><a id="day" href="#" onclick="widgets.user.getUserDaySchedule();"><img src="images/day_cal.png" alt="" border="" style="margin:0px 0px 7px 0px;" /></a><br />
                         DAY</div>
 
-                    <div class="inner-calender2" style="clear: both;margin-top: 25px;"><a id= "week" href="#" onclick="widgets.user.getUserWeekSchedule()"><img src="images/week.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
+                    <div class="inner-calender2" style="clear: both;margin-top: 25px;"><a id= "week" href="#" onclick="widgets.user.getUserWeekSchedule()"><img src="images/week_cal.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
                         WEEK</div>
-                    <div class="inner-calender3" style="clear: both;margin-top: 25px;"><a id= "month" href="#" onclick="widgets.user.getUserMonthSchedule()"><img src="images/month.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
+                    <div class="inner-calender3" style="clear: both;margin-top: 25px;"><a id= "month" href="#" onclick="widgets.user.getUserMonthSchedule()"><img src="images/month_cal.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
                         MONTH</div>
 
                 </div>
@@ -133,11 +133,82 @@ $title = "ZuneFit Gym Panel";
                                     <label for="pref_city" class="error" generated="true"></label></td></tr>
                             <tr><td>
                                     <label for="pref_state"  > State  </label></td><td>:</td><td>
-                                    <input type="text" name="pref_state" id="pref_state" class="transparent" style=" width: 400px;" readonly="readonly"/> 
+                                    <select name="pref_state" id="pref_state"  style=" width: 410px;" class="transparent" disabled="" >
+                                        <option value="" style="font-weight: bold;">Canada Provinces..</option>
+                                        <option value="AB">Alberta</option>
+                                        <option value="BC">British Columbia</option>
+                                        <option value="MB">Manitoba</option>
+                                        <option value="NB">New Brunswick</option>
+                                        <option value="NL">Newfoundland and Labrador</option>
+                                        <option value="NS">Nova Scotia</option>
+                                        <option value="ON">Ontario</option>
+                                        <option value="PE">Prince Edward Island</option>
+                                        <option value="QC">Quebec</option>
+                                        <option value="SK">Saskatchewan</option>
+                                        <option value="NT">Northwest Territories</option>
+                                        <option value="NU">Nunavut</option>
+                                        <option value="YT">Yukon</option>
+
+
+                                        <option value="" style="font-weight: bold;">US States..</option>
+                                        <option value="AL">Alabama</option>
+                                        <option value="AK">Alaska</option>
+                                        <option value="AZ">Arizona</option>
+                                        <option value="AR">Arkansas</option>
+                                        <option value="CA">California</option>
+                                        <option value="CO">Colorado</option>
+                                        <option value="CT">Connecticut</option>
+                                        <option value="DE">Delaware</option>
+                                        <option value="DC">District of Columbia</option>
+                                        <option value="FL">Florida</option>
+                                        <option value="GA">Georgia</option>
+                                        <option value="HI">Hawaii</option>
+                                        <option value="ID">Idaho</option>
+                                        <option value="IL">Illinois</option>
+                                        <option value="IN">Indiana</option>
+                                        <option value="IA">Iowa</option>
+                                        <option value="KS">Kansas</option>
+                                        <option value="KY">Kentucky</option>
+                                        <option value="LA">Louisiana</option>
+                                        <option value="ME">Maine</option>
+                                        <option value="MD">Maryland</option>
+                                        <option value="MA">Massachusetts</option>
+                                        <option value="MI">Michigan</option>
+                                        <option value="MN">Minnesota</option>
+                                        <option value="MS">Mississippi</option>
+                                        <option value="MO">Missouri</option>
+                                        <option value="MT">Montana</option>
+                                        <option value="NE">Nebraska</option>
+                                        <option value="NV">Nevada</option>
+                                        <option value="NH">New Hampshire</option>
+                                        <option value="NJ">New Jersey</option>
+                                        <option value="NM">New Mexico</option>
+                                        <option value="NY">New York</option>
+                                        <option value="NC">North Carolina</option>
+                                        <option value="ND">North Dakota</option>
+                                        <option value="OH">Ohio</option>
+                                        <option value="OK">Oklahoma</option>
+                                        <option value="OR">Oregon</option>
+                                        <option value="PA">Pennsylvania</option>
+                                        <option value="RI">Rhode Island</option>
+                                        <option value="SC">South Carolina</option>
+                                        <option value="SD">South Dakota</option>
+                                        <option value="TN">Tennessee</option>
+                                        <option value="TX">Texas</option>
+                                        <option value="UT">Utah</option>
+                                        <option value="VT">Vermont</option>
+                                        <option value="VA">Virginia</option>
+                                        <option value="WA">Washington</option>
+                                        <option value="WV">West Virginia</option>
+                                        <option value="WI">Wisconsin</option>
+                                        <option value="WY">Wyoming</option>
+
+                                    </select>
+                                    <!--<input type="text" name="pref_state" id="pref_state" class="transparent" style=" width: 400px;" readonly="readonly"/>--> 
                                     <label for="pref_state" class="error" generated="true"></label></td></tr>
                             <tr><td>
                                     <label for="pref_zip"  > Zip Code  </label></td><td>:</td><td>
-                                    <input type="text" name="pref_zip" id="pref_zip" class="transparent" style=" width: 400px;" readonly="readonly"/> 
+                                    <input type="text" name="pref_zip" id="pref_zip" class="transparent" maxlength="5" style=" width: 400px;" readonly="readonly"/> 
                                     <label for="pref_zip" class="error" generated="true"></label></td></tr>
 
                         </table>
@@ -152,7 +223,7 @@ $title = "ZuneFit Gym Panel";
                                     <label for="pref_phone" class="error" generated="true"></label></td></tr>
                             <tr><td>
                                     <label for="pref_pin"  > Pin Code  </label></td><td>:</td><td>
-                                    <input type="password" name="pref_pin" id="pref_pin" class="transparent" style=" width: 400px;" readonly="readonly"/> 
+                                    <input type="password" name="pref_pin" id="pref_pin" class="transparent" maxlength="4" style=" width: 400px;" readonly="readonly"/> 
                                     <label for="pref_pin" class="error" generated="true"></label></td></tr>
 
 
@@ -162,7 +233,7 @@ $title = "ZuneFit Gym Panel";
                     </div>
                     <div id="billing" class="blue-boxs" style="display: none;" >
                         <div >
-                           
+
                             <form action="" method="POST" id="payment-form">
                                 <fieldset>
 
@@ -179,7 +250,7 @@ $title = "ZuneFit Gym Panel";
                                                 <label for="first_name" class="bil_label">Name</label></td><td>
                                                 <input id="first_name" name="first_name" type="text" class="bil_text"/></td>
                                         </tr>
-                                       
+
                                         <tr><td>
                                                 <label for="address_1" class="bil_label">Address 1</label></td><td>
                                                 <input id="address_1" name="address_1" type="text"  class="bil_text"/></td>
@@ -190,10 +261,83 @@ $title = "ZuneFit Gym Panel";
                                         </tr>
                                         <tr><td>
                                                 <label for="city" class="bil_label">City</label></td><td>
-                                                <input id="city" name="city" type="text"  class="bil_text"/></td></tr>
+                                               <input id="city" name="city" type="text"  class="bil_text"/>
+                                            </td></tr>
 
-                                        <tr><td><label for="state" class="bil_label">State</label></td><td>
-                                                <input id="state" name="state" type="text"  class="bil_text"/></td></tr>
+                                        <tr><td>
+                                                <label for="state" class="bil_label">State</label></td><td>
+                                                 <select id="state" name="state" class="bil_text" style="width:140px; ">
+                                                    <option value="" style="font-weight: bold;">Canada Provinces..</option>
+                                                    <option value="AB">Alberta</option>
+                                                    <option value="BC">British Columbia</option>
+                                                    <option value="MB">Manitoba</option>
+                                                    <option value="NB">New Brunswick</option>
+                                                    <option value="NL">Newfoundland and Labrador</option>
+                                                    <option value="NS">Nova Scotia</option>
+                                                    <option value="ON">Ontario</option>
+                                                    <option value="PE">Prince Edward Island</option>
+                                                    <option value="QC">Quebec</option>
+                                                    <option value="SK">Saskatchewan</option>
+                                                    <option value="NT">Northwest Territories</option>
+                                                    <option value="NU">Nunavut</option>
+                                                    <option value="YT">Yukon</option>
+
+
+                                                    <option value="" style="font-weight: bold;">US States..</option>
+                                                    <option value="AL">Alabama</option>
+                                                    <option value="AK">Alaska</option>
+                                                    <option value="AZ">Arizona</option>
+                                                    <option value="AR">Arkansas</option>
+                                                    <option value="CA">California</option>
+                                                    <option value="CO">Colorado</option>
+                                                    <option value="CT">Connecticut</option>
+                                                    <option value="DE">Delaware</option>
+                                                    <option value="DC">District of Columbia</option>
+                                                    <option value="FL">Florida</option>
+                                                    <option value="GA">Georgia</option>
+                                                    <option value="HI">Hawaii</option>
+                                                    <option value="ID">Idaho</option>
+                                                    <option value="IL">Illinois</option>
+                                                    <option value="IN">Indiana</option>
+                                                    <option value="IA">Iowa</option>
+                                                    <option value="KS">Kansas</option>
+                                                    <option value="KY">Kentucky</option>
+                                                    <option value="LA">Louisiana</option>
+                                                    <option value="ME">Maine</option>
+                                                    <option value="MD">Maryland</option>
+                                                    <option value="MA">Massachusetts</option>
+                                                    <option value="MI">Michigan</option>
+                                                    <option value="MN">Minnesota</option>
+                                                    <option value="MS">Mississippi</option>
+                                                    <option value="MO">Missouri</option>
+                                                    <option value="MT">Montana</option>
+                                                    <option value="NE">Nebraska</option>
+                                                    <option value="NV">Nevada</option>
+                                                    <option value="NH">New Hampshire</option>
+                                                    <option value="NJ">New Jersey</option>
+                                                    <option value="NM">New Mexico</option>
+                                                    <option value="NY">New York</option>
+                                                    <option value="NC">North Carolina</option>
+                                                    <option value="ND">North Dakota</option>
+                                                    <option value="OH">Ohio</option>
+                                                    <option value="OK">Oklahoma</option>
+                                                    <option value="OR">Oregon</option>
+                                                    <option value="PA">Pennsylvania</option>
+                                                    <option value="RI">Rhode Island</option>
+                                                    <option value="SC">South Carolina</option>
+                                                    <option value="SD">South Dakota</option>
+                                                    <option value="TN">Tennessee</option>
+                                                    <option value="TX">Texas</option>
+                                                    <option value="UT">Utah</option>
+                                                    <option value="VT">Vermont</option>
+                                                    <option value="VA">Virginia</option>
+                                                    <option value="WA">Washington</option>
+                                                    <option value="WV">West Virginia</option>
+                                                    <option value="WI">Wisconsin</option>
+                                                    <option value="WY">Wyoming</option>
+
+                                                </select>
+                                               </td></tr>
                                         <tr><td>
                                                 <label for="zip" class="bil_label">Zip</label></td><td>
                                                 <input id="zip" name="zip" type="text"  class="bil_text"/></td></tr>
@@ -213,6 +357,7 @@ $title = "ZuneFit Gym Panel";
                                                     <label for="refil">Refil Automatically</label></td>
                                             </tr>
                                             <tr><td>
+                                                    <label for="when" style="float: left;">When &nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</label>
                                                     <select id="when" disabled="">
                                                         <option value="0">When to Refill</option>
                                                         <option value="1">1st of month</option>
@@ -221,7 +366,7 @@ $title = "ZuneFit Gym Panel";
                                                 </td>
                                             </tr>
                                             <tr><td>
-                                                    <label for="refil">Amount&nbsp;&nbsp;:</label>
+                                                    <label for="auto_amount">Amount&nbsp;&nbsp;:</label>
                                                     <input type="text" id="auto_amount" placeholder="Refill amount" class="round" style="text-align: right;" disabled=""/>
                                                 </td>
                                             </tr>
@@ -263,132 +408,132 @@ $title = "ZuneFit Gym Panel";
 
 
 
-                          
-                           
-                           
-                          
-                            
-                      
+
+
+
+
+
+
+                        </div>
                     </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--</div>-->
+
+    <div class="right-box">
+        <div class="balance-box" id="balanceBox">
+        </div>
+        <div class="right-featured-box">
+            <h1>Featured Gyms</h1>
+            <div id="featuredGymsBox">
+            </div>
+        </div>
+        <div style="height:20px;"></div>
+        <div class="right-featured-box" >
+            <h1>Popular Workouts</h1>
+            <ul class="user-item-link">
+
+
+            </ul>
+        </div>
+
+
+
+    </div>
+    <div style="display: none;">
+
+        <div name="lightbox" id="lightbox" class="blue-box2" style="height: 450px; width: 400px; ">
+            <div style="height: 60px;">
+                <div class="tweet" style="display: inline;"></div>
+                <div class="like" style="display: inline;"></div>
+                <div class="plus" ></div>
+            </div>
+            <div id="box-header" >
+                <div id="g_image" style="float: left;width: 70px;"></div>
+                <div style="width: 170px;float: left;">
+                    <table class="pref2">
+                        <tr><td>
+                                <label for="g_name" class="labels"> Gym&nbsp;Name  </label> 
+                            </td><td><td>:<td>
+                                <input type="text" name="g_name" id="g_name" class="transparent"/>
+                            </td>  </tr>  
+                        <tr> <td>
+                                <label for="g_rate" class="labels"> Rate  </label>
+                            </td> <td><td>:<td>
+                                <input type="text" name="g_rate" id="g_rate" class="transparent"/>
+                            </td>  
+                        </tr>
+                    </table></div>
+            </div>
+            <div>
+                <div class = "my-box2" >
+                    <p>
+                    <ul class = "toplink">
+                        <li><a href = "#" onclick="widgets.user.loadBox(0)">Description</a></li>
+                        <li><a href = "#" onclick="widgets.user.loadBox(1)">Schedule</a></li>
+
+                        <li><a href = "#" onclick="widgets.user.loadBox(2)">Services</a></li>
+                    </ul>
+                    </p>
+                </div>
+
+
+
+                <div id="divexample1" style="height: 290px;float: left;width: 390px;overflow-x: hidden;">
+
+                    <div id="box-description" >
+                        <table class="pref">
+
+                            <tr><td>
+                                    <label for="g_address"  >  Address  </label></td><td>:</td><td>
+                                    <input type="text" name="g_address" id="g_address" class="transparent"/> 
+                                </td></tr>
+                            <tr><td>
+                                    <label for="g_city"  >  City  </label></td><td>:</td><td>
+                                    <input type="text" name="g_city" id="g_city" class="transparent"/>
+                                </td></tr>                        
+
+                            <tr><td>
+                                    <label for="g_state"  > State  </label></td><td>:</td><td>
+                                    <input type="text" name="g_state" id="g_state" class="transparent"/> 
+                                </td></tr>
+                            <tr><td>
+                                    <label for="g_zipcode" > Zip&nbsp;Code  </label></td><td>:</td><td>
+                                    <input type="number" name="g_zipcode" id="g_zipcode" class="transparent"/>
+                                </td></tr>
+                            <tr><td>
+                                    <label for="g_phone"  >  Phone  </label></td><td>:</td><td>
+                                    <input type="text" name="g_phone" id="g_phone" class="transparent"/> 
+                                </td></tr>
+                            <tr><td>
+                                    <label for="g_email"  >  email  </label></td><td>:</td><td>
+                                    <input type="email" name="g_email" id="g_email" class="transparent"/>
+                                </td></tr>                        
+
+                            <tr><td>
+                                    <label for="g_contact"  > Contact  </label></td><td>:</td><td>
+                                    <input type="text" name="g_contact" id="g_contact" class="transparent"/> 
+                                </td></tr>
+
+                        </table>
+                    </div>   
+                    <div id="box-Schedule" style="display: none; " >
+
+                    </div>   
+
+                    <div id="box-Services" style="display: none;" >
+
+                    </div>   
                 </div>
 
             </div>
-        </div>
-    </div>
-</div>
-<!--</div>-->
-
-<div class="right-box">
-    <div class="balance-box" id="balanceBox">
-    </div>
-    <div class="right-featured-box">
-        <h1>Featured Gyms</h1>
-        <div id="featuredGymsBox">
-        </div>
-    </div>
-    <div style="height:20px;"></div>
-    <div class="right-featured-box" >
-        <h1>Popular Workouts</h1>
-        <ul class="user-item-link">
-
-
-        </ul>
-    </div>
-
-
-
-</div>
-<div style="display: none;">
-
-    <div name="lightbox" id="lightbox" class="blue-box2" style="height: 450px; width: 400px; ">
-        <div style="height: 60px;">
-            <div class="tweet" style="display: inline;"></div>
-            <div class="like" style="display: inline;"></div>
-            <div class="plus" ></div>
-        </div>
-        <div id="box-header" >
-               <div id="g_image" style="float: left;width: 70px;"></div>
-               <div style="width: 170px;float: left;">
-            <table class="pref2">
-                <tr><td>
-                        <label for="g_name" class="labels"> Gym&nbsp;Name  </label> 
-                    </td><td><td>:<td>
-                        <input type="text" name="g_name" id="g_name" class="transparent"/>
-                    </td>  </tr>  
-                <tr> <td>
-                        <label for="g_rate" class="labels"> Rate  </label>
-                    </td> <td><td>:<td>
-                        <input type="text" name="g_rate" id="g_rate" class="transparent"/>
-                    </td>  
-                </tr>
-            </table></div>
-        </div>
-        <div>
-            <div class = "my-box2" >
-                <p>
-                <ul class = "toplink">
-                    <li><a href = "#" onclick="widgets.user.loadBox(0)">Description</a></li>
-                    <li><a href = "#" onclick="widgets.user.loadBox(1)">Schedule</a></li>
-
-                    <li><a href = "#" onclick="widgets.user.loadBox(2)">Services</a></li>
-                </ul>
-                </p>
-            </div>
-
-
-
-            <div id="divexample1" style="height: 290px;float: left;width: 390px;overflow-x: hidden;">
-
-                <div id="box-description" >
-                    <table class="pref">
-
-                        <tr><td>
-                                <label for="g_address"  >  Address  </label></td><td>:</td><td>
-                                <input type="text" name="g_address" id="g_address" class="transparent"/> 
-                            </td></tr>
-                        <tr><td>
-                                <label for="g_city"  >  City  </label></td><td>:</td><td>
-                                <input type="text" name="g_city" id="g_city" class="transparent"/>
-                            </td></tr>                        
-
-                        <tr><td>
-                                <label for="g_state"  > State  </label></td><td>:</td><td>
-                                <input type="text" name="g_state" id="g_state" class="transparent"/> 
-                            </td></tr>
-                        <tr><td>
-                                <label for="g_zipcode" > Zip&nbsp;Code  </label></td><td>:</td><td>
-                                <input type="number" name="g_zipcode" id="g_zipcode" class="transparent"/>
-                            </td></tr>
-                        <tr><td>
-                                <label for="g_phone"  >  Phone  </label></td><td>:</td><td>
-                                <input type="text" name="g_phone" id="g_phone" class="transparent"/> 
-                            </td></tr>
-                        <tr><td>
-                                <label for="g_email"  >  email  </label></td><td>:</td><td>
-                                <input type="email" name="g_email" id="g_email" class="transparent"/>
-                            </td></tr>                        
-
-                        <tr><td>
-                                <label for="g_contact"  > Contact  </label></td><td>:</td><td>
-                                <input type="text" name="g_contact" id="g_contact" class="transparent"/> 
-                            </td></tr>
-
-                    </table>
-                </div>   
-                <div id="box-Schedule" style="display: none; " >
-
-                </div>   
-
-                <div id="box-Services" style="display: none;" >
-
-                </div>   
-            </div>
 
         </div>
 
     </div>
-
-</div>
 
 </div>
 <div class="clr"></div>
