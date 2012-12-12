@@ -97,10 +97,16 @@ function handler($errno, $errstr, $errfile, $errline) {
 }
 
 ob_start();
+include('log4php/Logger.php');
+Logger::configure('log4php.xml');
 
+// Fetch a logger, it will inherit settings from the root logger
+$log = Logger::getLogger('Intermediate login user');
 session_start();
 
 include('includes/config.inc.php');
+
+$log->info("token ".$_POST["token"]);
 
 $jrnToke = $_POST["token"];
 $zuneFitUrl = "https://api.zunefit.com/api/userSignup/";
@@ -115,8 +121,11 @@ $chleadresult = curl_exec($chlead);
 
 curl_close($chlead);
 
+$log->info("curl close");
+
 $obj = json_decode($chleadresult);
 
+$log->info("setting variables");
 
 $token = $obj[0]->{'token'};
 $id = $obj[0]->{'userid'};
