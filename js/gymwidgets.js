@@ -178,7 +178,7 @@ var Gym = function()
     {
         data = {};
         //  data['gymid'] = $('#gid').val();
-         data['classid'] = cid;
+        data['classid'] = cid;
         data['service'] = $('#up_class_name').val();
         data['price'] = $('#up_class_price').val();
         
@@ -217,13 +217,13 @@ var Gym = function()
                 class_info +="<tr><td class='bold'>Wednesday</td><td>:<input type='text' class= 'round sch' id='up_class_wed' value='"+results.wednesday+"'/></td></tr><tr><td class='bold'>Thursday</td><td>:<input type='text' id='up_class_thu' class= 'round sch' value='"+results.thursday+"'/></td></tr><tr><td class='bold'>Friday</td><td>:<input type='text' class= 'round sch' id='up_class_fri' value='"+results.friday+"'/></td></tr><tr><td class='bold'>Saturday</td><td>:<input type='text' id='up_class_sat' class= 'round sch'  value='"+results.saturday+"'/></td></tr><tr><td class='bold'>Sunday</td><td>:<input class= 'round' type='text' id='up_class_sun' class= 'round sch' value='"+results.sunday+"'/></td></tr></table>";
                 class_info += "<div class='buttons' style='float:left;clear:both;' onclick='widgets.gim.update_class("+results.id+")'>Update</div>";
                 $('#class_info').html(class_info);
-               $('.sch').timepicker();
+                $('.sch').timepicker();
             },
             error:function(){
           
             }
         });
-         data = {};
+        data = {};
         data['start'] = $('#class_day').val()+' 00:00:00';
         data['end'] = $('#class_day').val()+' 24:00:00';      
         
@@ -288,7 +288,7 @@ var Gym = function()
         days[6] = "Saturday";
               
         data['day']= days[day];
-       var d = days[day];
+        var d = days[day];
         ZUNEFIT.postJSON({
             url:'getDayClasses/',
             dataType:'jsonp',
@@ -446,12 +446,32 @@ var Gym = function()
             
             },
             success: function(response){
-                result12 = eval(response)[0];
-                alert(result12.status);
-           
+                servicess = "<table>";
+                servicessp = "<ul>"
+                ZUNEFIT.getJSON({
+                    url:'getTags/'+$('#gid').val(),
+                    success:function(data){
+                        results = eval(data);
+                        end = results.length;
+                        for(i=0;i<end;i++){
+                   
+                            servicess += '<tr><td>'+results[i].tag+'</td><td><img src="images/delete.png" onclick="widgets.gim.delTag('+results[i].id+')" /></td></tr> </li>';
+                            servicessp += '<li>'+results[i].tag+'</li>';    
+                        }
+                        servicess += "</ul>";
+                        servicessp += "</ul>";
+                        $("#box-Services").html(servicessp);
+                        $("#all_service").html(servicess);
+              
+                    },
+                    error:function(){
+          
+                    }
+                });
+                
             }
         });
-        this.allTags();
+       
     }
     this.delClass = function(id)
     {
@@ -488,16 +508,37 @@ var Gym = function()
             token : $('#token').val(),
             data : data,
             success:function(data){
-                results = eval(data);
+                servicess = "<table>";
+                servicessp = "<ul>"
+                ZUNEFIT.getJSON({
+                    url:'getTags/'+$('#gid').val(),
+                    success:function(data){
+                        results = eval(data);
+                        end = results.length;
+                        for(i=0;i<end;i++){
+                   
+                            servicess += '<tr><td>'+results[i].tag+'</td><td><img src="images/delete.png" onclick="widgets.gim.delTag('+results[i].id+')" /></td></tr> </li>';
+                            servicessp += '<li>'+results[i].tag+'</li>';    
+                        }
+                        servicess += "</ul>";
+                        servicessp += "</ul>";
+                        $("#box-Services").html(servicessp);
+                        $("#all_service").html(servicess);
+              
+                    },
+                    error:function(){
+          
+                    }
+                });
                 
                 
               
             },
             error:function(){
-          
+               
             }
         });
-        this.allTags();
+        
          
     }
     this.search = function()
@@ -708,7 +749,7 @@ var Gym = function()
     {   
         $('.sch').timepicker();
         
-         $( ".datepicker" ).datepicker();
+        $( ".datepicker" ).datepicker();
         $( ".datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd");
        
         $("a.light").live("click", function(event) {
