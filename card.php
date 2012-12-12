@@ -3,6 +3,8 @@
 header('Content-type: application/json');
 require './lib/stripe.php';
 
+include('includes/config.inc.php');
+
 // Tell log4php to use our configuration file.
 include('log4php/Logger.php');
 Logger::configure('log4php.xml');
@@ -19,7 +21,7 @@ if ($_POST) {
     // setting api secret key
     $log->info("seting api key...");
      $log->info($_POST['name']);
-    Stripe::setApiKey("sk_test_fYUN8cMnv3xKCaTZjUG0Jxpv");
+    Stripe::setApiKey(SK);
 
     try {
         if (!isset($_POST['stripeToken'])) {

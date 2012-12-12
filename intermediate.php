@@ -113,7 +113,7 @@ $id = $obj[0]->{'userid'};
 
 $_SESSION['token']= $token.'';
 $_SESSION['userid']= $id;
-$_SESSION['type']= "user";
+$_SESSION['type']= USER;
 
    
 header ("Location: ".SITE_URL."inner.php");  

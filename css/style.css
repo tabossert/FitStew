@@ -861,7 +861,7 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     -moz-border-radius:6px;
     -webkit-border-radius:6px;
     margin-right: 20px;
-    min-height: 10px;
+    min-height: 25px;
     min-width: 270px;
     padding: 3px;
     text-align: center;

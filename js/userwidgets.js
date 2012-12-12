@@ -998,9 +998,11 @@ var User = function()
     }
     this.onload = function()
     {
+        startAjax();
+        
         $("#message").css('display','block')
         $("#message").html("processing please wait..");
-        Stripe.setPublishableKey('pk_test_b6UX3N4Ew26Yxmtf2pdZ84yT');
+        Stripe.setPublishableKey($('#pk').val());
         // disable the submit button to prevent repeated clicks
         $('.submit-button').attr("disabled", "disabled");
         if($('#pref_address').val().length==0){
@@ -1027,6 +1029,7 @@ var User = function()
                 // re-enable the submit button
                 $('.submit-button').removeAttr("disabled");
                 // show the errors on the form
+                endAjax();
                 $(".payment-errors").html(response.error.message);
             } else {
                 var form$ = $("#payment-form");
