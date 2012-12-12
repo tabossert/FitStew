@@ -134,7 +134,7 @@ $title = "ZuneFit User Portal";
                             <tr><td>
                                     <label for="pref_state"  > State  </label></td><td>:</td><td>
                                     <select name="pref_state" id="pref_state"  style=" width: 410px;" class="transparent" disabled="" >
-                                        <option value="" style="font-weight: bold;">Canada Provinces..</option>
+                                        <option value="" style="background-color:black ; color: wheat;font-weight: bold;">Canada Provinces..</option>
                                         <option value="AB">Alberta</option>
                                         <option value="BC">British Columbia</option>
                                         <option value="MB">Manitoba</option>
@@ -150,7 +150,7 @@ $title = "ZuneFit User Portal";
                                         <option value="YT">Yukon</option>
 
 
-                                        <option value="" style="font-weight: bold;">US States..</option>
+                                        <option value="" style="background-color:black ; color: wheat;font-weight: bold;">US States..</option>
                                         <option value="AL">Alabama</option>
                                         <option value="AK">Alaska</option>
                                         <option value="AZ">Arizona</option>
@@ -272,7 +272,7 @@ $title = "ZuneFit User Portal";
                                         <tr><td>
                                                 <label for="state" class="bil_label">State</label></td><td>
                                                 <select id="state" name="state" class="bil_text" style="width:140px;padding: 5px; ">
-                                                    <option value="" style="font-weight: bold;">Canada Provinces..</option>
+                                                    <option value="" style="background-color:black ; color: wheat;font-weight: bold;">Canada Provinces..</option>
                                                     <option value="AB">Alberta</option>
                                                     <option value="BC">British Columbia</option>
                                                     <option value="MB">Manitoba</option>
@@ -288,7 +288,7 @@ $title = "ZuneFit User Portal";
                                                     <option value="YT">Yukon</option>
 
 
-                                                    <option value="" style="font-weight: bold;">US States..</option>
+                                                    <option value="" style="background-color:black ; color: wheat;font-weight: bold;">US States..</option>
                                                     <option value="AL">Alabama</option>
                                                     <option value="AK">Alaska</option>
                                                     <option value="AZ">Arizona</option>
