@@ -243,7 +243,7 @@ $title = "ZuneFit User Portal";
                                 <fieldset>
 
                                     <input name="redirect_url" type="hidden" value="" />
-                                    <input id="pk" type="hidden" value="<?php echo PK;?>" />    
+                                    <input id="pk" type="hidden" value="<?php echo PK; ?>" />    
 
                                     <input name="custom" type="hidden" value="Any value you want us to save with this payment method" />
 
@@ -345,7 +345,7 @@ $title = "ZuneFit User Portal";
                                         <tr><td>
                                                 <label for="zip" class="bil_label">Zip</label></td><td>
                                                 <input id="zip" name="zip" type="text"  class="bil_text" maxlength="5" pattern=".{3,}"/>
-                                        <label for="zip" class="error" generated="true"></label>   </td></tr>
+                                                <label for="zip" class="error" generated="true"></label>   </td></tr>
 
                                     </table>
 

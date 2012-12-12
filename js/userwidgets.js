@@ -544,7 +544,7 @@ var User = function()
     {
         if($('#pref_pin').val() != $('#pref_pin2').val() )
         {
-                $('#pref_error').text('Please check your Pin code: the confirmation entry does not match.');
+            $('#pref_error').text('Please check your Pin code: the confirmation entry does not match.');
         }else{
             $("#pref_phone, #pref_pin, #pref_pin2").attr('readonly','readonly');
 
@@ -566,7 +566,7 @@ var User = function()
                 token : $('#utoken').val(),
           
                 success:function(response){
-                 $('#pref_error').text(" ");
+                    $('#pref_error').text(" ");
                 },
                 error:function(){
             
@@ -999,7 +999,7 @@ var User = function()
     this.onload = function()
     {
         if($('#zip').val().length > 0 && $('#zip').val().length != 5 ){
-             $("#message").css('display','block')
+            $("#message").css('display','block')
             $("#message").html("Zip code must be 5 digits");
             return;
         }
@@ -1179,7 +1179,7 @@ var User = function()
                 $('#edit_fil').css('display', 'block');
                 $('#refil').attr('disabled','disabled');
                 $('#auto_amount').attr('disabled','disabled');
-                 $('.dk_options a,.dk_options a:link,.dk_options a:visited').css('display', 'none');
+                $('.dk_options a,.dk_options a:link,.dk_options a:visited').css('display', 'none');
             },
             error:function(){
             //Error should be handle here
