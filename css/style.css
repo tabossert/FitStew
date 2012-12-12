@@ -224,7 +224,7 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
 
     margin:0px; 
     padding:10px 16px 16px 16px ; 
-    border:2px solid #184A61;
+    border:2px solid #B0B8BB;
     background:#3A5E64;
     border-top-right-radius: 10px;
     border-top-left-radius:10px;
@@ -281,15 +281,20 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
 
 }
 .balance { 
-    margin:0px 0px 10px 0px; padding:10px 16px 16px 16px ; border:2px solid #184A61;
-    background:#3A5E64;
+    margin:0px 0px 10px 0px; 
+    padding:10px 16px 16px 16px ; 
+    border:2px solid #B0B8BB;
+    background: #d1d1d1;;
     border-top-right-radius: 10px;
     border-top-left-radius:10px;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     height: 10px;
-
-
+    background: #8b8b8b; /* for non-css3 browsers */
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#E6ECE0', endColorstr='#333'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#E6ECE0), to(#333)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #E6ECE0,  #333); /* for firefox 3.6+ */
+color: white;
 
 
 
@@ -298,8 +303,8 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
 .balance-box { 
     margin:0px 0px 10px 0px; 
     padding:10px 16px 20px 16px ; 
-    border:2px solid #184A61;
-    background:#8EB43E;
+    border:2px solid #B0B8BB;
+
     border-top-right-radius: 10px;
     border-top-left-radius:10px;
     border-bottom-right-radius: 10px;
@@ -361,7 +366,7 @@ ul.tabs-link li a:hover{background:#A2BF5E;
                       border-top-left-radius:3px;
                       border-bottom-right-radius: 3px;
                       border-bottom-left-radius: 3px;
-                      box-shadow:0 0 1px 2px #0F476D;
+                      box-shadow:0 0 1px 2px #B0B8BB;
                       height:181px;
                       text-align: center;
 
@@ -435,12 +440,12 @@ ul.item-link li a:hover{text-decoration:none; color:#186897;}
 .pref2{
     line-height: 25px;
     width: 100%;
-   
+
 }
 .pref3{
     line-height: 35px;
     width: 100%;
-   
+
 }
 
 .underline_title{
@@ -780,7 +785,7 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     background: transparent;
 }
 .time{
-    
+
     padding: 10px;
     color: #500;
     font-weight: bold;
@@ -802,7 +807,7 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     width: 70px;
     font-weight: bold;
     color: midnightblue;
-    
+
 }
 .bil_label{
     background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #D7D7D7), color-stop(1, #ABABAB) );
@@ -951,16 +956,16 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
 }
 .clslabels{
     font :bold 14px 'Georgia';
-    
-    
-    
+
+
+
 }
 ::-webkit-scrollbar {
-	background:#9F9A9D;
-        width: 6px;
+    background:#9F9A9D;
+    width: 6px;
 }
 ::-webkit-scrollbar-thumb {
-	background:#000;
-	border-top:1px solid #dec470;
-	border-bottom:1px solid #dec470;
+    background:#000;
+    border-top:1px solid #dec470;
+    border-bottom:1px solid #dec470;
 }

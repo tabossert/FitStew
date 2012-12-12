@@ -534,41 +534,46 @@ var User = function()
     
     this.phone_edit = function()
     {
-        $("#pref_phone, #pref_pin").removeClass('transparent').addClass('round');
+        $("#pref_phone, #pref_pin, #pref_pin2").removeClass('transparent').addClass('round');
         $('#phone_edit').css("display","none");
         $('#phone_done').css("display","block");
-        $("#pref_phone, #pref_pin").removeAttr('readonly');
+        $("#pref_phone, #pref_pin, #pref_pin2").removeAttr('readonly');
 
     }
     this.phone_update = function()
     {
-        $("#pref_phone, #pref_pin").attr('readonly','readonly');
+        if($('#pref_pin').val() != $('#pref_pin2').val() )
+        {
+                $('#pref_error').text('Please check your Pin code: the confirmation entry does not match.');
+        }else{
+            $("#pref_phone, #pref_pin, #pref_pin2").attr('readonly','readonly');
 
-        $('#phone_done').css("display","none");
-        $('#phone_edit').css("display","block");
-        $("#pref_phone, #pref_pin").addClass('transparent').removeClass('round');
-        data = {};
+            $('#phone_done').css("display","none");
+            $('#phone_edit').css("display","block");
+            $("#pref_phone, #pref_pin, #pref_pin2").addClass('transparent').removeClass('round');
+            data = {};
      
        
-        data['phone'] = $('#pref_phone').val();
-        data["pincode"] = Sha1.hash($('#pref_pin').val());
+            data['phone'] = $('#pref_phone').val();
+            data["pincode"] = Sha1.hash($('#pref_pin').val());
         
        
         
              
-        ZUNEFIT.postJSON({
-            url:'setPinCode/',
-            data:data,
-            token : $('#utoken').val(),
+            ZUNEFIT.postJSON({
+                url:'setPinCode/',
+                data:data,
+                token : $('#utoken').val(),
           
-            success:function(response){
-                
-            },
-            error:function(){
+                success:function(response){
+                 $('#pref_error').text(" ");
+                },
+                error:function(){
             
-            }
+                }
             
-        });
+            });
+        }
     }
     this.edit = function()
     {

@@ -88,9 +88,8 @@ function handler( $errno, $errstr, $errfile, $errline ) {
 
 ob_start();
 
-
-
 session_start();
+
 include('includes/config.inc.php');
 
 $jrnToke = $_POST["token"];
@@ -103,32 +102,21 @@ curl_setopt($chlead, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($chlead, CURLOPT_CUSTOMREQUEST, "POST"); 
 curl_setopt($chlead, CURLOPT_SSL_VERIFYPEER, 0);
 $chleadresult = curl_exec($chlead);
+
+curl_close($chlead);
+
 $obj = json_decode($chleadresult);
 
-//$token = $obj[0]->{'token'};
+
 $token = $obj[0]->{'token'};
 $id = $obj[0]->{'userid'};
 
-echo $_SESSION['token']= $token;
-echo $_SESSION['userid']= $id;
-echo $_SESSION['type']= "user";
-var_dump($chleadresult);
+$_SESSION['token']= $token.'';
+$_SESSION['userid']= $id;
+$_SESSION['type']= "user";
 
-try { 
-     
-    header ("Location: ".SITE_URL."inner.php");  
+   
+header ("Location: ".SITE_URL."inner.php");  
     
-    }  
-catch (Exception $ex){
-   header ("Location: inner.php"); 
-}
-
-//echo $chleadapierr = curl_errno($chlead);
-//echo $chleaderrmsg = curl_error($chlead);
-curl_close($chlead);
-
-
-
-
 ob_end_flush();
 ?>

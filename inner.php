@@ -225,10 +225,15 @@ $title = "ZuneFit User Portal";
                                     <label for="pref_pin"  > Pin Code  </label></td><td>:</td><td>
                                     <input type="password" name="pref_pin" id="pref_pin" class="transparent" maxlength="4" style=" width: 400px;" readonly="readonly"/> 
                                     <label for="pref_pin" class="error" generated="true"></label></td></tr>
+                            <tr><td>
+                                    <label for="pref_pin2"  > Verify code </label></td><td>:</td><td>
+                                    <input type="password" name="pref_pin2" id="pref_pin2" class="transparent" maxlength="4" style=" width: 400px;" readonly="readonly"/> 
+                                </td></tr>
+
 
 
                         </table>
-
+                        <label id="pref_error" style="color: darkred;" />
 
                     </div>
                     <div id="billing" class="blue-boxs" style="display: none;" >
@@ -261,12 +266,12 @@ $title = "ZuneFit User Portal";
                                         </tr>
                                         <tr><td>
                                                 <label for="city" class="bil_label">City</label></td><td>
-                                               <input id="city" name="city" type="text"  class="bil_text"/>
+                                                <input id="city" name="city" type="text"  class="bil_text"/>
                                             </td></tr>
 
                                         <tr><td>
                                                 <label for="state" class="bil_label">State</label></td><td>
-                                                 <select id="state" name="state" class="bil_text" style="width:140px; ">
+                                                <select id="state" name="state" class="bil_text" style="width:140px;padding: 5px; ">
                                                     <option value="" style="font-weight: bold;">Canada Provinces..</option>
                                                     <option value="AB">Alberta</option>
                                                     <option value="BC">British Columbia</option>
@@ -337,7 +342,7 @@ $title = "ZuneFit User Portal";
                                                     <option value="WY">Wyoming</option>
 
                                                 </select>
-                                               </td></tr>
+                                            </td></tr>
                                         <tr><td>
                                                 <label for="zip" class="bil_label">Zip</label></td><td>
                                                 <input id="zip" name="zip" type="text"  class="bil_text" maxlength="5"/></td></tr>
