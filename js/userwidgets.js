@@ -998,6 +998,11 @@ var User = function()
     }
     this.onload = function()
     {
+        if($('#zip').val().length > 0 && $('#zip').val().length != 5 ){
+             $("#message").css('display','block')
+            $("#message").html("Zip code must be 5 digits");
+            return;
+        }
         startAjax();
         
         $("#message").css('display','block')
