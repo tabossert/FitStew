@@ -29,7 +29,7 @@ if ($_POST) {
         }
         $log->info("Stripe Token was generated correctly...");
         // creating charge object 
-        $card = Stripe_Charge::create(array("amount" => $_POST['amount'] . '00',
+        $card = Stripe_Charge::create(array("amount" => $_POST['amount'],
                     "currency" => "usd",
                     "card" => $_POST['stripeToken']));
         

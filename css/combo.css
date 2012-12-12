@@ -98,7 +98,7 @@ z-index: 10;
 .dk_options a {
 	padding: 0 1em;
 	line-height: 2.5em;					/*added this instead of the padding top/bottom. we can now calculate it exactly */
-	
+	display: none;
 	-webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -190,7 +190,7 @@ z-index: 10;
 }
 
 .dk_options a,.dk_options a:link,.dk_options a:visited {
-	display: block;
+	display: none;
 }
 
 .dk_options_inner {

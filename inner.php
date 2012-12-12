@@ -345,8 +345,8 @@ $title = "ZuneFit User Portal";
                                             </td></tr>
                                         <tr><td>
                                                 <label for="zip" class="bil_label">Zip</label></td><td>
-                                                <input id="zip" name="zip" type="text"  class="bil_text" maxlength="5"/></td></tr>
-
+                                                <input id="zip" name="zip" type="text"  class="bil_text" maxlength="5" />
+                                        <label for="zip" class="error" generated="true"></label>   </td></tr>
 
                                     </table>
 

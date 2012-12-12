@@ -1045,7 +1045,8 @@ var User = function()
    
  
                 data['stripeToken'] = $("#tok").val();
-                data['amount'] = $("#pay_amount").val();
+               
+                data['amount'] = parseInt(($("#pay_amount").val()*100),10);
                 data['name'] = $("#pref_email").val();
                 $.ajax({
                     type: 'POST',
@@ -1093,7 +1094,7 @@ var User = function()
         data = {};
        
         data['stripeToken'] = $("#tok").val();
-        data['amount'] = $("#amount").val();
+        data['amount'] = parseInt(($("#amount").val()*100),10);
       
         $.ajax({
             type: 'POST',
@@ -1137,7 +1138,7 @@ var User = function()
         $('#refil').removeAttr('disabled');
         $('#edit_fil').css('display', 'none');
         $('#done_fil').css('display', 'block');
-       
+        $('.dk_options a,.dk_options a:link,.dk_options a:visited').css('display', 'block');
          
     }
     
@@ -1170,6 +1171,7 @@ var User = function()
                 $('#edit_fil').css('display', 'block');
                 $('#refil').attr('disabled','disabled');
                 $('#auto_amount').attr('disabled','disabled');
+                 $('.dk_options a,.dk_options a:link,.dk_options a:visited').css('display', 'none');
             },
             error:function(){
             //Error should be handle here
