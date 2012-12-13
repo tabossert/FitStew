@@ -128,6 +128,11 @@ $title = "ZuneFit User Portal";
                                     <input type="text" name="pref_address" id="pref_address" class="transparent" style=" width: 400px;" readonly="readonly" /> 
                                     <label for="pref_address" class="error" generated="true"></label></td></tr>
                             <tr><td>
+                                    <label for="pref_address2" class="address2" > Address  </label></td><td>:</td><td>
+                                    <input type="text" name="pref_address2" id="pref_address2" class="transparent" style=" width: 400px;" readonly="readonly" /> 
+                                    <label for="pref_address2" class="error" generated="true"></label></td></tr>
+                            
+                            <tr><td>
                                     <label for="pref_city"  > City  </label></td><td>:</td><td>
                                     <input type="text" name="pref_city" id="pref_city" class="transparent" style=" width: 400px;" readonly="readonly"/> 
                                     <label for="pref_city" class="error" generated="true"></label></td></tr>

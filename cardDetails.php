@@ -33,6 +33,7 @@ if (isset($_POST['id'])) {
     $response['name'] = $det->card->name;
     $response['zip'] = $det->card->address_zip;
     $response['month'] = $det->card->exp_month;
+    
 } else {
     $log->error('Invalid retrieve id');
 }

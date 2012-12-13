@@ -206,7 +206,7 @@ var User = function()
                     $("#pref_phone").val(result6.phone);
                
                     $("#pref_address").val(result6.address);
-                
+                 $("#pref_address2").val(result6.address2);
                     $("#pref_city").val(result6.city);
               
                     $("#pref_state").val(result6.state);
@@ -577,23 +577,24 @@ var User = function()
     }
     this.edit = function()
     {
-        $("#pref_firstName, #pref_lastName, #pref_address, #pref_city, #pref_state, #pref_zip").removeClass('transparent').addClass('round');
+        $("#pref_firstName, #pref_lastName, #pref_address, #pref_address2, #pref_city, #pref_state, #pref_zip").removeClass('transparent').addClass('round');
         $('#edit').css("display","none");
         $('#done').css("display","block");
-        $(" #pref_firstName, #pref_lastName, #pref_address, #pref_city, #pref_state, #pref_zip").removeAttr('readonly');
+        $(" #pref_firstName, #pref_lastName, #pref_address, #pref_address2, #pref_city, #pref_state, #pref_zip").removeAttr('readonly');
         $("#pref_state").removeAttr('disabled');
     }
     this.update = function()
     {
-        $("#pref_phone,  #pref_firstName, #pref_lastName, #pref_address, #pref_city, #pref_zip").attr('readonly','readonly');
+        $("#pref_phone,  #pref_firstName, #pref_lastName, #pref_address, #pref_address2, #pref_city, #pref_zip").attr('readonly','readonly');
         $("#pref_state").attr('disabled','disabled');
         $('#done').css("display","none");
         $('#edit').css("display","block");
-        $("#pref_firstName, #pref_lastName,  #pref_address, #pref_city, #pref_state, #pref_zip").addClass('transparent').removeClass('round');
+        $("#pref_firstName, #pref_lastName,  #pref_address, #pref_address2, #pref_city, #pref_state, #pref_zip").addClass('transparent').removeClass('round');
         data = {};
         data['first_name'] = $("#pref_firstName").val();
         data['last_name'] = $("#pref_lastName").val();
         data['address'] = $("#pref_address").val();
+        data['address2'] = $("#pref_address2").val();
         data['email'] = $("#pref_email").val();
         
         data['city'] = $("#pref_city").val();
@@ -633,7 +634,7 @@ var User = function()
         
         data['address'] = $("#address_1").val();
        
-        
+        data['address2'] = $("#address_2").val();
         
         data['city'] = $("#city").val();
         data['state'] = $("#state").val();
