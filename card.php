@@ -1,7 +1,7 @@
 <?php
 
 header('Content-type: application/json');
-require './lib/stripe.php';
+require './lib/Stripe.php';
 
 include('includes/config.inc.php');
 
