@@ -61,7 +61,7 @@ if ($page != 'index.php') {
             <script src='js/janrain.js'></script>
 
 
-            <?php if (isset($_SESSION['type']) && $_SESSION['type'] == 'user') : ?>
+            <?php if (isset($_SESSION['type']) && $_SESSION['type'] == USER) : ?>
 
                 <script src='js/userwidgets.js'></script>
 

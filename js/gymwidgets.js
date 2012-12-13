@@ -182,6 +182,18 @@ var Gym = function()
         data['service'] = $('#up_class_name').val();
         data['price'] = $('#up_class_price').val();
         
+        var now = new Date("2012-10-10 "+$('#up_class_mon').val()); 
+        var now = now.getUTCHours()+" "+ now.getUTCMinutes();
+       
+        alert(now);
+        if($('#up_class_mon').val().length>0){
+            var now = new Date("2012-10-10 "+$('#up_class_mon').val()); 
+            //var hrs = now.getUTCHours();
+            var min = now.getUTCMinutes();
+            hrs = (now.getUTCHours() < 10) ? '0'+lastDay.getUTCDate() : lastDay.getUTCDate() ;
+            min = (now.getUTCMinutes() < 10) ? '0'+lastDay.getUTCMinutes() : lastDay.getUTCMinutes() ;
+            data['monday'] = hrs+":"+min;
+            }
         data['monday']     = $('#up_class_mon').val().length>0 ? $('#up_class_mon').val()    : null;
         data['tuesday']     = $('#up_class_tue').val().length>0 ? $('#up_class_tue').val()    : null;
         data['wednesday']   = $('#up_class_wed').val().length>0 ? $('#up_class_wed').val()    : null;
@@ -265,8 +277,8 @@ var Gym = function()
             
             },
             error:function(){
-            //Error should be handle here
-            // alert("no");  
+                //Error should be handle here
+                // alert("no");  
             }
         });
     }
@@ -738,8 +750,8 @@ var Gym = function()
             
             },
             error:function(){
-            //Error should be handle here
-            // alert("no");  
+                //Error should be handle here
+                // alert("no");  
             }
         });
     }
@@ -777,7 +789,7 @@ var Gym = function()
                 }
             },
             error:function(){
-            //Error should be handle here
+                //Error should be handle here
             }
         });
     }
@@ -801,7 +813,7 @@ var Gym = function()
                 }
             },
             error:function(){
-            //Error should be handle here
+                //Error should be handle here
             }
         });
     }
@@ -902,8 +914,8 @@ var Gym = function()
                
             },
             error:function(){
-            //Error should be handle here
-            // alert("no");  
+                //Error should be handle here
+                // alert("no");  
             }
             
         });
