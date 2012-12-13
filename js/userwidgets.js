@@ -342,8 +342,8 @@ var User = function()
         fday = (d.getUTCDate() < 10) ? '0'+d.getUTCDate() : d.getUTCDate() ;
         var strDate = d.getUTCFullYear() + "-" + (d.getUTCMonth()+1) + "-" + fday;
         this.getUserSchedule(strDate+" 00:00:00", strDate+" 24:00:00");
-        $(".inner-calender1").css("background-color","#565d60");
-        $(".inner-calender2, .inner-calender3").css("background-color","transparent");
+        $(".inner-calender1").addClass('selectedCal');
+        $(".inner-calender2, .inner-calender3").removeClass('selectedCal');
     }
     
     this.getUserWeekSchedule = function()
@@ -361,8 +361,8 @@ var User = function()
         
         this.getUserSchedule(startDate+" 00:00:00", endDate+" 24:00:00");
        
-        $(".inner-calender2").css("background-color","#565d60");
-        $(".inner-calender1, .inner-calender3").css("background-color","transparent");
+        $(".inner-calender2").addClass('selectedCal');
+        $(".inner-calender1, .inner-calender3").removeClass('selectedCal');
     }
     
     this.getUserMonthSchedule = function()
@@ -378,8 +378,8 @@ var User = function()
         var lastDate = lastDay.getUTCFullYear() + "-" + (lastDay.getUTCMonth()+1) + "-" + lday;
         
         this.getUserSchedule(firstDate+" 00:00:00", lastDate+" 24:00:00");
-        $(".inner-calender3").css("background-color","#565d60");
-        $(".inner-calender2, .inner-calender1").css("background-color","transparent");
+        $(".inner-calender3").addClass('selectedCal');
+        $(".inner-calender2, .inner-calender1").removeClass('selectedCal');
     }
     
     this.getUserSchedule = function(start,end)

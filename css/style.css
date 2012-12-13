@@ -233,9 +233,9 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
 
     background: #d1d1d1; /* for non-css3 browsers */
 
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#999', endColorstr='#d1d1d1'); /* for IE */
-    background: -webkit-gradient(linear, left top, left bottom, from(#999), to(#d1d1d1)); /* for webkit browsers */
-    background: -moz-linear-gradient(top,  #999,  #d1d1d1); /* for firefox 3.6+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#D8D5D5', endColorstr='#EBE6E6'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#D8D5D5), to(#EBE6E6)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #D8D5D5,  #EBE6E6); /* for firefox 3.6+ */
     overflow: auto;
 
 
@@ -253,9 +253,9 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
 
     background: #d1d1d1; /* for non-css3 browsers */
 
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#999', endColorstr='#d1d1d1'); /* for IE */
-    background: -webkit-gradient(linear, left top, left bottom, from(#999), to(#d1d1d1)); /* for webkit browsers */
-    background: -moz-linear-gradient(top,  #8b8b8b,  #d1d1d1); /* for firefox 3.6+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#C4C1C1', endColorstr='#DFDADA'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#C4C1C1), to(#DFDADA)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #C4C1C1,  #DFDADA); /* for firefox 3.6+ */
 
 
 
@@ -333,9 +333,9 @@ ul.calender-link li a:hover{text-decoration:none; color:#F8E839;}
 .calender2{margin:0px 0px 0px 125px; padding:0px; width:64px; float:left; text-align:center; font: bold 13px "Trebuchet MS";color: #cd0a0a;}
 .calender3{margin:0px; padding:0px; width:64px; float:right; text-align:center; font: bold 13px "Trebuchet MS"; color: #cd0a0a;}
 
-.inner-calender1{ float:left; text-align:center; font: bold 13px "Trebuchet MS"; color: #003f81; padding: 10px;}
-.inner-calender2{ float:left; text-align:center; font: bold 13px "Trebuchet MS";color: #003f81; padding: 10px;}
-.inner-calender3{ text-align:center; float:left; font: bold 13px "Trebuchet MS"; color: #003f81; padding: 10px;}
+.inner-calender1{ float:left; text-align:center; font: bold 13px "Georgia"; color: darkblue; padding: 2px;}
+.inner-calender2{ float:left; text-align:center; font: bold 13px "Georgia";color: darkblue; padding: 2px;}
+.inner-calender3{ text-align:center; float:left; font: bold 13px "Georgia"; color: darkblue; padding: 2px;}
 
 
 
@@ -618,10 +618,10 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     width: 500px;
 }
 .selected{
-    background: #d1d1d1; /* for non-css3 browsers */
-    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9F9A9D', endColorstr='#000'); /* for IE */
-    background: -webkit-gradient(linear, left top, left bottom, from(#9F9A9D), to(#000)); /* for webkit browsers */
-    background: -moz-linear-gradient(top,  #9F9A9D,  #000); /* for firefox 3.6+ */
+    background: #3A5E64; /* for non-css3 browsers */
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#3A5E64', endColorstr='#000'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#3A5E64), to(#000)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #3A5E64,  #000); /* for firefox 3.6+ */
 
 
     height: 77%;
@@ -968,4 +968,19 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     background:#000;
     border-top:1px solid #dec470;
     border-bottom:1px solid #dec470;
+}
+.selectedCal{
+   
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    width: 180px;
+    height: 90px;
+    background: #4FAC2A; /* for non-css3 browsers */
+/*    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#B6CA23', endColorstr='#000');  for IE 
+    background: -webkit-gradient(linear, left top, left bottom, from(#B6CA23), to(#000));  for webkit browsers 
+    background: -moz-linear-gradient(top,  #B6CA23,  #000);  for firefox 3.6+ */
+
+
+    
 }

@@ -27,13 +27,13 @@ $title = "ZuneFit User Portal";
         <div class="blue-box1" style="">
 
             <div id="infoBox" style="min-height: 350px;padding: 5px;border: none;">
-                <div style="width: 10.5% ;float: left; border-right: solid; border-color: #565D60;">
-                    <div class="inner-calender1" style="clear: both; margin-top: 25px; "><a id="day" href="#" onclick="widgets.user.getUserDaySchedule();"><img src="images/day_cal.png" alt="" border="" style="margin:0px 0px 7px 0px;" /></a><br />
+                <div style="width: 16% ;float: left; border-right: solid; border-color: #565D60;">
+                    <div class="inner-calender1" style="clear: both; margin-top: 25px; width: 70px;"><a id="day" href="#" onclick="widgets.user.getUserDaySchedule();"><img src="images/day_cal.png" alt="" border="" style="margin:0px 0px 17px 0px; " /></a><br />
                         DAY</div>
 
-                    <div class="inner-calender2" style="clear: both;margin-top: 25px;"><a id= "week" href="#" onclick="widgets.user.getUserWeekSchedule()"><img src="images/week_cal.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
+                    <div class="inner-calender2" style="clear: both;margin-top: 25px;width: 70px;"><a id= "week" href="#" onclick="widgets.user.getUserWeekSchedule()"><img src="images/week_cal.png" alt="" border="0" style="margin:0px 0px 17px 0px;" /></a><br />
                         WEEK</div>
-                    <div class="inner-calender3" style="clear: both;margin-top: 25px;"><a id= "month" href="#" onclick="widgets.user.getUserMonthSchedule()"><img src="images/month_cal.png" alt="" border="0" style="margin:0px 0px 7px 0px;" /></a><br />
+                    <div class="inner-calender3" style="clear: both;margin-top: 25px;width: 70px;"><a id= "month" href="#" onclick="widgets.user.getUserMonthSchedule()"><img src="images/month_cal.png" alt="" border="0" style="margin:0px 0px 17px 0px;" /></a><br />
                         MONTH</div>
 
                 </div>
