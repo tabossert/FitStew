@@ -206,7 +206,7 @@ var User = function()
                     $("#pref_phone").val(result6.phone);
                
                     $("#pref_address").val(result6.address);
-                 $("#pref_address2").val(result6.address2);
+                    $("#pref_address2").val(result6.address2);
                     $("#pref_city").val(result6.city);
               
                     $("#pref_state").val(result6.state);
@@ -1080,7 +1080,26 @@ var User = function()
                                 token : $('#utoken').val(),
           
                                 success:function(response){
-                               
+                                    ZUNEFIT.getJSON({
+                                        url:'balance/',
+                                        data: data,
+                                        token : $('#utoken').val(),
+                                        success:function(response){
+                                            try{
+                                                result5 = eval(response)[0];                
+                                                res = result5.balance;
+                   
+                                                $(".balance-box").html("Balance: $ "+  res);
+                                            }catch(e){
+                   
+                                            }
+                                        },
+                                        error:function(){
+                                        //Error should be handle here
+            
+           
+                                        }
+                                    });
                                 },
                                 error:function(){
                                 //Error should be handle here

@@ -53,7 +53,7 @@ $title = "ZuneFit User Portal";
 
 
 
-                    <div id="advSearch" class="blue-boxs" style="padding: 6px;border: none;min-height: 340px;">
+                    <div id="advSearch" style="padding: 6px;border: none;min-height: 340px;">
                         <form> <div >
 
                                 <p class="underline_title">Location</p>
@@ -124,11 +124,11 @@ $title = "ZuneFit User Portal";
 
 
                             <tr><td>
-                                    <label for="pref_address" class="address" > Address  </label></td><td>:</td><td>
+                                    <label for="pref_address" class="address" > Address-1  </label></td><td>:</td><td>
                                     <input type="text" name="pref_address" id="pref_address" class="transparent" style=" width: 400px;" readonly="readonly" /> 
                                     <label for="pref_address" class="error" generated="true"></label></td></tr>
                             <tr><td>
-                                    <label for="pref_address2" class="address2" > Address  </label></td><td>:</td><td>
+                                    <label for="pref_address2" class="address2" > Address-2  </label></td><td>:</td><td>
                                     <input type="text" name="pref_address2" id="pref_address2" class="transparent" style=" width: 400px;" readonly="readonly" /> 
                                     <label for="pref_address2" class="error" generated="true"></label></td></tr>
                             

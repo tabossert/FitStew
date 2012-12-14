@@ -233,9 +233,9 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
 
     background: #d1d1d1; /* for non-css3 browsers */
 
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#D8D5D5', endColorstr='#EBE6E6'); /* for IE */
-    background: -webkit-gradient(linear, left top, left bottom, from(#D8D5D5), to(#EBE6E6)); /* for webkit browsers */
-    background: -moz-linear-gradient(top,  #D8D5D5,  #EBE6E6); /* for firefox 3.6+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#D8D5D5', endColorstr='#D1D1D1'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#D8D5D5), to(#D1D1D1)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #D8D5D5,  #D1D1D1); /* for firefox 3.6+ */
     overflow: auto;
 
 
@@ -370,9 +370,9 @@ ul.tabs-link li a:hover{background:#A2BF5E;
                       height:181px;
                       text-align: center;
 
-                      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#999', endColorstr='#d1d1d1'); /* for IE */
-                      background: -webkit-gradient(linear, left top, left bottom, from(#999), to(#d1d1d1)); /* for webkit browsers */
-                      background: -moz-linear-gradient(top,  #999,  #d1d1d1); /* for firefox 3.6+ */
+                      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#D8D5D5', endColorstr='#d1d1d1'); /* for IE */
+                      background: -webkit-gradient(linear, left top, left bottom, from(#D8D5D5), to(#d1d1d1)); /* for webkit browsers */
+                      background: -moz-linear-gradient(top,  #D8D5D5,  #d1d1d1); /* for firefox 3.6+ */
 }
 
 .right-featured-box h1 { margin:0px; padding:5px 0px 5px 10px ; 
@@ -451,8 +451,9 @@ ul.item-link li a:hover{text-decoration:none; color:#186897;}
 .underline_title{
     font-style: normal;
     text-decoration: none;
-    color: #003f81;
+    color: darkblue;
     font-size: 1.05em;
+    font-weight: bold;
 
 
 }
@@ -466,7 +467,7 @@ ul.item-link li a:hover{text-decoration:none; color:#186897;}
     font-style: normal;
     text-decoration: none;
     color: #000000;
-    font-size: 0.85em;
+    font-size: 1em;
 
 
 }
@@ -600,9 +601,9 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
 #inner-nav .current a, #inner-nav li:hover > a{
 
     background: #d1d1d1; /* for non-css3 browsers */
-    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#9F9A9D', endColorstr='#000'); /* for IE */
-    background: -webkit-gradient(linear, left top, left bottom, from(#9F9A9D), to(#000)); /* for webkit browsers */
-    background: -moz-linear-gradient(top,  #9F9A9D,  #000); /* for firefox 3.6+ */
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#3A5E64', endColorstr='#000'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#3A5E64), to(#000)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #3A5E64,  #000); /* for firefox 3.6+ */
 
 
 
