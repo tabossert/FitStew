@@ -192,7 +192,7 @@ var Gym = function()
         , date.getMilliseconds()
     );
         
-        alert(dates);
+      //  alert(dates);
        // now = now.getUTCHours()+" "+ now.getUTCMinutes();
        
       //  alert(now);
