@@ -212,11 +212,11 @@ var User = function()
                     $("#pref_state").val(result6.state);
                     $("#pref_zip").val(result6.zipcode);
                     $("#auto_amount").val(result6.refillamount);
-                    $("#when").val(result6.schedule);
+                    $("#when").val(result6.minamount);
                     if(result6.automatic==1){
                         $('#refil').prop('checked', true);
                     }
-                    $('#when').dropkick();
+                  
                 //  $('#pref_state').dropkick();
                 }catch(e){
                     
@@ -671,17 +671,23 @@ var User = function()
         data['classid'] = cid;
         data['price'] = price;
         var date = '#'+cid+'date';
-        data['datetime'] = $(date).val();
-        
-        
+        data['datetime'] = $(date).val()+" 12:00:00";
+  //      var now = new Date($(date).val()); 
+//var now_utc = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
+    //    alert(now_utc);
+       // data['datetime'] = new Date($(date).val()+" 12:00:00");
+    //   data['datetime'] = now.getUTCFullYear()+"-"+now.getUTCMonth()+"-"+now.getUTCDate()+" "+now.getUTCHours()+":"+now.getUTCMinutes()+":"+now.getUTCSeconds();
+
         ZUNEFIT.postJSON({
             url:'addEvent/',
             data:data,
             token : $('#utoken').val(),
           
             success:function(response){
-               
+               if(response.stats=='success')
                 alert(response.stats);
+            else
+                 alert('Error in scheduling..');
               
             },
             error:function(){
@@ -750,7 +756,7 @@ var User = function()
                 }   
             }
         });
-        $("#pay_amount, #auto_amount").keydown(function(event) {
+        $("#pay_amount, #auto_amount, #when").keydown(function(event) {
             // Allow: backspace, delete, tab, escape, and enter
             if ( (event.keyCode == 190 && event.shiftKey === false) || event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || 
                 // Allow: Ctrl+A
@@ -849,6 +855,7 @@ var User = function()
                     $("#g_phone").val(result14.phone);
                     $("#g_email").val(result14.email);
                     $("#g_contact").val(result14.contact);
+                      $("#g_url").html('<a href="'+result14.url+'" target="_blank">'+result14.url+'</a>');
                 
                 
                     $("#g_name").val(result14.name);
@@ -1162,11 +1169,11 @@ var User = function()
     }
     this.creditInfo = function()
     {
-        $('#auto_amount').removeAttr('disabled');
-        $('#refil').removeAttr('disabled');
+        $('#auto_amount, #when, #refil').removeAttr('disabled');
+      
         $('#edit_fil').css('display', 'none');
         $('#done_fil').css('display', 'block');
-        $('.dk_options a,.dk_options a:link,.dk_options a:visited').css('display', 'block');
+      
          
     }
     
@@ -1183,7 +1190,7 @@ var User = function()
             data['automatic'] = 0;
         }
         data['refillamount'] = $("#auto_amount").val();
-        data['schedule'] = $('#when').val();
+        data['minamount'] = $('#when').val();
       
        
         
@@ -1197,9 +1204,9 @@ var User = function()
                
                 $('#done_fil').css('display', 'none');
                 $('#edit_fil').css('display', 'block');
-                $('#refil').attr('disabled','disabled');
-                $('#auto_amount').attr('disabled','disabled');
-                $('.dk_options a,.dk_options a:link,.dk_options a:visited').css('display', 'none');
+               
+                $('#auto_amount, #refil, #when').attr('disabled','disabled');
+                
             },
             error:function(){
             //Error should be handle here

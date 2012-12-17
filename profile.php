@@ -162,6 +162,10 @@ if (isset($_SESSION['img'])) {
                                     <label for="g_twt" class="clslabels" > Twitter  </label></td><td>:</td><td>
                                     <input type="text" name="g_twt" id="g_twt" class="transparent" readonly=""/> 
                                 </td></tr>
+                            <tr><td>
+                                    <label for="g_url" class="clslabels" > Web site  </label></td><td>:</td><td>
+                                    <input type="text" name="g_url" id="g_url" class="transparent" readonly=""/> 
+                                </td></tr>
 
                         </table>
                     </div>

@@ -366,12 +366,10 @@ $title = "ZuneFit User Portal";
                                                     <label for="refil">Refil Automatically</label></td>
                                             </tr>
                                             <tr><td>
-                                                    <label for="when" style="float: left;">When &nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</label>
-                                                    <select id="when" disabled="">
-                                                        <option value="0">When to Refill</option>
-                                                        <option value="1">1st of month</option>
-                                                        <option value="15">15th of month</option>
-                                                    </select>
+                                                        <label for="when" style="float: left;">When amount less than:&nbsp;</label>
+                                                        <input type="text" id="when" disabled="" class="round" style="text-align: right;left: 70px;position: relative;"/>
+                                                       
+                                                   
                                                 </td>
                                             </tr>
                                             <tr><td>
@@ -525,6 +523,10 @@ $title = "ZuneFit User Portal";
                             <tr><td>
                                     <label for="g_contact"  > Contact  </label></td><td>:</td><td>
                                     <input type="text" name="g_contact" id="g_contact" class="transparent"/> 
+                                </td></tr>
+                            <tr><td>
+                                    <label for="g_url"  > Web site  </label></td><td>:</td><td>
+                                    <span type="text" name="g_url" id="g_url" class="transparent"></span> 
                                 </td></tr>
 
                         </table>

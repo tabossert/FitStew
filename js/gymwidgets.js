@@ -181,19 +181,29 @@ var Gym = function()
         data['classid'] = cid;
         data['service'] = $('#up_class_name').val();
         data['price'] = $('#up_class_price').val();
+        var date = new Date("2012-10-10 "+$('#up_class_mon').val()); 
+       var dates = Date.UTC(
+        date.getFullYear()
+        , date.getMonth()
+        , date.getDate()
+        , date.getHours()
+        , date.getMinutes()
+        , date.getSeconds()
+        , date.getMilliseconds()
+    );
         
-        var now = new Date("2012-10-10 "+$('#up_class_mon').val()); 
-        var now = now.getUTCHours()+" "+ now.getUTCMinutes();
+        alert(dates);
+       // now = now.getUTCHours()+" "+ now.getUTCMinutes();
        
-        alert(now);
+      //  alert(now);
         if($('#up_class_mon').val().length>0){
-            var now = new Date("2012-10-10 "+$('#up_class_mon').val()); 
+            now = new Date("2012-10-10 "+$('#up_class_mon').val()); 
             //var hrs = now.getUTCHours();
-            var min = now.getUTCMinutes();
-            hrs = (now.getUTCHours() < 10) ? '0'+lastDay.getUTCDate() : lastDay.getUTCDate() ;
-            min = (now.getUTCMinutes() < 10) ? '0'+lastDay.getUTCMinutes() : lastDay.getUTCMinutes() ;
+           // var min = now.getUTCMinutes();
+            hrs = (now.getUTCHours() < 10) ? '0'+now.getUTCHours() : now.getUTCHours() ;
+            min = (now.getUTCMinutes() < 10) ? '0'+now.getUTCMinutes() : now.getUTCMinutes() ;
             data['monday'] = hrs+":"+min;
-            }
+        }
         data['monday']     = $('#up_class_mon').val().length>0 ? $('#up_class_mon').val()    : null;
         data['tuesday']     = $('#up_class_tue').val().length>0 ? $('#up_class_tue').val()    : null;
         data['wednesday']   = $('#up_class_wed').val().length>0 ? $('#up_class_wed').val()    : null;
@@ -224,9 +234,68 @@ var Gym = function()
            
             success:function(data){
                 results = eval(data)[0];
+               
+               var mon = results.monday;
+                        if(mon != null && mon != '00:00:00'){
+                            var mons = new Date("October 13, 1975 "+mon+" UTC");
+                            monH = mons.getHours();
+                            monM = mons.getMinutes();
+                            mon = monH +':'+ monM;
+                            
+                        }else mon = "00:00";
+                        var tue = results.tuesday;
+                        if(tue != null && tue != '00:00:00') {
+                            var tues = new Date("October 13, 1975 "+tue+" UTC");
+                            tueH = tues.getHours();
+                            tueM = tues.getMinutes();
+                            tue = tueH +':'+ tueM;
+                            
+                        }else tue = "00:00";
+                        var wed = results.wednesday;
+                        if(wed != null && wed != '00:00:00'){
+                            var weds = new Date("October 13, 1975 "+wed+" UTC");
+                            wedH = weds.getHours();
+                            wedM = weds.getMinutes();
+                            wed = wedH +':'+ wedM;
+                            
+                        }else wed = "00:00";
+                        var thu = results.thursday;
+                        if(thu != null && thu != '00:00:00'){
+                            var thus = new Date("October 13, 1975 "+thu+" UTC");
+                            thuH = thus.getHours();
+                            thuM = thus.getMinutes();
+                            thu = thuH +':'+ thuM;
+                            
+                        }else thu = "00:00";
+                        var fri = results.friday;
+                        if(fri != null && fri != '00:00:00'){
+                            var fris = new Date("October 13, 1975 "+fri+" UTC");
+                            friH = fris.getHours();
+                            friM = fris.getMinutes();
+                            fri = friH +':'+ friM;
+                            
+                        }else fri = "00:00";
+                        var sat = results.saturday;
+                        if(sat != null && sat != '00:00:00') {
+                            var sats = new Date("October 13, 1975 "+sat+" UTC");
+                            satH = sats.getHours();
+                            satM = sats.getMinutes();
+                            sat = satH +':'+ satM;
+                            
+                        }else sat = "00:00";
+                        var sun = results.sunday;
+                        if(sun != null && sun != '00:00:00'){
+                            var suns = new Date("October 13, 1975 "+sun+" UTC");
+                            sunH = suns.getHours();
+                            sunM = suns.getMinutes();
+                            sun = sunH +':'+ sunM;
+                            
+                        }else sun = "00:00";
+                        
+                        
                 
-                class_info ="<h1>Class Information</h1><table style = 'width:250px;float:left;line-height:30px;'><tr><td class='bold'>Service</td><td>:<input type='text' class= 'round' id='up_class_name' value='"+results.service+"'/></td></tr><tr><td class='bold'>Price</td><td>:<input type='text'  class= 'round' id='up_class_price' value='"+results.price+"'/></td></tr><tr><td class='bold'>Monday</td><td>:<input type='text' class= 'round sch' id='up_class_mon' value='"+results.monday+"'/></td></tr><tr><td class='bold'>Tuesday</td><td>:<input type='text' class= 'round sch' id='up_class_tue' value='"+results.tuesday+"'/></td></tr>";
-                class_info +="<tr><td class='bold'>Wednesday</td><td>:<input type='text' class= 'round sch' id='up_class_wed' value='"+results.wednesday+"'/></td></tr><tr><td class='bold'>Thursday</td><td>:<input type='text' id='up_class_thu' class= 'round sch' value='"+results.thursday+"'/></td></tr><tr><td class='bold'>Friday</td><td>:<input type='text' class= 'round sch' id='up_class_fri' value='"+results.friday+"'/></td></tr><tr><td class='bold'>Saturday</td><td>:<input type='text' id='up_class_sat' class= 'round sch'  value='"+results.saturday+"'/></td></tr><tr><td class='bold'>Sunday</td><td>:<input class= 'round' type='text' id='up_class_sun' class= 'round sch' value='"+results.sunday+"'/></td></tr></table>";
+                class_info ="<h1>Class Information</h1><table style = 'width:250px;float:left;line-height:30px;'><tr><td class='bold'>Service</td><td><input type='text' class= 'round' id='up_class_name' value='"+results.service+"'/></td></tr><tr><td class='bold'>Price</td><td><input type='text'  class= 'round' id='up_class_price' value='"+results.price+"'/></td></tr><tr><td class='bold'>Monday</td><td><input type='text' class= 'round sch' id='up_class_mon' value='"+mon+"'/></td></tr><tr><td class='bold'>Tuesday</td><td><input type='text' class= 'round sch' id='up_class_tue' value='"+tue+"'/></td></tr>";
+                class_info +="<tr><td class='bold'>Wednesday</td><td><input type='text' class= 'round sch' id='up_class_wed' value='"+wed+"'/></td></tr><tr><td class='bold'>Thursday</td><td><input type='text' id='up_class_thu' class= 'round sch' value='"+thu+"'/></td></tr><tr><td class='bold'>Friday</td><td><input type='text' class= 'round sch' id='up_class_fri' value='"+fri+"'/></td></tr><tr><td class='bold'>Saturday</td><td><input type='text' id='up_class_sat' class= 'round sch'  value='"+sat+"'/></td></tr><tr><td class='bold'>Sunday</td><td><input class= 'round' type='text' id='up_class_sun' class= 'round sch' value='"+sun+"'/></td></tr></table>";
                 class_info += "<div class='buttons' style='float:left;clear:both;' onclick='widgets.gim.update_class("+results.id+")'>Update</div>";
                 $('#class_info').html(class_info);
                 $('.sch').timepicker();
@@ -277,8 +346,8 @@ var Gym = function()
             
             },
             error:function(){
-                //Error should be handle here
-                // alert("no");  
+            //Error should be handle here
+            // alert("no");  
             }
         });
     }
@@ -617,6 +686,7 @@ var Gym = function()
                 $("#g_rate").val(results.rate);
                 $("#g_fb").val(results.facebook);
                 $("#g_twt").val(results.twitter);
+                $("#g_url").val(results.url);
                 $("#im_old").val(results.image);
                 image = '<a href="#" onclick="widgets.gim.image()"><img src="'+results.image+'" width="60" height="60" /></a>';
                 $("#g_image").html(image);
@@ -654,9 +724,67 @@ var Gym = function()
                             schedule += "<hr style='clear:both;'/>";
                         }
 
-                        schedule +="<table style = 'width:280px;float:left;'><tr><td class='bold'>Service</td><td>:"+result15[i].service+"</td></tr><tr><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr><tr><td class='bold'>Monday</td><td>:"+result15[i].monday+"</td></tr><tr><td class='bold'>Tuesday</td><td>:"+result15[i].tuesday+"</td></tr>";
-                        schedule +="<tr><td class='bold'>Wednesday</td><td>:"+result15[i].wednesday+"</td></tr><tr><td class='bold'>Thursday</td><td>:"+result15[i].thursday+"</td></tr><tr><td class='bold'>Friday</td><td>:"+result15[i].friday+"</td></tr><tr><td class='bold'>Saturday</td><td>:"+result15[i].saturday+"</td></tr><tr><td class='bold'>Sunday</td><td>:"+result15[i].time+"</td></tr></table>";
-                       
+                        var mon = result15[i].monday;
+                        if(mon != null && mon != '00:00:00'){
+                            var mons = new Date("October 13, 1975 "+mon+" UTC");
+                            monH = mons.getHours();
+                            monM = mons.getMinutes();
+                            mon = monH +':'+ monM;
+                            
+                        }else mon = "-";
+                        var tue = result15[i].tuesday;
+                        if(tue != null && tue != '00:00:00') {
+                            var tues = new Date("October 13, 1975 "+tue+" UTC");
+                            tueH = tues.getHours();
+                            tueM = tues.getMinutes();
+                            tue = tueH +':'+ tueM;
+                            
+                        }else tue = "-";
+                        var wed = result15[i].wednesday;
+                        if(wed != null && wed != '00:00:00'){
+                            var weds = new Date("October 13, 1975 "+wed+" UTC");
+                            wedH = weds.getHours();
+                            wedM = weds.getMinutes();
+                            wed = wedH +':'+ wedM;
+                            
+                        }else wed = "-";
+                        var thu = result15[i].thursday;
+                        if(thu != null && thu != '00:00:00'){
+                            var thus = new Date("October 13, 1975 "+thu+" UTC");
+                            thuH = thus.getHours();
+                            thuM = thus.getMinutes();
+                            thu = thuH +':'+ thuM;
+                            
+                        }else thu = "-";
+                        var fri = result15[i].friday;
+                        if(fri != null && fri != '00:00:00'){
+                            var fris = new Date("October 13, 1975 "+fri+" UTC");
+                            friH = fris.getHours();
+                            friM = fris.getMinutes();
+                            fri = friH +':'+ friM;
+                            
+                        }else fri = "-";
+                        var sat = result15[i].saturday;
+                        if(sat != null && sat != '00:00:00') {
+                            var sats = new Date("October 13, 1975 "+sat+" UTC");
+                            satH = sats.getHours();
+                            satM = sats.getMinutes();
+                            sat = satH +':'+ satM;
+                            
+                        }else sat = "-";
+                        var sun = result15[i].time;
+                        if(sun != null && sun != '00:00:00'){
+                            var suns = new Date("October 13, 1975 "+sun+" UTC");
+                            sunH = suns.getHours();
+                            sunM = suns.getMinutes();
+                            sun = sunH +':'+ sunM;
+                            
+                        }else sun = "-";
+                        
+                        
+                        schedule +="<table class ='time' style = 'width:200px;float:left;'><tr><td class='bold'>Service</td><td>:"+result15[i].service+"</td><td style='width:10px;'></td><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr></table><br/><table><tr><td class='bold'>Mon</td><td class='bold'>Tue</td><td class='bold'>Wed</td><td class='bold'>Thu</td><td class='bold'>Fri</td><td class='bold'>Sat</td><td class='bold'>Sun</td></tr><tr><td>"+mon+"</td><td>"+tue+"</td>";
+                        
+                        schedule +="<td>"+wed+"</td><td>"+thu+"</td><td>"+fri+"</td><td>"+sat+"</td><td>"+sun+"</td></tr></table>";
                     }
                     op= {};
                     for(i=0;i<end;i++)
@@ -750,8 +878,8 @@ var Gym = function()
             
             },
             error:function(){
-                //Error should be handle here
-                // alert("no");  
+            //Error should be handle here
+            // alert("no");  
             }
         });
     }
@@ -789,7 +917,7 @@ var Gym = function()
                 }
             },
             error:function(){
-                //Error should be handle here
+            //Error should be handle here
             }
         });
     }
@@ -813,7 +941,7 @@ var Gym = function()
                 }
             },
             error:function(){
-                //Error should be handle here
+            //Error should be handle here
             }
         });
     }
@@ -876,18 +1004,18 @@ var Gym = function()
      
     this.edit = function()
     {
-        $("#g_phone, #g_email, #g_name, #g_rate, #g_address, #g_city, #g_state, #g_zip, #g_fb, #g_twt,#g_contact ").removeClass('transparent').addClass('round');
+        $("#g_phone, #g_email, #g_name, #g_rate, #g_address, #g_city, #g_state, #g_zip, #g_fb, #g_twt, #g_contact, #g_url").removeClass('transparent').addClass('round');
         $('#g_edit').css("display","none");
         $('#g_done').css("display","block");
         
-        $("#g_phone, #g_email, #g_name, #g_address, #g_city, #g_state, #g_rate, #g_zip, #g_fb, #g_twt,#g_contact").removeAttr('readonly');
+        $("#g_phone, #g_email, #g_name, #g_address, #g_city, #g_state, #g_rate, #g_zip, #g_fb, #g_twt,#g_contact, #g_url").removeAttr('readonly');
     }
     this.update = function()
     {
-        $("#g_phone, #g_email, #g_name, #g_rate, #g_address, #g_city, #g_state, #g_zip, #g_fb, #g_twt,#g_contact").attr('readonly','readonly');
+        $("#g_phone, #g_email, #g_name, #g_rate, #g_address, #g_city, #g_state, #g_zip, #g_fb, #g_twt,#g_contact, #g_url").attr('readonly','readonly');
         $('#g_done').css("display","none");
         $('#g_edit').css("display","block");
-        $("#g_phone, #g_email, #g_name, #g_rate, #g_address, #g_city, #g_state, #g_zip, #g_fb, #g_twt,#g_contact").addClass('transparent').removeClass('round');
+        $("#g_phone, #g_email, #g_name, #g_rate, #g_address, #g_city, #g_state, #g_zip, #g_fb, #g_twt,#g_contact, #g_url").addClass('transparent').removeClass('round');
         data = {};
         data['name'] = $("#g_name").val();
         data['rate'] = $("#g_rate").val();
@@ -903,7 +1031,7 @@ var Gym = function()
         data['facebook'] = $('#g_fb').val();
         data['twitter'] = $('#g_twt').val();
         data['image'] = $('#im_old').val();
-        
+        data['url'] = $('#g_url').val();
         ZUNEFIT.postJSON({
             url:'updateGymProfile/',
             data:data,               
@@ -914,8 +1042,8 @@ var Gym = function()
                
             },
             error:function(){
-                //Error should be handle here
-                // alert("no");  
+            //Error should be handle here
+            // alert("no");  
             }
             
         });
