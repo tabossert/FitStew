@@ -171,8 +171,7 @@ var Gym = function()
         this.delClass(12);
         this.getdisbursement();
         this.getDayclasses(new Date());
-    
-       
+     
     }
     this.update_class = function(cid)
     {
@@ -182,24 +181,24 @@ var Gym = function()
         data['service'] = $('#up_class_name').val();
         data['price'] = $('#up_class_price').val();
         var date = new Date("2012-10-10 "+$('#up_class_mon').val()); 
-       var dates = Date.UTC(
-        date.getFullYear()
-        , date.getMonth()
-        , date.getDate()
-        , date.getHours()
-        , date.getMinutes()
-        , date.getSeconds()
-        , date.getMilliseconds()
-    );
+        var dates = Date.UTC(
+            date.getFullYear()
+            , date.getMonth()
+            , date.getDate()
+            , date.getHours()
+            , date.getMinutes()
+            , date.getSeconds()
+            , date.getMilliseconds()
+            );
         
-      //  alert(dates);
-       // now = now.getUTCHours()+" "+ now.getUTCMinutes();
+        //  alert(dates);
+        // now = now.getUTCHours()+" "+ now.getUTCMinutes();
        
-      //  alert(now);
+        //  alert(now);
         if($('#up_class_mon').val().length>0){
             now = new Date("2012-10-10 "+$('#up_class_mon').val()); 
             //var hrs = now.getUTCHours();
-           // var min = now.getUTCMinutes();
+            // var min = now.getUTCMinutes();
             hrs = (now.getUTCHours() < 10) ? '0'+now.getUTCHours() : now.getUTCHours() ;
             min = (now.getUTCMinutes() < 10) ? '0'+now.getUTCMinutes() : now.getUTCMinutes() ;
             data['monday'] = hrs+":"+min;
@@ -235,62 +234,62 @@ var Gym = function()
             success:function(data){
                 results = eval(data)[0];
                
-               var mon = results.monday;
-                        if(mon != null && mon != '00:00:00'){
-                            var mons = new Date("October 13, 1975 "+mon+" UTC");
-                            monH = mons.getHours();
-                            monM = mons.getMinutes();
-                            mon = monH +':'+ monM;
+                var mon = results.monday;
+                if(mon != null && mon != '00:00:00'){
+                    var mons = new Date("October 13, 1975 "+mon+" UTC");
+                    monH = mons.getHours();
+                    monM = mons.getMinutes();
+                    mon = monH +':'+ monM;
                             
-                        }else mon = "00:00";
-                        var tue = results.tuesday;
-                        if(tue != null && tue != '00:00:00') {
-                            var tues = new Date("October 13, 1975 "+tue+" UTC");
-                            tueH = tues.getHours();
-                            tueM = tues.getMinutes();
-                            tue = tueH +':'+ tueM;
+                }else mon = "00:00";
+                var tue = results.tuesday;
+                if(tue != null && tue != '00:00:00') {
+                    var tues = new Date("October 13, 1975 "+tue+" UTC");
+                    tueH = tues.getHours();
+                    tueM = tues.getMinutes();
+                    tue = tueH +':'+ tueM;
                             
-                        }else tue = "00:00";
-                        var wed = results.wednesday;
-                        if(wed != null && wed != '00:00:00'){
-                            var weds = new Date("October 13, 1975 "+wed+" UTC");
-                            wedH = weds.getHours();
-                            wedM = weds.getMinutes();
-                            wed = wedH +':'+ wedM;
+                }else tue = "00:00";
+                var wed = results.wednesday;
+                if(wed != null && wed != '00:00:00'){
+                    var weds = new Date("October 13, 1975 "+wed+" UTC");
+                    wedH = weds.getHours();
+                    wedM = weds.getMinutes();
+                    wed = wedH +':'+ wedM;
                             
-                        }else wed = "00:00";
-                        var thu = results.thursday;
-                        if(thu != null && thu != '00:00:00'){
-                            var thus = new Date("October 13, 1975 "+thu+" UTC");
-                            thuH = thus.getHours();
-                            thuM = thus.getMinutes();
-                            thu = thuH +':'+ thuM;
+                }else wed = "00:00";
+                var thu = results.thursday;
+                if(thu != null && thu != '00:00:00'){
+                    var thus = new Date("October 13, 1975 "+thu+" UTC");
+                    thuH = thus.getHours();
+                    thuM = thus.getMinutes();
+                    thu = thuH +':'+ thuM;
                             
-                        }else thu = "00:00";
-                        var fri = results.friday;
-                        if(fri != null && fri != '00:00:00'){
-                            var fris = new Date("October 13, 1975 "+fri+" UTC");
-                            friH = fris.getHours();
-                            friM = fris.getMinutes();
-                            fri = friH +':'+ friM;
+                }else thu = "00:00";
+                var fri = results.friday;
+                if(fri != null && fri != '00:00:00'){
+                    var fris = new Date("October 13, 1975 "+fri+" UTC");
+                    friH = fris.getHours();
+                    friM = fris.getMinutes();
+                    fri = friH +':'+ friM;
                             
-                        }else fri = "00:00";
-                        var sat = results.saturday;
-                        if(sat != null && sat != '00:00:00') {
-                            var sats = new Date("October 13, 1975 "+sat+" UTC");
-                            satH = sats.getHours();
-                            satM = sats.getMinutes();
-                            sat = satH +':'+ satM;
+                }else fri = "00:00";
+                var sat = results.saturday;
+                if(sat != null && sat != '00:00:00') {
+                    var sats = new Date("October 13, 1975 "+sat+" UTC");
+                    satH = sats.getHours();
+                    satM = sats.getMinutes();
+                    sat = satH +':'+ satM;
                             
-                        }else sat = "00:00";
-                        var sun = results.sunday;
-                        if(sun != null && sun != '00:00:00'){
-                            var suns = new Date("October 13, 1975 "+sun+" UTC");
-                            sunH = suns.getHours();
-                            sunM = suns.getMinutes();
-                            sun = sunH +':'+ sunM;
+                }else sat = "00:00";
+                var sun = results.sunday;
+                if(sun != null && sun != '00:00:00'){
+                    var suns = new Date("October 13, 1975 "+sun+" UTC");
+                    sunH = suns.getHours();
+                    sunM = suns.getMinutes();
+                    sun = sunH +':'+ sunM;
                             
-                        }else sun = "00:00";
+                }else sun = "00:00";
                         
                         
                 

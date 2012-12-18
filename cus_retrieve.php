@@ -20,7 +20,7 @@ if ($_POST) {
 
     // setting api secret key
     $log->info("seting api key...");
-    
+
     Stripe::setApiKey(SK);
 
     try {
@@ -29,17 +29,17 @@ if ($_POST) {
             $log->error("customer Token was not received correctly...");
             throw new Exception("The customer Token was not received correctly");
         }
-       
+
         $log->info("customer Token was received correctly...");
         // creating customer object 
-    
-      $card = Stripe_Customer::retrieve($_POST['cusToken']);
-       
+
+        $card = Stripe_Customer::retrieve($_POST['cusToken']);
+
 
         $log->info("Customer retrieved successfully...");
 
         $response["message"] = 'Success';
-         $response["name"] = $card->active_card->name;
+        $response["name"] = $card->active_card->name;
         $response["add1"] = $card->active_card->address_line1;
         $response["add2"] = $card->active_card->address_line2;
         $response["city"] = $card->active_card->address_city;
@@ -55,7 +55,6 @@ if ($_POST) {
         $log->error($e->getMessage());
 
         $response["message"] = $e->getMessage();
-        
     }
     echo json_encode($response);
 }

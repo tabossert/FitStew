@@ -317,7 +317,7 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
     background: -moz-linear-gradient(top,  #E6ECE0,  #333); /* for firefox 3.6+ */
 }
 
-.inner-txt { text-align: left; padding: 0px; height: auto; font-style: italic;}
+.inner-txt { text-align: left; padding: 0px; height: auto; font-style: italic;overflow-y: scroll;height: 350px;}
 .inner-txt h1{ margin:18px 0px 8px 0px; padding:0px ; font:bold 16px "Trebuchet MS"; text-decoration:none; text-transform:none; color:#003f81; }
 
 
