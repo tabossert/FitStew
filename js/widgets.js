@@ -3,7 +3,7 @@
  */
 
 //Configuration parameters
-var ZUNEFIT_BASE_URL = "https://api.zunefit.com/api/";
+//var ZUNEFIT_BASE_URL = "https://api.zunefit.com/api/";
 //Janrain API instance
 var ZUNEFIT = new ZuneFit({
     url:ZUNEFIT_BASE_URL,
@@ -909,7 +909,7 @@ var User = function()
         
         $.ajax({
             type: 'DELETE',
-            url: "https://api.zunefit.com/api/deleteEvent/",
+            url: ZUNEFIT_BASE_URL+"deleteEvent/",
             data: data,
             beforeSend : function(xhrObj) {
                 xhrObj.setRequestHeader("ltype", "web");

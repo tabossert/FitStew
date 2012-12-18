@@ -60,6 +60,7 @@ if ($page != 'index.php') {
             <script src='js/SHA1.js'></script>
             <script src='js/janrain.js'></script>
 
+            <script type="text/javascript"> var  ZUNEFIT_BASE_URL = '<?php echo API_URL; ?>';</script>
 
             <?php if (isset($_SESSION['type']) && $_SESSION['type'] == USER) : ?>
 

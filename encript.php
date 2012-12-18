@@ -29,7 +29,7 @@ $datatopost = array (
 );
 
 $jrnToke = $_SESSION["token"];
-$zuneFitUrl =  "https://api.zunefit.com/api/addGymImage/";
+$zuneFitUrl =  API_URL.'addGymImage/';//"https://api.zunefit.com/api/addGymImage/";
 $chlead = curl_init();
 curl_setopt($chlead, CURLOPT_URL, $zuneFitUrl);
 curl_setopt($chlead, CURLOPT_HTTPHEADER, array('token: '.$jrnToke ,'ltype: web'));

@@ -109,7 +109,7 @@ include('includes/config.inc.php');
 $log->info("token ".$_POST["token"]);
 
 $jrnToke = $_POST["token"];
-$zuneFitUrl = "https://api.zunefit.com/api/userSignup/";
+$zuneFitUrl = API_URL.'userSignup/';//"https://api.zunefit.com/api/userSignup/";
 $chlead = curl_init();
 curl_setopt($chlead, CURLOPT_URL, $zuneFitUrl);
 curl_setopt($chlead, CURLOPT_HTTPHEADER, array('token: ' . $jrnToke, 'ltype: web'));

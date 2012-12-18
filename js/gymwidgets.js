@@ -3,7 +3,7 @@
  */
 
 //Configuration parameters
-var ZUNEFIT_BASE_URL = "https://api.zunefit.com/api/";
+//var ZUNEFIT_BASE_URL = "https://api.zunefit.com/api/";
 //Janrain API instance
 var ZUNEFIT = new ZuneFit({
     url:ZUNEFIT_BASE_URL,
@@ -518,7 +518,7 @@ var Gym = function()
         
         $.ajax({
             type: 'DELETE',
-            url: "https://api.zunefit.com/api/deleteTag/",
+            url: ZUNEFIT_BASE_URL+"deleteTag/",
             data: data,
             beforeSend : function(xhrObj) {
                 xhrObj.setRequestHeader("ltype", "web");
@@ -562,7 +562,7 @@ var Gym = function()
         
         $.ajax({
             type: 'DELETE',
-            url: "https://api.zunefit.com/api/deleteClass/",
+            url: ZUNEFIT_BASE_URL+"deleteClass/",
             data: data,
             beforeSend : function(xhrObj) {
                 xhrObj.setRequestHeader("ltype", "web");

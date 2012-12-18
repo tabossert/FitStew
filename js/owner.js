@@ -17,7 +17,7 @@ $(window).load(function ()
             },
         
             type: "GET",
-            url: "https://api.zunefit.com/api/gymStats/?callback=?",
+            url: ZUNEFIT_BASE_URL+"gymStats/?callback=?",
         
             dataType: "json",
             success: function(data){
@@ -42,7 +42,7 @@ $(window).load(function ()
             },
         
             type: "GET",
-            url: "https://api.zunefit.com/api/gymBalance/2?callback=?",
+            url: ZUNEFIT_BASE_URL+"gymBalance/2?callback=?",
         
             dataType: "json",
             success: function(data){

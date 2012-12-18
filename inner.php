@@ -41,8 +41,6 @@ $title = "ZuneFit User Portal";
                 <div class="inner-txt" style="width: 70% ;float: right; margin-left: 10px; ">
 
                 </div>
-
-
             </div>
 
             <div id="searchbox" style="display: none ;min-height: 360px; font-size: 1.1em;">
@@ -100,9 +98,6 @@ $title = "ZuneFit User Portal";
                 <div class="second-nav nav3" style="background-color: #8b8b8b;" onclick="widgets.user.preferencesBilling(0)">Preferences</div><div class="second-nav nav4" onclick="widgets.user.preferencesBilling(1)">Billing</div>
 
                 <div style="clear: both;">
-
-
-
                     <div id="preference" class="blue-boxs">
                         <span id="edit" style="float: right;cursor: pointer;"><img src="images/edits.png" onclick="widgets.user.edit()" /></span>
                         <span id="done" style="float: right;cursor: pointer;display: none;" ><img src="images/dones.png" onclick="widgets.user.update()" /></span>
@@ -131,7 +126,7 @@ $title = "ZuneFit User Portal";
                                     <label for="pref_address2" class="address2" > Address-2  </label></td><td>:</td><td>
                                     <input type="text" name="pref_address2" id="pref_address2" class="transparent" style=" width: 400px;" readonly="readonly" /> 
                                     <label for="pref_address2" class="error" generated="true"></label></td></tr>
-                            
+
                             <tr><td>
                                     <label for="pref_city"  > City  </label></td><td>:</td><td>
                                     <input type="text" name="pref_city" id="pref_city" class="transparent" style=" width: 400px;" readonly="readonly"/> 
@@ -215,7 +210,6 @@ $title = "ZuneFit User Portal";
                                     <label for="pref_zip"  > Zip Code  </label></td><td>:</td><td>
                                     <input type="text" name="pref_zip" id="pref_zip" class="transparent" maxlength="5" style=" width: 400px;" readonly="readonly"/> 
                                     <label for="pref_zip" class="error" generated="true"></label></td></tr>
-
                         </table>
                         <hr/>
                         <span id="phone_edit" style="float: right;cursor: pointer;"><img src="images/edits.png" onclick="widgets.user.phone_edit()" /></span>
@@ -234,9 +228,6 @@ $title = "ZuneFit User Portal";
                                     <label for="pref_pin2"  > Verify code </label></td><td>:</td><td>
                                     <input type="password" name="pref_pin2" id="pref_pin2" class="transparent" maxlength="4" style=" width: 400px;" readonly="readonly"/> 
                                 </td></tr>
-
-
-
                         </table>
                         <label id="pref_error" style="color: darkred;" />
 
@@ -351,7 +342,6 @@ $title = "ZuneFit User Portal";
                                                 <label for="zip" class="bil_label">Zip</label></td><td>
                                                 <input id="zip" name="zip" type="text"  class="bil_text" maxlength="5" pattern=".{3,}"/>
                                                 <label for="zip" class="error" generated="true"></label>   </td></tr>
-
                                     </table>
 
                                     <div class="less"><span style="float: left;width: 175px;">Refill automatically</span>
@@ -360,25 +350,21 @@ $title = "ZuneFit User Portal";
                                     </div>
 
                                     <div id="hide_refil">
-                                        <table style="border-collapse: separate;border-spacing: 0px 10px; width: 280px;float: left;clear: left;">
+                                        <table style="border-collapse: separate;border-spacing: 0px 10px; width: 235px;float: left;clear: left;">
                                             <tr style="padding-bottom: 5px;"><td>
                                                     <input id="refil" name="refil" type="checkbox" disabled=""/>
                                                     <label for="refil">Refil Automatically</label></td>
                                             </tr>
                                             <tr><td>
-                                                        <label for="when" style="float: left;">When amount less than:&nbsp;</label>
-                                                        <input type="text" id="when" disabled="" class="round" style="text-align: right;left: 70px;position: relative;"/>
-                                                       
-                                                   
+                                                    <label for="when" style="float: left;">When amount less than:&nbsp;</label>
+                                                    <input type="text" id="when" disabled="" class="round" style="text-align: right;float: right;"/>
                                                 </td>
                                             </tr>
                                             <tr><td>
                                                     <label for="auto_amount">Amount&nbsp;&nbsp;:</label>
-                                                    <input type="text" id="auto_amount" placeholder="Refill amount" class="round" style="text-align: right;" disabled=""/>
+                                                    <input type="text" id="auto_amount" placeholder="Refill amount" class="round" style="text-align: right;float: right;" disabled=""/>
                                                 </td>
                                             </tr>
-
-
 
                                         </table>
                                     </div>
@@ -408,18 +394,6 @@ $title = "ZuneFit User Portal";
                                     </div>
                                 </fieldset>
                             </form>
-
-
-
-
-
-
-
-
-
-
-
-
 
                         </div>
                     </div>
