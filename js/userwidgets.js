@@ -93,7 +93,7 @@ var User = function()
         
         this.deleteEvent();
         this.getUserWeekSchedule();
-        this.getcrediDetails();
+        //   this.getcrediDetails();
         
         this.enter();
     
@@ -218,6 +218,35 @@ var User = function()
                     $("#when").val(result6.minamount);
                     if(result6.automatic==1){
                         $('#refil').prop('checked', true);
+                    }
+                    if(result6.cToken!='NULL'){
+                        datas = {};
+                        datas['cusToken'] = result6.cToken.replace("'","").replace("'", "");
+                       
+                       
+      
+                        $.ajax({
+                            type: 'POST',
+                            url: "cus_retrieve.php",
+                            data: datas,
+           
+                            success: function(responses){
+               
+                                $("#first_name").val(responses.name),
+                                $("#address_1").val(responses.add1),
+                                $("#address_2").val(responses.add2),
+                                $("#city").val(responses.city),
+                                $("#state").val(responses.state),
+                                $("#zip").val(responses.zip),
+                
+                                $('.card-number').val(responses.last4),
+                       
+                                $('.card-expiry-month').val(responses.month),
+                                $('.card-expiry-year').val(responses.year)
+                
+                                    
+                            }
+                        });
                     }
                   
                 //  $('#pref_state').dropkick();
@@ -675,11 +704,11 @@ var User = function()
         data['price'] = price;
         var date = '#'+cid+'date';
         data['datetime'] = $(date).val()+" 12:00:00";
-  //      var now = new Date($(date).val()); 
-//var now_utc = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
-    //    alert(now_utc);
-       // data['datetime'] = new Date($(date).val()+" 12:00:00");
-    //   data['datetime'] = now.getUTCFullYear()+"-"+now.getUTCMonth()+"-"+now.getUTCDate()+" "+now.getUTCHours()+":"+now.getUTCMinutes()+":"+now.getUTCSeconds();
+        //      var now = new Date($(date).val()); 
+        //var now_utc = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
+        //    alert(now_utc);
+        // data['datetime'] = new Date($(date).val()+" 12:00:00");
+        //   data['datetime'] = now.getUTCFullYear()+"-"+now.getUTCMonth()+"-"+now.getUTCDate()+" "+now.getUTCHours()+":"+now.getUTCMinutes()+":"+now.getUTCSeconds();
 
         ZUNEFIT.postJSON({
             url:'addEvent/',
@@ -687,11 +716,10 @@ var User = function()
             token : $('#utoken').val(),
           
             success:function(response){
-               if(response.stats=='success')
-                alert(response.stats);
-            else
-                 alert('Error in scheduling..');
-              
+                if(response.message)
+                    alert(response.message);
+                else
+                    alert(response.status);
             },
             error:function(){
             //Error should be handle here
@@ -858,7 +886,7 @@ var User = function()
                     $("#g_phone").val(result14.phone);
                     $("#g_email").val(result14.email);
                     $("#g_contact").val(result14.contact);
-                      $("#g_url").html('<a href="'+result14.url+'" target="_blank">'+result14.url+'</a>');
+                    $("#g_url").html('<a href="'+result14.url+'" target="_blank">'+result14.url+'</a>');
                 
                 
                     $("#g_name").val(result14.name);
@@ -1001,11 +1029,6 @@ var User = function()
             }
         });
     
-       
-       
-        
-        
-        
     }
     this.onload = function()
     {
@@ -1189,35 +1212,140 @@ var User = function()
         if($('#refil').is(':checked'))
         {
             data['automatic'] = 1;
+            if($('#zip').val().length > 0 && $('#zip').val().length != 5 ){
+                $("#message").css('display','block')
+                $("#message").html("Zip code must be 5 digits");
+                return false;
+            }
+            startAjax();
+        
+            $("#message").css('display','block')
+            $("#message").html("processing please wait..");
+            Stripe.setPublishableKey($('#pk').val());
+            // disable the submit button to prevent repeated clicks
+            $('.submit-button').attr("disabled", "disabled");
+            if($('#pref_address').val().length==0){
+                this.update_new();
+            }
+            function apicall(){     
+                ZUNEFIT.postJSON({
+                    url:'updatePayment/',
+                    data:data,
+                    token : $('#utoken').val(),
+          
+                    success:function(response){
+               
+                        $('#done_fil').css('display', 'none');
+                        $('#edit_fil').css('display', 'block');
+               
+                        $('#auto_amount, #refil, #when').attr('disabled','disabled');
+                
+                    },
+                    error:function(){
+                    //Error should be handle here
+           
+                    }
             
+                });
+            }
+            function stripeResponseHandler(status, response) {
+                if (response.error) {
+                    // re-enable the submit button
+                   
+                    // show the errors on the form
+                    endAjax();
+                    $(".payment-errors").html(response.error.message);
+                } else {
+                    var form$ = $("#payment-form");
+                    // token contains id, last4, and card type
+                    try{ 
+                   
+                        $('#tok').remove();
+                    }catch(e){}
+                    var token = response['id'];
+              
+                    // insert the token into the form so it gets submitted to the server
+                    form$.append("<input type='hidden' id ='tok' name='stripeToken' value='" + token + "' />");
+                    // and submit
+                    datas = {};
+       
+   
+ 
+                    datas['stripeToken'] = $("#tok").val();
+               
+                    
+                    datas['name'] = $("#pref_email").val();
+                    $.ajax({
+                        type: 'POST',
+                        url: "customer.php",
+                        data: datas,
+                        dataType:'json',
+           
+                        success: function(response){
+               
+                
+                
+                            $("#message").html(response.message);
+                          
+                            if(response.id!=0){
+                                data['cToken'] = response.id;
+                                data['refillamount'] = $("#auto_amount").val();
+                                data['minamount'] = $('#when').val();
+                                apicall();
+                            }
+                         
+                        }
+                    });
+        
+        
+                }
+            }
+            // createToken returns immediately - the supplied callback submits the form if there are no errors
+            Stripe.createToken({
+                name : $("#first_name").val(),
+                address_line1 : $("#address_1").val(),
+                address_line2 :$("#address_2").val(),
+                address_city : $("#city").val(),
+                address_state :  $("#state").val(),
+                address_zip : $("#zip").val(),
+                
+                number: $('.card-number').val(),
+                cvc: $('.card-cvc').val(),
+                exp_month: $('.card-expiry-month').val(),
+                exp_year: $('.card-expiry-year').val()
+            }, stripeResponseHandler);
+           
+        
+           
         }else{
             data['automatic'] = 0;
+            data['refillamount'] = $("#auto_amount").val();
+            data['minamount'] = $('#when').val();
+            ZUNEFIT.postJSON({
+                url:'updatePayment/',
+                data:data,
+                token : $('#utoken').val(),
+          
+                success:function(response){
+               
+                    $('#done_fil').css('display', 'none');
+                    $('#edit_fil').css('display', 'block');
+               
+                    $('#auto_amount, #refil, #when').attr('disabled','disabled');
+                
+                },
+                error:function(){
+                //Error should be handle here
+           
+                }
+            
+            });
         }
-        data['refillamount'] = $("#auto_amount").val();
-        data['minamount'] = $('#when').val();
+        
       
        
         
-             
-        ZUNEFIT.postJSON({
-            url:'updatePayment/',
-            data:data,
-            token : $('#utoken').val(),
-          
-            success:function(response){
-               
-                $('#done_fil').css('display', 'none');
-                $('#edit_fil').css('display', 'block');
-               
-                $('#auto_amount, #refil, #when').attr('disabled','disabled');
-                
-            },
-            error:function(){
-            //Error should be handle here
-           
-            }
-            
-        });
+        
     }
     
     this.getcrediDetails = function()

@@ -20,7 +20,7 @@ if ($_POST) {
 
     // setting api secret key
     $log->info("seting api key...");
-   // $log->info($_POST['name']);
+     $log->info($_POST['name']);
     Stripe::setApiKey(SK);
 
     try {
@@ -29,15 +29,18 @@ if ($_POST) {
             $log->error("Stripe Token was not generated correctly...");
             throw new Exception("The Stripe Token was not generated correctly");
         }
+       
         $log->info("Stripe Token was generated correctly...");
-        // creating charge object 
-        $card = Stripe_Charge::create(array("amount" => $_POST['amount'],
-                    "currency" => "usd",
-                    "card" => $_POST['stripeToken']));
+        // creating customer object 
+        $card = Stripe_Customer::create(array(
+                    "description" => "Customer for ".$_POST['name'],
+                    "card" => $_POST['stripeToken'] // obtained with Stripe.js
+                ));
+       
 
-        $log->info("payment was successful...");
+        $log->info("Customer creates successfully...");
 
-        $response["message"] = 'Your payment was successful.';
+        $response["message"] = 'Success';
         $response["id"] = $card->id;
     } catch (Exception $e) {
 
