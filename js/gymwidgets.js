@@ -303,39 +303,33 @@ var Gym = function()
           
             }
         });
-        data = {};
-        data['start'] = $('#class_day').val()+' 00:00:00';
-        data['end'] = $('#class_day').val()+' 24:00:00';      
+        datas = {};
+        datas['start'] = $('#class_day').val()+' 00:00:00';
+        datas['end'] = $('#class_day').val()+' 24:00:00';      
         
         ZUNEFIT.postJSON({
             url:'gymSchedule/',
-            data:data,
+            data:datas,
             token : $('#token').val(),
             success:function(data){
                 $("#class_sched").html(" ");
                 
-               
+                
             
                 try{
                     result1 = eval(data);
+                   
                     finish1 = result1.length;
                     op1 = "<h1>List of Users</h1>";
-                    op2 = "";
+                   op1 += "<ul class='calender-link'>";
                     for(i=0;i<finish1;i++)
                     {       
-                    
-                        if(op2 == result1[i].date){
-                            op1 += "<li><tr><td>"+result1[i].first_name+" "+result1[i].last_name+"</td><td><button>Checkin</button></td></tr></li>";
-                        }else{
-                            if(i!=0){
-                                op1 += "</table></ul>";
-                            }
-                            op1 += "<h1>"+result1[i].date+"</h1>";
-                            op1 += "<ul class='calender-link'><table><tr><td><li>"+result1[i].first_name+" "+result1[i].last_name+"</td></tr></li>";
-                            op2 = result1[i].date;
+                        if(result1[i].cid == cid){                            
+                         op1 += "<li>"+result1[i].first_name+" "+result1[i].last_name+"</li>";
                         }
-                    
+                        
                     }
+                    op1 += "</ul>"
                     $("#class_sched").html(op1);
                 
                 }catch(ex){
