@@ -57,9 +57,7 @@ var Widgets = function()
         this.lb.bind();
         this.gim = new Gym();
         this.gim.bind();
-       
-       
-        
+         
     }
     
     this.login = function()
@@ -147,10 +145,6 @@ var LoginBox = function(formId,msgId)
     
 }
 
-
-
-
-
 var Gym = function()
 {
     this.init = function()
@@ -161,7 +155,6 @@ var Gym = function()
     this.bind = function()
     { 
        
-      
         this.getGymStat();
         this.getGymBal(); 
         this.getGymInfo(); 
@@ -217,8 +210,6 @@ var Gym = function()
             success:function(data){
                 results = eval(data)[0];
                 
-               
-              
             },
             error:function(){
           
@@ -237,56 +228,56 @@ var Gym = function()
                 var mon = results.monday;
                 if(mon != null && mon != '00:00:00'){
                     var mons = new Date("October 13, 1975 "+mon+" UTC");
-                    monH = mons.getHours();
-                    monM = mons.getMinutes();
+                    monH = mons.getHours()<10?'0'+mons.getHours():mons.getHours();
+                    monM = mons.getMinutes()<10?'0'+mons.getMinutes():mons.getMinutes();
                     mon = monH +':'+ monM;
                             
                 }else mon = "00:00";
                 var tue = results.tuesday;
                 if(tue != null && tue != '00:00:00') {
                     var tues = new Date("October 13, 1975 "+tue+" UTC");
-                    tueH = tues.getHours();
-                    tueM = tues.getMinutes();
+                    tueH = tues.getHours()<10?'0'+tues.getHours():tues.getHours();
+                    tueM = tues.getMinutes()<10?'0'+tues.getMinutes():tues.getMinutes();
                     tue = tueH +':'+ tueM;
                             
                 }else tue = "00:00";
                 var wed = results.wednesday;
                 if(wed != null && wed != '00:00:00'){
                     var weds = new Date("October 13, 1975 "+wed+" UTC");
-                    wedH = weds.getHours();
-                    wedM = weds.getMinutes();
+                    wedH = weds.getHours()<10?'0'+weds.getHours():weds.getHours();
+                    wedM = weds.getMinutes()<10?'0'+weds.getMinutes():weds.getMinutes();
                     wed = wedH +':'+ wedM;
                             
                 }else wed = "00:00";
                 var thu = results.thursday;
                 if(thu != null && thu != '00:00:00'){
                     var thus = new Date("October 13, 1975 "+thu+" UTC");
-                    thuH = thus.getHours();
-                    thuM = thus.getMinutes();
+                    thuH = thus.getHours()<10?'0'+thus.getHours():thus.getHours();
+                    thuM = thus.getMinutes()<10?'0'+thus.getMinutes():thus.getMinutes();
                     thu = thuH +':'+ thuM;
                             
                 }else thu = "00:00";
                 var fri = results.friday;
                 if(fri != null && fri != '00:00:00'){
                     var fris = new Date("October 13, 1975 "+fri+" UTC");
-                    friH = fris.getHours();
-                    friM = fris.getMinutes();
+                    friH = fris.getHours()<10?'0'+fris.getHours():fris.getHours();
+                    friM = fris.getMinutes()<10?'0'+fris.getMinutes():fris.getMinutes();
                     fri = friH +':'+ friM;
                             
                 }else fri = "00:00";
                 var sat = results.saturday;
                 if(sat != null && sat != '00:00:00') {
                     var sats = new Date("October 13, 1975 "+sat+" UTC");
-                    satH = sats.getHours();
-                    satM = sats.getMinutes();
+                    satH = sats.getHours()<10?'0'+sats.getHours():sats.getHours();
+                    satM = sats.getMinutes()<10?'0'+sats.getMinutes():sats.getMinutes();
                     sat = satH +':'+ satM;
                             
                 }else sat = "00:00";
                 var sun = results.sunday;
                 if(sun != null && sun != '00:00:00'){
                     var suns = new Date("October 13, 1975 "+sun+" UTC");
-                    sunH = suns.getHours();
-                    sunM = suns.getMinutes();
+                    sunH = suns.getHours()<10?'0'+suns.getHours():suns.getHours();
+                    sunM = suns.getMinutes()<10?'0'+suns.getMinutes():suns.getMinutes();
                     sun = sunH +':'+ sunM;
                             
                 }else sun = "00:00";
@@ -312,22 +303,19 @@ var Gym = function()
             data:datas,
             token : $('#token').val(),
             success:function(data){
-                $("#class_sched").html(" ");
-                
-                
+                $("#class_sched").html(" ");           
             
                 try{
                     result1 = eval(data);
                    
                     finish1 = result1.length;
                     op1 = "<h1>List of Users</h1>";
-                   op1 += "<ul class='calender-link'>";
+                    op1 += "<ul class='calender-link'>";
                     for(i=0;i<finish1;i++)
                     {       
                         if(result1[i].cid == cid){                            
-                         op1 += "<li>"+result1[i].first_name+" "+result1[i].last_name+"</li>";
-                        }
-                        
+                            op1 += "<li>"+result1[i].first_name+" "+result1[i].last_name+"</li>";
+                        }                        
                     }
                     op1 += "</ul>"
                     $("#class_sched").html(op1);
@@ -383,12 +371,8 @@ var Gym = function()
                             schedules +="<tr><td class='bold'>Service</td><td>:"+result15[i].service+"</td><td><span onclick='widgets.gim.getInfo("+result15[i].id+")'><a  href = '#lightboxes' class='light' >select</a></span></td></tr>";
 
                         }
-                    }
-                   
-                  
+                    } 
                     schedules +="</table>";
-                    
-                    
                     $(".inner-txt").html(schedules);
                 }catch(e){
                     
@@ -398,8 +382,6 @@ var Gym = function()
               
             }
         });
-        
-        
     }
     this.addclass = function()
     {
@@ -424,14 +406,11 @@ var Gym = function()
             success:function(data){
                 results = eval(data);
                 
-                
-              
             },
             error:function(){
           
             }
         });
-        
         
     }
     this.getdisbursement = function()
@@ -461,8 +440,6 @@ var Gym = function()
           
             }
         });
-        
-        
     }
     this.disbursement = function()
     {
@@ -478,21 +455,16 @@ var Gym = function()
             success:function(data){
                 results = eval(data);
                 
-                
-              
             },
             error:function(){
           
             }
         });
-        
-        
     }
     this.image = function()
     {
         $('#head').hide();
         $('#image').show();
-        
         
     }
     this.cancel = function()
@@ -500,14 +472,11 @@ var Gym = function()
         $('#image').hide();
         $('#head').show();
       
-        
-        
     }
     this.delTag = function(id)
     {
         data = {};
         data['tid'] = id;
-        
         
         $.ajax({
             type: 'DELETE',
@@ -542,7 +511,6 @@ var Gym = function()
           
                     }
                 });
-                
             }
         });
        
@@ -605,22 +573,17 @@ var Gym = function()
                     }
                 });
                 
-                
-              
             },
             error:function(){
                
             }
         });
         
-         
     }
     this.search = function()
     {
-        
         var add = $('#all_service').html();
-      
-         
+       
     }
     this.allTags = function()
     {
@@ -647,15 +610,13 @@ var Gym = function()
           
             }
         });
-      
-         
+       
     }
     
     this.getGymInfo = function()
     {        
         ZUNEFIT.getJSON({
             url:'gymInfo/'+$('#gid').val(),
-          
           
             success:function(data){
                 results = eval(data)[0];
@@ -684,21 +645,14 @@ var Gym = function()
                 image = '<a href="#" onclick="widgets.gim.image()"><img src="'+results.image+'" width="60" height="60" /></a>';
                 $("#g_image").html(image);
                 
-               
-               
-            
             },
             error:function(){
           
             }
         });
         
-       
-        
-        
     }
-    
-  
+   
     this.getSchedule = function()
     {
     
@@ -720,56 +674,56 @@ var Gym = function()
                         var mon = result15[i].monday;
                         if(mon != null && mon != '00:00:00'){
                             var mons = new Date("October 13, 1975 "+mon+" UTC");
-                            monH = mons.getHours();
-                            monM = mons.getMinutes();
+                            monH = mons.getHours()<10?'0'+mons.getHours():mons.getHours();
+                            monM = mons.getMinutes()<10?'0'+mons.getMinutes():mons.getMinutes();
                             mon = monH +':'+ monM;
                             
                         }else mon = "-";
                         var tue = result15[i].tuesday;
                         if(tue != null && tue != '00:00:00') {
                             var tues = new Date("October 13, 1975 "+tue+" UTC");
-                            tueH = tues.getHours();
-                            tueM = tues.getMinutes();
+                            tueH = tues.getHours()<10?'0'+tues.getHours():tues.getHours();
+                            tueM = tues.getMinutes()<10?'0'+tues.getMinutes():tues.getMinutes();
                             tue = tueH +':'+ tueM;
                             
                         }else tue = "-";
                         var wed = result15[i].wednesday;
                         if(wed != null && wed != '00:00:00'){
                             var weds = new Date("October 13, 1975 "+wed+" UTC");
-                            wedH = weds.getHours();
-                            wedM = weds.getMinutes();
+                            wedH = weds.getHours()<10?'0'+weds.getHours():weds.getHours();
+                            wedM = weds.getMinutes()<10?'0'+weds.getMinutes():weds.getMinutes();
                             wed = wedH +':'+ wedM;
                             
                         }else wed = "-";
                         var thu = result15[i].thursday;
                         if(thu != null && thu != '00:00:00'){
                             var thus = new Date("October 13, 1975 "+thu+" UTC");
-                            thuH = thus.getHours();
-                            thuM = thus.getMinutes();
+                            thuH = thus.getHours()<10?'0'+thus.getHours():thus.getHours();
+                            thuM = thus.getMinutes()<10?'0'+thus.getMinutes():thus.getMinutes();
                             thu = thuH +':'+ thuM;
                             
                         }else thu = "-";
                         var fri = result15[i].friday;
                         if(fri != null && fri != '00:00:00'){
                             var fris = new Date("October 13, 1975 "+fri+" UTC");
-                            friH = fris.getHours();
-                            friM = fris.getMinutes();
+                            friH = fris.getHours()<10?'0'+fris.getHours():fris.getHours();
+                            friM = fris.getMinutes()<10?'0'+fris.getMinutes():fris.getMinutes();
                             fri = friH +':'+ friM;
                             
                         }else fri = "-";
                         var sat = result15[i].saturday;
                         if(sat != null && sat != '00:00:00') {
                             var sats = new Date("October 13, 1975 "+sat+" UTC");
-                            satH = sats.getHours();
-                            satM = sats.getMinutes();
+                            satH = sats.getHours()<10?'0'+sats.getHours():sats.getHours();
+                            satM = sats.getMinutes()<10?'0'+sats.getMinutes():sats.getMinutes();
                             sat = satH +':'+ satM;
                             
                         }else sat = "-";
                         var sun = result15[i].time;
                         if(sun != null && sun != '00:00:00'){
                             var suns = new Date("October 13, 1975 "+sun+" UTC");
-                            sunH = suns.getHours();
-                            sunM = suns.getMinutes();
+                            sunH = suns.getHours()<10?'0'+suns.getHours():suns.getHours();
+                            sunM = suns.getMinutes()<10?'0'+suns.getMinutes():suns.getMinutes();
                             sun = sunH +':'+ sunM;
                             
                         }else sun = "-";
@@ -826,7 +780,6 @@ var Gym = function()
         }
     }   
     
-    
     this.getGymSchedule = function(start,end)
     {
         data = {};
@@ -840,8 +793,6 @@ var Gym = function()
             success:function(data){
                 $(".inner-txt").html(" ");
                 
-               
-            
                 try{
                     result1 = eval(data);
                     finish1 = result1.length;
@@ -893,7 +844,6 @@ var Gym = function()
         });
         
         data = {};
-        
         
         ZUNEFIT.getJSON({
             url:'gymStats/',
@@ -958,8 +908,6 @@ var Gym = function()
     
     this.getGymDaySchedule = function(date)
     {
-        
-       
         
         var d = new Date(date);
         fday = (d.getUTCDate() < 10) ? '0'+d.getUTCDate() : d.getUTCDate() ;
@@ -1031,7 +979,6 @@ var Gym = function()
             token : $('#token').val(),
           
             success:function(response){
-               
                
             },
             error:function(){
