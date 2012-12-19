@@ -393,24 +393,51 @@ var Gym = function()
     }
     this.addclass = function()
     {
-        data = {};
-        data['gymid'] = $('#gid').val();
-        data['service'] = $('#class_name').val();
-        data['price'] = $('#class_price').val();
-        if($('#class_mon').val().length>0){
-            data['monday'] = $('#class_mon').val();
+        datas = {};
+        datas['gymid'] = $('#gid').val();
+        datas['service'] = $('#class_name').val();
+        datas['price'] = $('#class_price').val();
+        
+        time = {};
+        time[0] = '#class_mon';
+        time[1] = '#class_tue';
+        time[2] = '#class_wed';
+        time[3] = '#class_thu';
+        time[4] = '#class_fri';
+        time[5] = '#class_sat';
+        time[6] = '#class_sun';
+        
+        day = {};
+        day[0] = 'monday';
+        day[1] = 'tuesday';
+        day[2] = 'wednesday';
+        day[3] = 'thursday';
+        day[4] = 'friday';
+        day[5] = 'saturday';
+        day[6] = 'sunday';
+       
+        for(i=0;i<7;i++){
+            if($(time[i]).val()!="00:00"){
+                hrss = {};
+                hrss = $(time[i]).val().split(':');           
+                hrs =  new Date(2008, 5, 6, hrss[0], hrss[1], 00).getUTCHours();
+                min = new Date(2008, 5, 6, hrss[0], hrss[1], 00).getUTCMinutes();
+               
+                hrs = hrs< 10 ? '0'+hrs : hrs ;
+                min = min< 10 ? '0'+min : min ;  
+                
+                datas[day[i]] = hrs+":"+min;
+               
+            }else{
+                datas[day[i]] = '00:00';
+            }
         }
      
-        data['tuesday']     = $('#class_tue').val().length>0 ? $('#class_tue').val()    : null;
-        data['wednesday']   = $('#class_wed').val().length>0 ? $('#class_wed').val()    : null;
-        data['thursday']    = $('#class_thu').val().length>0 ? $('#class_thu').val()    : null;
-        data['friday']      = $('#class_fri').val().length>0 ? $('#class_fri').val()    : null;
-        data['saturday']    =$('#class_sat').val().length>0 ? $('#class_sat').val()     : null;
-        data['sunday']      = $('#class_sun').val().length>0 ? $('#class_sun').val()    : null;
+        
         ZUNEFIT.postJSON({
             url:'addClass/',
             token : $('#token').val(),
-            data : data,
+            data : datas,
             success:function(data){
                 results = eval(data);
                 
