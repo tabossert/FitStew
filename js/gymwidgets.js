@@ -164,57 +164,65 @@ var Gym = function()
         this.delClass(12);
         this.getdisbursement();
         this.getDayclasses(new Date());
-     
+      
+    
     }
     this.update_class = function(cid)
     {
-        data = {};
+        datas = {};
         //  data['gymid'] = $('#gid').val();
-        data['classid'] = cid;
-        data['service'] = $('#up_class_name').val();
-        data['price'] = $('#up_class_price').val();
-        var date = new Date("2012-10-10 "+$('#up_class_mon').val()); 
-        var dates = Date.UTC(
-            date.getFullYear()
-            , date.getMonth()
-            , date.getDate()
-            , date.getHours()
-            , date.getMinutes()
-            , date.getSeconds()
-            , date.getMilliseconds()
-            );
+        datas['classid'] = cid;
+        datas['service'] = $('#up_class_name').val();
+        datas['price'] = $('#up_class_price').val();
         
-        //  alert(dates);
-        // now = now.getUTCHours()+" "+ now.getUTCMinutes();
+        time = {};
+        time[0] = '#up_class_mon';
+        time[1] = '#up_class_tue';
+        time[2] = '#up_class_wed';
+        time[3] = '#up_class_thu';
+        time[4] = '#up_class_fri';
+        time[5] = '#up_class_sat';
+        time[6] = '#up_class_sun';
+        
+        day = {};
+        day[0] = 'monday';
+        day[1] = 'tuesday';
+        day[2] = 'wednesday';
+        day[3] = 'thursday';
+        day[4] = 'friday';
+        day[5] = 'saturday';
+        day[6] = 'sunday';
        
-        //  alert(now);
-        if($('#up_class_mon').val().length>0){
-            now = new Date("2012-10-10 "+$('#up_class_mon').val()); 
-            //var hrs = now.getUTCHours();
-            // var min = now.getUTCMinutes();
-            hrs = (now.getUTCHours() < 10) ? '0'+now.getUTCHours() : now.getUTCHours() ;
-            min = (now.getUTCMinutes() < 10) ? '0'+now.getUTCMinutes() : now.getUTCMinutes() ;
-            data['monday'] = hrs+":"+min;
-        }
-        data['monday']     = $('#up_class_mon').val().length>0 ? $('#up_class_mon').val()    : null;
-        data['tuesday']     = $('#up_class_tue').val().length>0 ? $('#up_class_tue').val()    : null;
-        data['wednesday']   = $('#up_class_wed').val().length>0 ? $('#up_class_wed').val()    : null;
-        data['thursday']    = $('#up_class_thu').val().length>0 ? $('#up_class_thu').val()    : null;
-        data['friday']      = $('#up_class_fri').val().length>0 ? $('#up_class_fri').val()    : null;
-        data['saturday']    =$('#up_class_sat').val().length>0 ? $('#up_class_sat').val()     : null;
-        data['sunday']      = $('#up_class_sun').val().length>0 ? $('#up_class_sun').val()    : null;
-        ZUNEFIT.postJSON({
-            url:'updateClass/',
-            token : $('#token').val(),
-            data : data,
-            success:function(data){
-                results = eval(data)[0];
+        for(i=0;i<7;i++){
+            if($(time[i]).val()!="00:00"){
+                hrss = {};
+                hrss = $(time[i]).val().split(':');           
+                hrs =  new Date(2008, 5, 6, hrss[0], hrss[1], 00).getUTCHours();
+                min = new Date(2008, 5, 6, hrss[0], hrss[1], 00).getUTCMinutes();
+               
+                hrs = hrs< 10 ? '0'+hrs : hrs ;
+                min = min< 10 ? '0'+min : min ;  
                 
-            },
-            error:function(){
-          
+                datas[day[i]] = hrs+":"+min;
+               
+            }else{
+                datas[day[i]] = '00:00';
             }
-        });
+        }
+        
+   
+            ZUNEFIT.postJSON({
+                url:'updateClass/',
+                token : $('#token').val(),
+                data : datas,
+                success:function(data){
+                    results = eval(data)[0];
+                    
+                },
+                error:function(){
+              
+                }
+            });
     }
     
     this.getInfo = function(cid)
