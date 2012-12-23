@@ -790,7 +790,9 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     padding: 10px;
     color: #500;
     font-weight: bold;
+    
 }
+
 /*..................................................................*/
 #box-header{
     border-bottom: #000 solid 1px;

@@ -770,7 +770,7 @@ var Gym = function()
                         }else sun = "-";
                         
                         
-                        schedule +="<table class ='time' style = 'width:200px;float:left;'><tr><td class='bold'>Service</td><td class='bold'>:"+result15[i].service+"</td><td style='width:10px;'></td><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr></table><br/><table><tr><td class='bold'>Mon</td><td class='bold'>Tue</td><td class='bold'>Wed</td><td class='bold'>Thu</td><td class='bold'>Fri</td><td class='bold'>Sat</td><td class='bold'>Sun</td></tr><tr><td>"+mon+"</td><td>"+tue+"</td>";
+                        schedule +="<table class ='time' style = 'width:200px;float:left;'><tr><td class='bold'>Service</td><td>:"+result15[i].service.replace(" ", "&nbsp")+"</td><td style='width:10px;'></td><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr></table><br/><table><tr><td class='bold'>Mon</td><td class='bold'>Tue</td><td class='bold'>Wed</td><td class='bold'>Thu</td><td class='bold'>Fri</td><td class='bold'>Sat</td><td class='bold'>Sun</td></tr><tr><td>"+mon+"</td><td>"+tue+"</td>";
                         
                         schedule +="<td>"+wed+"</td><td>"+thu+"</td><td>"+fri+"</td><td>"+sat+"</td><td>"+sun+"</td></tr></table>";
                     }
