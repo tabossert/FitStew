@@ -728,6 +728,7 @@ var User = function()
             
         });
         this.getUserWeekSchedule();
+        this.getUserBalance();
     }
     
     this.deleteEvent = function()
