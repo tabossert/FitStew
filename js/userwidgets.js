@@ -929,61 +929,61 @@ var User = function()
                         }
                        
                         var mon = result15[i].monday;
-                        if(mon != null){
+                        if(mon != null && mon != '00:00:00'){
                             var mons = new Date("October 13, 1975 "+mon+" UTC");
                             monH = mons.getHours();
                             monM = mons.getMinutes();
                             mon = monH +':'+ monM;
                             
-                        }
+                        }else mon = "-";
                         var tue = result15[i].tuesday;
-                        if(tue != null) {
+                        if(tue != null && tue != '00:00:00') {
                             var tues = new Date("October 13, 1975 "+tue+" UTC");
                             tueH = tues.getHours();
                             tueM = tues.getMinutes();
                             tue = tueH +':'+ tueM;
                             
-                        }
+                        }else tue = "-";
                         var wed = result15[i].wednesday;
-                        if(wed != null){
+                        if(wed != null && wed != '00:00:00'){
                             var weds = new Date("October 13, 1975 "+wed+" UTC");
                             wedH = weds.getHours();
                             wedM = weds.getMinutes();
                             wed = wedH +':'+ wedM;
                             
-                        }
+                        }else wed = "-";
                         var thu = result15[i].thursday;
-                        if(thu != null){
+                        if(thu != null && thu != '00:00:00'){
                             var thus = new Date("October 13, 1975 "+thu+" UTC");
                             thuH = thus.getHours();
                             thuM = thus.getMinutes();
                             thu = thuH +':'+ thuM;
                             
-                        }
+                        }else thu = "-";
                         var fri = result15[i].friday;
-                        if(fri != null){
+                        if(fri != null && fri != '00:00:00'){
                             var fris = new Date("October 13, 1975 "+fri+" UTC");
                             friH = fris.getHours();
                             friM = fris.getMinutes();
                             fri = friH +':'+ friM;
                             
-                        }
+                        }else fri = "-";
                         var sat = result15[i].saturday;
-                        if(sat != null) {
+                        if(sat != null && sat != '00:00:00') {
                             var sats = new Date("October 13, 1975 "+sat+" UTC");
                             satH = sats.getHours();
                             satM = sats.getMinutes();
                             sat = satH +':'+ satM;
                             
-                        }
+                        }else sat = "-";
                         var sun = result15[i].time;
-                        if(sun != null){
+                        if(sun != null && sun != '00:00:00'){
                             var suns = new Date("October 13, 1975 "+sun+" UTC");
                             sunH = suns.getHours();
                             sunM = suns.getMinutes();
                             sun = sunH +':'+ sunM;
                             
-                        }
+                        }else sun = "-";
                         
                         
                         schedule +="<table class ='time' style = 'width:200px;float:left;'><tr><td class='bold'>Service</td><td>:"+result15[i].service+"</td><td style='width:10px;'></td><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr></table><br/><table><tr><td class='bold'>Mon</td><td class='bold'>Tue</td><td class='bold'>Wed</td><td class='bold'>Thu</td><td class='bold'>Fri</td><td class='bold'>Sat</td><td class='bold'>Sun</td></tr><tr><td>"+mon+"</td><td>"+tue+"</td>";

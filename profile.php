@@ -55,6 +55,7 @@
         </tr>
     </table>
     <div class="buttons" onclick="widgets.gim.addclass()">Add Class</div>
+    <div id="confirm" style="color: #CB0000;font-size: 17px;float: right;"></div>
 </div>
 </div>
 <div style="display: none;">
