@@ -91,7 +91,7 @@ var User = function()
         this.getDate();
        
         
-       // this.deleteEvent();
+        // this.deleteEvent();
         this.getUserWeekSchedule();
         //   this.getcrediDetails();
         
@@ -446,13 +446,13 @@ var User = function()
                     for(i=0;i<finish7;i++){
                         
                         if(date == result7[i].date){
-                            content += "<ul><li>"+result7[i].name+"</li>";
+                            content += "<ul><li>"+result7[i].name+" - "+result7[i].service+"</li>";
                         }else{
                             if(i!=0){
                                 content += "</ul>";
                             }                                
                             content += "<h1>"+result7[i].date+"</h1>";
-                            content += "<ul><li>"+result7[i].name+"</li>";
+                            content += "<ul><li>"+result7[i].name+" - "+result7[i].service+"</li>";
                             date = result7[i].date;
                         }
                         
@@ -514,16 +514,14 @@ var User = function()
    
     
     this.searchMe = function()
-    {
-        
+    {        
         // $("#divexample1").niceScroll();
         $("a.light").live("click", function(event) {
             event.preventDefault();
             $(this).filter(':not(.fb)').fancybox()
             .addClass('fb');
             $(this).triggerHandler('click');
-        });
-        
+        });        
         data = {};
         
         if($('.searchBy').val()=='name'){
@@ -532,20 +530,13 @@ var User = function()
             data['type'] = "city";
         }else{
             data['type'] = "zipcode";
-        }
-        
-       
+        }        
         data['value'] = $('#searchkey').val();
-            
-        data['state'] = $('#project').val();
-        
-       
-        
+        data['state'] = $('#project').val();        
+               
         $("#search-result").html("Waiting for results");
         ZUNEFIT.getJSON({
-            url:'gymSearch/'+data['type']+'/'+data['value']+'/'+data['state'],
-           
-          
+            url:'gymSearch/'+data['type']+'/'+data['value']+'/'+data['state'],                     
             success:function(response){
                 try{
                     result9 = eval(response);
@@ -562,14 +553,10 @@ var User = function()
                     }else{
                         $("#search-result").html("No result Found");
                     }
-                }catch(e){
-                    
-                }
-               
-             
+                }catch(e){                    
+                }              
             },
-            error:function(){
-            
+            error:function(){            
                 $("#search-result").html("No result Found");
             
             }
@@ -594,19 +581,14 @@ var User = function()
             $('#pref_error').text('Please check your Pin code: the confirmation entry does not match.');
         }else{
             $("#pref_phone, #pref_pin, #pref_pin2").attr('readonly','readonly');
-
             $('#phone_done').css("display","none");
             $('#phone_edit').css("display","block");
             $("#pref_phone, #pref_pin, #pref_pin2").addClass('transparent').removeClass('round');
             data = {};
      
-       
             data['phone'] = $('#pref_phone').val();
             data["pincode"] = Sha1.hash($('#pref_pin').val());
         
-       
-        
-             
             ZUNEFIT.postJSON({
                 url:'setPinCode/',
                 data:data,
@@ -642,89 +624,77 @@ var User = function()
         data['last_name'] = $("#pref_lastName").val();
         data['address'] = $("#pref_address").val();
         data['address2'] = $("#pref_address2").val();
-        data['email'] = $("#pref_email").val();
-        
+        data['email'] = $("#pref_email").val();        
         data['city'] = $("#pref_city").val();
         data['state'] = $("#pref_state").val();
         data['zipcode'] = $("#pref_zip").val();
       
-      
-       
-        
-        
         ZUNEFIT.postJSON({
             url:'updateUserPreferences/',
             data:data,
-            token : $('#utoken').val(),
-          
-            success:function(response){
-               
+            token : $('#utoken').val(),          
+            success:function(response){               
                
             },
             error:function(){
-            //Error should be handle here
-            
-            }
-            
+            //Error should be handle here            
+            }            
         });
     }
     this.update_new = function()
-    {
-        
-        
-        data = {};
-        
+    {                
+        data = {};        
         data['first_name'] = $("#pref_firstName").val();
-        data['last_name'] = $("#pref_lastName").val();
-     
-        data['email'] = $("#pref_email").val();
-        
-        data['address'] = $("#address_1").val();
-       
-        data['address2'] = $("#address_2").val();
-        
+        data['last_name'] = $("#pref_lastName").val();     
+        data['email'] = $("#pref_email").val();        
+        data['address'] = $("#address_1").val();       
+        data['address2'] = $("#address_2").val();        
         data['city'] = $("#city").val();
         data['state'] = $("#state").val();
         data['zipcode'] = $("#zip").val();
       
-     
-        
-       
-        
-        
         ZUNEFIT.postJSON({
             url:'updateUserPreferences/',
             data:data,
-            token : $('#utoken').val(),
-          
-            success:function(response){
-               
+            token : $('#utoken').val(),          
+            success:function(response){               
                
             },
             error:function(){
-            //Error should be handle here
-           
-            }
-            
+            //Error should be handle here           
+            }            
         });
     }
     
     this.addEvent = function(gid,cid,price)
-    {
-       
+    {       
         data = {};
         data['userid'] = $("#userid").val();
         data['gymid'] = gid;
         data['classid'] = cid;
         data['price'] = price;
         var date = '#'+cid+'date';
-        data['datetime'] = $(date).val()+" 12:00:00";
-        //      var now = new Date($(date).val()); 
-        //var now_utc = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
-        //    alert(now_utc);
-        // data['datetime'] = new Date($(date).val()+" 12:00:00");
-        //   data['datetime'] = now.getUTCFullYear()+"-"+now.getUTCMonth()+"-"+now.getUTCDate()+" "+now.getUTCHours()+":"+now.getUTCMinutes()+":"+now.getUTCSeconds();
-
+        var time = '#'+cid+'time'
+       
+        times = {};
+        dates = {};
+        times = $(time).val().split(':');    
+        dates = $(date).val().split('-'); 
+        
+        year =  new Date(dates[0], dates[1]-1, dates[2], times[0], times[1], 00).getUTCFullYear();
+        month =  new Date(dates[0], dates[1]-1, dates[2], times[0], times[1], 00).getUTCMonth();
+        day =  new Date(dates[0], dates[1]-1, dates[2], times[0], times[1], 00).getUTCDate();
+        hrs =  new Date(dates[0], dates[1]-1, dates[2], times[0], times[1], 00).getUTCHours();
+        min = new Date(dates[0], dates[1]-1, dates[2], times[0], times[1], 00).getUTCMinutes();
+                
+           
+        month = month < 10 ? '0'+(month+1) : (month+1) ; 
+        day = day< 10 ? '0'+day : day ;
+        min = min< 10 ? '0'+min : min ; 
+        hrs = hrs< 10 ? '0'+hrs : hrs ;         
+                
+        data['datetime'] = year+"-"+month+"-"+day+" "+hrs+":"+min+":00";
+        
         ZUNEFIT.postJSON({
             url:'addEvent/',
             data:data,
@@ -734,58 +704,42 @@ var User = function()
                 if(response.message)
                     alert(response.message);
                 else
-                    alert(response.status);
-                
+                    alert(response.status);                
             },
             error:function(){
             //Error should be handle here
            
-            }
-            
+            }            
         });
         this.getUserWeekSchedule();
         this.getUserBalance();
-    }
-    
+    }    
     this.deleteEvent = function()
-    {
-       
+    {       
         data = {};
-        data['sid'] = 25;
-        
+        data['sid'] = 25;        
         
         $.ajax({
             type: 'DELETE',
             url: ZUNEFIT_BASE_URL+"deleteEvent/",
             data: data,
             beforeSend : function(xhrObj) {
-                xhrObj.setRequestHeader("ltype", "web");
-            
-                xhrObj.setRequestHeader("token", $('#utoken').val());
-            
+                xhrObj.setRequestHeader("ltype", "web");            
+                xhrObj.setRequestHeader("token", $('#utoken').val());            
             },
             success: function(response){
                 result12 = eval(response)[0];
-                alert(result12.status);
-           
+                alert(result12.status);           
             }
-        });
-        
-        
-        
+        });       
     }
     this.enter = function()
-    {
-        
-           
-        $('#Miles, #Within, #keyword').keypress(function (e) {
-            if (e.which == 13) {
-       
-                $("#searching").click();
-      
-            }
-     
-        
+    {          
+        $('#Miles, #Within, #keyword').keypress(function (e) 
+        {
+            if (e.which == 13) {       
+                $("#searching").click();      
+            }       
         });
         $("#pref_pin, #pref_zip, #zip, .card-number, .card-cvc, .card-expiry-month, .card-expiry-year").keydown(function(event) {
             // Allow: backspace, delete, tab, escape, and enter
@@ -821,22 +775,16 @@ var User = function()
                 }   
             }
         });
-    }
-    
+    }    
     this.advancedSearch = function()
-    {
- 
+    { 
         $("a.light").live("click", function(event) {
             event.preventDefault();
             $(this).filter(':not(.fb)').fancybox()
             .addClass('fb');
             $(this).triggerHandler('click');
         });
-        data = {};
-       
-      
-        
-        
+        data = {}; 
       
         if($('#Within').val()!=""){
             data['address'] = $('#Within').val();
@@ -855,8 +803,7 @@ var User = function()
         
         ZUNEFIT.postJSON({
             url:'gymSearchAdvanced/',
-            data:data,
-          
+            data:data,          
             success:function(response){
                 try{
                     result13 = eval(response);
@@ -873,15 +820,12 @@ var User = function()
                     }
                 }catch(e){
                     
-                }
-                
+                }                
             },
             error:function(){
-            //Error should be handle here
-          
+            //Error should be handle here          
             }
-        });
-       
+        });       
     }
     this.getInfo = function(id)
     {
@@ -903,8 +847,7 @@ var User = function()
                     $("#g_phone").val(result14.phone);
                     $("#g_email").val(result14.email);
                     $("#g_contact").val(result14.contact);
-                    $("#g_url").html('<a href="'+result14.url+'" target="_blank">'+result14.url+'</a>');
-                
+                    $("#g_url").html('<a href="'+result14.url+'" target="_blank">'+result14.url+'</a>');                
                 
                     $("#g_name").val(result14.name);
                     $("#g_rate").val(result14.rate);
@@ -922,10 +865,8 @@ var User = function()
                     $(".tweet").html('<iframe allowtransparency="true" frameborder="0" scrolling="no"src="//platform.twitter.com/widgets/follow_button.html?screen_name='+twitter+'" style="width:300px; height:20px;"></iframe>');
            
                     $(".like").html('<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2F'+facebook+'&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21&amp;" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>');
-
                 
-                }catch(e){
-                    
+                }catch(e){                    
                 }
             },
             error:function(){
@@ -999,27 +940,22 @@ var User = function()
                             sunM = suns.getMinutes();
                             sun = sunH +':'+ sunM;
                             
-                        }else sun = "-";
-                        
+                        }else sun = "-";                        
                         
                         schedule +="<table class ='time' style = 'width:200px;float:left;'><tr><td class='bold'>Service</td><td>:"+result15[i].service.replace(" ", "&nbsp")+"</td><td style='width:10px;'></td><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr></table><br/><table><tr><td class='bold'>Mon</td><td class='bold'>Tue</td><td class='bold'>Wed</td><td class='bold'>Thu</td><td class='bold'>Fri</td><td class='bold'>Sat</td><td class='bold'>Sun</td></tr><tr><td>"+mon+"</td><td>"+tue+"</td>";
-                        
                         schedule +="<td>"+wed+"</td><td>"+thu+"</td><td>"+fri+"</td><td>"+sat+"</td><td>"+sun+"</td></tr></table>";
-                        schedule +='<div style="float: left;width: 170px;" ><br/><p>Date: <input type="text" style="width:100px;" class="round datepicker " id="'+result15[i].id+'date"/></p></div>';
-
+                        schedule +='<div style="float: left;width: 170px;" ><br/><p>Date: <input type="text" style="width:100px;" class="round datepicker " id="'+result15[i].id+'date"/></p><br/><p>Time: <input type="text" style="width:100px;" class="round timepicker " id="'+result15[i].id+'time"/></p></div>';
                         schedule +='<div style="color: darkgreen;float: right;text-align: center;padding-bottom:2px;" >Add to my schedule<img src="images/schedule.png" onclick="widgets.user.addEvent('+id+','+result15[i].id+','+result15[i].price+')" style="cursor:pointer;"/></div>';
-
                     }
                     services += "</ui>";
-                    $("#box-Schedule").html(schedule);
-                   
+                    $("#box-Schedule").html(schedule);                   
                 
                 }catch(e){
                     
                 }
+                $('.timepicker').timepicker();
                 $( ".datepicker" ).datepicker();
-                $( ".datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd");
-               
+                $( ".datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd");               
             },
             error:function(){
             //Error should be handle here
@@ -1031,21 +967,17 @@ var User = function()
             success:function(data){
                 results = eval(data);
                 end = results.length;
-                for(i=0;i<end;i++){
-                   
+                for(i=0;i<end;i++){                   
                     servicess += '<li>'+results[i].tag+'</li>';
                 }
-                servicess += "</ul>";
-              
+                servicess += "</ul>";             
              
-                $("#box-Services").html(servicess);
-              
+                $("#box-Services").html(servicess);              
             },
             error:function(){
           
             }
-        });
-    
+        });    
     }
     this.onload = function()
     {
@@ -1099,12 +1031,9 @@ var User = function()
                 // insert the token into the form so it gets submitted to the server
                 form$.append("<input type='hidden' id ='tok' name='stripeToken' value='" + token + "' />");
                 // and submit
-                data = {};
-       
+                data = {};      
    
- 
-                data['stripeToken'] = $("#tok").val();
-               
+                data['stripeToken'] = $("#tok").val();               
                 data['amount'] = parseInt(($("#pay_amount").val()*100),10);
                 data['name'] = $("#pref_email").val();
                 $.ajax({
@@ -1113,22 +1042,16 @@ var User = function()
                     data: data,
                     dataType:'json',
            
-                    success: function(response){
-               
-                
-                
+                    success: function(response){     
                         $("#message").html(response.message);
                         $('.submit-button').removeAttr("disabled");
                         if(response.id!=0){
                             datas = {};
                             datas['refid']=response.id;
-                            ZUNEFIT.postJSON({
-                   
-                    
+                            ZUNEFIT.postJSON({                  
                                 url:'paymentTransaction/',
                                 data:datas,
-                                token : $('#utoken').val(),
-          
+                                token : $('#utoken').val(),          
                                 success:function(response){
                                     ZUNEFIT.getJSON({
                                         url:'balance/',
@@ -1145,23 +1068,18 @@ var User = function()
                                             }
                                         },
                                         error:function(){
-                                        //Error should be handle here
-            
-           
+                                        //Error should be handle here            
                                         }
                                     });
                                 },
                                 error:function(){
                                 //Error should be handle here
                                 ;  
-                                }
-            
+                                }            
                             });
-                        }
-                         
+                        }                         
                     }
-                });
-        
+                });        
         
             }
         }
@@ -1180,35 +1098,24 @@ var User = function()
             data: data,
            
             success: function(response){
-               
-                
-                
                 $("#message").html(response.message);
                 datas = {};
                 datas['refid']=response.ptoken;
-                ZUNEFIT.postJSON({
-                   
-                    
+                ZUNEFIT.postJSON({                   
                     url:'paymentTransaction/',
                     data:datas,
-                    token : $('#utoken').val(),
-          
+                    token : $('#utoken').val(),          
                     success:function(response){
                       
                     },
                     error:function(){
-                    //Error should be handle here
-                       
-                    }
-            
+                    //Error should be handle here                       
+                    }            
                 });
             //alert(result1);        
             }
         });
-        
-        
-        
-        
+       
     }
     this.creditInfo = function()
     {
@@ -1217,15 +1124,12 @@ var User = function()
         $('#edit_fil').css('display', 'none');
         $('#done_fil').css('display', 'block');
       
-         
     }
     
     this.update_refill = function()
     {
       
-       
-        data = {};
-     
+        data = {};     
         if($('#refil').is(':checked'))
         {
             data['automatic'] = 1;
@@ -1253,22 +1157,18 @@ var User = function()
                     success:function(response){
                
                         $('#done_fil').css('display', 'none');
-                        $('#edit_fil').css('display', 'block');
-               
+                        $('#edit_fil').css('display', 'block');               
                         $('#auto_amount, #refil, #when').attr('disabled','disabled');
                 
                     },
                     error:function(){
-                    //Error should be handle here
-           
-                    }
-            
+                    //Error should be handle here           
+                    }            
                 });
             }
             function stripeResponseHandler(status, response) {
                 if (response.error) {
-                    // re-enable the submit button
-                   
+                    // re-enable the submit button                   
                     // show the errors on the form
                     endAjax();
                     $(".payment-errors").html(response.error.message);
@@ -1286,22 +1186,16 @@ var User = function()
                     // and submit
                     datas = {};
        
-   
- 
                     datas['stripeToken'] = $("#tok").val();
                
-                    
                     datas['name'] = $("#pref_email").val();
                     $.ajax({
                         type: 'POST',
                         url: "customer.php",
                         data: datas,
-                        dataType:'json',
-           
+                        dataType:'json',           
                         success: function(response){
                
-                
-                
                             $("#message").html(response.message);
                           
                             if(response.id!=0){
@@ -1309,12 +1203,9 @@ var User = function()
                                 data['refillamount'] = $("#auto_amount").val();
                                 data['minamount'] = $('#when').val();
                                 apicall();
-                            }
-                         
+                            }                         
                         }
-                    });
-        
-        
+                    });       
                 }
             }
             // createToken returns immediately - the supplied callback submits the form if there are no errors
@@ -1324,16 +1215,12 @@ var User = function()
                 address_line2 :$("#address_2").val(),
                 address_city : $("#city").val(),
                 address_state :  $("#state").val(),
-                address_zip : $("#zip").val(),
-                
+                address_zip : $("#zip").val(),                
                 number: $('.card-number').val(),
                 cvc: $('.card-cvc').val(),
                 exp_month: $('.card-expiry-month').val(),
                 exp_year: $('.card-expiry-year').val()
             }, stripeResponseHandler);
-           
-        
-           
         }else{
             data['automatic'] = 0;
             data['refillamount'] = $("#auto_amount").val();
@@ -1341,33 +1228,20 @@ var User = function()
             ZUNEFIT.postJSON({
                 url:'updatePayment/',
                 data:data,
-                token : $('#utoken').val(),
-          
-                success:function(response){
-               
+                token : $('#utoken').val(),          
+                success:function(response){               
                     $('#done_fil').css('display', 'none');
-                    $('#edit_fil').css('display', 'block');
-               
-                    $('#auto_amount, #refil, #when').attr('disabled','disabled');
-                
+                    $('#edit_fil').css('display', 'block');               
+                    $('#auto_amount, #refil, #when').attr('disabled','disabled');                
                 },
                 error:function(){
                 //Error should be handle here
-           
-                }
-            
+                }            
             });
-        }
-        
-      
-       
-        
-        
-    }
-    
+        }                
+    }    
     this.getcrediDetails = function()
-    {
-       
+    {       
         data = {};
         data['offset'] = 0;
         ZUNEFIT.postJSON({
@@ -1390,24 +1264,17 @@ var User = function()
                         $("#address_2").val(responses.add2),
                         $("#city").val(responses.city),
                         $("#state").val(responses.state),
-                        $("#zip").val(responses.zip),
-                
-                        $('.card-number').val('********'+responses.last4),
-                       
+                        $("#zip").val(responses.zip),                
+                        $('.card-number').val('********'+responses.last4),                       
                         $('.card-expiry-month').val(responses.month),
                         $('.card-expiry-year').val(responses.year)
                 
-                    }
-                       
+                    }                       
                 });
             },
             error:function(){
-            //Error should be handle here
-          
-            }
-            
+            //Error should be handle here          
+            }            
         });
-    }
-   
-    
+    }   
 }
