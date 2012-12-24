@@ -161,7 +161,7 @@ var Gym = function()
         this.getSchedule();
         this.allTags();
        
-        this.delClass(12);
+        
         this.getdisbursement();
         this.getDayclasses(new Date());
       
@@ -452,6 +452,7 @@ var Gym = function()
           
             }
         });
+        this.getSchedule();
         
     }
     this.getdisbursement = function()
@@ -512,7 +513,7 @@ var Gym = function()
     {
         $('#image').hide();
         $('#head').show();
-      
+     
     }
     this.delTag = function(id)
     {
@@ -556,30 +557,7 @@ var Gym = function()
         });
        
     }
-    this.delClass = function(id)
-    {
-        data = {};
-        data['classid'] = 9;
-        //   data['gymid'] = 22;
-        
-        $.ajax({
-            type: 'DELETE',
-            url: ZUNEFIT_BASE_URL+"deleteClass/",
-            data: data,
-            beforeSend : function(xhrObj) {
-                xhrObj.setRequestHeader("ltype", "web");
-            
-                xhrObj.setRequestHeader("token", $('#token').val());
-            
-            },
-            success: function(response){
-                result12 = eval(response)[0];
-                alert(result12.status);
-           
-            }
-        });
-      
-    }
+    
    
     this.addType = function()
     {
@@ -703,7 +681,7 @@ var Gym = function()
             success:function(response){
                 try{
                     schedule ="";
-                    services = "<ul class='searchResult'>";
+                   
                     result15 = eval(response);
                     end = result15.length;
                   
@@ -770,30 +748,11 @@ var Gym = function()
                         }else sun = "-";
                         
                         
-                        schedule +="<table class ='time' style = 'width:200px;float:left;'><tr><td class='bold'>Service</td><td>:"+result15[i].service.replace(" ", "&nbsp")+"</td><td style='width:10px;'></td><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr></table><br/><table><tr><td class='bold'>Mon</td><td class='bold'>Tue</td><td class='bold'>Wed</td><td class='bold'>Thu</td><td class='bold'>Fri</td><td class='bold'>Sat</td><td class='bold'>Sun</td></tr><tr><td>"+mon+"</td><td>"+tue+"</td>";
+                        schedule +="<table class ='time' style = 'width:300px;float:left;'><tr><td class='bold'>Service</td><td>:"+result15[i].service.replace(" ", "&nbsp")+"</td></tr><tr><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr></table><div style='cursor:pointer;margin:12px;' onclick='widgets.gim.delClass("+result15[i].id+")'><img src='images/delete.png'>Remove</div><br/><table><tr><td class='bold'>Mon</td><td class='bold'>Tue</td><td class='bold'>Wed</td><td class='bold'>Thu</td><td class='bold'>Fri</td><td class='bold'>Sat</td><td class='bold'>Sun</td></tr><tr><td>"+mon+"</td><td>"+tue+"</td>";
                         
                         schedule +="<td>"+wed+"</td><td>"+thu+"</td><td>"+fri+"</td><td>"+sat+"</td><td>"+sun+"</td></tr></table>";
                     }
-                    op= {};
-                    for(i=0;i<end;i++)
-                    {         
-                        op[i]=result15[i].service;
-                        bool = true;
-                        for(j=0;j<i;j++){
-                            if(op[j] == result15[i].service) {
-                                bool = false;
-                            }
-                        }
-                        if(bool){
-                        
-                         
-                            services +="<li>"+result15[i].service+"</li>";
-                        
-                        }                           
-                    }
-                    services += "</ui>";
                     
-                    // $("#box-Services").html(services);
                     $("#box-Schedule").html(schedule);
                 
                 }catch(e){
@@ -1028,5 +987,31 @@ var Gym = function()
             }
             
         });
+    }
+    this.delClass = function(id)
+    {
+        data = {};
+        data['classid'] = id;
+       
+        
+        $.ajax({
+            type: 'DELETE',
+            url: ZUNEFIT_BASE_URL+"deleteClass/",
+            data: data,
+            beforeSend : function(xhrObj) {
+                xhrObj.setRequestHeader("ltype", "web");
+            
+                xhrObj.setRequestHeader("token", $('#token').val());
+            
+            },
+            success: function(response){
+                result12 = eval(response);
+               
+           
+            }
+        });
+        setTimeout(this.getSchedule, 1000);
+        this.getDayclasses(new Date());
+        
     }
 }

@@ -712,7 +712,7 @@ var User = function()
             }            
         });
         this.getUserWeekSchedule();
-        this.getUserBalance();
+        setTimeout(this.getUserBalance, 1000);
     }    
     this.deleteEvent = function()
     {       
