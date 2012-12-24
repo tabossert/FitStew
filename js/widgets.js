@@ -416,7 +416,7 @@ var User = function()
     
     
     
-    this.getFeaturedWorkots = function()
+    this.getFeaturedGyms = function()
     {
         ZUNEFIT.getJSON({
             url:'featuredGyms/',
@@ -698,7 +698,7 @@ var User = function()
         });
     }
     
-    this.getFeaturedGyms = function()
+    this.getFeaturedWorkouts = function()
     {
         ZUNEFIT.getJSON({
             url:'featuredWorkouts/',

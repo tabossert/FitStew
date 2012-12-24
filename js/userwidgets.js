@@ -91,7 +91,7 @@ var User = function()
         this.getDate();
        
         
-        this.deleteEvent();
+       // this.deleteEvent();
         this.getUserWeekSchedule();
         //   this.getcrediDetails();
         
@@ -134,8 +134,15 @@ var User = function()
     
     
     
-    this.getFeaturedWorkots = function()
+    this.getFeaturedGyms = function()
+    
     {
+        $("a.light").live("click", function(event) {
+            event.preventDefault();
+            $(this).filter(':not(.fb)').fancybox()
+            .addClass('fb');
+            $(this).triggerHandler('click');
+        });
         ZUNEFIT.getJSON({
             url:'featuredGyms/',
             success:function(data){
@@ -148,7 +155,7 @@ var User = function()
                     }
                     for(i=0;i<finish;i++)
                     {       
-                        op += "<li><a href='#'>"+result4[i].name+"</a></li>";
+                        op += "<li onclick='widgets.user.getInfo("+result4[i].id+")'><a href = '#lightbox' class='light' >"+result4[i].name+"</a></li>";
                     }
                     op +="</ul>";
                     $("#featuredGymsBox").html(op);
@@ -466,7 +473,7 @@ var User = function()
         });
     }
     
-    this.getFeaturedGyms = function()
+    this.getFeaturedWorkots = function()
     {
         ZUNEFIT.getJSON({
             url:'featuredWorkouts/',
