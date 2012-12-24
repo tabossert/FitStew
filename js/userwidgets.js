@@ -475,6 +475,7 @@ var User = function()
     
     this.getFeaturedWorkots = function()
     {
+        
         ZUNEFIT.getJSON({
             url:'featuredWorkouts/',
             success:function(response){
@@ -489,7 +490,8 @@ var User = function()
                
                     for(i=0;i<finish;i++)
                     {       
-                        $(".user-item-link").append('<li><a href="#">'+result8[i].service +'</li>');
+                        var service = '"'+result8[i].service+'"';
+                        $(".user-item-link").append("<li onclick='widgets.user.setKeyword("+service+")'><a href = '#' >"+result8[i].service+"</li>");
                     
                     }
                 }catch(e){
@@ -502,7 +504,12 @@ var User = function()
             }
         });
     }
-    
+    this.setKeyword = function(workout)
+    {
+        this.loadLeft(1);
+        $("#keyword").val(workout);
+        this.advancedSearch();
+    }
         
    
     
@@ -569,6 +576,7 @@ var User = function()
         });
        
     }
+    
     
     
     this.phone_edit = function()
@@ -997,9 +1005,9 @@ var User = function()
                         schedule +="<table class ='time' style = 'width:200px;float:left;'><tr><td class='bold'>Service</td><td>:"+result15[i].service.replace(" ", "&nbsp")+"</td><td style='width:10px;'></td><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr></table><br/><table><tr><td class='bold'>Mon</td><td class='bold'>Tue</td><td class='bold'>Wed</td><td class='bold'>Thu</td><td class='bold'>Fri</td><td class='bold'>Sat</td><td class='bold'>Sun</td></tr><tr><td>"+mon+"</td><td>"+tue+"</td>";
                         
                         schedule +="<td>"+wed+"</td><td>"+thu+"</td><td>"+fri+"</td><td>"+sat+"</td><td>"+sun+"</td></tr></table>";
-                        schedule +='<div style="float: left;width: 200px;" ><br/><p>Date: <input type="text" class="datepicker" id="'+result15[i].id+'date"/></p></div>';
+                        schedule +='<div style="float: left;width: 170px;" ><br/><p>Date: <input type="text" style="width:100px;" class="round datepicker " id="'+result15[i].id+'date"/></p></div>';
 
-                        schedule +='<div style="color: #565D60;float: right;text-align: center;" >Add to my schedule<img src="images/schedule.png" onclick="widgets.user.addEvent('+id+','+result15[i].id+','+result15[i].price+')" style="cursor:pointer;"/></div>';
+                        schedule +='<div style="color: darkgreen;float: right;text-align: center;padding-bottom:2px;" >Add to my schedule<img src="images/schedule.png" onclick="widgets.user.addEvent('+id+','+result15[i].id+','+result15[i].price+')" style="cursor:pointer;"/></div>';
 
                     }
                     services += "</ui>";
