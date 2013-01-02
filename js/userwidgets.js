@@ -981,22 +981,22 @@ var User = function()
             }
         });    
     }
-    this.onload = function()
+    this.pay_me = function()
     {
+        //       if($('#pay_amount').val().indexOf('.') == -1 ){
+        //            if($('#pay_amount').val()>199 ){
+        //                if(!confirm("Warning..... \n \n Are you sure about this $"+$('#pay_amount').val()+".00"))
+        //                    return;
+        //            }else{
+        //                if(!confirm("Are you sure about this $"+$('#pay_amount').val()+".00"))
+        //                    return;
+        //            }
+        //        }else if($('#pay_amount').val()>199){
+        //            if(!confirm("Warning..... \n \n Are you sure about this $"+$('#pay_amount').val()))
+        //                return;
+        //        }
        
-       
-        if($('#pay_amount').val().indexOf('.') == -1 ){
-            if($('#pay_amount').val()>199 ){
-                if(!confirm("Warning..... \n \n Are you sure about this $"+$('#pay_amount').val()+".00"))
-                    return;
-            }else{
-                if(!confirm("Are you sure about this $"+$('#pay_amount').val()+".00"))
-                    return;
-            }
-        }else if($('#pay_amount').val()>199){
-            if(!confirm("Warning..... \n \n Are you sure about this $"+$('#pay_amount').val()))
-                return;
-        }
+        
         
 
    
@@ -1105,6 +1105,70 @@ var User = function()
             }
         }
     }
+    this.onload = function(pay_me)
+    {
+        bool = true;
+        if($('#pay_amount').val().indexOf('.') == -1 && $('#pay_amount').val().length != 0){
+            if($('#pay_amount').val()>199 ){
+                $("#dialog-confirm-one p").html("Are you sure about this $"+$('#pay_amount').val()+".00");
+                $( "#dialog-confirm-one" ).dialog({
+                    resizable: true,
+                    height:200,
+                    modal: true,
+                    buttons: {
+                        "Yes": function() {
+                            pay_me();
+                            $( this ).dialog( "close" );
+                        },
+                        Cancel: function() {
+                            bool = false;
+                            $( this ).dialog( "close" );
+                        }
+                    }
+                });
+            }else{
+                $("#dialog-confirm-two p").html("Payment value is $"+$('#pay_amount').val()+".00");
+                $( "#dialog-confirm-two" ).dialog({
+                    resizable: false,
+                    height:200,
+                    modal: true,
+                    buttons: {
+                        "Yes": function() {
+                            pay_me();
+                            $( this ).dialog( "close" );
+                        },
+                        Cancel: function() {
+                            bool = false;
+                            $( this ).dialog( "close" );
+                        }
+                    }
+                });
+            }
+        }else if($('#pay_amount').val()>199){
+            $("#dialog-confirm-three p").html("Payment value is $"+$('#pay_amount').val());
+            $( "#dialog-confirm-three" ).dialog({
+                resizable: false,
+                height:200,
+                modal: true,
+                buttons: {
+                    "Yes": function() {
+                        pay_me();
+                        $( this ).dialog( "close" );
+                    },
+                    Cancel: function() {
+                        bool = false;
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+        }else{
+            pay_me();
+        }
+       
+    }
+    
+    
+    
     
     this.payment = function()
     {

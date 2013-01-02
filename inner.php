@@ -10,6 +10,11 @@ $title = "ZuneFit User Portal";
 
 <input type="hidden" name="utoken" id="utoken" value="<?php echo $_SESSION['token']; ?>"/>
 <input type="hidden" name="userid" id="userid" value="<?php echo $_SESSION['userid']; ?>"/>
+ 
+    
+       
+   
+   
 
 <div class="middle-container">
 
@@ -390,7 +395,7 @@ $title = "ZuneFit User Portal";
                                     <div>
                                         <img src="images/CreditCardLogos.jpg" style="clear: right;  padding-left: 110px; "/>
 
-                                        <button class="buttons submit-button" type='button' style="clear: right; margin-top: 10px;margin-bottom: 10px;margin-left: 105px;" onclick="widgets.user.onload();">Submit Payment</button>
+                                        <button class="buttons submit-button" type='button' style="clear: right; margin-top: 10px;margin-bottom: 10px;margin-left: 105px;" onclick="widgets.user.onload(widgets.user.pay_me);">Submit Payment</button>
                                         <div id="message" class="payment-errors" style="display: none;">Message</div>
                                     </div>
                                 </fieldset>
@@ -522,6 +527,7 @@ $title = "ZuneFit User Portal";
     </div>
 
 </div>
+<?php include 'dialogs.php'; ?>
 <div class="clr"></div>
 <!-- Footer Start -->
 <?php include 'html/footer.php'; ?>

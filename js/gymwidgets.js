@@ -768,7 +768,7 @@ var Gym = function()
                         
                         schedule +="<table class ='time' style = 'width:300px;float:left;'><tr><td class='bold'>Service</td><td>:"+result15[i].service.replace(" ", "&nbsp")+"</td></tr><tr><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr></table><div style='cursor:pointer;margin:12px;' onclick='widgets.gim.delClass("+result15[i].id+")'><img src='images/delete.png'>Remove</div><br/><table><tr><td class='bold'>Mon</td><td class='bold'>Tue</td><td class='bold'>Wed</td><td class='bold'>Thu</td><td class='bold'>Fri</td><td class='bold'>Sat</td><td class='bold'>Sun</td></tr><tr><td>"+mon+"</td><td>"+tue+"</td>";
                         
-                        schedule +="<td>"+wed+"</td><td>"+thu+"</td><td>"+fri+"</td><td>"+sat+"</td><td>"+sun+"</td></tr></table>";
+                        schedule +="<td>"+wed+"</td><td>"+thu+"</td><td>"+fri+"</td><td>"+sat+"</td><td>"+sun+"</td></tr></table><br/><hr/>";
                     }
                     
                     $("#box-Schedule").html(schedule);
