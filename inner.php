@@ -10,11 +10,11 @@ $title = "ZuneFit User Portal";
 
 <input type="hidden" name="utoken" id="utoken" value="<?php echo $_SESSION['token']; ?>"/>
 <input type="hidden" name="userid" id="userid" value="<?php echo $_SESSION['userid']; ?>"/>
- 
-    
-       
-   
-   
+
+
+
+
+
 
 <div class="middle-container">
 
@@ -241,6 +241,8 @@ $title = "ZuneFit User Portal";
                     <div id="billing" class="blue-boxs" style="display: none;" >
                         <div >
 
+                            <input type="checkbox" id="pref_det" onclick="widgets.user.pref_det()"/>
+                            <label for="pref_det"  > Fill details from preferences  </label>
                             <form action="" method="POST" id="payment-form">
                                 <fieldset>
 

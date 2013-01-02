@@ -27,13 +27,15 @@ var ZuneFit = function(options)
         };
         _opt.success = function(data)
         {
-            opt.success(data); 
             _this.end();
+            opt.success(data); 
+           
         };
         _opt.error = function()
-        {           
-            opt.error(); 
+        {       
             _this.end();
+            opt.error(); 
+           
         };
         
         $.ajax(_opt);
@@ -59,13 +61,15 @@ var ZuneFit = function(options)
         };
         _opt.success = function(data)
         {
-            opt.success(data); 
             _this.end();
+            opt.success(data); 
+            
         };
         _opt.error = function()
-        {           
-            opt.error(); 
+        {        
             _this.end();
+            opt.error(); 
+           
         };
                                 
         $.ajax(_opt);        

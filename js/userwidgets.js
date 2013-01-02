@@ -29,6 +29,7 @@ $(function(){
  */
 var startAjax = function()
 {
+   
     div = $("#waiting");
     div.css({
         //top:(screen.height + $(document).scrollTop() - 100),
@@ -102,6 +103,34 @@ var User = function()
         
     }
     
+    this.pref_det = function()
+    {
+        if($('#pref_det').is(':checked')){
+            if($( "#pref_lastName" ).val().length != 0 && $( "#pref_lastName" ).val() != null){
+                $( "#first_name" ).val($( "#pref_firstName" ).val());
+                $( "#address_1" ).val($( "#pref_address" ).val());
+                $( "#address_2" ).val($( "#pref_address2" ).val());
+                $( "#city" ).val($( "#pref_city" ).val());
+                $( "#state" ).val($( "#pref_state" ).val());
+                $( "#zip" ).val($( "#pref_zip" ).val());
+             
+            
+            }else{
+                $.fx.speeds._default = 1000;
+            
+                $( "#dialog-fill" ).dialog({
+                    autoOpen: false,
+                    show: "blind",
+                    hide: "explode"
+                });
+            
+                $( "#dialog-fill" ).dialog( "open" );               
+           
+            }
+        }else{
+            this.getUserPreferences();
+        }
+    }
     
     this.getDate = function()
     {
@@ -230,8 +259,8 @@ var User = function()
                     if(result6.cToken!='NULL'){
                         datas = {};
                         datas['cusToken'] = result6.cToken.replace("'","").replace("'", "");
-                       
-                       
+                      
+                        startAjax();
       
                         $.ajax({
                             type: 'POST',
@@ -239,7 +268,7 @@ var User = function()
                             data: datas,
            
                             success: function(responses){
-               
+                                endAjax();
                                 $("#first_name").val(responses.name),
                                 $("#address_1").val(responses.add1),
                                 $("#address_2").val(responses.add2),
@@ -255,8 +284,9 @@ var User = function()
                                     
                             }
                         });
+                     
                     }
-                  
+                 
                 //  $('#pref_state').dropkick();
                 }catch(e){
                     
