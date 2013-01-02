@@ -96,7 +96,8 @@ var User = function()
         //   this.getcrediDetails();
         
         this.enter();
-    
+       
+       
        
         
     }
@@ -829,6 +830,7 @@ var User = function()
     }
     this.getInfo = function(id)
     {
+        
         FB.XFBML.parse();
         serv = {};
         schedule ="";
@@ -981,6 +983,25 @@ var User = function()
     }
     this.onload = function()
     {
+       
+       
+        if($('#pay_amount').val().indexOf('.') == -1 ){
+            if($('#pay_amount').val()>199 ){
+                if(!confirm("Warning..... \n \n Are you sure about this $"+$('#pay_amount').val()+".00"))
+                    return;
+            }else{
+                if(!confirm("Are you sure about this $"+$('#pay_amount').val()+".00"))
+                    return;
+            }
+        }else if($('#pay_amount').val()>199){
+            if(!confirm("Warning..... \n \n Are you sure about this $"+$('#pay_amount').val()))
+                return;
+        }
+        
+
+   
+   
+    
         if($('#zip').val().length > 0 && $('#zip').val().length != 5 ){
             $("#message").css('display','block')
             $("#message").html("Zip code must be 5 digits");
@@ -1144,7 +1165,7 @@ var User = function()
             $("#message").html("processing please wait..");
             Stripe.setPublishableKey($('#pk').val());
             // disable the submit button to prevent repeated clicks
-            $('.submit-button').attr("disabled", "disabled");
+          
             if($('#pref_address').val().length==0){
                 this.update_new();
             }

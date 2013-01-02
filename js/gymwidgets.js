@@ -160,12 +160,30 @@ var Gym = function()
         this.getGymInfo(); 
         this.getSchedule();
         this.allTags();
+        this.slider();
        
         
         this.getdisbursement();
         this.getDayclasses(new Date());
       
     
+    }
+    this.slider = function()
+    {
+        $(function() {
+           $( "#slider-range-min" ).slider({
+                   
+                    value: 300,
+                    min: 0,
+                    max: 1000,
+                    step : 10,
+                    slide: function( event, ui ) {
+                        $( "#amounts" ).val( "$" + ui.value );
+                    
+                    }
+                });
+            $( "#amounts").val( "$300" );
+        });
     }
     this.update_class = function(cid)
     {
@@ -470,7 +488,7 @@ var Gym = function()
                     range: "min",
                     value: results.paylimit,
                     min: 0,
-                    max: 9000,
+                    max: 1000,
                     step : 10,
                     slide: function( event, ui ) {
                         $( "#amounts" ).val( "$" + ui.value );

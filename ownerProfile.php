@@ -57,8 +57,8 @@ $title = "ZuneFit Gym Panel";
                 </table>
                 <div>
                     <span class="underline_title" >Disbursement Method</span><br/>
-                    <input type="checkbox" checked="" id="monthly" style="margin-left: 20px;margin-top: 5px;"/><label for="monthly" style="margin-left: 10px;">Monthly check</label><br/>
-                    <input type="checkbox" checked="" id="reach" style="margin-left: 20px;margin-top: 5px;"/><label for="reach" style="margin-left: 10px;">When the amount reaches</label>
+                    <input type="radio" name="chk_group" id="monthly" style="margin-left: 20px;margin-top: 5px;"/><label for="monthly" style="margin-left: 10px;">Monthly check</label><br/>
+                    <input type="radio" checked="" name="chk_group" id="reach" style="margin-left: 20px;margin-top: 5px;"/><label for="reach" style="margin-left: 10px;">When the amount reaches</label>
                     <div id="slider-range-min"></div>
                     <br/>
                     <p>

@@ -10,6 +10,7 @@ $title = "ZuneFit User Portal";
 
 <input type="hidden" name="utoken" id="utoken" value="<?php echo $_SESSION['token']; ?>"/>
 <input type="hidden" name="userid" id="userid" value="<?php echo $_SESSION['userid']; ?>"/>
+
 <div class="middle-container">
 
     <div class="inner-left-part">

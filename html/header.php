@@ -48,7 +48,6 @@ if ($page != 'index.php') {
 
 
 
-
             <script type="text/javascript" src="js/curvycorners.src.js"></script>
             <script type="text/javascript" src="js/validation.js"></script>
             <script src="js/jquery-1.7.1.js"></script>
