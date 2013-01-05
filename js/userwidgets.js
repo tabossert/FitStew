@@ -539,6 +539,8 @@ var User = function()
     {
         this.loadLeft(1);
         $("#keyword").val(workout);
+        $("#Miles").val('25');
+        $("#Within").val($("#pref_zip").val());
         this.advancedSearch();
     }
         
