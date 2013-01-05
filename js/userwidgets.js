@@ -107,7 +107,7 @@ var User = function()
     {
         if($('#pref_det').is(':checked')){
             if($( "#pref_lastName" ).val().length != 0 && $( "#pref_lastName" ).val() != null){
-                $( "#first_name" ).val($( "#pref_firstName" ).val());
+                $( "#first_name" ).val($( "#pref_firstName" ).val()+" "+$( "#pref_lastName" ).val());
                 $( "#address_1" ).val($( "#pref_address" ).val());
                 $( "#address_2" ).val($( "#pref_address2" ).val());
                 $( "#city" ).val($( "#pref_city" ).val());
@@ -269,17 +269,17 @@ var User = function()
            
                             success: function(responses){
                                 endAjax();
-                                $("#first_name").val(responses.name),
-                                $("#address_1").val(responses.add1),
-                                $("#address_2").val(responses.add2),
-                                $("#city").val(responses.city),
-                                $("#state").val(responses.state),
-                                $("#zip").val(responses.zip),
-                
-                                $('.card-number').val(responses.last4),
-                       
-                                $('.card-expiry-month').val(responses.month),
-                                $('.card-expiry-year').val(responses.year)
+                                $("#first_name").val(responses.name);
+                                $("#address_1").val(responses.add1);
+                                $("#address_2").val(responses.add2);
+                                $("#city").val(responses.city);
+                                $("#state").val(responses.state);
+                                $("#zip").val(responses.zip);
+               
+                                $('.card-number').val("xxxxxxxxxxxx"+responses.last4);
+                                $('.card-cvc').val("xxx");
+                                $('.card-expiry-month').val(responses.month);
+                                $('.card-expiry-year').val(responses.year);
                 
                                     
                             }
@@ -1013,25 +1013,7 @@ var User = function()
     }
     this.pay_me = function()
     {
-        //       if($('#pay_amount').val().indexOf('.') == -1 ){
-        //            if($('#pay_amount').val()>199 ){
-        //                if(!confirm("Warning..... \n \n Are you sure about this $"+$('#pay_amount').val()+".00"))
-        //                    return;
-        //            }else{
-        //                if(!confirm("Are you sure about this $"+$('#pay_amount').val()+".00"))
-        //                    return;
-        //            }
-        //        }else if($('#pay_amount').val()>199){
-        //            if(!confirm("Warning..... \n \n Are you sure about this $"+$('#pay_amount').val()))
-        //                return;
-        //        }
-       
-        
-        
-
-   
-   
-    
+           
         if($('#zip').val().length > 0 && $('#zip').val().length != 5 ){
             $("#message").css('display','block')
             $("#message").html("Zip code must be 5 digits");

@@ -171,17 +171,17 @@ var Gym = function()
     this.slider = function()
     {
         $(function() {
-           $( "#slider-range-min" ).slider({
+            $( "#slider-range-min" ).slider({
                    
-                    value: 300,
-                    min: 0,
-                    max: 1000,
-                    step : 10,
-                    slide: function( event, ui ) {
-                        $( "#amounts" ).val( "$" + ui.value );
+                value: 300,
+                min: 0,
+                max: 1000,
+                step : 10,
+                slide: function( event, ui ) {
+                    $( "#amounts" ).val( "$" + ui.value );
                     
-                    }
-                });
+                }
+            });
             $( "#amounts").val( "$300" );
         });
     }
@@ -482,6 +482,14 @@ var Gym = function()
            
             success:function(data){
                 results = eval(data)[0];
+                if(results.type==0){                    
+                    $( "#monthly" ).attr('checked', 'checked');
+                   
+                }else if(results.type==1){
+                    $( "#reach" ).attr('checked', 'checked');
+                   
+                }
+              
                 
                 $( "#amounts" ).val( "$"+results.paylimit );
                 $( "#slider-range-min" ).slider({
@@ -504,7 +512,15 @@ var Gym = function()
     this.disbursement = function()
     {
         data = {};
-        data['type']=1;
+        data['paymenttype']=1;
+        if($('#method').is(':checked'))
+            data['paymenttype']=1;
+       
+        if($('#monthly').is(':checked'))
+            data['type']=0;
+        else if($('#reach').is(':checked'))
+            data['type']=1;
+        
         data['paylimit']=$('#amounts').val().substr(1);
         
         ZUNEFIT.postJSON({
