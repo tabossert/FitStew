@@ -14,3 +14,7 @@
 <div id="dialog-fill" title="Notice.." style="display: none;font-size: 16px;">
     <p><span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>Please update all the details in preferences</p>
 </div>
+
+<div id="dialog-event" title="Notice.." style="display: none;font-size: 16px;z-index: 1200;">
+    <p><span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span></p>
+</div>

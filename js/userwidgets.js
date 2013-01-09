@@ -750,10 +750,24 @@ var User = function()
             token : $('#utoken').val(),
           
             success:function(response){
-                if(response.message)
+                if(response.message){
                     alert(response.message);
-                else
-                    alert(response.status);                
+                    $( "#dialog-event p" ).html(response.message);
+                    $( "#dialog-event" ).dialog({                        
+                        show: "blind",
+                        hide: "explode"
+                    });
+                }
+                   
+                else{
+                    alert(response.status);
+                    $( "#dialog-event p" ).html(response.status);
+                    $( "#dialog-event" ).dialog({                       
+                        show: "blind",
+                        hide: "explode"
+                    });
+                }
+                                
             },
             error:function(){
             //Error should be handle here
@@ -1097,7 +1111,7 @@ var User = function()
                         });
                     
                     }else{
-                         $("#message").html('You have to set refill automatically to use this option');
+                        $("#message").html('You have to set refill automatically to use this option');
                     }
                 }
             

@@ -472,7 +472,7 @@ $title = "ZuneFit User Portal";
 
 
                 <div id="divexample1" style="height: 290px;float: left;width: 390px;overflow-x: hidden;">
-
+                    
                     <div id="box-description" >
                         <table class="pref">
 
