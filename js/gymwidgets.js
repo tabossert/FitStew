@@ -311,8 +311,8 @@ var Gym = function()
                             
                 }else sun = "00:00";
                        
-                hrs =Math.floor(results.spots/60);
-                min = results.spots%60;
+                hrs =Math.floor(results.duration/60);
+                min = results.duration%60;
                 
                 
                 class_info ="<h1>Class Information</h1><table style = 'width:250px;float:left;line-height:30px;'><tr><td class='bold'>Service</td><td><input type='text' class= 'round' id='up_class_name' value='"+results.service+"'/></td></tr><tr><td class='bold'>Price</td><td><input type='text'  class= 'round' id='up_class_price' value='"+results.price+"'/></td></tr>";
