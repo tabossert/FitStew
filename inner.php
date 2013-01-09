@@ -436,11 +436,13 @@ $title = "ZuneFit User Portal";
 
         <div name="lightbox" id="lightbox" class="blue-box2" style="height: 450px; width: 400px; ">
             <div style="height: 60px;">
+                 <div id="suc_err" style="float: right;display: inline;"></div>
                 <div class="tweet" style="display: inline;"></div>
                 <div class="like" style="display: inline;"></div>
                 <div class="plus" ></div>
             </div>
             <div id="box-header" >
+               
                 <div id="g_image" style="float: left;width: 70px;"></div>
                 <div style="width: 170px;float: left;">
                     <table class="pref2">
@@ -472,7 +474,7 @@ $title = "ZuneFit User Portal";
 
 
                 <div id="divexample1" style="height: 290px;float: left;width: 390px;overflow-x: hidden;">
-                    
+
                     <div id="box-description" >
                         <table class="pref">
 

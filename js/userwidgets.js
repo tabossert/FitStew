@@ -750,28 +750,19 @@ var User = function()
             token : $('#utoken').val(),
           
             success:function(response){
-                if(response.message){
-                    alert(response.message);
-                    $( "#dialog-event p" ).html(response.message);
-                    $( "#dialog-event" ).dialog({                        
-                        show: "blind",
-                        hide: "explode"
-                    });
-                }
-                   
+                if(response.message){ 
+                   alert(response.message);
+//                    $( "#suc_err" ).html('response.message');   
+//                    setTimeout( $( "#suc_err" ).html(""), 1000);
+                }                   
                 else{
-                    alert(response.status);
-                    $( "#dialog-event p" ).html(response.status);
-                    $( "#dialog-event" ).dialog({                       
-                        show: "blind",
-                        hide: "explode"
-                    });
-                }
-                                
+                   alert(response.status);
+//                    $( "#suc_err" ).html('response.status');   
+//                    setTimeout( $( "#suc_err" ).html(""), 1000);
+                }                                
             },
             error:function(){
-            //Error should be handle here
-           
+            //Error should be handle here           
             }            
         });
         this.getUserWeekSchedule();
@@ -946,7 +937,7 @@ var User = function()
                
                     for(i=0;i<end;i++){
                         if(i!=0){
-                            schedule += "<hr style='clear:both;'/>";
+                            schedule += "<hr style='clear:both;'/><hr/>";
                         }
                        
                         var mon = result15[i].monday;
@@ -1234,6 +1225,7 @@ var User = function()
                     resizable: true,
                     height:200,
                     modal: true,
+                    hide: "explode",
                     buttons: {
                         "Yes": function() {
                             pay_me();
@@ -1251,6 +1243,7 @@ var User = function()
                     resizable: false,
                     height:200,
                     modal: true,
+                    hide: "explode",
                     buttons: {
                         "Yes": function() {
                             pay_me();
@@ -1269,6 +1262,7 @@ var User = function()
                 resizable: false,
                 height:200,
                 modal: true,
+                hide: "explode",
                 buttons: {
                     "Yes": function() {
                         pay_me();

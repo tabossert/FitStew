@@ -71,13 +71,7 @@
 
 
         <div id="box-header" >
-            <!--                 <form action="encript.php" method="post"
-                          enctype="multipart/form-data">
-                       
-                        <input type="file" name="file" id="file" style="background: transparent;border: none;"><br>
-                       
-                        <input type="submit" name="submit" value="Submit" style="background: transparent;">
-                    </form>-->
+           
             <div id="g_image" style="float: left;width: 70px;"></div>
             <div style="float: left;width: 100px;">
                 <div id="head">
