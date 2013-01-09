@@ -11,6 +11,13 @@
                 <input type="text" name="class_price" id="class_price" class="round" placeholder="10"/>
             </td>  
         </tr>
+         <tr> <td>
+                <label class="clslabels"> Duration  </label>
+            </td> <td><td>:<td>
+                <input type="text" name="class_dur_hra" id="class_dur_hra" class="round" placeholder="Hrs" style="width:50px" maxlength="2"/> :
+                <input type="text" name="class_dur_min" id="class_dur_min" class="round" placeholder="Min" style="width:50px" maxlength="2"/>
+            </td>  
+        </tr>
         <tr> <td>
                 <label for="class_mon" class="clslabels"> Monday  </label>
             </td> <td><td>:<td>

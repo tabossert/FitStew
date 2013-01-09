@@ -97,12 +97,30 @@ var User = function()
         //   this.getcrediDetails();
         
         this.enter();
-       
+        //this.test();
        
        
         
     }
-    
+    this.gymView = function()
+    {
+        data = {};
+           data['gymid']=22;
+        ZUNEFIT.postJSON({
+            url:'gymView/',
+            data:data,
+            token : $('#utoken').val(),
+          
+            success:function(response){
+                  
+            },
+            error:function(){
+            
+            }
+            
+        });
+        
+    }    
     this.pref_det = function()
     {
         if($('#pref_det').is(':checked')){
@@ -200,10 +218,8 @@ var User = function()
     }
     
     this.getUserBalance = function()
-    {
-        
-        data = {};  
-        
+    {        
+        data = {};          
         ZUNEFIT.getJSON({
             url:'balance/',
             data: data,
@@ -862,7 +878,7 @@ var User = function()
     }
     this.getInfo = function(id)
     {
-        
+        this.gymView();
         FB.XFBML.parse();
         serv = {};
         schedule ="";
@@ -1376,4 +1392,5 @@ var User = function()
             }            
         });
     }   
+    
 }

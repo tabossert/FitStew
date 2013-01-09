@@ -165,7 +165,7 @@ var Gym = function()
         
         this.getdisbursement();
         this.getDayclasses(new Date());
-      
+        this.enter();
     
     }
     this.slider = function()
@@ -192,6 +192,9 @@ var Gym = function()
         datas['classid'] = cid;
         datas['service'] = $('#up_class_name').val();
         datas['price'] = $('#up_class_price').val();
+        hrs = $('#up_class_dur_hra').val().length >0 ? $('#up_class_dur_hra').val()*60 : 0; 
+        min = $('#up_class_dur_min').val().length >0 ? $('#up_class_dur_min').val() : 0; 
+        datas['duration'] =  parseInt(hrs) + parseInt(min);
         
         time = {};
         time[0] = '#up_class_mon';
@@ -307,10 +310,15 @@ var Gym = function()
                     sun = sunH +':'+ sunM;
                             
                 }else sun = "00:00";
-                        
-                        
+                       
+                hrs =Math.floor(results.spots/60);
+                min = results.spots%60;
                 
-                class_info ="<h1>Class Information</h1><table style = 'width:250px;float:left;line-height:30px;'><tr><td class='bold'>Service</td><td><input type='text' class= 'round' id='up_class_name' value='"+results.service+"'/></td></tr><tr><td class='bold'>Price</td><td><input type='text'  class= 'round' id='up_class_price' value='"+results.price+"'/></td></tr><tr><td class='bold'>Monday</td><td><input type='text' class= 'round sch' id='up_class_mon' value='"+mon+"'/></td></tr><tr><td class='bold'>Tuesday</td><td><input type='text' class= 'round sch' id='up_class_tue' value='"+tue+"'/></td></tr>";
+                
+                class_info ="<h1>Class Information</h1><table style = 'width:250px;float:left;line-height:30px;'><tr><td class='bold'>Service</td><td><input type='text' class= 'round' id='up_class_name' value='"+results.service+"'/></td></tr><tr><td class='bold'>Price</td><td><input type='text'  class= 'round' id='up_class_price' value='"+results.price+"'/></td></tr>";
+                class_info +="<tr><td class='bold'>Duration</td><td>  <input type='text' id='up_class_dur_hra' value='"+hrs+"' class='round' placeholder='Hrs' style='width:50px' maxlength='2'/> : ";
+                class_info +="<input type='text' id='up_class_dur_min' class='round' placeholder='Min' value='"+min+"' style='width:50px' maxlength='2'/></td></tr>";
+                class_info +="<tr><td class='bold'>Monday</td><td><input type='text' class= 'round sch' id='up_class_mon' value='"+mon+"'/></td></tr><tr><td class='bold'>Tuesday</td><td><input type='text' class= 'round sch' id='up_class_tue' value='"+tue+"'/></td></tr>";
                 class_info +="<tr><td class='bold'>Wednesday</td><td><input type='text' class= 'round sch' id='up_class_wed' value='"+wed+"'/></td></tr><tr><td class='bold'>Thursday</td><td><input type='text' id='up_class_thu' class= 'round sch' value='"+thu+"'/></td></tr><tr><td class='bold'>Friday</td><td><input type='text' class= 'round sch' id='up_class_fri' value='"+fri+"'/></td></tr><tr><td class='bold'>Saturday</td><td><input type='text' id='up_class_sat' class= 'round sch'  value='"+sat+"'/></td></tr><tr><td class='bold'>Sunday</td><td><input class= 'round' type='text' id='up_class_sun' class= 'round sch' value='"+sun+"'/></td></tr></table>";
                 class_info += "<div class='buttons' style='float:left;clear:both;' onclick='widgets.gim.update_class("+results.id+")'>Update</div>";
                 $('#class_info').html(class_info);
@@ -415,7 +423,10 @@ var Gym = function()
         datas['gymid'] = $('#gid').val();
         datas['service'] = $('#class_name').val();
         datas['price'] = $('#class_price').val();
-        
+        hrs = $('#class_dur_hra').val().length >0 ? $('#class_dur_hra').val()*60 : 0; 
+        min = $('#class_dur_min').val().length >0 ? $('#class_dur_min').val() : 0; 
+        datas['duration'] =  parseInt(hrs) + parseInt(min);
+       
         time = {};
         time[0] = '#class_mon';
         time[1] = '#class_tue';
@@ -1047,5 +1058,25 @@ var Gym = function()
         setTimeout(this.getSchedule, 1000);
         this.getDayclasses(new Date());
         
+    }
+    this.enter = function()
+    {
+        $("#class_dur_hra, #class_dur_min").keydown(function(event) {
+            // Allow: backspace, delete, tab, escape, and enter
+            if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || 
+                // Allow: Ctrl+A
+                (event.keyCode == 65 && event.ctrlKey === true) || 
+                // Allow: home, end, left, right
+                (event.keyCode >= 35 && event.keyCode <= 39)) {
+                // let it happen, don't do anything
+                return;
+            }
+            else {
+                // Ensure that it is a number and stop the keypress
+                if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+                    event.preventDefault(); 
+                }   
+            }
+        });
     }
 }
