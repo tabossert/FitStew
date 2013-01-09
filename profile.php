@@ -14,7 +14,7 @@
          <tr> <td>
                 <label class="clslabels"> Duration  </label>
             </td> <td><td>:<td>
-                <input type="text" name="class_dur_hra" id="class_dur_hra" class="round" placeholder="Hrs" style="width:50px" maxlength="2"/> :
+                <input type="text" name="class_dur_hrs" id="class_dur_hrs" class="round" placeholder="Hrs" style="width:50px" maxlength="2"/> :
                 <input type="text" name="class_dur_min" id="class_dur_min" class="round" placeholder="Min" style="width:50px" maxlength="2"/>
             </td>  
         </tr>

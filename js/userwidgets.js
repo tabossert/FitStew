@@ -97,7 +97,7 @@ var User = function()
         //   this.getcrediDetails();
         
         this.enter();
-        //this.test();
+    //this.test();
        
        
         
@@ -105,7 +105,7 @@ var User = function()
     this.gymView = function()
     {
         data = {};
-           data['gymid']=22;
+        data['gymid']=22;
         ZUNEFIT.postJSON({
             url:'gymView/',
             data:data,
@@ -990,9 +990,12 @@ var User = function()
                             sunM = suns.getMinutes();
                             sun = sunH +':'+ sunM;
                             
-                        }else sun = "-";                        
+                        }else sun = "-";       
                         
-                        schedule +="<table class ='time' style = 'width:200px;float:left;'><tr><td class='bold'>Service</td><td>:"+result15[i].service.replace(" ", "&nbsp")+"</td><td style='width:10px;'></td><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr></table><br/><table><tr><td class='bold'>Mon</td><td class='bold'>Tue</td><td class='bold'>Wed</td><td class='bold'>Thu</td><td class='bold'>Fri</td><td class='bold'>Sat</td><td class='bold'>Sun</td></tr><tr><td>"+mon+"</td><td>"+tue+"</td>";
+                        hrs =Math.floor(result15[i].duration/60);
+                        min = result15[i].duration%60;
+                        
+                        schedule +="<table class ='time' style = 'width:200px;float:left;'><tr><td class='bold'>Service</td><td>:"+result15[i].service.replace(" ", "&nbsp")+"</td><td style='width:10px;'></td><td class='bold'>Price</td><td>:"+result15[i].price+"$</td></tr><tr><td class='bold'>Duration</td><td>:"+hrs+"hrs&nbsp;&&nbsp"+min+"mins</td></tr></table><br/><table><tr><td class='bold'>Mon</td><td class='bold'>Tue</td><td class='bold'>Wed</td><td class='bold'>Thu</td><td class='bold'>Fri</td><td class='bold'>Sat</td><td class='bold'>Sun</td></tr><tr><td>"+mon+"</td><td>"+tue+"</td>";
                         schedule +="<td>"+wed+"</td><td>"+thu+"</td><td>"+fri+"</td><td>"+sat+"</td><td>"+sun+"</td></tr></table>";
                         schedule +='<div style="float: left;width: 170px;" ><br/><p>Date: <input type="text" style="width:100px;" class="round datepicker " id="'+result15[i].id+'date"/></p><br/><p>Time: <input type="text" style="width:100px;" class="round timepicker " id="'+result15[i].id+'time"/></p></div>';
                         schedule +='<div style="color: darkgreen;float: right;text-align: center;padding-bottom:2px;" >Add to my schedule<img src="images/schedule.png" onclick="widgets.user.addEvent('+id+','+result15[i].id+','+result15[i].price+')" style="cursor:pointer;"/></div>';
@@ -1031,7 +1034,12 @@ var User = function()
     }
     this.pay_me = function()
     {
-           
+        if($('#card-number').val().indexOf(x) != -1)
+        {   
+        
+        }
+        else
+        {          
         if($('#zip').val().length > 0 && $('#zip').val().length != 5 ){
             $("#message").css('display','block')
             $("#message").html("Zip code must be 5 digits");
@@ -1133,6 +1141,7 @@ var User = function()
                 });        
         
             }
+        }
         }
     }
     this.onload = function(pay_me)

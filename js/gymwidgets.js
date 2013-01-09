@@ -192,7 +192,7 @@ var Gym = function()
         datas['classid'] = cid;
         datas['service'] = $('#up_class_name').val();
         datas['price'] = $('#up_class_price').val();
-        hrs = $('#up_class_dur_hra').val().length >0 ? $('#up_class_dur_hra').val()*60 : 0; 
+        hrs = $('#up_class_dur_hrs').val().length >0 ? $('#up_class_dur_hrs').val()*60 : 0; 
         min = $('#up_class_dur_min').val().length >0 ? $('#up_class_dur_min').val() : 0; 
         datas['duration'] =  parseInt(hrs) + parseInt(min);
         
@@ -248,6 +248,7 @@ var Gym = function()
     
     this.getInfo = function(cid)
     {
+        
         ZUNEFIT.getJSON({
             url:'getClass/'+cid,
            
@@ -316,7 +317,7 @@ var Gym = function()
                 
                 
                 class_info ="<h1>Class Information</h1><table style = 'width:250px;float:left;line-height:30px;'><tr><td class='bold'>Service</td><td><input type='text' class= 'round' id='up_class_name' value='"+results.service+"'/></td></tr><tr><td class='bold'>Price</td><td><input type='text'  class= 'round' id='up_class_price' value='"+results.price+"'/></td></tr>";
-                class_info +="<tr><td class='bold'>Duration</td><td>  <input type='text' id='up_class_dur_hra' value='"+hrs+"' class='round' placeholder='Hrs' style='width:50px' maxlength='2'/> : ";
+                class_info +="<tr><td class='bold'>Duration</td><td>  <input type='text' id='up_class_dur_hrs' value='"+hrs+"' class='round' placeholder='Hrs' style='width:50px' maxlength='2'/> : ";
                 class_info +="<input type='text' id='up_class_dur_min' class='round' placeholder='Min' value='"+min+"' style='width:50px' maxlength='2'/></td></tr>";
                 class_info +="<tr><td class='bold'>Monday</td><td><input type='text' class= 'round sch' id='up_class_mon' value='"+mon+"'/></td></tr><tr><td class='bold'>Tuesday</td><td><input type='text' class= 'round sch' id='up_class_tue' value='"+tue+"'/></td></tr>";
                 class_info +="<tr><td class='bold'>Wednesday</td><td><input type='text' class= 'round sch' id='up_class_wed' value='"+wed+"'/></td></tr><tr><td class='bold'>Thursday</td><td><input type='text' id='up_class_thu' class= 'round sch' value='"+thu+"'/></td></tr><tr><td class='bold'>Friday</td><td><input type='text' class= 'round sch' id='up_class_fri' value='"+fri+"'/></td></tr><tr><td class='bold'>Saturday</td><td><input type='text' id='up_class_sat' class= 'round sch'  value='"+sat+"'/></td></tr><tr><td class='bold'>Sunday</td><td><input class= 'round' type='text' id='up_class_sun' class= 'round sch' value='"+sun+"'/></td></tr></table>";
@@ -329,8 +330,10 @@ var Gym = function()
             }
         });
         datas = {};
-        datas['start'] = $('#class_day').val()+' 00:00:00';
-        datas['end'] = $('#class_day').val()+' 24:00:00';      
+        sch_date = {};
+        sch_date = $('#class_day').val().split('-');
+        datas['start'] = sch_date[0]+"-"+(sch_date[1]>10?sch_date[1]:'0'+sch_date[1])+"-"+(sch_date[2]>10?sch_date[2]:'0'+sch_date[2])+' 00:00:00';
+        datas['end'] = sch_date[0]+"-"+(sch_date[1]>10?sch_date[1]:'0'+sch_date[1])+"-"+(sch_date[2]>10?sch_date[2]:'0'+sch_date[2])+' 24:00:00';      
         
         ZUNEFIT.postJSON({
             url:'gymSchedule/',
@@ -365,6 +368,7 @@ var Gym = function()
             // alert("no");  
             }
         });
+       
     }
     this.getDayclasses = function(dates){
         data = {};
@@ -423,7 +427,7 @@ var Gym = function()
         datas['gymid'] = $('#gid').val();
         datas['service'] = $('#class_name').val();
         datas['price'] = $('#class_price').val();
-        hrs = $('#class_dur_hra').val().length >0 ? $('#class_dur_hra').val()*60 : 0; 
+        hrs = $('#class_dur_hrs').val().length >0 ? $('#class_dur_hrs').val()*60 : 0; 
         min = $('#class_dur_min').val().length >0 ? $('#class_dur_min').val() : 0; 
         datas['duration'] =  parseInt(hrs) + parseInt(min);
        
@@ -1061,7 +1065,7 @@ var Gym = function()
     }
     this.enter = function()
     {
-        $("#class_dur_hra, #class_dur_min").keydown(function(event) {
+        $("#class_dur_hrs, #class_dur_min").keydown(function(event) {
             // Allow: backspace, delete, tab, escape, and enter
             if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 || 
                 // Allow: Ctrl+A
