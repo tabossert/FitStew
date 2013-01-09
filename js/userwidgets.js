@@ -1034,12 +1034,78 @@ var User = function()
     }
     this.pay_me = function()
     {
-        if($('#card-number').val().indexOf(x) != -1)
-        {   
-        
+        if($('.card-number').val().indexOf('x') != -1)
+        {
+            $("#message").css('display','block')
+            $("#message").html("processing please wait..");
+            $('.submit-button').attr("disabled","disabled");
+            ZUNEFIT.getJSON({
+                url:'userPreferences/',
+                token : $('#utoken').val(),
+                success:function(data){
+                    result6 = eval(data)[0];
+                    if(result6.automatic==1 && result6.cToken != null){
+                                                
+                        data = {};      
+                        data['cusToken'] = result6.cToken.replace("'", "").replace("'", "");               
+                        data['amount'] = parseInt(($("#pay_amount").val()*100),10);
+                        data['name'] = $("#pref_email").val();
+                        $.ajax({
+                            type: 'POST',
+                            url: "customer_charge.php",
+                            data: data,
+                            dataType:'json',
+           
+                            success: function(response){     
+                                
+                                $("#message").html(response.message);
+                                $('.submit-button').removeAttr("disabled");
+                                if(response.id!=0){
+                                    datas = {};
+                                    datas['refid']=response.id;
+                                    ZUNEFIT.postJSON({                  
+                                        url:'paymentTransaction/',
+                                        data:datas,
+                                        token : $('#utoken').val(),          
+                                        success:function(response){
+                                            ZUNEFIT.getJSON({
+                                                url:'balance/',
+                                                data: data,
+                                                token : $('#utoken').val(),
+                                                success:function(response){
+                                                    try{
+                                                        result5 = eval(response)[0];                
+                                                        res = result5.balance;
+                   
+                                                        $(".balance-box").html("Balance: $ "+  res);
+                                                    }catch(e){
+                   
+                                                    }
+                                                },
+                                                error:function(){
+                                                //Error should be handle here            
+                                                }
+                                            });
+                                        },
+                                        error:function(){
+                                        //Error should be handle here
+                                        ;  
+                                        }            
+                                    });
+                                }                         
+                            }
+                        });
+                    
+                    }else{
+                         $("#message").html('You have to set refill automatically to use this option');
+                    }
+                }
+            
+            });
+            return ;
         }
-        else
-        {          
+       
+                
         if($('#zip').val().length > 0 && $('#zip').val().length != 5 ){
             $("#message").css('display','block')
             $("#message").html("Zip code must be 5 digits");
@@ -1142,7 +1208,7 @@ var User = function()
         
             }
         }
-        }
+        
     }
     this.onload = function(pay_me)
     {
