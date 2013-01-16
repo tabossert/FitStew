@@ -790,7 +790,7 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     padding: 10px;
     color: #500;
     font-weight: bold;
-    
+
 }
 
 
@@ -820,7 +820,7 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     background-color:#3d94f6;
 
 
-   
+
 
     border-bottom-left-radius: 6px;
     -moz-border-bottom-left-radius:6px;
@@ -842,7 +842,7 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     -moz-border-top-right-radius:6px;
     -webkit-border-top-right-radius:6px;
 
-  
+
     border: none;
     padding-left: 5px; 
 
@@ -970,17 +970,52 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
     border-bottom:1px solid #dec470;
 }
 .selectedCal{
-   
+
     -moz-border-radius:6px;
     -webkit-border-radius:6px;
     border-radius:6px;
     width: 180px;
     height: 90px;
     background: #4FAC2A; /* for non-css3 browsers */
-/*    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#B6CA23', endColorstr='#000');  for IE 
-    background: -webkit-gradient(linear, left top, left bottom, from(#B6CA23), to(#000));  for webkit browsers 
-    background: -moz-linear-gradient(top,  #B6CA23,  #000);  for firefox 3.6+ */
+    /*    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#B6CA23', endColorstr='#000');  for IE 
+        background: -webkit-gradient(linear, left top, left bottom, from(#B6CA23), to(#000));  for webkit browsers 
+        background: -moz-linear-gradient(top,  #B6CA23,  #000);  for firefox 3.6+ */
 
 
-    
+
+}
+table.newScheduleTable{
+    width: 400px;
+    height: 800px;
+    background-color: beige;
+
+}
+table.newScheduleTable {
+    font-family: verdana,arial,sans-serif;
+    font-size:11px;
+    color:#333333;
+    border-width: 1px;
+    border-color: #999999;
+    border-collapse: collapse;
+}
+table.newScheduleTable th {
+    background:#b5cfd2;
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #999999;
+}
+table.newScheduleTable td {
+    background:#dcddc0 ;
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #999999;
+}
+table.newScheduleTable td.times {
+    width: 50px;
+}
+table.newScheduleTable td.times span{    
+    position:relative;
+    top: 11px;
 }

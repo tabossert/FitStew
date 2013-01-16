@@ -34,6 +34,7 @@ $title = "ZuneFit User Portal";
 
             <div id="infoBox" style="min-height: 350px;padding: 5px;border: none;">
                 <div style="width: 16% ;float: left; border-right: solid; border-color: #565D60;">
+                    <div id="simplify" onclick="widgets.user.newSchedule();" style="cursor: pointer;height: 10px;width: auto;"><a href = "#lightboxSchedule" class="light">Simplify View</a></div>
                     <div class="inner-calender1" style="clear: both; margin-top: 25px; width: 70px;"><a id="day" href="#" onclick="widgets.user.getUserDaySchedule();"><img src="images/day_cal.png" alt="" border="" style="margin:0px 0px 17px 0px; " /></a><br />
                         DAY</div>
 
@@ -436,13 +437,13 @@ $title = "ZuneFit User Portal";
 
         <div name="lightbox" id="lightbox" class="blue-box2" style="height: 450px; width: 400px; ">
             <div style="height: 60px;">
-                 <div id="suc_err" style="float: right;display: inline;"></div>
+                <div id="suc_err" style="float: right;display: inline;"></div>
                 <div class="tweet" style="display: inline;"></div>
                 <div class="like" style="display: inline;"></div>
                 <div class="plus" ></div>
             </div>
             <div id="box-header" >
-               
+
                 <div id="g_image" style="float: left;width: 70px;"></div>
                 <div style="width: 170px;float: left;">
                     <table class="pref2">
@@ -531,6 +532,7 @@ $title = "ZuneFit User Portal";
     </div>
 
 </div>
+<?php include 'userProfile.php'; ?>
 <?php include 'dialogs.php'; ?>
 <div class="clr"></div>
 <!-- Footer Start -->

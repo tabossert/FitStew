@@ -1,3 +1,9 @@
+
+
+    <div name="lightboxSchedule" id="lightboxSchedule" style="height: 400px; width: 460px; overflow-x: hidden;">
+        <div id="table" ></div>
+
+</div>
 <div name="lightboxw" id="lightboxw" class="blue-box2" style="height: 400px; width: 400px; ">
     <table class="pref3">
         <tr><td>
@@ -11,7 +17,7 @@
                 <input type="text" name="class_price" id="class_price" class="round" placeholder="10"/>
             </td>  
         </tr>
-         <tr> <td>
+        <tr> <td>
                 <label class="clslabels"> Duration  </label>
             </td> <td><td>:<td>
                 <input type="text" name="class_dur_hrs" id="class_dur_hrs" class="round" placeholder="Hrs" style="width:50px" maxlength="2"/> :
@@ -64,14 +70,14 @@
     <div class="buttons" onclick="widgets.gim.addclass()">Add Class</div>
     <div id="confirm" style="color: #CB0000;font-size: 17px;float: right;"></div>
 </div>
-</div>
+
 <div style="display: none;">
 
     <div name="lightbox" id="lightbox" class="blue-box2" style="height: 400px; width: 400px; ">
 
 
         <div id="box-header" >
-           
+
             <div id="g_image" style="float: left;width: 70px;"></div>
             <div style="float: left;width: 100px;">
                 <div id="head">
@@ -184,3 +190,4 @@ if (isset($_SESSION['img'])) {
         </div>
 
     </div>
+</div>

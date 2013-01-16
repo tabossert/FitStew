@@ -26,8 +26,10 @@ $title = "ZuneFit Gym Panel";
         <div class="clr" ></div>
         <div class="blue-box1">
             <div id="shedule" style="min-height: 360px;">
-              
+
                 <div style="float: left;"><a href = "#lightboxw" class="light" style="float: left;color: midnightblue;font: bold 14px 'Georgia' ;">New Class<img src="images/new.png"/></a></div>
+                <div id="simplify" onclick="widgets.gim.newSchedule();" style="cursor: pointer;height: 10px;width: auto;"><a href = "#lightboxSchedule" class="light">Simplify View</a></div>
+
                 <div style="float: right;padding: 15px;color: midnightblue;font: bold 14px 'Georgia' ;"><label for="class_day" style="padding: 5px;">Select day</label><input value="<?php echo date('y-m-d'); ?>" type="text" id="class_day" class="round datepicker"  onchange="widgets.gim.getDayclasses($('#class_day').val());"/></div>
                 <div class="inner-txt" style="width: 80% ;float: right; margin-left: 10px;">
 
@@ -38,7 +40,7 @@ $title = "ZuneFit Gym Panel";
     </div>
     <div style="display: none;">
 
-      <?php  include('profile.php'); ?>
+        <?php include('profile.php'); ?>
 
     </div>
     <div style="display: none;">
@@ -48,7 +50,7 @@ $title = "ZuneFit Gym Panel";
         </div>
 
     </div>
-    
+
     <!--    <div class="tabs">
             <ul class="tabs-link">
                 <li><a href = "javascript:void(0)" onclick = "$('#light, #fade').css('display','block');">Profile</a></li>

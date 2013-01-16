@@ -1083,4 +1083,25 @@ var Gym = function()
             }
         });
     }
+    this.newSchedule = function(start,end)
+    {       
+        data = {};
+        data['gymid'] = "2013-01-16 00:00:00";  
+        data['day'] = "2013-01-16 24:00:00";
+        data['token'] = $('#token').val();  
+        
+        $.ajax({
+            type: 'POST',
+            url: "gymSchedule.php",
+            data: data,            
+            success: function(response){
+             //  response = eval(response);
+                $("#table").html(response);      
+            },
+            error:function(){
+            //Error should be handle here    
+            alert('sdf');
+            } 
+        });       
+    }
 }

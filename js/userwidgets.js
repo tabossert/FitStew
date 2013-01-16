@@ -751,14 +751,14 @@ var User = function()
           
             success:function(response){
                 if(response.message){ 
-                   alert(response.message);
-//                    $( "#suc_err" ).html('response.message');   
-//                    setTimeout( $( "#suc_err" ).html(""), 1000);
+                    alert(response.message);
+                //                    $( "#suc_err" ).html('response.message');   
+                //                    setTimeout( $( "#suc_err" ).html(""), 1000);
                 }                   
                 else{
-                   alert(response.status);
-//                    $( "#suc_err" ).html('response.status');   
-//                    setTimeout( $( "#suc_err" ).html(""), 1000);
+                    alert(response.status);
+                //                    $( "#suc_err" ).html('response.status');   
+                //                    setTimeout( $( "#suc_err" ).html(""), 1000);
                 }                                
             },
             error:function(){
@@ -785,6 +785,27 @@ var User = function()
                 result12 = eval(response)[0];
                 alert(result12.status);           
             }
+        });       
+    }
+    this.newSchedule = function(start,end)
+    {       
+        data = {};
+        data['start'] = "2013-01-16 00:00:00";  
+        data['end'] = "2013-01-16 24:00:00";
+        data['token'] = $('#utoken').val();  
+        
+        $.ajax({
+            type: 'POST',
+            url: "userSchedule.php",
+            data: data,            
+            success: function(response){
+             //  response = eval(response);
+                $("#table").html(response);      
+            },
+            error:function(){
+            //Error should be handle here    
+            alert('sdf');
+            } 
         });       
     }
     this.enter = function()
