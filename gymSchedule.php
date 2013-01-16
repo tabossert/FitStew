@@ -1,4 +1,5 @@
 <?php
+
 error_reporting(E_ERROR | E_PARSE);
 include('includes/config.inc.php');
 
@@ -30,8 +31,18 @@ $length = sizeof($obj);
 $hr = 00;
 $mn = 00;
 for ($i = 0; $i < 24 * 4; $i) {
+    if ($i == 5 || $i == 6 || $i == 7 || $i == 8 || $i == 9 || $i == 10 || $i == 11) { 
+        if ($i == 6 || $i == 7  ){
+                    echo "<tr><td class='times'><span>" . $hr . ":" . $mn . "<span></td><td style='background-color:green;'>KickC</td><td style='background-color:green;'>Yoga</td><td></td></tr>";
 
-    echo "<tr><td class='times'><span>" . $hr . ":" . $mn . "<span></td><td></td></tr>";
+        }else if($i == 9 || $i == 10 || $i == 11){
+                    echo "<tr><td class='times'><span>" . $hr . ":" . $mn . "<span></td><td></td><td></td><td  style='background-color:green;'>Karate</td></tr>";
+        }
+            else
+        echo "<tr><td class='times'><span>" . $hr . ":" . $mn . "<span></td><td style='background-color:green;'>KickC</td><td></td><td></td></tr>";
+    }else
+        echo "<tr><td class='times'><span>" . $hr . ":" . $mn . "<span></td><td></td><td></td><td></td></tr>";
+
     $i++;
     $mn += 15;
     $mn = $i % 4 == 0 ? 0 : $mn;
@@ -44,9 +55,6 @@ for ($i = 0; $i < 24 * 4; $i) {
 echo "</table>";
 //asort($arrays, 'time');
 //print_r($arrays);
-
-
-
 //   sizeof($obj);
 //echo $token = $obj[0]->{'name'};echo '<tr><td></td></tr>';
 //$id = $obj[0]->{'userid'};
