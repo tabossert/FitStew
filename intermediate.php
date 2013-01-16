@@ -130,9 +130,9 @@ $log->info("setting variables");
 $token = $obj[0]->{'token'};
 $id = $obj[0]->{'userid'};
 
-if($token){
-    header("Location: " . SITE_URL . "erroPage.php");
-}
+if(!$token){
+    header("Location: " . SITE_URL . "loginError.php");
+}else{
 
 $_SESSION['token'] = $token . '';
 $_SESSION['userid'] = $id;
@@ -140,6 +140,6 @@ $_SESSION['type'] = USER;
 
 
 header("Location: " . SITE_URL . "inner.php");
-
+}
 ob_end_flush();
 ?>
