@@ -37,13 +37,13 @@ for ($i = 0; $i < 24 * 4; $i) {
     $mn = $i % 4 == 0 ? 0 : $mn;
     $hr = $i % 4 == 0 ? $hr + 1 : $hr;
 }
-for ($i = 0; $i < $length ; $i++) {
-    $time = substr($obj[$i]->{'time'},-2,2)=='AM'?substr($obj[$i]->{'time'},0,5):((substr($obj[$i]->{'time'},0,2)+12).':'.substr($obj[$i]->{'time'},2,2));
-    $arrays[$time] = $obj[$i]->{'service'};
-}
+//for ($i = 0; $i < $length ; $i++) {
+//    $time = substr($obj[$i]->{'time'},-2,2)=='AM'?substr($obj[$i]->{'time'},0,5):((substr($obj[$i]->{'time'},0,2)+12).':'.substr($obj[$i]->{'time'},2,2));
+//    $arrays[$time] = $obj[$i]->{'service'};
+//}
 echo "</table>";
-asort($arrays, 'time');
-print_r($arrays);
+//asort($arrays, 'time');
+//print_r($arrays);
 
 
 
