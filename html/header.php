@@ -14,6 +14,7 @@ $currentFile = $_SERVER["PHP_SELF"];
 $parts = Explode('/', $currentFile);
 $page = $parts[count($parts) - 1];
 
+
 if ($page != 'index.php') {
     if (isset($_POST['token'])) {
         $_SESSION['token'] = $_POST['token'];
@@ -24,6 +25,12 @@ if ($page != 'index.php') {
     }
     if (!isset($_SESSION['token'])) {
         header('Location: ' . SITE_URL);
+    }
+} else {
+    if (isset($_SESSION['gid']) && isset($_SESSION['token'])) {
+        header('Location: ' . SITE_URL . 'owner.php');
+    } else if (isset($_SESSION['token'])) {
+        header('Location: ' . SITE_URL . 'inner.php');
     }
 }
 ?>
@@ -55,7 +62,7 @@ if ($page != 'index.php') {
             <script src='js/jquery.color.js'></script>
             <script src='js/jquery.metadata.js'></script>
             <script src='fancybox/jquery.fancybox-1.3.4.js'></script>
-            <?php //if ($page != 'index.php') :  ?>
+            <?php //if ($page != 'index.php') :   ?>
             <script src='js/SHA1.js'></script>
             <script src='js/janrain.js'></script>
 
@@ -75,7 +82,7 @@ if ($page != 'index.php') {
                 <script src='js/widgets.js'></script>
             <?php endif; ?>
             <script src='js/validation.js'></script>
-            <?php // endif;  ?>
+            <?php // endif;   ?>
             <script type="text/javascript" src='js/datetime.js'></script>
             <link rel="stylesheet" type="text/css" href="css/combo.css" />
             <link rel="stylesheet" type="text/css" href="jqueryui/jqueryui.css" />

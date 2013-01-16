@@ -130,6 +130,10 @@ $log->info("setting variables");
 $token = $obj[0]->{'token'};
 $id = $obj[0]->{'userid'};
 
+if($token){
+    header("Location: " . SITE_URL . "erroPage.php");
+}
+
 $_SESSION['token'] = $token . '';
 $_SESSION['userid'] = $id;
 $_SESSION['type'] = USER;
