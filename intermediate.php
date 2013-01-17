@@ -28,7 +28,7 @@ function handler($errno, $errstr, $errfile, $errline) {
 
     switch ($errno) {
 
-        case E_ERROR: // 1 //
+        case E_ERROR: // 1  //
             $typestr = 'E_ERROR';
             break;
         case E_WARNING: // 2 //
