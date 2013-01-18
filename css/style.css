@@ -984,13 +984,9 @@ ul.header-link li a:hover{text-decoration:none; color:#000000; background-color:
 
 
 }
-table.newScheduleTable{
-    width: 400px;
-    height: 800px;
-    background-color: beige;
 
-}
 table.newScheduleTable {
+    width: 400px;
     font-family: verdana,arial,sans-serif;
     font-size:11px;
     color:#333333;
@@ -1006,16 +1002,28 @@ table.newScheduleTable th {
     border-color: #999999;
 }
 table.newScheduleTable td {
-    background:#dcddc0 ;
+    background:rgb(183, 187, 185);
     border-width: 1px;
     padding: 8px;
     border-style: solid;
     border-color: #999999;
+
+
 }
 table.newScheduleTable td.times {
     width: 50px;
 }
 table.newScheduleTable td.times span{    
     position:relative;
-    top: 11px;
+    top: 8px;
+    font-size: 11px;
+    color: darkblue;
+}
+table.newScheduleTable td.service{    
+    color: rgb(204, 236, 31);
+    font-size: 15px;
+    background-color:rgb(143, 156, 170);
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-width: 0px 0px 0px 0px;
 }

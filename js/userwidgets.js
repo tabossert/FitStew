@@ -790,8 +790,8 @@ var User = function()
     this.newSchedule = function(start,end)
     {       
         data = {};
-        data['start'] = "2013-01-16 00:00:00";  
-        data['end'] = "2013-01-16 24:00:00";
+        data['start'] = "2013-01-18 00:00:00";  
+        data['end'] = "2013-01-18 24:00:00";
         data['token'] = $('#utoken').val();  
         
         $.ajax({
@@ -799,14 +799,91 @@ var User = function()
             url: "userSchedule.php",
             data: data,            
             success: function(response){
-             //  response = eval(response);
+                //  response = eval(response);
                 $("#table").html(response);      
             },
             error:function(){
-            //Error should be handle here    
-            alert('sdf');
+                //Error should be handle here    
+                alert('sdf');
             } 
         });       
+    }
+    this.newSchedules = function(start,end)
+    {       
+        data = {};
+        data['start'] = "2013-01-18 00:00:00";  
+        data['end'] = "2013-01-18 24:00:00";
+        data['token'] = $('#utoken').val();  
+        
+        ZUNEFIT.postJSON({
+            url:'userSchedule/',
+            data:data,
+            token : $('#utoken').val(),
+            success:function(response){
+                response = eval(response);
+                
+                
+                
+                table = "<table class='newScheduleTable'>";
+
+                hr = 00;
+                mn = 00;
+               
+                for (i = 0; i < response.length; i++) {
+                    times = {};
+                    //                        dates = {};
+                    times = response[i].time.slice(0,-3).split(':');    
+                    //                        dates = response[i].date.split('/'); 
+                    times[0] = response[i].time.substr(-2) == 'PM' ? parseInt(times[0])+12:times[0];
+               
+                    // var d = new Date(dates[2], dates[0]-1, dates[1], times[0], times[1]);
+                    // var q = new Date();
+                    a= hr + ":" + mn;
+                    b=times[0]+ ":" + times[1];
+               
+                        
+               
+                    i++;
+                    mn += 15;
+                    mn = i % 4 == 0 ? 0 : mn;
+                    hr = i % 4 == 0 ? hr + 1 : hr;
+                }
+                for (i = 0; i < 24 * 4; i) {
+                    if(a==b){
+                        table += "<tr><td class='times'><span>" + hr + ":" + mn + "</span></td><td> s</td></tr>";
+                    }                    
+                    else{
+                        table += "<tr><td class='times'><span>" + hr + ":" + mn + "</span></td><td> </td></tr>";
+
+                    }
+                }
+                //                for (i = 0; i < response.length; i++) {
+                //                times = {};
+                //                dates = {};
+                //                times = response[i].time.slice(0,-3).split(':');    
+                //                dates = response[i].date.split('/'); 
+                //                times[0] = response[i].time.substr(-2) == 'PM' ? parseInt(times[0])+12:times[0];
+                //               
+                //                var d = new Date(dates[2], dates[0]-1, dates[1], times[0], times[1]);
+                //                var q = new Date();
+                //                
+                //               
+                //                
+                //                }
+
+                table += "</table>";
+                table += d;
+                $("#table").html(table);
+            
+                    
+            },
+            error:function(){
+            //Error should be handle here
+           
+            }
+        });
+        
+              
     }
     this.enter = function()
     {          
@@ -1032,7 +1109,9 @@ var User = function()
                 }catch(e){
                     
                 }
-                $('.timepicker').timepicker();
+                $('.timepicker').timepicker({                    
+                    stepMinute: 15                   
+                });                
                 $( ".datepicker" ).datepicker();
                 $( ".datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd");               
             },

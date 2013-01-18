@@ -34,7 +34,7 @@ $title = "ZuneFit User Portal";
 
             <div id="infoBox" style="min-height: 350px;padding: 5px;border: none;">
                 <div style="width: 16% ;float: left; border-right: solid; border-color: #565D60;">
-                    <div id="simplify" onclick="widgets.user.newSchedule();" style="cursor: pointer;height: 10px;width: auto;"><a href = "#lightboxSchedule" class="light">Simplify View</a></div>
+                    <div id="simplify" onclick="widgets.user.newSchedule();" style="cursor: pointer;height: 10px;width: auto;"><a href = "#lightboxSchedule" class="light"><img src="images/time.png" alt="" border="0" style="margin:0px 0px 17px 0px;position: relative;left: 120px;" /></a></div>
                     <div class="inner-calender1" style="clear: both; margin-top: 25px; width: 70px;"><a id="day" href="#" onclick="widgets.user.getUserDaySchedule();"><img src="images/day_cal.png" alt="" border="" style="margin:0px 0px 17px 0px; " /></a><br />
                         DAY</div>
 
@@ -101,7 +101,7 @@ $title = "ZuneFit User Portal";
                 </div>
             </div>
 
-            <div id="preferences" style="display: none ;min-height: 360px; ">
+            <div id="preferences" style="display: none ;height: 480px; ">
                 <div class="second-nav nav3" style="background-color: #8b8b8b;" onclick="widgets.user.preferencesBilling(0)">Preferences</div><div class="second-nav nav4" onclick="widgets.user.preferencesBilling(1)">Billing</div>
 
                 <div style="clear: both;">

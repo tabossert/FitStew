@@ -1,7 +1,7 @@
 
 
-    <div name="lightboxSchedule" id="lightboxSchedule" style="height: 400px; width: 460px; overflow-x: hidden;">
-        <div id="table" ></div>
+<div name="lightboxSchedule" id="lightboxSchedule" style="height: 400px; min-width: 410px;">
+    <div id="table" ></div>
 
 </div>
 <div name="lightboxw" id="lightboxw" class="blue-box2" style="height: 400px; width: 400px; ">

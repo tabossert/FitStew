@@ -1,4 +1,5 @@
 <?php
+
 error_reporting(E_ERROR | E_PARSE);
 include('includes/config.inc.php');
 
@@ -25,29 +26,59 @@ curl_close($chlead);
 
 $obj = json_decode($chleadresult);
 
-echo "<table class='newScheduleTable'>";
+
+
+
 $length = sizeof($obj);
+for ($i = 0; $i < $length; $i++) {
+    $time = substr($obj[$i]->{'time'}, -2, 2) == 'AM' ? substr($obj[$i]->{'time'}, 0, 5) : ((substr($obj[$i]->{'time'}, 0, 2) + 12) . ':' . substr($obj[$i]->{'time'}, 2, 2));
+
+
+    $arrays[$time] = $obj[$i]->{'service'};
+    $arraysi[$i] = $obj[$i]->{'time'};
+}
+asort($arrays, 'time');
+
+echo "<table class='newScheduleTable'>";
+
 $hr = 00;
 $mn = 00;
+$fif = 0;
 for ($i = 0; $i < 24 * 4; $i) {
+    $one = FALSE;
+    if ($fif == 0) {
+        for ($j = 0; $j < $length; $j++) {
+            $a = $hr . ':' . $mn;
+            $b = str_replace(array('AM', 'PM', ' '), '', $arraysi[$j]);
 
-    echo "<tr><td class='times'><span>" . $hr . ":" . $mn . "<span></td><td></td></tr>";
+            if ($a == $b) {
+                $one = TRUE;
+                $fif = $obj[$j]->{'duration'} / 15 - 1;
+                break;
+            }
+        }
+    } else {
+        --$fif;
+        $one = TRUE;
+        $two = TRUE;
+    }
+    if ($one) {
+        if ($two) {
+            echo "<tr><td class='times'><span>" . $hr . ":" . $mn . "<span></td><td class='service'></td></tr>";
+            $two = FALSE;
+        } else {
+            echo "<tr><td class='times'><span>" . $hr . ":" . $mn . "<span></td><td class='service'>" . $obj[$j]->{'service'} . "</td></tr>";
+        }
+    } else {
+        echo "<tr><td class='times'><span>" . $hr . ":" . $mn . "<span></td><td></td></tr>";
+    }
     $i++;
     $mn += 15;
     $mn = $i % 4 == 0 ? 0 : $mn;
     $hr = $i % 4 == 0 ? $hr + 1 : $hr;
 }
-for ($i = 0; $i < $length ; $i++) {
-    $time = substr($obj[$i]->{'time'},-2,2)=='AM'?substr($obj[$i]->{'time'},0,5):((substr($obj[$i]->{'time'},0,2)+12).':'.substr($obj[$i]->{'time'},2,2));
-    $arrays[$time] = $obj[$i]->{'service'};
-}
+
 echo "</table>";
-asort($arrays, 'time');
-//echo print_r($arrays);
 
 
-
-//   sizeof($obj);
-//echo $token = $obj[0]->{'name'};echo '<tr><td></td></tr>';
-//$id = $obj[0]->{'userid'};
 ?>
