@@ -428,6 +428,7 @@ var User = function()
         fday = (d.getUTCDate() < 10) ? '0'+d.getUTCDate() : d.getUTCDate() ;
         var strDate = d.getUTCFullYear() + "-" + (d.getUTCMonth()+1) + "-" + fday;
         this.getUserSchedule(strDate+" 00:00:00", strDate+" 24:00:00");
+        
         $(".inner-calender1").addClass('selectedCal');
         $(".inner-calender2, .inner-calender3").removeClass('selectedCal');
     }
@@ -787,12 +788,17 @@ var User = function()
             }
         });       
     }
-    this.newSchedule = function(start,end)
+    this.newSchedule = function()
     {       
+        var d = new Date();       
+        fday = (d.getUTCDate() < 10) ? '0'+d.getUTCDate() : d.getUTCDate() ;
+        var strDate = d.getUTCFullYear() + "-" + (d.getUTCMonth()+1) + "-" + fday;
+        
         data = {};
-        data['start'] = "2013-01-18 00:00:00";  
-        data['end'] = "2013-01-18 24:00:00";
-        data['token'] = $('#utoken').val();  
+        data['start'] = strDate+" 00:00:00";  
+        data['end'] = strDate+" 24:00:00";
+        data['token'] = $('#utoken').val(); 
+        data['zone'] = "";
         
         $.ajax({
             type: 'POST',
@@ -824,55 +830,56 @@ var User = function()
                 
                 
                 
+                
+                for (i = 0; i < length; i++) {
+                    time = substr(response[i].time, -2, 2) == 'AM' ? substr(response[i].time, 0, 5) : ((substr(response[i].time, 0, 2) + 12) + ':' + substr(response[i].time, 2, 2));
+
+
+                    arrays[$time] = response[i].service;
+                    arraysi[$i] = response[i].time;
+                }
+                asort($arrays, 'time');
+
                 table = "<table class='newScheduleTable'>";
 
                 hr = 00;
                 mn = 00;
-               
-                for (i = 0; i < response.length; i++) {
-                    times = {};
-                    //                        dates = {};
-                    times = response[i].time.slice(0,-3).split(':');    
-                    //                        dates = response[i].date.split('/'); 
-                    times[0] = response[i].time.substr(-2) == 'PM' ? parseInt(times[0])+12:times[0];
-               
-                    // var d = new Date(dates[2], dates[0]-1, dates[1], times[0], times[1]);
-                    // var q = new Date();
-                    a= hr + ":" + mn;
-                    b=times[0]+ ":" + times[1];
-               
-                        
-               
+                fif = 0;
+                for (i = 0; i < 24 * 4; i) {
+                    one = FALSE;
+                    if (fif == 0) {
+                        for (j = 0; j < length; j++) {
+                            a = hr + ':' + mn;
+                            b = str_replace(array('AM', 'PM', ' '), '', arraysi[j]);
+
+                            if (a == b) {
+                                one = TRUE;
+                                fif = (response[i].duration/ 15) - 1;
+                                break;
+                            }
+                        }
+                    } else {
+                        --fif;
+                        one = TRUE;
+                        two = TRUE;
+                    }
+                    if (one) {
+                        if (two) {
+                            table +=  "<tr><td class='times'><span>" + hr + ":" + mn + "<span></td><td class='service'></td></tr>";
+                            $two = FALSE;
+                        } else {
+                            table += "<tr><td class='times'><span>" + hr + ":" + mn + "<span></td><td class='service'>" + response[i].service + "</td></tr>";
+                        }
+                    } else {
+                        table += "<tr><td class='times'><span>" + hr + ":" + mn + "<span></td><td></td></tr>";
+                    }
                     i++;
                     mn += 15;
                     mn = i % 4 == 0 ? 0 : mn;
                     hr = i % 4 == 0 ? hr + 1 : hr;
                 }
-                for (i = 0; i < 24 * 4; i) {
-                    if(a==b){
-                        table += "<tr><td class='times'><span>" + hr + ":" + mn + "</span></td><td> s</td></tr>";
-                    }                    
-                    else{
-                        table += "<tr><td class='times'><span>" + hr + ":" + mn + "</span></td><td> </td></tr>";
-
-                    }
-                }
-                //                for (i = 0; i < response.length; i++) {
-                //                times = {};
-                //                dates = {};
-                //                times = response[i].time.slice(0,-3).split(':');    
-                //                dates = response[i].date.split('/'); 
-                //                times[0] = response[i].time.substr(-2) == 'PM' ? parseInt(times[0])+12:times[0];
-                //               
-                //                var d = new Date(dates[2], dates[0]-1, dates[1], times[0], times[1]);
-                //                var q = new Date();
-                //                
-                //               
-                //                
-                //                }
 
                 table += "</table>";
-                table += d;
                 $("#table").html(table);
             
                     

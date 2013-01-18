@@ -30,14 +30,20 @@ $obj = json_decode($chleadresult);
 
 
 $length = sizeof($obj);
+if(!$obj->{'status'}){
+    
+
 for ($i = 0; $i < $length; $i++) {
-    $time = substr($obj[$i]->{'time'}, -2, 2) == 'AM' ? substr($obj[$i]->{'time'}, 0, 5) : ((substr($obj[$i]->{'time'}, 0, 2) + 12) . ':' . substr($obj[$i]->{'time'}, 2, 2));
-
-
-    $arrays[$time] = $obj[$i]->{'service'};
-    $arraysi[$i] = $obj[$i]->{'time'};
+    if(substr($obj[$i]->{'time'}, -2, 2) == 'PM'){
+        $time = str_replace(' ', '',explode(':', substr($obj[$i]->{'time'}, 0, 5)));       
+        $time[0] += 12; 
+    }else{
+         $time = str_replace(' ', '',explode(':', substr($obj[$i]->{'time'}, 0, 5)));
+    }
+  
+    $arraysi[$i] = $time[0].":".$time[1];//$obj[$i]->{'time'};
 }
-asort($arrays, 'time');
+
 
 echo "<table class='newScheduleTable'>";
 
@@ -77,8 +83,6 @@ for ($i = 0; $i < 24 * 4; $i) {
     $mn = $i % 4 == 0 ? 0 : $mn;
     $hr = $i % 4 == 0 ? $hr + 1 : $hr;
 }
-
+}
 echo "</table>";
-
-
 ?>

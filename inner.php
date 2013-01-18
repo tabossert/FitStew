@@ -17,7 +17,7 @@ $title = "ZuneFit User Portal";
 
 
 <div class="middle-container">
-
+ 
     <div class="inner-left-part">
 
         <div >
