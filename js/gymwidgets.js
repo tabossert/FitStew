@@ -323,7 +323,9 @@ var Gym = function()
                 class_info +="<tr><td class='bold'>Wednesday</td><td><input type='text' class= 'round sch' id='up_class_wed' value='"+wed+"'/></td></tr><tr><td class='bold'>Thursday</td><td><input type='text' id='up_class_thu' class= 'round sch' value='"+thu+"'/></td></tr><tr><td class='bold'>Friday</td><td><input type='text' class= 'round sch' id='up_class_fri' value='"+fri+"'/></td></tr><tr><td class='bold'>Saturday</td><td><input type='text' id='up_class_sat' class= 'round sch'  value='"+sat+"'/></td></tr><tr><td class='bold'>Sunday</td><td><input class= 'round' type='text' id='up_class_sun' class= 'round sch' value='"+sun+"'/></td></tr></table>";
                 class_info += "<div class='buttons' style='float:left;clear:both;' onclick='widgets.gim.update_class("+results.id+")'>Update</div>";
                 $('#class_info').html(class_info);
-                $('.sch').timepicker();
+                $('.sch').timepicker({
+                     stepMinute: 15 
+                });
             },
             error:function(){
           
@@ -880,7 +882,9 @@ var Gym = function()
     this.getGymStat = function()
     
     {   
-        $('.sch').timepicker();
+        $('.sch').timepicker({
+             stepMinute: 15 
+        });
         
         $( ".datepicker" ).datepicker();
         $( ".datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd");
