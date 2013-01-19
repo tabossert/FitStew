@@ -26,6 +26,11 @@ curl_close($chlead);
 
 $obj = json_decode($chleadresult);
 
+$zone = $_POST["zone"];
+$mnc = $zone - floor($zone);
+$minc = $mnc * 60;
+$hrc = $zone - $mnc;
+
 echo "<table class='newScheduleTable'>";
 $length = sizeof($obj);
 
@@ -46,7 +51,37 @@ for ($i = 0; $i < $length; $i++) {
     if ($obj[$i]->{$_POST["day"]} != "00:00:00") {
         $hr = 00;
         $mn = 00;
-        $a = (int) substr($obj[$i]->{$_POST["day"]}, 0, 2) . ':' . (int) substr($obj[$i]->{$_POST["day"]}, 2, 2);
+
+       $a1 = (int) substr($obj[$i]->{$_POST["day"]}, 0, 2) + (int) $hrc;
+    
+        $a2 = (int) substr($obj[$i]->{$_POST["day"]}, 3, 2) + (int) $minc;
+        if ($a2 == 0) {
+            $a2 = 0;
+            $a1 -= 1;
+        } else if ($a2 == -15) {
+            $a2 = 45;
+            $a1 -= 1;
+        } else if ($a2 == -30) {
+            $a2 = 30;
+            $a1 -= 1;
+        } else if ($a2 == -45) {
+            $a2 = 15;
+            $a1 -= 1;
+        } else if ($a2 == 75) {
+            $a2 = 15;
+            $a1 += 1;
+        } else if ($a2 == 90) {
+            $a2 = 30;
+            $a1 += 1;
+        } else if ($a2 == 105) {
+            $a2 = 45;
+            $a1 += 1;
+        } else if ($a2 == 60) {
+            $a2 = 0;
+            $a1 += 1;
+        }
+         $a = (int) $a1 . ':' . (int) $a2;
+         "<br/>";
         $duration = $obj[$i]->{'duration'} / 15;
 
         for ($j = 0; $j < 24 * 4; $j) {
@@ -98,7 +133,7 @@ for ($j = 0; $j < 24 * 4; $j) {
     echo "<tr><td class='times'>" . $hr . ":" . $mn;
     for ($i = 0; $i < $max; $i++) {
         if ($array[$hr . ":" . $mn] > 0) {
-            echo "</td><td class='service'>".$arrays[$hr . ":" . $mn];
+            echo "</td><td class='service'>" . $arrays[$hr . ":" . $mn];
             --$array[$hr . ":" . $mn];
         } else {
             echo "</td><td>";

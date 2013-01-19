@@ -1093,13 +1093,9 @@ var Gym = function()
         d =  hrss = $('#class_day').val().split('-');  
         d[1]=d[1]<10?'0'+d[1]:d[1];
         d[2]=d[2]<10?'0'+d[2]:d[2];
-        date = new Date(d[0]+'-'+d[1]+'-'+d[2]);
+        date = new Date(d[0]+'-'+d[1]+'-'+d[2]);     
         
-        day = date.getDay();
-       
-     
-        data['gymid']=$('#gid').val();
-       
+        day = date.getDay();  
         days = {};
         days[0]="sunday";
         days[1] = "monday";
@@ -1108,10 +1104,13 @@ var Gym = function()
         days[4] = "Thursday";
         days[5] = "Friday";
         days[6] = "Saturday";
+        
+        var current_date = new Date();  
+        data['zone'] = -current_date.getTimezoneOffset() / 60;
               
         data['day']= days[day];
         data['token'] = $('#token').val();  
-        
+        data['gymid']=$('#gid').val();
         $.ajax({
             type: 'POST',
             url: "gymSchedule.php",
