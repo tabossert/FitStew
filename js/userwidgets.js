@@ -797,8 +797,11 @@ var User = function()
         data = {};
         data['start'] = strDate+" 00:00:00";  
         data['end'] = strDate+" 24:00:00";
-        data['token'] = $('#utoken').val(); 
-        data['zone'] = "";
+        data['token'] = $('#utoken').val();
+        
+        var current_date = new Date();
+  
+        data['zone'] = -current_date.getTimezoneOffset() / 60;
         
         $.ajax({
             type: 'POST',
@@ -816,10 +819,14 @@ var User = function()
     }
     this.newSchedules = function(start,end)
     {       
+        var d = new Date();       
+        fday = (d.getUTCDate() < 10) ? '0'+d.getUTCDate() : d.getUTCDate() ;
+        var strDate = d.getUTCFullYear() + "-" + (d.getUTCMonth()+1) + "-" + fday;
+        
         data = {};
-        data['start'] = "2013-01-18 00:00:00";  
-        data['end'] = "2013-01-18 24:00:00";
-        data['token'] = $('#utoken').val();  
+        data['start'] = strDate+" 00:00:00";  
+        data['end'] = strDate+" 24:00:00";
+        data['token'] = $('#utoken').val();
         
         ZUNEFIT.postJSON({
             url:'userSchedule/',
@@ -835,10 +842,10 @@ var User = function()
                     time = substr(response[i].time, -2, 2) == 'AM' ? substr(response[i].time, 0, 5) : ((substr(response[i].time, 0, 2) + 12) + ':' + substr(response[i].time, 2, 2));
 
 
-                    arrays[$time] = response[i].service;
-                    arraysi[$i] = response[i].time;
+                    arrays[time] = response[i].service;
+                    arraysi[i] = response[i].time;
                 }
-                asort($arrays, 'time');
+                asort(arrays, 'time');
 
                 table = "<table class='newScheduleTable'>";
 
@@ -866,7 +873,7 @@ var User = function()
                     if (one) {
                         if (two) {
                             table +=  "<tr><td class='times'><span>" + hr + ":" + mn + "<span></td><td class='service'></td></tr>";
-                            $two = FALSE;
+                            two = FALSE;
                         } else {
                             table += "<tr><td class='times'><span>" + hr + ":" + mn + "<span></td><td class='service'>" + response[i].service + "</td></tr>";
                         }

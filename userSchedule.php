@@ -28,7 +28,11 @@ $obj = json_decode($chleadresult);
 
 
 
+$zone = $_POST["zone"];
 
+$mnc = $zone - floor($zone);
+$minc = $mnc*60;
+$hrc = $zone - $mnc;
 $length = sizeof($obj);
 if(!$obj->{'status'}){
     
@@ -40,8 +44,29 @@ for ($i = 0; $i < $length; $i++) {
     }else{
          $time = str_replace(' ', '',explode(':', substr($obj[$i]->{'time'}, 0, 5)));
     }
-  
-    $arraysi[$i] = $time[0].":".$time[1];//$obj[$i]->{'time'};
+    $hour = (int)$time[0]+(int)$hrc ; 
+    $minit = (int)$time[1]+(int)$minc;
+    if($minit == -15){
+        $minit = 45;
+        $hour -= 1;
+    }else if($minit == -30){
+        $minit = 30;
+        $hour -= 1;
+    }else if($minit == -45){
+        $minit = 15;
+        $hour -= 1;
+    }else if($minit == 75){
+        $minit = 15;
+        $hour += 1;
+    }else if($minit == 90){
+        $minit = 30;
+        $hour += 1;
+    }else if($minit == 105){
+        $minit = 45;
+        $hour += 1;
+    }
+    $arraysi[$i] = $hour.":".$minit;//$obj[$i]->{'time'};
+    print_r($arraysi);
 }
 
 
