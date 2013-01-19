@@ -813,7 +813,7 @@ var User = function()
             },
             error:function(){
                 //Error should be handle here    
-                alert('sdf');
+               
             } 
         });       
     }

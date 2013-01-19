@@ -28,17 +28,91 @@ $obj = json_decode($chleadresult);
 
 echo "<table class='newScheduleTable'>";
 $length = sizeof($obj);
+
 $hr = 00;
 $mn = 00;
-for ($i = 0; $i < 24 * 4; $i) {
+$array;
+$arrays;
+for ($j = 0; $j < 24 * 4; $j) {
 
-    echo "<tr><td class='times'><span>" . $hr . ":" . $mn . "<span></td><td></td><td></td><td></td></tr>";
-
-    $i++;
+    $array[$hr . ":" . $mn] = 0;
+    $j++;
     $mn += 15;
-    $mn = $i % 4 == 0 ? 0 : $mn;
-    $hr = $i % 4 == 0 ? $hr + 1 : $hr;
+    $mn = $j % 4 == 0 ? 0 : $mn;
+    $hr = $j % 4 == 0 ? $hr + 1 : $hr;
 }
+
+for ($i = 0; $i < $length; $i++) {
+    if ($obj[$i]->{$_POST["day"]} != "00:00:00") {
+        $hr = 00;
+        $mn = 00;
+        $a = (int) substr($obj[$i]->{$_POST["day"]}, 0, 2) . ':' . (int) substr($obj[$i]->{$_POST["day"]}, 2, 2);
+        $duration = $obj[$i]->{'duration'} / 15;
+
+        for ($j = 0; $j < 24 * 4; $j) {
+            $b = $hr . ':' . $mn;
+            if ($a == $b) {
+                $array[$hr . ":" . $mn] += 1;
+                $arrays[$hr . ":" . $mn] = $obj[$i]->{'service'};
+                while ($duration > 1) {
+
+                    --$duration;
+
+                    $j++;
+                    $mn += 15;
+                    $mn = $j % 4 == 0 ? 0 : $mn;
+                    $hr = $j % 4 == 0 ? $hr + 1 : $hr;
+                    $array[$hr . ":" . $mn] += 1;
+                }
+
+
+                break;
+            }
+
+            $j++;
+            $mn += 15;
+            $mn = $j % 4 == 0 ? 0 : $mn;
+            $hr = $j % 4 == 0 ? $hr + 1 : $hr;
+        }
+    }
+}
+$hr = 00;
+$mn = 00;
+$max = 0;
+for ($j = 0; $j < 24 * 4; $j) {
+    if ($array[$hr . ":" . $mn] > $max) {
+        $max = $array[$hr . ":" . $mn];
+    }
+
+    $j++;
+    $mn += 15;
+    $mn = $j % 4 == 0 ? 0 : $mn;
+    $hr = $j % 4 == 0 ? $hr + 1 : $hr;
+}
+
+
+$max;
+$hr = 00;
+$mn = 00;
+for ($j = 0; $j < 24 * 4; $j) {
+    echo "<tr><td class='times'>" . $hr . ":" . $mn;
+    for ($i = 0; $i < $max; $i++) {
+        if ($array[$hr . ":" . $mn] > 0) {
+            echo "</td><td class='service'>".$arrays[$hr . ":" . $mn];
+            --$array[$hr . ":" . $mn];
+        } else {
+            echo "</td><td>";
+        }
+    }
+    echo "</td></tr>";
+    $j++;
+    $mn += 15;
+    $mn = $j % 4 == 0 ? 0 : $mn;
+    $hr = $j % 4 == 0 ? $hr + 1 : $hr;
+}
+
+
+echo "</td></tr>";
 
 echo "</table>";
 ?>

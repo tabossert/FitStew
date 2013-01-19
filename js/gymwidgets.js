@@ -324,7 +324,7 @@ var Gym = function()
                 class_info += "<div class='buttons' style='float:left;clear:both;' onclick='widgets.gim.update_class("+results.id+")'>Update</div>";
                 $('#class_info').html(class_info);
                 $('.sch').timepicker({
-                     stepMinute: 15 
+                    stepMinute: 15 
                 });
             },
             error:function(){
@@ -390,7 +390,7 @@ var Gym = function()
         days[6] = "Saturday";
               
         data['day']= days[day];
-        var d = days[day];
+       
         ZUNEFIT.postJSON({
             url:'getDayClasses/',
             dataType:'jsonp',
@@ -883,7 +883,7 @@ var Gym = function()
     
     {   
         $('.sch').timepicker({
-             stepMinute: 15 
+            stepMinute: 15 
         });
         
         $( ".datepicker" ).datepicker();
@@ -1087,11 +1087,29 @@ var Gym = function()
             }
         });
     }
-    this.newSchedule = function(start,end)
+    this.newSchedule = function()
     {       
         data = {};
-        data['gymid'] = "2013-01-16 00:00:00";  
-        data['day'] = "2013-01-16 24:00:00";
+        d =  hrss = $('#class_day').val().split('-');  
+        d[1]=d[1]<10?'0'+d[1]:d[1];
+        d[2]=d[2]<10?'0'+d[2]:d[2];
+        date = new Date(d[0]+'-'+d[1]+'-'+d[2]);
+        
+        day = date.getDay();
+       
+     
+        data['gymid']=$('#gid').val();
+       
+        days = {};
+        days[0]="sunday";
+        days[1] = "monday";
+        days[2] = "Tuesday";
+        days[3] = "Wednesday";
+        days[4] = "Thursday";
+        days[5] = "Friday";
+        days[6] = "Saturday";
+              
+        data['day']= days[day];
         data['token'] = $('#token').val();  
         
         $.ajax({
@@ -1099,12 +1117,12 @@ var Gym = function()
             url: "gymSchedule.php",
             data: data,            
             success: function(response){
-             //  response = eval(response);
+                //  response = eval(response);
                 $("#table").html(response);      
             },
             error:function(){
             //Error should be handle here    
-            alert('sdf');
+            
             } 
         });       
     }

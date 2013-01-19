@@ -46,7 +46,10 @@ for ($i = 0; $i < $length; $i++) {
     }
     $hour = (int)$time[0]+(int)$hrc ; 
     $minit = (int)$time[1]+(int)$minc;
-    if($minit == -15){
+    if($minit == 0){
+        $minit = 0;
+        $hour -= 1;
+    }else if($minit == -15){
         $minit = 45;
         $hour -= 1;
     }else if($minit == -30){
@@ -63,6 +66,9 @@ for ($i = 0; $i < $length; $i++) {
         $hour += 1;
     }else if($minit == 105){
         $minit = 45;
+        $hour += 1;
+    }else if($minit == 60){
+        $minit = 0;
         $hour += 1;
     }
     $arraysi[$i] = $hour.":".$minit;//$obj[$i]->{'time'};
