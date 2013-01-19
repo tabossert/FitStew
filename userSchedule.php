@@ -66,7 +66,7 @@ for ($i = 0; $i < $length; $i++) {
         $hour += 1;
     }
     $arraysi[$i] = $hour.":".$minit;//$obj[$i]->{'time'};
-    print_r($arraysi);
+    
 }
 
 
