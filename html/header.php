@@ -44,14 +44,14 @@ if ($page != 'index.php') {
                   href="http://133ebe4227c90a13f1dc-8c7ec5384ed7d5bfa249897c03b2f07c.r72.cf2.rackcdn.com/favicon.ico"/>
             <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
             <title><?php echo (isset($title) ? $title : "ZuneFit"); ?></title>
-            <link href="css/style.css" rel="stylesheet" type="text/css" />
+
             <link href="fonts/stylesheet1.css" rel="stylesheet" type="text/css" />
             <link href="web-font/stylesheet2.css" rel="stylesheet" type="text/css" />
             <link rel="stylesheet" type="text/css" href="css/ceebox.css" />
             <link rel="stylesheet" type="text/css" href="css/widgets.css" />
             <link rel="stylesheet" type="text/css" href="fancybox/jquery.fancybox-1.3.4.css" />
 
-
+            <link href="css/style.css" rel="stylesheet" type="text/css" />
 
 
             <script src="js/jquery-1.7.1.js"></script>

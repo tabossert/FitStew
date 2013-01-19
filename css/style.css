@@ -71,27 +71,14 @@ html,body{ margin:0px;
            font-style:normal; font-size:16px; font-weight:normal; 
            text-decoration:none; 
            color: black;
+           height: 100%;
            /*background:url(../images/bg.jpg) repeat;*/
 
 
            /* for non-css3 browsers */
-
-
-
-
-
-
-
 }
 
-html{
 
-
-
-
-
-
-}
 .headerbg{margin:0px; padding:0px; width:100%; height: 139px; }
 .header-container{margin:0px auto; padding:0px; width:955px; }
 .logo{margin:14px 0px 0px 0px; padding:0px; width:237px; float:left;}
@@ -105,6 +92,9 @@ html{
           box-shadow:0 0 1px 1px #BABABE;
 }
 #all{
+    
+    margin: 0 auto -4em;
+
     min-height: 100%;
     height: auto !important;
     height: 100%; /*for IE*/
@@ -199,7 +189,7 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
 .logo-section{margin:0px 0px 0px 45px; padding:12px 0px; width:768px; float:left;}
 .arrow-right{margin:0px; padding:0px; width:43px; float:right; position:relative; right:-20px; top:50px;}
 
-.footerbg{margin:0px 0px 0px 0px; padding:0px; width:100%;  
+.footerbg{margin:0px 0px 0px 0px; padding:10px; width:100%;  
           background-image: linear-gradient(right , #F7F7F7 15%, #C9D8A9 50%, #F7F7F7 86%);
           background-image: -o-linear-gradient(right , #F7F7F7 15%, #C9D8A9 50%, #F7F7F7 86%);
           background-image: -moz-linear-gradient(right , #F7F7F7 15%, #C9D8A9 50%, #F7F7F7 86%);
@@ -214,7 +204,7 @@ ul.toplink li a:hover{text-decoration:none; color:#000000; }
               color-stop(0.5, #C9D8A9),
               color-stop(0.86, #F7F7F7)
               );}
-.footer-container{margin:0px auto; border-top:1px solid #F7F7F7; padding:12px 0px; width:944px; font:normal 12px "Trebuchet MS"; text-align:center; line-height:20px; text-decoration:none; color:#000;}
+.footer-container{margin:0px auto; border-top:1px solid #F7F7F7; padding:1px 0px; width:944px; font:normal 12px "Trebuchet MS"; text-align:center; line-height:20px; text-decoration:none; color:#000;}
 .footer-container a{text-decoration:none; color:#000;}
 .footer-container a:hover{text-decoration:none; color:#FFFEFF;}
 
@@ -1026,4 +1016,7 @@ table.newScheduleTable td.service{
     border-collapse: collapse;
     border-spacing: 0;
     border-width: 0px 0px 0px 0px;
+}
+.footerbg, .push {
+height: 4em;
 }

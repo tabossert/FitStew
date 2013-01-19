@@ -1,11 +1,8 @@
-<?php
-/*
- * Footer section for the ZuneFit web 
- * 
- */
-?>
+
+ <div class="push"></div>
+ </div> 
 <div class="clr">
-    <div id="waiting"><img src="images/ajax-loader.gif" alt="Waiting..." title="Waiting..."/></div>
+    <div id="waiting" ><img src="images/ajax-loader.gif" alt="Waiting..." title="Waiting..."/></div>
 </div>
 
 <div class="footerbg">
@@ -16,6 +13,5 @@
         &copy; 2012 Zunefit. All Rights Reserved</div>
 </div>
 </div>  
-</div>
 </body>
 </html>
