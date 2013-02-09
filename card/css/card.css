@@ -1,0 +1,132 @@
+#bigdiv {
+	height: 100%;
+	width: 100%;
+	margin-left: 100px;
+	background-color:white;
+}
+
+#bigdiv #container {
+	position: relative;
+	height: 240px;
+	margin-left:30px;
+	margin-right:200px;
+	margin-bottom: 50px;
+	width: auto;
+	/*-moz-box-shadow:inset 10px 10px 38px #000000;
+	-webkit-box-shadow:inset 10px 10px 38px #000000;
+	box-shadow:inset 10px 10px 38px #000000;*/
+
+}
+
+
+.item {
+	height: 240px;
+}
+
+
+#bigdiv #container .cbox {
+	position: relative;
+	background-color: white;
+	height: 100px;
+	width: 100px;
+	-moz-box-shadow: 5px 5px 10px #000000;
+	-webkit-box-shadow: 5px 5px 10px #000000;
+	box-shadow: 5px 5px 10px #000000;
+	margin-left: 20px;
+	margin-top: 10px;
+	float:left;
+	border-style:solid;
+	border-color: #006600;
+	border-width: 2px;
+	z-index: 1000;
+}
+
+#bigdiv #container .cbox .ctitle {
+	padding-top: 20px;
+	text-align: center;
+}
+
+#bigdiv #container .cbox .clogo {
+	margin-top: 10px;
+	margin-left:auto;
+	margin-right:auto;
+	height: 20px;
+	width:40%;
+}
+
+#bigdiv .cbox img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+#bigdiv .box {
+	position: relative;
+	background-color: white;
+	height: 200px;
+	width: 200px;
+	-moz-box-shadow: 10px 10px 20px #000000;
+	-webkit-box-shadow: 10px 10px 20px #000000;
+	box-shadow: 10px 10px 20px #000000;
+	margin-left: 30px;
+	float:left;
+
+}
+
+#bigdiv .bactive {
+	position: relative;
+	background-color: white;
+	height: 200px;
+	width: 200px;
+	-moz-box-shadow: 10px 10px 20px #006600;
+	-webkit-box-shadow: 10px 10px 20px #006600;
+	box-shadow: 10px 10px 20px #006600;
+	margin-left: 30px;
+	float:left;
+}
+
+
+#bigdiv .box .gtitle {
+	padding-top: 20px;
+	text-align: center;
+}
+
+#bigdiv .box .glogo {
+	margin-top: 10px;
+	margin-left:auto;
+	margin-right:auto;
+	vertical-align: middle;
+	height: 80px;
+	width:80%;
+}
+
+#bigdiv .box img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#bigdiv .box .gdistance {
+	margin-top: 20px;
+	margin-left:auto;
+	margin-right:auto;
+	height: 80px;
+	width:80%;
+	text-align: center;
+}
+
+#bigdiv .box .gmatches {
+  position:absolute;
+  bottom:5px;
+  left:10;
+  right:0;
+}
+
+.gmatchratio {
+	
+}
+
+
+.classModal {
+}

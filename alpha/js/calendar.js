@@ -1,6 +1,6 @@
 
 
-var schedjson = jQuery.parseJSON('[ {"id" : 385,"name" : "Kennedy Fitness","classid" : 21,"service" : "Yoga","duration" : 30,"datetime" : "2013-01-22T22:30:00.000Z"}, {"id" : 6,"name" : "24 Hours","classid" : 1,"service" : "Karate","duration" : 60,"datetime" : "2013-01-23T02:00:00.000Z"},{"id" : 388,"name" : "Kennedy Fitness","classid" : 24,"service" : "Kick Boxing","duration" : 30,"datetime" : "2013-01-23T06:30:00.000Z"}]');
+var schedjson = jQuery.parseJSON('[ {"id" : 385,"name" : "Kennedy Fitness","classid" : 21,"service" : "Yoga","duration" : 30,"datetime" : "2013-02-05T22:30:00.000Z"}, {"id" : 6,"name" : "24 Hours","classid" : 1,"service" : "Karate","duration" : 60,"datetime" : "2013-02-05T15:00:00.000Z"},{"id" : 388,"name" : "Kennedy Fitness","classid" : 24,"service" : "Kick Boxing","duration" : 30,"datetime" : "2013-02-07T06:30:00.000Z"}]');
 var wkNum = 0;
 
 

@@ -19,13 +19,13 @@ $(document).ready(function(){
 	
 	$("#fund").click(function(e){
 		//do something
-		newAlert('success', 'Funding Successful!');
+		newAlert('success', 'Funding Successful!', 2000);
 		e.preventDefault();
 	});
 		
-	function newAlert (type, message) {
-	    $("#alert-area").append($("<div class='alert alert-" + type + " fade in' data-alert><p> " + message + " </p></div>"));
-	    $(".alert").delay(2000).fadeOut("slow", function () { $(this).remove(); });
+	function newAlert (type, message, time) {
+	    $("#alert-area").append($("<div class='alert alert-" + type + " fade in' data-alert data-dismiss='alert'><p> " + message + " </p></div>"));
+	    $(".alert").delay(time).fadeOut("slow", function () { $(this).remove(); });
 	}
 	
 	var ul = $('#sidebar > ul');
