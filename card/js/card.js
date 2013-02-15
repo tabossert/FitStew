@@ -28,8 +28,8 @@ $(document).ready(function(){
       });
    
    
-	   GMaps.geocode({
-		  address: '1461 Creekside Dr., Walnut Creek, CA',
+	   GMaps.geocode(function(addr){
+		  address: addr,
 		  callback: function(results, status) {
 		    if (status == 'OK') {
 		      var latlng = results[0].geometry.location;
@@ -44,7 +44,7 @@ $(document).ready(function(){
 	   });
 	 }
 	 
-	 function postCall(uri,data) {
+	 function postCall(uri,data,callback) {
 		 $.ajax({
 		    type: "POST",
 		    dataType: "json",
@@ -53,7 +53,7 @@ $(document).ready(function(){
 		    data: data,
 		    success: function(response, status, xhr){
 		        console.log(response);
-		        buildCards(response);
+		        callback(response);
 		    }
 	     });
 	 }
@@ -71,15 +71,15 @@ $(document).ready(function(){
 	     });    
 	 }
 	 
-   postCall('http://api.zunefit.com/api/gymSearchAdvanced/','{"address": "94596", "maxDistance": "100", "workouts": "karate,yoga,Krav Maga"}'); 
-    
       
 	 
-   function buildCards(obj) {
-	   $.each( obj, function( key, value ) {
-	      $('#bigdiv').append('<div class="box"><div class="gtitle">' + value.name + '</div><div class="glogo"><img src="' + value.image + '"></div><div class="gdistance">' + value.distance + '</div><div class="gmatches">' + value.matched + '</div></div>');
+   function buildCards() {
+   	      postCall('http://api.zunefit.com/api/gymSearchAdvanced/','{"address": "94596", "maxDistance": "100", "workouts": "karate,yoga,Krav Maga"}', function(obj) {
+	   	      $.each( obj, function( key, value ) {
+		   	  $('#bigdiv').append('<div class="box"><div class="gtitle">' + value.name + '</div><div class="glogo"><img src="' + value.image + '"></div><div class="gdistance">' + value.distance + '</div><div class="gmatches">' + value.matched + '</div></div>');
+		   	  });
+		   	  attachCards();
 	   });
-	   attachCards();
    }
    
    function buildClassCards(uri,callback) {
@@ -92,6 +92,26 @@ $(document).ready(function(){
 	 	callback(inner);
 	 });
    };
+  
+   
+   function modalBuild(uri,callback) {
+    getCall('https://api.zunefit.com/api/getClass/72',function(obj) {
+    	$.each( obj, function( key, value ) {
+   			$('#myModalLabel').html(value.service);
+  			$('#classInstructor').html(value.instructer);
+  			$('classDesc').html(value.desc); 			
+   		});
+    getCall('https://api.zunefit.com/api/getClassTimes/72',function(obj) {
+    	$.each( obj, function( key, value ) {
+ 		
+   		});
+    getCall('https://api.zunefit.com/api/getGym/22',function(obj) {
+    	$.each( obj, function( key, value ) {
+ 		
+   		});
+   	});
+   	callback(10);
+   }
    
    function attachCards() {
 	   var slide = $(".box");
@@ -110,15 +130,15 @@ $(document).ready(function(){
 							copen.addClass("clickable");
 							copen.click(
 								function() {
-									$('#myModalLabel').html($(this).children('.ctitle').text());
-									$('#myModal').modal('show');
-									$('#myModal').on('shown', function () {
-										mapLoc();
+									modalBuild('blah',function(res) {
+										$('#myModal').modal('show');
+										$('#myModal').on('shown', function () {
+											mapLoc('1461 Creekside Dr., Walnut Creek, CA');
+										});	
 									});				
 								}
 							);
 						});
-						$('.carousel').carousel('cycle');
 					}
 				} else {
 					$(this).addClass('bactive');
@@ -130,11 +150,12 @@ $(document).ready(function(){
 						copen.addClass("clickable");
 						copen.click(
 							function() {
-								$('#myModalLabel').html($(this).children('.ctitle').text());
-								$('#myModal').modal('show');
-								$('#myModal').on('shown', function () {
-									mapLoc();
-								});				
+								modalBuild('blah',function(res) {
+									$('#myModal').modal('show');
+									$('#myModal').on('shown', function () {
+										mapLoc('1461 Creekside Dr., Walnut Creek, CA');
+									});	
+								});					
 							}
 						);
 					});
@@ -142,4 +163,6 @@ $(document).ready(function(){
 			}
 		);
 	}
+	//Just for testing
+	buildCards()
 });
