@@ -3,7 +3,9 @@ $(document).ready(function(){
    
    $('.carousel').carousel({
 	   interval: false
-   })
+   });
+
+   var offset = moment().zone();
    
    function timeClick() {
 	   var timeLink = $('.time');
@@ -17,7 +19,7 @@ $(document).ready(function(){
    
    timeClick();
   
-   function mapLoc() {
+   function mapLoc(addr) {
       map = new GMaps({
         div: '#map',
         zoom: 16,
@@ -28,7 +30,7 @@ $(document).ready(function(){
       });
    
    
-	   GMaps.geocode(function(addr){
+	   GMaps.geocode({
 		  address: addr,
 		  callback: function(results, status) {
 		    if (status == 'OK') {
@@ -71,47 +73,73 @@ $(document).ready(function(){
 	     });    
 	 }
 	 
-      
-	 
+
+   // This function sends the search params, gets the results and builds the main cards
    function buildCards() {
-   	      postCall('http://api.zunefit.com/api/gymSearchAdvanced/','{"address": "94596", "maxDistance": "100", "workouts": "karate,yoga,Krav Maga"}', function(obj) {
-	   	      $.each( obj, function( key, value ) {
-		   	  $('#bigdiv').append('<div class="box"><div class="gtitle">' + value.name + '</div><div class="glogo"><img src="' + value.image + '"></div><div class="gdistance">' + value.distance + '</div><div class="gmatches">' + value.matched + '</div></div>');
-		   	  });
-		   	  attachCards();
+     // Perform POST call to send params and get back results
+     postCall('http://api.zunefit.com/api/gymSearchAdvanced/','{"address": "94596", "maxDistance": "100", "workouts": "karate,yoga,Krav Maga"}', function(obj) {
+       // Loop through each result and create card
+	   $.each( obj, function( key, value ) {
+	     $('#bigdiv').append('<div class="box"><div class="gtitle">' + value.name + '</div><div class="glogo"><img src="' + value.image + '"></div><div class="gdistance">' + value.distance + '</div><div class="gmatches">' + value.matched + '</div></div>');
+	   
 	   });
+	   // Call attachedCards function
+	   attachCards();
+	 });
    }
    
+   // This function retrieves classes for a fitness center builds each class card 
    function buildClassCards(uri,callback) {
+   	 //Create carasol placeholder
      var inner = '<div class="item">';
+     // Perform GET call to retreive class info
      getCall('https://api.zunefit.com/api/getClasses/22/?search=karate,KIckC',function(obj) {
+        // Loop through each class and create card
    	 	$.each( obj, function( key, value ) {
-	 		inner = inner + '<div class="cbox"><div class="ctitle">' + value.service + '</div><div class="clogo"><img src="img/karate.png"></div></div>';
+	 		inner = inner + '<div class="cbox"><div class="ctitle">' + value.service + '</div><div class="clogo"><img src="img/' + value.image + '"></div></div>';
 	 	});
+	 	// Close placeholder
 	 	inner = inner + '</div>';
 	 	callback(inner);
 	 });
    };
   
-   
+   // This function is to build the modal, eventually it would be nice to roll this into on call eventually
    function modalBuild(uri,callback) {
-    getCall('https://api.zunefit.com/api/getClass/72',function(obj) {
+   
+    //Here We get the info for the class in question and it's fitness center
+    getCall('https://api.zunefit.com/api/getClass/21',function(obj) {
     	$.each( obj, function( key, value ) {
    			$('#myModalLabel').html(value.service);
-  			$('#classInstructor').html(value.instructer);
-  			$('classDesc').html(value.desc); 			
-   		});
-    getCall('https://api.zunefit.com/api/getClassTimes/72',function(obj) {
-    	$.each( obj, function( key, value ) {
- 		
-   		});
-    getCall('https://api.zunefit.com/api/getGym/22',function(obj) {
-    	$.each( obj, function( key, value ) {
- 		
+  			$('#classInstructor').html(value.instructor);
+  			$('#classDesc').html(value.desc);
+  			$('#gymLogo').html('<img src="' + $('.bactive').children('.glogo').children('img').attr('src') + '">');
+  			//$('#hours').html($('.bactive').children('.ghours').text());
+  			$('#phone').html(value.phone);
+  			$('#address').html(value.address + ", " + value.city + ", " + value.state + ", " + value.zipcode);
+  			 			
    		});
    	});
-   	callback(10);
-   }
+   	// Then we get the times for the class in question
+    getCall('https://api.zunefit.com/api/getClassTimes/21',function(obj) {
+    	$('.day').remove();
+    	$.each( obj, function( key, value ) {
+    		var sched = "";
+    		console.log(value);
+    		sched = sched + '<div class="day"><div class="weekday">' + value.weekday + '</div>';
+    		var timeArr = value.time.split(',');
+    		$.each(timeArr, function(key, time) {
+    			console.log(time);
+	    		sched = sched + '<div class="time">' + moment(time, 'hh:mm').subtract('minutes',offset).format('hh:mmA') + '</div>';
+    		});
+    		sched = sched + '</div>';
+    		$('#classSched').append(sched);
+   		});
+   		callback(10);
+   	});
+   	
+   	//callback(10);
+   };
    
    function attachCards() {
 	   var slide = $(".box");
