@@ -1,14 +1,5 @@
 $(document).ready(function(){
-    $('#sched').hide();
-    
-   var slide = $("#searchCG");
-   slide.addClass("clickable");
-	slide.click(
-		function() {
-			$('#sched').slideDown('slow');
-			byWeek(wkNum,'search');
-		}
-	);
+
 	var close = $("#close");
     close.addClass("clickable");
 	 close.click(
@@ -86,26 +77,5 @@ $(document).ready(function(){
         var cwidth = $('#content-header .btn-group').width();
         $('#content-header .btn-group').css({width:cwidth,'margin-left':'-' + uwidth / 2 + 'px'});
 	}
-    
-    function formsBox() {
-		$('.formbox').on('mouseenter', function(){
-			$(".formbox").fancybox({
-				maxWidth	: 600,
-				maxheight	: 500,
-				margin		: 0,
-				padding		: 0,
-				scrolling	: 'no',
-				autoDimensions	:	false,
-				arrows		: false,
-				fitToView	: false,
-				width		: '85%',
-				height		: '90%',
-				autoSize	: false,
-				closeClick	: false,
-				openEffect	: 'none',
-				closeEffect	: 'none'
-			});
-		});
-	}
-	formsBox();
+
 });

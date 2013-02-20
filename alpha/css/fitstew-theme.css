@@ -3,12 +3,8 @@
 	margin: 0 auto !important;
 }
 
-body.fancybox-lock{
-	overflow:visible !important; // Solves moving the page to the top 
-	margin-right:auto !important; // Solves the shifting of my whole page to the left 
-}
 
-#container {
+#midContainer {
 	background-color: white;
 	border-top-left-radius: 10px 5px;
 	border-top-right-radius: 10px 5px;
