@@ -1,30 +1,76 @@
-#bigdiv {
+.contentBlock {
 	height: 100%;
-	width: 90%;
+	width: 100%;
 	margin-left:auto;
 	margin-right:auto;
-	background-color:white;
 }
 
-#bigdiv #container {
-	position: relative;
-	height: auto;
+
+.transparent {
+	background:rgba(255,255,255,0.5);
+}
+
+
+#bigdiv {
+	height: 100%;
+	width: 100%;
 	margin-left:auto;
 	margin-right:auto;
+	/*background-color:white;*/
+}
+
+
+.contentBlock #profileContainer {
+	position: relative;
+	height: 200px;
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	padding-bottom: 10px;
+}
+
+.contentBlock #profileContainer .partition {
+	position: relative;
+	height: 200px;
+	width: 22%;
+	margin-left: 10px;
+	margin-right: 10px;
+	float: left;
+}
+
+
+
+.contentBlock #profileContainer .partition img {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.contentBlock .container {
+	position: relative;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
 	margin-bottom: 50px;
 	margin-top: 10px;
 	padding-bottom: 10px;
 	width: 80%;
-	background-color: #00415f;
+	/*background-color: #00415f;
 	-moz-box-shadow:inset 10px 10px 32px #000000;
 	-webkit-box-shadow:inset 10px 10px 32px #000000;
-	box-shadow:inset 10px 10px 32px #000000;
+	box-shadow:inset 10px 10px 32px #000000;*/
 	/*-moz-box-shadow:inset 10px 10px 5px #000000;
 	-webkit-box-shadow:inset 10px 10px 5px #000000;
 	box-shadow:inset 10px 10px 5px #000000;*/
 
 }
 
+#break {
+	height: 20px;
+	width: 100%;
+	background:url('../img/whitey.png') repeat;
+	position: relative;
+}
 
 .item {
 	height: auto;
@@ -32,7 +78,7 @@
 }
 
 
-#bigdiv #container .cbox {
+#classesBlock #container .cbox {
 	position: relative;
 	background-color: white;
 	height: 100px;
@@ -43,6 +89,7 @@
 	margin-left: 10px;
 	margin-right: 5px;
 	margin-top: 5px;
+	margin-bottom: 5px;
 	float:left;
 	/*border-style:solid;
 	border-color: #006600;
@@ -50,12 +97,12 @@
 	z-index: 1000;
 }
 
-#bigdiv #container .cbox .ctitle {
+#classesBlock #container .cbox .ctitle {
 	padding-top: 20px;
 	text-align: center;
 }
 
-#bigdiv #container .cbox .clogo {
+#classesBlock #container .cbox .clogo {
 	margin-top: 10px;
 	margin-left:auto;
 	margin-right:auto;
@@ -63,14 +110,14 @@
 	width:40%;
 }
 
-#bigdiv .cbox img {
+#classesBlock #container .cbox img {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 }
 
 
-#bigdiv .box {
+#partnerBlock .box {
 	position: relative;
 	background-color: white;
 	height: 200px;
@@ -84,7 +131,7 @@
 
 }
 
-#bigdiv .bactive {
+#partnerBlock .bactive {
 	position: relative;
 	background-color: white;
 	height: 200px;
@@ -97,12 +144,12 @@
 }
 
 
-#bigdiv .box .gtitle {
+#partnerBlock .box .gtitle {
 	padding-top: 20px;
 	text-align: center;
 }
 
-#bigdiv .box .glogo {
+#partnerBlock .box .glogo {
 	margin-top: 10px;
 	margin-left:auto;
 	margin-right:auto;
@@ -111,13 +158,13 @@
 	width:80%;
 }
 
-#bigdiv .box img {
+#partnerBlock .box img {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-#bigdiv .box .gdistance {
+#partnerBlock .box .gdistance {
 	margin-top: 20px;
 	margin-left:auto;
 	margin-right:auto;
@@ -126,7 +173,7 @@
 	text-align: center;
 }
 
-#bigdiv .box .gmatches {
+#partnerBlock .box .gmatches {
   position:absolute;
   bottom:5px;
   left:10;
@@ -159,8 +206,8 @@
 	float: left;
 	margin-left: 10px;
 	margin-right: 10px;
-	height: 380px;
-	width: 325px;
+	height: 200px;
+	width: 385px;
 	background-color: white;
 }
 
@@ -214,8 +261,8 @@
     bottom:0;                           /* added */
     left:0;  
 	display: block;
-    width: 250px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
 }
 
 #schedDiv {
