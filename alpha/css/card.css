@@ -5,6 +5,9 @@
 	margin-right:auto;
 }
 
+div.datepicker { 
+	z-index: 2050;
+}
 
 .transparent {
 	background:rgba(255,255,255,0.5);
@@ -19,6 +22,15 @@
 	/*background-color:white;*/
 }
 
+.contentBlock #infoContainer {
+	position: relative;
+	height: 200px;
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	padding-bottom: 10px;
+}
 
 .contentBlock #profileContainer {
 	position: relative;
@@ -201,56 +213,84 @@
 	color: white; 
 }
 
-#myModal #modal-body #modalCont {
+
+#classMessage {
+	float: right;
+	margin-right: 40px;
+}
+
+
+#myModal #modal-body .modalCont {
 	position: relative;
 	float: left;
 	margin-left: 10px;
 	margin-right: 10px;
-	height: 200px;
-	width: 385px;
+	height: 250px;
+	width: 285px;
 	background-color: white;
 }
 
+#timeMenu {
+	margin-top: 10px;
+}
 
-#modalCont #classInstructor {
+.modalCont #classInstructor {
 	text-align: center;
 }
 
-#modalCont #classDesc {
+.modalCont #classDesc {
 	margin-top: 40px;
 	height: 60px;
 	overflow: hidden;
 }
 
-#modalCont #classSched {
+.modalCont #classSched {
 	margin-top: 20px;
 }
 
-#modalCont #classSched .day {
+.modalCont #classSched .day {
 	height: 30px;
 	width: 300px;
 	margin-right: 5px;
 }
 
-#modalCont #classSched .weekday {
+.modalCont #classSched .weekday {
 	float: left;
 	width: 30px;
-	margin-right: 15px;
+	margin-right: 45px;
 }
 
-#modalCont #classSched .time {
+.modalCont #classSched .time {
 	float: left;
 	margin-left: 10px;
 }
 
-#modalCont #gymLogo {
+.modalCont #classSched #scheduler {
+	position: relative;
+	float: left;
+}
+
+.modalCont #classSched #schedulerDate {
+	float: left;
+	position: relative;
+	width: 50px;
+}
+
+
+.modalCont #classSched #schedulerTime {
+	float: left;
+	width: 50px;
+}
+
+
+.modalCont #gymLogo {
 	width: 40px;
 	float: left;
 	margin-left:auto;
 	margin-right:auto;
 }
 
-#modalCont #gymInfo {
+.modalCont #gymInfo {
 	margin-top: 5px;
 	float: left;
 	height: 80px;
@@ -265,6 +305,32 @@
     height: 150px;
 }
 
+#clearSearchBlock {
+	width: auto;
+	margin-left: auto;
+	margin-right: auto;
+	width: 160px;
+}
+
+#clearSearchBlock #clearSearch{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.eventInfo {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+#eventImg {
+	height:40px;
+	width:40px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/**************************** Calendar ****************************/
 #schedDiv {
 	height: 100%;
 	width: 80%;
@@ -273,22 +339,46 @@
 	background-color:white;
 }
 
-.schedWeekday {
-	float: left;
-	height: auto;
-	width: 120px;
-}
-
-#schedDiv .box {
+.schedBox {
 	position: relative;
 	background-color: white;
-	height: 100px;
-	width: 100px;
+	height: 80px;
+	width: 80px;
 	-moz-box-shadow: 10px 10px 20px #000000;
 	-webkit-box-shadow: 10px 10px 20px #000000;
 	box-shadow: 10px 10px 20px #000000;
 	/*margin-left: 30px;*/
-	float:left;
+	/*float:left;*/
 	margin-bottom: 20px;
 
 }
+
+#calheader{
+	width:100%;
+	height:30px;
+	text-align:center;
+}
+#calheader h2{
+	margin-top:15px;
+}
+#calcontainer{
+	float:left;
+	margin-bottom:10px;
+}
+#daycal{
+	clear:both;
+}
+.dayweek{width:120px;height:30px;float:left;border-right:1px solid #e5e5e5;}
+.dayweek p{display:block;text-align:center;font-size:10px;line-height:31px;text-shadow:0 1px 0 #ffffff;}
+.week{overflow:auto;border-top:1px solid #c2c2c2;}
+.weeku{overflow:auto;border-top:1px solid #c2c2c2;border-bottom:1px solid #e5e5e5;}
+.today{background:#fffcdf;border-right:1px solid #e5e5e5;}
+.today .daybar{background:#fffac1;}
+.dayp{width:120px;float:left;border-right:1px solid #e5e5e5;}
+.brn{border-right:none;}
+.bun{border-bottom:none;}
+.day:hover{background:#e9f0f8;cursor:pointer;}
+.daybar{width:100%;float:left;background:#f3f3f3;}
+.daybar p{margin-left:5px;margin-top:3px;margin-bottom:3px;font-size:10px;font-weight:400;color:#969696;text-shadow:0 1px 0 #ffffff;}
+.open {min-height: 600px;}
+ol,ul{list-style:none;}
