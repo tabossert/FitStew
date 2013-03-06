@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title>FitStew myPanel</title>
+	<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="assets/css/bootstrap-responsive.min.css" />
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="assets/css/structure.css" />
+	<link rel="stylesheet" href="assets/css/myPanel.css" />
+
+	<script src="assets/js/jquery-1.8.3.js"></script>
+    <script src="assets/js/jquery.ui.custom.js"></script>
+    <script src="assets/js/jquery.smooth-scroll.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/myPanel.js"></script>
+  </head>
+  <body>
+    <div id="headerCont" class="container-fluid">
+      <div class="row-fluid">
+        <div class="span12">
+          <div class="row-fluid">
+          	<div class="span10 offset1 cBlock">
+          	  <div class="header">
+          	  	<div class="row-fluid">
+          	  	  <div class="span4">
+          	  	    <div class="logo">
+          	  	      <img src="assets/img/logo.png">
+          	  	    </div>
+          	  	  </div>
+          	  	  <div class="span6 offset2">
+          	  	  	<div class="qBar">
+          	  	  	  <div class="qAction">
+          	  	  	    <a title="" href="#"><i class="icon-credit-card icon-large"></i>&nbsp;<span class="text">Fund My Account</span></a>
+          	  	  	  </div>
+          	  	  	  <div class="qAction">
+          	  	  	    <a title="" href="#"><i class="icon-money icon-large"></i>&nbsp;<span class="text">$100.25</span></a>
+          	  	  	  </div>
+          	  	  	  <div class="qAction">
+          	  	  	    <a id="accountSettings"><i class="icon-user icon-large"></i> <span class="text">Account Settings</span></a>
+          	  	  	  </div>
+          	  	  	  <div class="qAction">
+          	  	  	    <a title="" href="#"><i class="icon-signout icon-large"></i> <span class="text">Logout</span></a>
+          	  	  	  </div>         	  	  	            	  	  	  
+          	  	  	</div>
+          	  	  </div>
+          	  	</div>
+          	  </div>
+          	</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="break"></div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+      	<div class="span12">
+          <div class="row-fluid">
+          	<div class="span10 offset1 cBlock">
+          	  <div id="searchBlock">
+          	  	<div class="row-fluid">
+          	  	  <div class="span10 offset1">
+          	  	    <div id="searchTitle">
+          	  	      Find Your Preferred Classes!
+          	  	    </div>
+          	  	    <div id="searchBar">
+          	  	      <div class="row-fluid">
+          	  	      	<div class="span5">
+          	  	          <div id="termsBox" class="searchBox">
+                            <input class="rounded searchInput" id="terms" placeholder="Enter Classes">
+          	  	          </div>
+          	  	        </div>
+          	  	        <div class="span2">
+          	  	          <div id="distanceBox" class="searchBox">
+                            <input class="rounded" id="distance">
+          	  	          </div>
+          	  	        </div>
+          	  	        <div class="span3">
+          	  	          <div id="locationBox" class="searchBox">
+                            <input class="rounded searchInput" id="location">
+          	  	          </div>
+          	  	        </div>
+          	  	        <div class="span2">
+          	  	          <div id="searchBut" class="searchBox">
+                            <div id="searchText">
+                              Search
+                            </div>
+          	  	          </div>
+          	  	        </div>          	  	    
+          	  	      </div>
+          	  	    </div>
+          	  	  </div>
+          	  	</div>
+          	  </div>
+          	  <div class="break2"></div>
+          	  <div id="classesBlock">
+          	  	<div class="row-fluid">
+          	  	  <div class="span2 infoBlock">
+          	  	  </div>
+          	  	  <div class="span3 infoBlock">
+          	  	  </div>          	  	  
+          	  	  <div class="span4 infoBlock">
+          	  	  </div>
+          	  	  <div class="span3 infoBlock">
+          	  	  </div>
+          	  	</div>
+          	  	<div class="row-fluid classContainer">
+          	  	  <div class="cCard"></div>
+          	  	  <div class="cCard"></div>
+          	  	  <div class="cCard"></div>
+          	  	  <div class="cCard"></div>
+          	  	  <div class="cCard"></div>
+          	  	  <div class="cCard"></div>
+          	  	  <div class="cCard"></div>
+          	  	  <div class="cCard"></div>
+          	  	  <div class="cCard"></div>
+          	  	  <div class="cCard"></div>
+          	  	  <div class="cCard"></div>
+          	  	  <div class="cCard"></div>
+          	  	  <div class="cCard"></div>
+          	  	  <div class="cCard"></div>
+          	  	</div>
+          	  </div>
+          	  <div id="partnerBlock">
+          	  	<div class="row-fluid">
+          	  	  <div class="pCard"></div>
+          	  	  <div class="pCard"></div>
+          	  	  <div class="pCard"></div>
+          	  	  <div class="pCard"></div>
+          	  	  <div class="pCard"></div>
+     			  <div class="pCard"></div>
+     			  <div class="pCard"></div>
+     			  <div class="pCard"></div>
+     			  <div class="pCard"></div>
+          	  	</div>     	  	
+          	  </div>
+          	  <div id="scheduleBlock">
+          	  	<div class="monthCont">
+          	  	  <div class="row-fluid">
+          	  	  	<div class="span1">
+          	  	  	  <div id="monthIcon">
+                        <img src="assets/img/calIcon.png">
+                      </div>
+          	  	  	</div>
+          	  	    <div class="span1 offset2">
+          	  	  	  <div class="flip"></div>
+                        <img src="assets/img/lArrow.png">
+          	  	    </div>
+          	  	    <div class="span3">
+          	  	  	  <div class="month">
+                        March 2013
+          	  	  	  </div>
+          	  	    </div>
+          	  	    <div class="span1">
+          	  	  	  <div class="flip"></div>
+                        <img src="assets/img/rArrow.png">
+          	  	    </div>
+          	  	  </div>
+          	  	</div>
+          	  	<div class="row-fluid">
+                  <div id="prevWeek">
+                    <img src="assets/img/lWeek.png">
+                  </div>
+          	  	  <div class="dayCont">
+          	  	    <div class="weekday">
+          	  	  	  Monday
+          	  	    </div>
+          	  	    <div class="dayNum">
+          	  	  	  22
+          	  	    </div>
+          	  	    <div class="eventCont">
+          	  	      <div class="event"></div>
+          	  	      <div class="event"></div>
+          	  	      <div class="event"></div>
+          	  	      <div class="event"></div>
+          	  	    </div>
+          	  	  </div>
+          	  	  <div class="dayCont">
+          	  	    <div class="weekday">
+          	  	  	  Tuesday
+          	  	    </div>
+          	  	    <div class="dayNum">
+          	  	  	  23
+          	  	    </div>
+          	  	    <div class="eventCont">
+          	  	      <div class="event"></div>
+          	  	      <div class="event"></div>
+          	  	      <div class="event"></div>
+          	  	      <div class="event"></div>
+          	  	    </div>
+          	  	  </div>
+          	  	  <div class="dayCont">
+          	  	    <div class="weekday">
+          	  	  	  Wednesday
+          	  	    </div>
+          	  	    <div class="dayNum">
+          	  	  	  24
+          	  	    </div>
+          	  	    <div class="eventCont">
+          	  	      <div class="event"></div>
+          	  	      <div class="event"></div>
+          	  	      <div class="event"></div>
+          	  	      <div class="event"></div>
+          	  	    </div>
+          	  	  </div>
+          	  	  <div class="dayCont">
+          	  	    <div class="weekday">
+          	  	  	  Thursday
+          	  	    </div>
+          	  	    <div class="dayNum">
+          	  	  	  25
+          	  	    </div>
+          	  	    <div class="eventCont">
+          	  	      <div class="event"></div>
+          	  	      <div class="event"></div>
+          	  	      <div class="event"></div>
+          	  	      <div class="event"></div>
+          	  	    </div>
+          	  	  </div>          	  	  
+          	  	  <div class="dayCont">
+          	  	    <div class="weekday">
+          	  	  	  Friday
+          	  	    </div>
+          	  	    <div class="dayNum">
+          	  	  	  26
+          	  	    </div>
+          	  	    <div class="eventCont">
+          	  	      <div class="event"></div>
+          	  	      <div class="event"></div>
+          	  	      <div class="event"></div>
+          	  	      <div class="event"></div>
+          	  	    </div>
+          	  	  </div>
+          	  	  <div class="dayCont">
+          	  	    <div class="weekday">
+          	  	  	  Saturday
+          	  	    </div>
+          	  	    <div class="dayNum">
+          	  	  	  27
+          	  	    </div>
+          	  	    <div class="eventCont">
+          	  	      <div class="event"></div>
+          	  	      <div class="event"></div>
+          	  	      <div class="event"></div>
+          	  	      <div class="event"></div>
+          	  	    </div>
+          	  	  </div>
+          	  	  <div id="sunday" class="dayCont">
+          	  	    <div class="weekday">
+          	  	  	  Sunday
+          	  	    </div>
+          	  	    <div class="dayNum">
+          	  	  	  28
+          	  	    </div>
+          	  	    <div class="eventCont">
+          	  	      <div class="event"></div>
+          	  	      <div class="event"></div>
+          	  	      <div class="event"></div>
+          	  	      <div class="event"></div>
+          	  	    </div>
+          	  	  </div>
+                  <div id="nextWeek">
+                    <img src="assets/img/rWeek.png">
+                  </div>
+          	  	</div>
+          	  </div>
+          	</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footBar">
+      <div id="footLine">
+        <div id="midLine">
+          <div id="midLineText">
+            Change This
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <div class="span12 footer">
+          	<div class="row-fluid">
+          	</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
