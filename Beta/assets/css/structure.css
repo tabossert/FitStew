@@ -92,6 +92,27 @@ body {
 	color: white;
 }
 
+#footLinks {
+	text-align: center;
+	font-family: "SkolaSans-Regular";
+	font-size: 14px;
+	color: gray;
+	margin-top: 20px;
+}
+
+#footLinks a {
+	font-family: "SkolaSans-Regular";
+	font-size: 14px;
+	color: gray;
+}
+
+#footCopy {
+	text-align: center;
+	font-family: "SkolaSans-Regular";
+	font-size: 14px;
+	color: gray;
+}
+
 /* Nav tabs */
 .nav-tabs {
 	margin-top: 20px;

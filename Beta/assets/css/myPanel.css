@@ -188,30 +188,113 @@
 #scheduleBlock .dayCont .eventCont .event {
 	border-radius: 15px;
 	width: 90%;
-	height: 100px;
+	height: 120px;
 	margin-bottom: 10px;
+	padding-top: 5px;
 	margin-right: auto;
 	margin-left: auto;
 	background-color: white;
+	margin-top: 2px;
+}
+
+#sunday {
+	border: 0px;
+}
+
+.schTime {
+	margin-top: 2px;
+	font-family: "SkolaSans-Regular";
+	font-size: 14px;
+	color: #00adef;
+	text-align: center;
+}
+
+.schImages {
+	margin-top: 2px;
+	position: relative;
+	float: left;
+}
+
+.schName {
+	margin-top: 2px;
+	font-family: "SkolaSans-Regular";
+	font-size: 14px;
+	color: #57b547;
+	text-align: center;
 }
 
 /* Classes block */
 #classesBlock {
-	background-color: black;
+	background-color: white;
 	height: 100%;
 	border-radius: 15px;
+	margin-top: 20px;
+	border-color: #57b547;
+	border-style: solid;
+	border-width: 2px;
 }
 
 #classesBlock .infoBlock {
 	height: 200px;
-	background-color: green;
-	margin-top: 20px;
+	margin-top: 10px;
 
+}
+
+#partnerName {
+	margin-top: 30px;
+	font-family: "SkolaSans-Medium";
+	font-size: 32px;
+	color: #57b547;
+	margin-left: 40px;
+}
+
+#partnerLogo {
+	margin-top: 20px;
+	margin-left: 50px;
+}
+
+.contact {
+	margin-bottom: 5px;
+}
+
+.contactImage {
+
+}
+
+#phone {
+	margin-top: 10px;
+}
+
+.contactText {
+	margin-left: 10px;
+	font-family: "SkolaSans-Medium";
+	font-size: 14px;
+	margin-top: 10px;
+}
+
+.map {
+	margin-top: 20px;
+    position:relative;                  /* added */
+    bottom:0;                           /* added */
+    left:0;  
+	display: block;
+    width: 300px;
+    height: 225px;
+}
+
+#partnerHours {
+	margin-top: 20px;
+}
+
+.partnerDay {
+	font-family: "SkolaSans-Medium";
+	font-size: 14px;
+	margin-bottom: 5px;
 }
 
 #classesBlock .classContainer {
 	height: 100%;
-	margin-top: 20px;
+	margin-top: 60px;
 	margin-bottom: 20px;
 	margin-right: 20px;
 	margin-left: 20px;
@@ -220,7 +303,7 @@
 #classesBlock .classContainer .cCard {
 	height: 100px;
 	width: 100px;
-	background-color: white;
+	background-color: #57b547;
 	border-radius: 15px;
 	float: left;
 	margin-top: 10px;
@@ -229,6 +312,20 @@
 	margin-right: 10px;
 }
 
+#classesBlock .classContainer .cCard .className {
+	margin-top: 5px;
+	text-align: center;
+	font-family: "SkolaSans-Regular";
+	font-size: 18px;
+	color: white;
+}
+
+#classesBlock .classContainer .cCard img {
+	margin-top: 2px;
+	margin-right: auto;
+	margin-left: auto;
+	display: block;
+}
 /* Partner block */
 #partnerBlock {
 	height: 100%;
@@ -245,12 +342,47 @@
 	margin-right: 5px;
 	margin-left: 5px;
 	border-radius: 15px;
-	border-color: green;
-	border-width: 1px;
+	border-color: #57b547;
+	border-width: 2px;
 	border-style: solid;
 	-moz-box-shadow: 10px 10px 20px #000000;
 	-webkit-box-shadow: 10px 10px 20px #000000;
 	box-shadow: 10px 10px 20px #000000;
+}
+
+.pName {
+	text-align: center;
+	font-family: "SkolaSans-Bold";
+	font-size: 14px;
+	color: #57b547;
+	padding-top: 8px;
+
+}
+
+.pImage img {
+	margin-right: auto;
+	margin-left: auto;
+	display: block;
+	margin-top: 4px;
+}
+
+.pDistance {
+	text-align: center;
+	font-family: "SkolaSans-Bold";
+	font-size: 14px;
+	color: #57b547;
+	margin-top: 2px;
+}
+
+.pMatch {
+	text-align: right;
+	font-family: "SkolaSans-Bold";
+	font-size: 14px;
+	color: #57b547;
+	margin-top: 2px;
+	padding-right: 4px;
+	margin-right: 4px;
+	padding-bottom: 2px;
 }
 
 /* Search results */
