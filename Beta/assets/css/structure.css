@@ -123,8 +123,8 @@ body {
 #navRow {
 	position: relative;
 	border-bottom-style: solid;
-	border-bottom-color: blue;
-	border-bottom-width: 1px;
+	border-bottom-color: #00adef;
+	border-bottom-width: 2px;
 }
 
 #myModalLabel {
@@ -134,27 +134,46 @@ body {
 }
 
 .nav-tabs > li > a {
-	padding-left: 40px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	width: 100px;
+	color: #00adef;
+	text-align: center;
+	border-color: #00adef;
+	border-width: 1px;
+	background-color: #e7e6e7;
+}
+
+.nav-tabs > ul > li > a {
+	/*padding-left: 40px;
 	padding-right: 20px;
 	margin-left: 20px;
 	height: 10px;
 	border-top-left-radius: 15px;
 	border-top-right-radius: 15px;
-	background-color: gray;
-	color: white;
-	border-color: blue;
+	background-color: gray;*/
+	color: #00adef;
+	text-align: center;
+	background-color: white;
 }
 
-.nav-tabs > .active > a {
-	background-color: blue;
-	color: white;
-	border-color: blue;
+/*.nav-tabs > .active > a {
+	background-color: white;
+	color: #57b547;
+}*/
+
+.nav-tabs > a,
+.nav-tabs > a:hover,
+.nav-tabs > a:focus {
+	border-color: #00adef
 }
 
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover,
 .nav-tabs > .active > a:focus {
-	border-bottom-color: blue;
+	border-bottom-color: #00adef;
+	background-color: #00adef;
+	color: white;
 }
 
 input:-moz-placeholder{
@@ -179,4 +198,14 @@ input.rounded {
 	padding: 4px 7px;
 	outline: 0;
 	-webkit-appearance: none;
+	z-index: 1000;
+	font-family: "SkolaSans-Regular";
+	font-size: 14px;
+
+}
+.panelButton {
+	background-color: #00adef;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
 }

@@ -1,43 +1,592 @@
 $(document).ready(function(){
-	/*$('#classesBlock').hide();
-	$('#partnerBlock').hide();*/
-	$('#sunday').css("border", "0");
+	/* Settings */
+	$('#classesBlock').hide();
+	/*$('#partnerBlock').hide();*/
+	var cuToken = 'cus_1SaGAoDEDZkRvq';
+	$("#fundOver").popover().parent().delegate('#fundButton', 'click', function() {
+		$("#fundButton").hide();
+		var payInfo = new Object();
+		payInfo.amount = $('#fmaAmount').val();
+		payInfo.cToken = cuToken;
+		var payInfoJSON = JSON.stringify(payInfo);
+		authPostCall('http://api.fitstew.com/api/processPayment/',payInfoJSON,'FFoZbUKW1jVjKfBmPEScaeoTJpIZb3ONYkgPA0Qwlti_d0tNBWxWK41aTHWfBMVF',function(obj) {
+			updateBalance();
+		});
+	});
 
+
+	/* Reusable functions */
+
+	function updateBalance() {
+		authGetCall('http://api.fitstew.com/api/balance/','FFoZbUKW1jVjKfBmPEScaeoTJpIZb3ONYkgPA0Qwlti_d0tNBWxWK41aTHWfBMVF',function(obj) {
+			$('#balance').html('$' + obj[0].balance);
+		});		
+	}
+	updateBalance();
+
+    var sli = 0;
+    $('.carousel').carousel({
+	   interval: false
+    });
+   
+    $('#myCarousel').bind('slide', function(e){ 
+   	   sli = 1;
+    });
+   
+    $('#myCarousel').bind('slid', function(e){ 
+   	   sli = 0;
+   	   $('.item:first').remove();
+    });
+
+	$('#sSunday').css("border", "0");
+
+
+	var intentConfig = {    
+		sensitivity: 3, // number = sensitivity threshold (must be 1 or higher)    
+		interval: 200, // number = milliseconds for onMouseOver polling interval    
+		over: inputExpand, // function = onMouseOver callback (REQUIRED)    
+		timeout: 500, // number = milliseconds delay before onMouseOut    
+		out: inputRetract // function = onMouseOut callback (REQUIRED)
+	};
+	
+	$("#terms").hoverIntent( intentConfig )
+   
+    function inputExpand() {
+    	$('#terms').animate({width: '400px'});
+   	}
+
+   	function inputRetract() {
+     	$('#terms').animate({width: '200px'})
+   	}
 
 	$('#modalBut').click(
    		function() {
 	   		$('#accountModal').modal('show');
    		}
-   )
+    )
 
-   function mapLoc(addr) {
-      map = new GMaps({
-        div: '#map',
-        zoom: 16,
-        lat: -12.043333,
-        lng: -77.028333,
-        width: 200,
-        height: 100
-      });
-   
-   
-	   GMaps.geocode({
-		  address: addr,
-		  callback: function(results, status) {
-		    if (status == 'OK') {
-		      var latlng = results[0].geometry.location;
-		      map.setCenter(latlng.lat(), latlng.lng());
-		      map.addMarker({
-		        lat: latlng.lat(),
-		        lng: latlng.lng()
-		      });
-		      map.refresh();
+	$('#terms').typeahead({
+		source: ['Karate','Kick Boxing','Yoga'],
+		mode: 'multiple',
+		items: 8
+	});
+
+	/* Account Modal */
+	var ccTrans = 0;
+	var tempToken = new Object();
+	tempToken.cToken = 'cus_1SaGAoDEDZkRvq';
+	$('#acbButtonText').data('func', 'create')
+
+	$('#accountSettings').click(
+   		function() {
+   			getBillingInfo();
+	   		$('#accountModal').modal('show');
+   		}
+    )	
+
+    Stripe.setPublishableKey('pk_test_b6UX3N4Ew26Yxmtf2pdZ84yT');
+
+    $('#acbcard').change(function() {
+    	if(Stripe.validateCardNumber($('#acbcard').val())) {
+    		$('#acbcard').css('box-shadow', '2px 2px 3px #57b547')
+    	} else {
+    		$('#acbcard').css('box-shadow', '2px 2px 3px #FF0000')
+    	}
+    });
+
+    $('#acbcvc').change(function() {
+    	if(Stripe.validateCVC($('#acbcvc').val())) {
+    		$('#acbcvc').css('box-shadow', '2px 2px 3px #57b547')
+    	} else {
+    		$('#acbcvc').css('box-shadow', '2px 2px 3px #FF0000')
+    	}
+    });
+
+    $('#acbexpmonth').add($('#acbexpyear')).change(function() {
+    	if(Stripe.validateExpiry($('#acbexpmonth').val(), $('#acbexpyear').val())) {
+    		$('#acbexpmonth').css('box-shadow', '2px 2px 3px #57b547')
+    		$('#acbexpyear').css('box-shadow', '2px 2px 3px #57b547')
+    	} else {
+    		$('#acbexpmonth').css('box-shadow', '2px 2px 3px #FF0000')
+    		$('#acbexpyear').css('box-shadow', '2px 2px 3px #FF0000')
+    	}
+    });
+
+
+    function stripeResponseHandler(status, response) {
+	    if (response.error) {
+	    	ccTrans = 0;
+	    } else {
+	    	var ccData = new Object();
+	    	ccData.email = $('#acsemail').val();
+	    	ccData.cToken = response['id'];
+	    	//if($('#acbButtonText').data('func') == 'update') {
+	    		ccData.cuToken = $('#acbcard').data('cToken');
+	    	//}
+	    	var ccDataJSON = JSON.stringify(ccData);
+	    	alert(ccDataJSON);
+	        var token = response['id'];
+	        authPostCall('http://api.fitstew.com/api/' + $('#acbButtonText').data('func') + 'CustomerToken/',ccDataJSON,'FFoZbUKW1jVjKfBmPEScaeoTJpIZb3ONYkgPA0Qwlti_d0tNBWxWK41aTHWfBMVF',function(obj) {
+	        	getBillingInfo()
+	        });
+			ccTrans = 0;
+	    }
+	}	
+
+
+    function authGetCall(uri,token,callback) {
+		$.ajax({
+		 	beforeSend: function(xhr) {
+			  xhr.setRequestHeader("ltype", "web");
+			  xhr.setRequestHeader("token", token);
+			},
+		    type: "GET",
+		    dataType: "json",
+		    contentType: "application/json",
+		    url: uri,
+		    success: function(response, status, xhr){
+		        console.log(response);
+		        callback(response);
 		    }
-		  }
-	   });
+	    });
+	}
+
+    function authPostCall(uri,data,token,callback) {
+		$.ajax({
+		 	beforeSend: function(xhr) {
+			  xhr.setRequestHeader("ltype", "web");
+			  xhr.setRequestHeader("token", token);
+			},
+		    type: "POST",
+		    dataType: "json",
+		    contentType: "application/json",
+		    url: uri,
+		    data: data,
+		    success: function(response, status, xhr){
+		        console.log(response);
+		        callback(response);
+		    }
+	    });
+	}
+
+    $('a[data-toggle="tab"]').on('show', function(e) {
+		$('#' + e.target.id).children('img').attr('src','assets/img/' + $('#' + e.target.id).data('img') + '_white.png');
+		$('#' + e.relatedTarget.id).children('img').attr('src','assets/img/' + $('#' + e.relatedTarget.id).data('img') + '_blue.png');
+    })
+
+    $('#acbCopyButton').click(function() {
+    	$('#acbname').val($('#acsfname').val() + ' ' + $('#acslname').val())
+	   	$('#acbaddress').val($('#acsaddress').val());
+	   	$('#acbaddress2').val($('#acsaddress2').val());
+	   	$('#acbcity').val($('#acscity').val());
+	   	$('#acbstate').val($('#acsstate').val());
+	   	$('#acbzipcode').val($('#acszipcode').val());	
+    });
+
+    $('#acsButton').click(function(){
+    	var userData = new Object();
+    	userData.email = $('#acsemail').val();
+    	userData.first_name = $('#acsfname').val();
+    	userData.last_name = $('#acslname').val();
+    	userData.address = $('#acsaddress').val();
+    	userData.address2 = $('#acsaddress2').val();
+    	userData.city = $('#acscity').val();
+    	userData.state = $('#acsstate').val();
+    	userData.zipcode = $('#acszipcode').val();
+
+    	var userDataJSON = JSON.stringify(userData);
+
+    	authPostCall('http://api.fitstew.com/api/updateUserPreferences/',userDataJSON,'FFoZbUKW1jVjKfBmPEScaeoTJpIZb3ONYkgPA0Qwlti_d0tNBWxWK41aTHWfBMVF',function() {
+    		alert("success");
+    	})
+
+    })
+
+    $('#acbButton').click(function(){
+    	if($('#acbButtonText').data('func') == 'update') {
+    		$('#acbButtonText').html('Save');
+	   		$(".acbinput").removeAttr("disabled");
+	   		$(".acbinput").attr('placeholder',"");
+	   		$("#acbCopyButton").show();
+    	}
+    	if(ccTrans == 0) {
+    		ccTrans = 1;
+	    	Stripe.createToken({
+	            name : $("#acbname").val(),
+	            address_line1 : $("#acbaddress").val(),
+	            address_line2 :$("#acbaddress2").val(),
+	            address_city : $("#acbcity").val(),
+	            address_state :  $("#acbstate").val(),
+	            address_zip : $("#acbzipcode").val(),
+	            
+	            number: $('#acbcard').val(),
+	            cvc: $('#acbcvc').val(),
+	            exp_month: $('#acbexpmonth').val(),
+	            exp_year: $('#acbexpyear').val()
+	        }, stripeResponseHandler);
+    	}
+    });
+
+
+
+
+
+    authGetCall('http://api.fitstew.com/api/userPreferences/','FFoZbUKW1jVjKfBmPEScaeoTJpIZb3ONYkgPA0Qwlti_d0tNBWxWK41aTHWfBMVF',function(obj) {
+    	$('#acsemail').val(obj[0].email);
+    	$('#acsfname').val(obj[0].first_name);
+    	$('#acslname').val(obj[0].last_name);
+    	$('#acsaddress').val(obj[0].address);
+    	$('#acsaddress2').val(obj[0].address2);
+    	$('#acscity').val(obj[0].city);
+    	$('#acsstate').val(obj[0].state);
+    	$('#acszipcode').val(obj[0].zipcode);
+   	})
+
+    function getBillingInfo() {
+	    tempTokenJSON = JSON.stringify(tempToken);
+	   	authPostCall('http://api.fitstew.com/api/retrieveCustomer/',tempTokenJSON,'FFoZbUKW1jVjKfBmPEScaeoTJpIZb3ONYkgPA0Qwlti_d0tNBWxWK41aTHWfBMVF',function(obj) {
+	   		if(!obj[0].ccard) {
+	   			$('#acbButtonText').html('Save');
+	   			$('#acbButtonText').data('func', 'create')
+	   		} else {
+	   			$(".acbinput").attr("disabled", "disabled");
+	   			$("#acbCopyButton").hide();
+	   			$('#acbButtonText').html('Update');
+	   			$('#acbButtonText').data('func', 'update')
+	   			$(".acbinput").val("");
+		    	$('#acbname').attr('placeholder',obj[0].name);
+		    	$('#acbaddress').attr('placeholder',obj[0].address_line1);
+		    	$('#acbaddress2').attr('placeholder',obj[0].address_line2);
+		    	$('#acbcity').attr('placeholder',obj[0].address_city);
+		    	$('#acbstate').attr('placeholder',obj[0].address_state);
+		    	$('#acbzipcode').attr('placeholder',obj[0].address_zip);
+		    	$('#acbcard').attr('placeholder','xxxxxxxxxxxx' + obj[0].ccard);
+		    	$('#acbcvc').attr('placeholder','xxx');
+		    	$('#acbexpmonth').attr('placeholder',obj[0].exp_month);
+		    	$('#acbexpyear').attr('placeholder',obj[0].exp_year);
+		    	$('#acbcard').data('cToken', obj[0].cuToken);
+		    }
+	   	})
+	}	
+
+
+	/* API Communication */
+
+	function postCall(uri,data,callback) {
+		$.ajax({
+		    type: "POST",
+		    dataType: "json",
+		    contentType: "application/json",
+		    url: uri,
+		    data: data,
+		    success: function(response, status, xhr){
+		        console.log(response);
+		        callback(response);
+		    }
+	    });
+	}
+
+	function authPostCall(uri,data,token,callback) {
+		$.ajax({
+		 	beforeSend: function(xhr) {
+			  xhr.setRequestHeader("ltype", "web");
+			  xhr.setRequestHeader("token", token);
+			},
+		    type: "POST",
+		    dataType: "json",
+		    contentType: "application/json",
+		    url: uri,
+		    data: data,
+		    success: function(response, status, xhr){
+		        console.log(response);
+		        callback(response);
+		    }
+	    });
+	}
+	 
+	function getCall(uri,callback) {
+		$.ajax({
+		    type: "GET",
+		    dataType: "json",
+		    contentType: "application/json",
+		    url: uri,
+		    success: function(response, status, xhr){
+		        callback(response);
+		        
+		    }
+	    });    
+	}
+
+    function authGetCall(uri,token,callback) {
+		$.ajax({
+		 	beforeSend: function(xhr) {
+			  xhr.setRequestHeader("ltype", "web");
+			  xhr.setRequestHeader("token", token);
+			},
+		    type: "GET",
+		    dataType: "json",
+		    contentType: "application/json",
+		    url: uri,
+		    success: function(response, status, xhr){
+		        console.log(response);
+		        callback(response);
+		    }
+	    });
+	}
+
+
+	/* Schedule Block */
+
+    // This function 
+    /*function buildSchedule(data) {
+    	$('#searchButton').click(false);
+    	// Perform POST call to send params and get back results
+     	postCall('http://api.fitstew.com/api/gymSearchAdvanced/',data, function(obj) {
+       		// Loop through each result and create card
+       		if(!obj.status) {
+		   		$.each( obj, function( key, value ) {
+		     		$('.eventCont').append('<div class="event"><div class="schTime">' + time + '</div><div class="schImages"><img src="' + value.image + '"><img src="' + value.image + '"></div><div class="row-fluid"><div class="schName">' + value.service + '</div></div>');
+ 				});
+		    	// Call attachedCards function
+		    	//attachCards();
+	   		} else {
+	   		}
+	 	});
+		$('#searchButton').click(true);
+    }*/
+    var wkNum = 0;
+    var schedjson = jQuery.parseJSON('[{"id": 385,"gymid": 22,"name": "Golds","classid": 21,"service": "Yoga", "gymImage": "golds.jpg", "image": "yoga.png","duration": 30,"datetime": "2013-03-07T16:15:00.000Z"}]');
+
+	function buildSchedule(wkNum) {
+		var week = moment().add('weeks', wkNum)
+		var today = moment(week).format("MMMM YYYY");
+		var daysinweek = 7;
+		var dayCount = 8;
+		var daysCount = 0;
+		var dayofweek = moment(week).format('d');
+		var prevCount = moment(week).subtract('days', 1).format('d');
+		var sdayofweek = moment(week).subtract('days', dayofweek-1);
+		var edayofweek = moment(sdayofweek).add('days', 7).format("YYYY-MM-DD");
+		var days = 0;
+
+		$('.event').remove();
+		var dayNames = new Array("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday");
+		$('#sMonth').html(today);
+		
+		for(var d = 0;d < daysinweek;d++)
+		{
+			$('#s' + dayNames[d]).children('.dayNum').html(moment(sdayofweek).format('DD'));
+			console.log('#s' + dayNames[d]);
+			console.log(sdayofweek);
+			$.each(schedjson, function(key, value) {
+				if(moment(value.datetime).format('YYYY-MM-DD') == moment(sdayofweek).format('YYYY-MM-DD')) {
+					console.log(moment(value.datetime).format('YYYY-MM-DD'));
+					$('#s' + dayNames[d]).children('.eventCont').append('<div class="event"><div class="schTime">' + moment(value.datetime).format('hh:mm') + '</div><div class="schImages"><img src="assets/img/' + value.gymImage + '"><img src="assets/img/schedule/' + value.image + '"></div><div class="row-fluid"><div class="schName">' + value.service + '</div></div>');
+					console.log(moment(value.datetime).format('hh:mm'));
+				}
+			});
+			sdayofweek = moment(sdayofweek).add('days', 1);
+		}
+	}	
+
+	buildSchedule(0);
+
+	$('#prevWeek').click(
+		function() {
+			wkNum = wkNum-1;
+			buildSchedule(wkNum);
+	});
+
+	$('#nextWeek').click(
+		function() {
+			wkNum++;
+			buildSchedule(wkNum);
+	});
+
+	$('#prevMonth').click(
+		function() {
+			wkNum = wkNum-4;
+			buildSchedule(wkNum);
+	});
+
+	$('#nextMonth').click(
+		function() {
+			wkNum = wkNum+4;
+			buildSchedule(wkNum);
+	});
+
+
+	/* ClassInfo Block */
+
+    function mapLoc(addr) {
+    	map = new GMaps({
+        	div: '#map',
+        	zoom: 16,
+        	lat: -12.043333,
+        	lng: -77.028333,
+        	width: 200,
+        	height: 100
+      	});
+   
+   
+	    GMaps.geocode({
+			address: addr,
+		  	callback: function(results, status) {
+		    	if (status == 'OK') {
+		      		var latlng = results[0].geometry.location;
+		      		map.setCenter(latlng.lat(), latlng.lng());
+		      		map.addMarker({
+		        		lat: latlng.lat(),
+		        		lng: latlng.lng()
+		      		});
+		      		map.refresh();
+		    	}
+		  	}
+	    });
 	}
 
 	mapLoc('1461 Creekside Dr., Walnut Creek, CA');
 
+
+	/* Search */
+    $('#searchButton').click(
+		function() {
+			console.log($('#terms').data('placeholder'));
+			if(!$('#distance').val() || !$('#location').val()) {
+				$('#distance').tooltip('show');
+				$('#location').tooltip('show');
+			}
+			$('#classesBlock').slideUp('slow');
+			$('.carousel-inner').empty();
+			$('.pCard').remove();
+			
+			var data = '{';
+			data = data + '"address": "' + $('#location').val() + '", "maxDistance": "' + $('#distance').val() + '"';
+			if($('#terms').data('terms')) {
+				data = data + ',"workouts": "' + $('#terms').data('terms') + '"';
+			}
+			var data = data + '}';
+			buildCards(data);
+			$('#partnerBlock').slideDown('slow');
+	});
+
+	var terms;
+	$('#terms').keyup(function(e) {
+		if(e.keyCode == 13 && ($('#terms').val())) {
+			if(terms) {
+				terms = terms + ',' + $('#terms').val();
+			} else {
+				terms = $('#terms').val();
+			}
+			$('#terms').attr('placeholder', terms);
+			$('#terms').data('terms', terms)
+			$('#terms').val('');
+		}
+	});
+
+    /* Card Building */
+
+    // This function sends the search params, gets the results and builds the main cards
+    function buildCards(data) {
+    	$('#searchButton').click(false);
+    	// Perform POST call to send params and get back results
+     	postCall('http://api.fitstew.com/api/gymSearchAdvanced/',data, function(obj) {
+       		// Loop through each result and create card
+       		if(!obj.status) {
+		   		$.each( obj, function( key, value ) {
+		     		$('#partnerCards').append('<div class="pCard"><div class="pName" data-gid="' + value.id + '" data-name="' + value.name + '"  data-addr="' + value.address + '" data-addr2="' + value.city +', ' + value.state + ' ' + value.zipcode + '" data-email="' + value.email + '" data-phone="' + value.phone + '" data-facebook="' + value.facebook + '" data-twitter="' + value.twitter + '" data-monday="' + value.monday + '" data-tuesday="' + value.tuesday + '" data-wednesday="' + value.wednesday + '" data-thursday="' + value.thursday + '" data-friday="' + value.friday + '" data-saturday="' + value.saturday + '" data-sunday="' + value.sunday + '">' + value.name + '</div><div class="pImage"><img src="' + value.image + '"></div><div class="pDistance">' + value.distance + '</div><div class="pMatch">' + value.matched + '</div></div>');
+ 				});
+		    	// Call attachedCards function
+		    	attachCards();
+	   		} else {
+		   		$('#partnerBlock').html('<div class="searchError">No Results Found</div>');
+	   		}
+	 	});
+		$('#searchButton').click(true);
+    }
+
+    /*buildCards('{"address": "94596", "maxDistance": "100", "workouts": "karate,yoga,Krav Maga"}')*/
+
+    // This function retrieves classes for a fitness center builds each class card 
+	function buildClassCards(gid,search,callback) {
+   		//Create carasol placeholder
+     	var inner = '<div class="item">';
+     	// Perform GET call to retreive class info
+     	getCall('http://api.fitstew.com/api/getClasses/' + gid + '/?search=' + search,function(obj) {
+        	// Loop through each class and create card
+   	 		$.each( obj, function( key, value ) {
+	 			inner = inner + '<div class="cCard"><div class="className" data-cid="' + value.id + '">' + value.service + '</div><img src=assets/img/classes/' + value.image + '></div>';
+	 		});
+	 		// Close placeholder
+	 		inner = inner + '</div>';
+	 		callback(inner);
+	 	});
+    };
+
+    function profileBuild() {
+   	   $('#partnerName').html($('.bactive').children('.pName').data('name'));
+   	   $('#partnerLogo').html('<img src="' + $('.bactive').children('.pImage').children('img').attr('src') + '">');
+	   $('#phoneFill').html($('.bactive').children('.pName').data('phone'));
+	   $('#emailFill').html($('.bactive').children('.pName').data('email'));
+	   $('#fbFill').html($('.bactive').children('.pName').data('facebook'));
+	   $('#twitterFill').html($('.bactive').children('.pName').data('twitter'));
+	   $('#addr').html($('.bactive').children('.pName').data('addr')); 
+	   $('#addr2').html($('.bactive').children('.pName').data('addr2')); 
+	   mapLoc($('.bactive').children('.pName').data('addr') + $('.bactive').children('.pName').data('addr2'));
+	   $('#partnerHours').children('#mondayHours').html('Monday ' + $('.bactive').children('.pName').data('monday'));
+	   $('#partnerHours').children('#tuesdayHours').html('Tuesday ' + $('.bactive').children('.pName').data('tuesday'));
+	   $('#partnerHours').children('#wednesdayHours').html('Wednesday ' + $('.bactive').children('.pName').data('wednesday'));
+	   $('#partnerHours').children('#thursdayHours').html('Thursday ' + $('.bactive').children('.pName').data('thursday'));
+	   $('#partnerHours').children('#fridayHours').html('Friday ' + $('.bactive').children('.pName').data('friday'));  
+	   $('#partnerHours').children('#saturdayHours').html('Saturday ' + $('.bactive').children('.pName').data('saturday'));
+	   $('#partnerHours').children('#sundayHours').html('Sunday ' + $('.bactive').children('.pName').data('sunday'));
+    }
+
+	function attachCards() {
+	    $(".pCard").click(
+			function() {
+				if($('#classesBlock').is(':visible')) {
+					if(sli == 0) {
+						if(!$(this).hasClass('bactive')) {
+							$('div').removeClass('bactive');
+							$(this).addClass('bactive');
+							buildClassCards($(this).children('.pName').data('gid'),$(this).children('.pMatch').html(),function(res) {
+								$('.carousel-inner').append(res);
+								$('.carousel').carousel('next');
+								profileBuild();
+								$('#cCard').click(
+									function() {
+										modalBuild($(this).children('.className').data('cid'),function(res) {
+											$('#myModal').modal('show');
+											$('#myModal').on('shown', function () {
+											});	
+										});				
+									}
+								);
+							});
+						}
+					}
+				} else {
+					$(this).addClass('bactive');
+					buildClassCards($(this).children('.pName').data('gid'),$(this).children('.pMatch').html(),function(res) {
+						$('.carousel-inner').append(res);
+						$('.item').addClass('active');
+						$('#profileBlock').slideDown('slow');
+						$('#classesBlock').slideDown('slow');
+						profileBuild();
+						$('#cCard').click(
+							function() {
+								modalBuild($(this).children('.className').data('cid'),function(res) {
+									$('#myModal').modal('show');
+									$('#myModal').on('shown', function () {
+									});	
+								});					
+							}
+						);
+					});
+				}
+			}
+		);
+	}
 
 });
