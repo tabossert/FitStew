@@ -1,6 +1,10 @@
 $(document).ready(function(){
 	/* Settings */
 	$('#classesBlock').hide();
+	$('#clearSearch').hide();
+	var uToken = 'KPI6_lB1JFUlzKzo_DFhTt-kPxzqUz63cZQ9mDM87LdnWm_6GSRDdnEYb8-BVUaM';
+	var offset = moment().zone();
+
 	/*$('#partnerBlock').hide();*/
 	var cuToken = 'cus_1SaGAoDEDZkRvq';
 	$("#fundOver").popover().parent().delegate('#fundButton', 'click', function() {
@@ -9,7 +13,7 @@ $(document).ready(function(){
 		payInfo.amount = $('#fmaAmount').val();
 		payInfo.cToken = cuToken;
 		var payInfoJSON = JSON.stringify(payInfo);
-		authPostCall('http://api.fitstew.com/api/processPayment/',payInfoJSON,'FFoZbUKW1jVjKfBmPEScaeoTJpIZb3ONYkgPA0Qwlti_d0tNBWxWK41aTHWfBMVF',function(obj) {
+		authPostCall('http://api.fitstew.com/api/processPayment/',payInfoJSON,uToken,function(obj) {
 			updateBalance();
 		});
 	});
@@ -18,11 +22,89 @@ $(document).ready(function(){
 	/* Reusable functions */
 
 	function updateBalance() {
-		authGetCall('http://api.fitstew.com/api/balance/','FFoZbUKW1jVjKfBmPEScaeoTJpIZb3ONYkgPA0Qwlti_d0tNBWxWK41aTHWfBMVF',function(obj) {
+		authGetCall('http://api.fitstew.com/api/balance/',uToken,function(obj) {
 			$('#balance').html('$' + obj[0].balance);
 		});		
 	}
 	updateBalance();
+
+   function delay(){
+      setTimeout(function(){ 
+         $('#classMessage').hide();
+      }, 5000);
+    }	
+
+
+	/* Date stuff */
+	$('#classMessage').hide();
+
+   var startDate = moment().subtract('days',2).toDate();
+   $('#dpd').datepicker('setStartDate',startDate).on('changeDate', function(ev){
+   		$('#timeDown').remove();
+   		var dropTime = "";
+   		var dTime = $('#' + moment(ev.date.valueOf()).add('days',1).format('dddd')).data('time');
+   		if(dTime){
+	       	var timeArr = dTime.split(',');
+	    	$.each(timeArr, function(time, value) {
+			   //add to dropwdown here
+			   timec = moment(value, 'hh:mm').subtract('minutes',offset).local().format('h:mmA')
+			   dropTime = dropTime + '<option id="timeDown" value="' + timec + '">' + timec + '</option>';
+		   });
+		   $('#dpd').datepicker('hide');
+		   $('#timeMenu').html(dropTime);
+		} else {
+			$('#timeDown').remove();
+		}
+   });
+
+   function timeClick() {
+	   var timeLink = $('.time');
+	   timeLink.addClass("clickable");
+	   timeLink.click(
+	   		function() {
+				alert('Class scheduled');	   		
+	   		}
+	   );
+   }
+
+   $('#addschButton').click(
+		function() {
+			var dtcomb = $('#dpd').val() + ' ' + $('#timeMenu :selected').text();
+			var dt = moment(dtcomb, 'MM/DD/YYYY hh:mm').utc().format('YYYY-MM-DD HH:mm:ss');
+			var dataCon = '{"gymid": "' + $('.bactive').children('.pName').data('gid') + '","classid": "' + $('#classModal').data('cid') + '","datetime": "' + dt + '"}';
+			console.log(dataCon);
+			if($('#dpd').val() && moment($('#dpd').val()).isValid()); {
+				if(moment($('#timeMenu :selected').text()).isValid()); {
+					authPostCall('http://api.fitstew.com/api/addEvent/',dataCon,uToken,function(obj) {
+						if(obj.status == 'success') {
+							$('#classMessage').html('<span class="label label-success">Class Scheduled</span>');
+							$('#classMessage').show();
+							var schSid = obj.sid;
+							if($('#classModal').data('sid')) {
+								var dataCon = '{"sid": ' + $('#classModal').data('sid') + '}';
+								authPostCall('http://api.fitstew.com/api/deleteEvent/',dataCon,uToken,function(obj) {
+									$('#classModal').data('sid', schSid);
+									delay()
+									updateBalance();
+									buildSchedule(wkNum)
+								});
+							} else {
+								delay()
+								updateBalance();
+								buildSchedule(wkNum)
+							}
+						} else {
+							$('#classMessage').html('<span class="label label-important">Unable to Schedule</span>');
+							$('#classMessage').show();
+							delay()
+						}
+					});
+				}
+			}
+   });
+   
+   timeClick();
+
 
     var sli = 0;
     $('.carousel').carousel({
@@ -120,13 +202,10 @@ $(document).ready(function(){
 	    	var ccData = new Object();
 	    	ccData.email = $('#acsemail').val();
 	    	ccData.cToken = response['id'];
-	    	//if($('#acbButtonText').data('func') == 'update') {
-	    		ccData.cuToken = $('#acbcard').data('cToken');
-	    	//}
+	    	ccData.cuToken = $('#acbcard').data('cToken');
 	    	var ccDataJSON = JSON.stringify(ccData);
-	    	alert(ccDataJSON);
 	        var token = response['id'];
-	        authPostCall('http://api.fitstew.com/api/' + $('#acbButtonText').data('func') + 'CustomerToken/',ccDataJSON,'FFoZbUKW1jVjKfBmPEScaeoTJpIZb3ONYkgPA0Qwlti_d0tNBWxWK41aTHWfBMVF',function(obj) {
+	        authPostCall('http://api.fitstew.com/api/' + $('#acbButtonText').data('func') + 'CustomerToken/',ccDataJSON,uToken,function(obj) {
 	        	getBillingInfo()
 	        });
 			ccTrans = 0;
@@ -196,7 +275,7 @@ $(document).ready(function(){
 
     	var userDataJSON = JSON.stringify(userData);
 
-    	authPostCall('http://api.fitstew.com/api/updateUserPreferences/',userDataJSON,'FFoZbUKW1jVjKfBmPEScaeoTJpIZb3ONYkgPA0Qwlti_d0tNBWxWK41aTHWfBMVF',function() {
+    	authPostCall('http://api.fitstew.com/api/updateUserPreferences/',userDataJSON,uToken,function() {
     		alert("success");
     	})
 
@@ -231,7 +310,7 @@ $(document).ready(function(){
 
 
 
-    authGetCall('http://api.fitstew.com/api/userPreferences/','FFoZbUKW1jVjKfBmPEScaeoTJpIZb3ONYkgPA0Qwlti_d0tNBWxWK41aTHWfBMVF',function(obj) {
+    authGetCall('http://api.fitstew.com/api/userPreferences/',uToken,function(obj) {
     	$('#acsemail').val(obj[0].email);
     	$('#acsfname').val(obj[0].first_name);
     	$('#acslname').val(obj[0].last_name);
@@ -244,7 +323,7 @@ $(document).ready(function(){
 
     function getBillingInfo() {
 	    tempTokenJSON = JSON.stringify(tempToken);
-	   	authPostCall('http://api.fitstew.com/api/retrieveCustomer/',tempTokenJSON,'FFoZbUKW1jVjKfBmPEScaeoTJpIZb3ONYkgPA0Qwlti_d0tNBWxWK41aTHWfBMVF',function(obj) {
+	   	authPostCall('http://api.fitstew.com/api/retrieveCustomer/',tempTokenJSON,uToken,function(obj) {
 	   		if(!obj[0].ccard) {
 	   			$('#acbButtonText').html('Save');
 	   			$('#acbButtonText').data('func', 'create')
@@ -290,7 +369,7 @@ $(document).ready(function(){
 		$.ajax({
 		 	beforeSend: function(xhr) {
 			  xhr.setRequestHeader("ltype", "web");
-			  xhr.setRequestHeader("token", token);
+			  xhr.setRequestHeader("token", uToken);
 			},
 		    type: "POST",
 		    dataType: "json",
@@ -321,7 +400,7 @@ $(document).ready(function(){
 		$.ajax({
 		 	beforeSend: function(xhr) {
 			  xhr.setRequestHeader("ltype", "web");
-			  xhr.setRequestHeader("token", token);
+			  xhr.setRequestHeader("token", uToken);
 			},
 		    type: "GET",
 		    dataType: "json",
@@ -334,28 +413,28 @@ $(document).ready(function(){
 	    });
 	}
 
-
+    function authDeleteCall(uri,token,callback) {
+		$.ajax({
+		 	beforeSend: function(xhr) {
+			  xhr.setRequestHeader("ltype", "web");
+			  xhr.setRequestHeader("token", uToken);
+			},
+		    type: "DELETE",
+		    dataType: "json",
+		    contentType: "application/json",
+		    url: uri,
+		    success: function(response, status, xhr){
+		        console.log(response);
+		        callback(response);
+		    }
+	    });
+	}
 	/* Schedule Block */
 
-    // This function 
-    /*function buildSchedule(data) {
-    	$('#searchButton').click(false);
-    	// Perform POST call to send params and get back results
-     	postCall('http://api.fitstew.com/api/gymSearchAdvanced/',data, function(obj) {
-       		// Loop through each result and create card
-       		if(!obj.status) {
-		   		$.each( obj, function( key, value ) {
-		     		$('.eventCont').append('<div class="event"><div class="schTime">' + time + '</div><div class="schImages"><img src="' + value.image + '"><img src="' + value.image + '"></div><div class="row-fluid"><div class="schName">' + value.service + '</div></div>');
- 				});
-		    	// Call attachedCards function
-		    	//attachCards();
-	   		} else {
-	   		}
-	 	});
-		$('#searchButton').click(true);
-    }*/
+
+
     var wkNum = 0;
-    var schedjson = jQuery.parseJSON('[{"id": 385,"gymid": 22,"name": "Golds","classid": 21,"service": "Yoga", "gymImage": "golds.jpg", "image": "yoga.png","duration": 30,"datetime": "2013-03-07T16:15:00.000Z"}]');
+    //var schedjson = jQuery.parseJSON('[{"id": 704,"gymid": 22,"name": "Golds","classid": 21,"service": "Yoga", "gymImage": "golds.jpg", "image": "yoga.png","duration": 30,"datetime": "2013-03-07T16:15:00.000Z"}]');
 
 	function buildSchedule(wkNum) {
 		var week = moment().add('weeks', wkNum)
@@ -369,24 +448,42 @@ $(document).ready(function(){
 		var edayofweek = moment(sdayofweek).add('days', 7).format("YYYY-MM-DD");
 		var days = 0;
 
-		$('.event').remove();
-		var dayNames = new Array("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday");
-		$('#sMonth').html(today);
-		
-		for(var d = 0;d < daysinweek;d++)
-		{
-			$('#s' + dayNames[d]).children('.dayNum').html(moment(sdayofweek).format('DD'));
-			console.log('#s' + dayNames[d]);
-			console.log(sdayofweek);
-			$.each(schedjson, function(key, value) {
-				if(moment(value.datetime).format('YYYY-MM-DD') == moment(sdayofweek).format('YYYY-MM-DD')) {
-					console.log(moment(value.datetime).format('YYYY-MM-DD'));
-					$('#s' + dayNames[d]).children('.eventCont').append('<div class="event"><div class="schTime">' + moment(value.datetime).format('hh:mm') + '</div><div class="schImages"><img src="assets/img/' + value.gymImage + '"><img src="assets/img/schedule/' + value.image + '"></div><div class="row-fluid"><div class="schName">' + value.service + '</div></div>');
-					console.log(moment(value.datetime).format('hh:mm'));
+		var schData = new Object();
+		schData.start = moment(sdayofweek).format('YYYY-MM-DD');
+		schData.end = moment(edayofweek).format('YYYY-MM-DD');
+		schDataJSON = JSON.stringify(schData);
+
+		authPostCall('http://api.fitstew.com/api/userSchedule/',schDataJSON,uToken,function(schedjson) {
+
+			$('.event').remove();
+			var dayNames = new Array("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday");
+			$('#sMonth').html(today);
+			
+			for(var d = 0;d < daysinweek;d++)
+			{
+				$('#s' + dayNames[d]).children('.dayNum').html(moment(sdayofweek).format('DD'));
+				console.log('#s' + dayNames[d]);
+				console.log(sdayofweek);
+				$.each(schedjson, function(key, value) {
+					console.log("ineach");
+					if(moment(value.datetime).format('YYYY-MM-DD') == moment(sdayofweek).format('YYYY-MM-DD')) {
+						console.log(moment(value.datetime).format('YYYY-MM-DD'));
+						$('#s' + dayNames[d]).children('.eventCont').append('<div class="event" data-sid="' + value.id + '" data-cid="' + value.classid + '"><div class="schTime">' + moment(value.datetime).format('hh:mm') + '</div><div class="schImages"><img src="' + value.gymImage + '"><img src="assets/img/schedule/' + value.image + '"></div><div class="row-fluid"><div class="schName">' + value.service + '</div></div>');
+						console.log(moment(value.datetime).format('hh:mm'));
+					}
+				});
+				sdayofweek = moment(sdayofweek).add('days', 1);
+			}
+			$('.event').click(
+				function() {
+					modalBuild($(this).data('cid'),$(this).data('sid'),function(res) {
+						$('#classModal').modal('show');
+						$('#classModal').on('shown', function () {
+						});	
+					});				
 				}
-			});
-			sdayofweek = moment(sdayofweek).add('days', 1);
-		}
+			);
+		});
 	}	
 
 	buildSchedule(0);
@@ -455,22 +552,37 @@ $(document).ready(function(){
 			if(!$('#distance').val() || !$('#location').val()) {
 				$('#distance').tooltip('show');
 				$('#location').tooltip('show');
+			} else {
+				$('#classesBlock').slideUp('slow');
+				$('.carousel-inner').empty();
+				$('.pCard').remove();
+				
+				var data = '{';
+				data = data + '"address": "' + $('#location').val() + '", "maxDistance": "' + $('#distance').val() + '"';
+				if($('#terms').data('terms')) {
+					data = data + ',"workouts": "' + $('#terms').data('terms') + '"';
+				}
+				var data = data + '}';
+				buildCards(data);
+				$('#clearSearch').show();
+				$('#partnerBlock').slideDown('slow');
 			}
-			$('#classesBlock').slideUp('slow');
-			$('.carousel-inner').empty();
-			$('.pCard').remove();
-			
-			var data = '{';
-			data = data + '"address": "' + $('#location').val() + '", "maxDistance": "' + $('#distance').val() + '"';
-			if($('#terms').data('terms')) {
-				data = data + ',"workouts": "' + $('#terms').data('terms') + '"';
-			}
-			var data = data + '}';
-			buildCards(data);
-			$('#partnerBlock').slideDown('slow');
+
 	});
 
 	var terms;
+	$('#clearButton').click(
+		function() {
+			terms = "";
+			$('#terms').removeData('terms');
+			$('#terms').attr('placeholder', "Enter Classes");
+			$('#location').val("");
+			$('#distance').val("");
+			$('#classesBlock').slideUp('slow');
+			$('#partnerBlock').slideUp('slow');
+			$('#clearSearch').slideUp('slow');
+	});
+
 	$('#terms').keyup(function(e) {
 		if(e.keyCode == 13 && ($('#terms').val())) {
 			if(terms) {
@@ -523,6 +635,49 @@ $(document).ready(function(){
 	 	});
     };
 
+
+   function modalBuild(cid,sid,callback) {
+   $('#addSuccess').hide();
+    //Here We get the info for the class in question and it's fitness center
+    getCall('http://api.fitstew.com/api/getClass/' + cid,function(obj) {
+    	$.each( obj, function( key, value ) {
+   			$('#classModalLabel').html(value.service);
+   			$('#classModal').data('cid', cid);
+   			$('#dpd').val("");
+   			if(sid !== "") {
+   				$('#classModal').data('sid', sid);
+   				$('#addschButtonText').html('Reschedule');
+   			} else {
+   				$('#classModal').removeData('sid');
+   				$('#addschButtonText').html('Add to my schedule');
+   			}
+  			$('#classInstructor').html('Instructor: ' + value.instructor);
+  			$('#classDesc').html(value.desc);
+  			 			
+   		});
+   	});
+   	// Then we get the times for the class in question
+    getCall('http://api.fitstew.com/api/getClassTimes/' + cid,function(obj) {
+    	$('.day').remove();
+    	$.each( obj, function( key, value ) {
+    		var sched = "";
+    		console.log(value);
+    		if(value.time) {
+    		  sched = sched + '<div class="day" id="' + value.weekday + '" data-time="' + value.time + '"><div class="weekday">' + value.weekday + '</div>';
+    		  var timeArr = value.time.split(',');
+    			$.each(timeArr, function(key, time) {
+    				console.log(time);
+	    			sched = sched + '<div class="time">' + moment(time, 'hh:mm').subtract('minutes',offset).local().format('h:mmA') + '</div>';
+	    		});
+    		}
+    		sched = sched + '</div>';
+    		$('#classSched').append(sched);
+   		});
+   		console.log($('#myModal').data('cid'));
+   		callback(10);
+   	});
+   };
+
     function profileBuild() {
    	   $('#partnerName').html($('.bactive').children('.pName').data('name'));
    	   $('#partnerLogo').html('<img src="' + $('.bactive').children('.pImage').children('img').attr('src') + '">');
@@ -554,11 +709,11 @@ $(document).ready(function(){
 								$('.carousel-inner').append(res);
 								$('.carousel').carousel('next');
 								profileBuild();
-								$('#cCard').click(
+								$('.cCard').click(
 									function() {
-										modalBuild($(this).children('.className').data('cid'),function(res) {
-											$('#myModal').modal('show');
-											$('#myModal').on('shown', function () {
+										modalBuild($(this).children('.className').data('cid'),"",function(res) {
+											$('#classModal').modal('show');
+											$('#classModal').on('shown', function () {
 											});	
 										});				
 									}
@@ -574,11 +729,11 @@ $(document).ready(function(){
 						$('#profileBlock').slideDown('slow');
 						$('#classesBlock').slideDown('slow');
 						profileBuild();
-						$('#cCard').click(
+						$('.cCard').click(
 							function() {
-								modalBuild($(this).children('.className').data('cid'),function(res) {
-									$('#myModal').modal('show');
-									$('#myModal').on('shown', function () {
+								modalBuild($(this).children('.className').data('cid'),"",function(res) {
+									$('#classModal').modal('show');
+									$('#classModal').on('shown', function () {
 									});	
 								});					
 							}
