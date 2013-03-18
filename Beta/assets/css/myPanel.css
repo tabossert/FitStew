@@ -32,7 +32,13 @@
 	float: left;
 	height: 30px;
 	width: 60px;
-	margin-left: 10px;
+	margin-left: 0px;
+}
+
+#fundIcon {
+	padding-top: 5px;
+	margin-left: 5px;
+	float: left;
 }
 
 #amountText {
@@ -216,7 +222,7 @@
 #scheduleBlock .dayCont .eventCont .event {
 	border-radius: 15px;
 	width: 90%;
-	height: 120px;
+	height: 110px;
 	margin-bottom: 10px;
 	padding-top: 5px;
 	margin-right: auto;
@@ -239,8 +245,8 @@
 
 .schImages {
 	margin-top: 2px;
-	position: relative;
-	float: left;
+	/*position: relative;
+	float: left;*/
 }
 
 
@@ -544,6 +550,16 @@
   margin-left: 100px;
 }
 
+.acResult {
+	margin-top: 10px;
+	float: right;
+	margin-left: -50px;
+}
+
+#acbError {
+	margin-top: 40px;
+}
+
 
 /* Class Modal */
 .classModal {
@@ -657,7 +673,32 @@
   margin-right: 30px;
 }
 
-#addschButtonText {
+#deleteModal {
+	width: 600px;
+}
+
+#classModalHeader {
+	height: 20px;
+}
+
+#delMess {
+	margin-top: 10px;
+	margin-right: 10px;
+}
+
+#delschButton {
+	height: 40px;
+	width: 100px;
+}
+
+.schDel {
+	width: 80px;
+  	font-family: "SkolaSans-Bold";
+  	font-size: 14px;
+  	color: #57b547;
+}
+
+#addschButtonText, #delschButtonText {
   font-family: "SkolaSans-Bold";
   font-size: 14px;
   color: white;

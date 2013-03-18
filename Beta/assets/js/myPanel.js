@@ -14,7 +14,12 @@ $(document).ready(function(){
 		payInfo.cToken = cuToken;
 		var payInfoJSON = JSON.stringify(payInfo);
 		authPostCall('http://api.fitstew.com/api/processPayment/',payInfoJSON,uToken,function(obj) {
-			updateBalance();
+			if(obj.status = "success") {
+				$('#fundIcon').html('<i style="color: #57b547;" class="icon-ok icon-large">');
+				updateBalance();
+			} else {
+				$('#fundIcon').html('<i style="color: red;" class="icon-exclamation-sign icon-large">');
+			}
 		});
 	});
 
@@ -28,9 +33,9 @@ $(document).ready(function(){
 	}
 	updateBalance();
 
-   function delay(){
+   function delay(callback){
       setTimeout(function(){ 
-         $('#classMessage').hide();
+         callback(1);
       }, 5000);
     }	
 
@@ -84,25 +89,27 @@ $(document).ready(function(){
 								var dataCon = '{"sid": ' + $('#classModal').data('sid') + '}';
 								authPostCall('http://api.fitstew.com/api/deleteEvent/',dataCon,uToken,function(obj) {
 									$('#classModal').data('sid', schSid);
-									delay()
 									updateBalance();
 									buildSchedule(wkNum)
 								});
 							} else {
-								delay()
 								updateBalance();
 								buildSchedule(wkNum)
 							}
 						} else {
 							$('#classMessage').html('<span class="label label-important">Unable to Schedule</span>');
 							$('#classMessage').show();
-							delay()
 						}
+					});
+					delay(function() {
+						$('#classMessage').hide();
 					});
 				}
 			}
    });
    
+
+
    timeClick();
 
 
@@ -206,7 +213,16 @@ $(document).ready(function(){
 	    	var ccDataJSON = JSON.stringify(ccData);
 	        var token = response['id'];
 	        authPostCall('http://api.fitstew.com/api/' + $('#acbButtonText').data('func') + 'CustomerToken/',ccDataJSON,uToken,function(obj) {
-	        	getBillingInfo()
+	        	if(obj.status = 'success') {
+	        		$('#acbResult').html('<i style="color: #57b547;" class="icon-ok icon-2x">');
+	        		getBillingInfo();
+	        	} else {
+	        		$('#acbResult').html('<i style="color: red;" class="icon-exclamation-sign icon-2x">');
+	        		$('#acbError').html('<span class="label label-important">Important</span>');
+	        	}
+	        	delay(function() {
+	        		$('#acbResult').html("");
+	        	});
 	        });
 			ccTrans = 0;
 	    }
@@ -275,8 +291,15 @@ $(document).ready(function(){
 
     	var userDataJSON = JSON.stringify(userData);
 
-    	authPostCall('http://api.fitstew.com/api/updateUserPreferences/',userDataJSON,uToken,function() {
-    		alert("success");
+    	authPostCall('http://api.fitstew.com/api/updateUserPreferences/',userDataJSON,uToken,function(obj) {
+    		if(obj.status == 'success') {
+    			$('#acsResult').html('<i style="color: #57b547;" class="icon-ok icon-2x">');
+    		} else {
+    			$('#acsResult').html('<i style="color: red;" class="icon-exclamation-sign icon-2x">');
+    		}
+	        delay(function() {
+	        	$('#acsResult').html("");
+	        });
     	})
 
     })
@@ -468,7 +491,7 @@ $(document).ready(function(){
 					console.log("ineach");
 					if(moment(value.datetime).format('YYYY-MM-DD') == moment(sdayofweek).format('YYYY-MM-DD')) {
 						console.log(moment(value.datetime).format('YYYY-MM-DD'));
-						$('#s' + dayNames[d]).children('.eventCont').append('<div class="event" data-sid="' + value.id + '" data-cid="' + value.classid + '"><div class="schTime">' + moment(value.datetime).format('hh:mm') + '</div><div class="schImages"><img src="' + value.gymImage + '"><img src="assets/img/schedule/' + value.image + '"></div><div class="row-fluid"><div class="schName">' + value.service + '</div></div>');
+						$('#s' + dayNames[d]).children('.eventCont').append('<div class="event" data-sid="' + value.id + '" data-cid="' + value.classid + '"><div class="container-fluid"><div class="row-fluid"><div class="span12"><div class="row-fluid"><div class="schTime span6 offset2">' + moment(value.datetime).format('hh:mm') + '</div><div class="schDel span2 offset2">X</div></div></div><div class="row-fluid"><div class="schImages span6"><img src="' + value.gymImage + '"></div><div class="schImages span6"><img src="assets/img/schedule/' + value.image + '"></div></div><div class="row-fluid"><div class="schName">' + value.service + '</div></div></div></div>');
 						console.log(moment(value.datetime).format('hh:mm'));
 					}
 				});
@@ -483,10 +506,26 @@ $(document).ready(function(){
 					});				
 				}
 			);
+			$('.schDel').click(function(e) {
+				e.stopPropagation();
+				$('#deleteModal').data('sid',$(this).parents('.event').data('sid'));
+				$('#deleteModal').modal('show');
+			});
 		});
 	}	
 
+	$('#delschButton').click(function() {
+		var dataCon = '{"sid": ' + $('#deleteModal').data('sid') + '}';
+		authPostCall('http://api.fitstew.com/api/deleteEvent/',dataCon,uToken,function(obj) {
+			$('#deleteModal').data('sid');
+			$('#deleteModal').modal('hide')
+			updateBalance();
+			buildSchedule(wkNum)
+		});		
+	});
+
 	buildSchedule(0);
+
 
 	$('#prevWeek').click(
 		function() {
