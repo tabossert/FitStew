@@ -1,0 +1,203 @@
+
+
+
+#lHeader {
+	height: 120px;
+	background-color: white;
+}
+
+.logo { 
+	margin-top: 30px;
+}
+
+.nav-tabs > li > a,
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
+	height: 15px;
+	margin-top: 7px;
+	background-color: #57b547;
+	border-color: #57b547;
+	color: white;
+}
+
+.nav-tabs > .active > a,
+.nav-tabs > .active > a:hover,
+.nav-tabs > .active > a:focus {
+	background-color: #00adef;
+	border-color: #00adef;
+	color: white;
+}
+
+#loginBlock {
+	margin-top: 20px;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: gray;
+
+}
+
+.loginLink {
+	float: right;
+	margin-right: 5px;
+}
+
+#uLogin {
+	font-family: "SkolaSans-Bold";
+	font-size: 14px;
+	color: #57b547;
+}
+
+#pLogin {
+	font-family: "SkolaSans-Bold";
+	font-size: 14px;
+	color: #00adef;
+}
+
+#socialBlock {
+	margin-top: 20px;
+	font-family: "SkolaSans-Regular";
+	font-size: 14px;
+	color: gray;
+	margin-left: 5px;
+}
+
+#socIcons {
+	float: right;
+	margin-right: 20px;
+}
+
+#hero {
+	background:#FFFFFF url('../img/hero.png') no-repeat;
+	background-size:100%;
+	height: 100%;
+	height: 450px;
+}
+
+#heroBlock {
+	margin-top: 40px;
+}
+
+.heroMess {
+	margin-top: 20px;
+	font-family: "SkolaSans-Bold";
+	font-size: 18px;
+	color: #57b547;
+	text-align: center;
+}
+
+.heroBreak {
+	border-bottom-width: 1px;
+	border-bottom-color: #57b547;
+	border-bottom-style: solid;
+}
+
+#hero #heroOverlay {
+	background: url('../img/greenBackground.png');
+	background-size:100%;
+	height: 100px;
+	margin-top: 42px;
+}
+
+#heroOverlayTitle {
+	margin-top: 10px;
+	color: white;
+	font-family: "SkolaSans-Bold";
+	font-size: 14px;
+	text-align: center
+}
+
+#heroOverlayMess {
+	color: white;
+	font-family: "SkolaSans-Regular";
+	font-size: 14px;
+	text-align: center
+}
+
+#gghiw {
+	height: 250px;
+}
+
+#phiw {
+	height: 250px;
+}
+
+#gghiw .hiwCircle{
+	font-family: "SkolaSans-Bold";
+	font-size: 12px;
+	color: #57b547;
+	text-align: center;
+}
+
+#phiw .hiwCircle{
+	font-family: "SkolaSans-Bold";
+	font-size: 12px;
+	color: #00adef;
+	text-align: center;
+}
+
+.greenBreak {
+	height: 40px;
+	background-color: white;
+}
+
+.blueBreak {
+	height: 40px;
+	background-color: white;
+}
+
+.blueBreak .overLine {
+	height: 20px;
+	background-color: white;
+	border-bottom-color: #00adef;
+}
+
+.blueBreak .overLine .midLine {
+	height: 40px;
+	width: 220px;
+	background-color: white;
+}
+
+.blueBreak .overLine .midLine .midLineText {
+	height: 40px;
+	color: #00adef;
+	padding-top: 10px; 
+	font-family: "SkolaSans-Bold";
+	font-size: 14px;
+}
+
+.greenBreak .overLine {
+	height: 20px;
+	background-color: white;
+	border-bottom-color: #57b547;
+}
+
+.greenBreak .overLine .midLine {
+	height: 40px;
+	width: 220px;
+	background-color: white;
+}
+
+.greenBreak .overLine .midLine .midLineText {
+	height: 40px;
+	color: #57b547;
+	padding-top: 10px;
+	font-family: "SkolaSans-Bold";
+	font-size: 14px; 
+}
+
+#pShow {
+	height: 150px;
+	background-color: #57b547;
+}
+
+#pShow .overLine .midLine {
+	background-color: #57b547;
+}
+
+#pShow .overLine .midLine .midLineText {
+	color: white;
+	font-family: "SkolaSans-Bold";
+	font-size: 16px;
+}

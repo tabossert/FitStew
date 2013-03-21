@@ -1,9 +1,17 @@
 $(document).ready(function(){
 	/* Settings */
+	var backArr = ['assets/img/background.png','assets/img/background2.jpg','assets/img/background3.jpg','assets/img/background4.jpg','assets/img/background5.jpg'];
+	var rand = backArr[Math.floor(Math.random() * backArr.length)];
+
+	$('body').css('background', "url('" + rand + "') no-repeat;");
+	$('body').css({'background-image' : 'url(' + rand + ')','background-repeat': 'no-repeat'});
+
 	$('#classesBlock').hide();
 	$('#clearSearch').hide();
-	var uToken = 'KPI6_lB1JFUlzKzo_DFhTt-kPxzqUz63cZQ9mDM87LdnWm_6GSRDdnEYb8-BVUaM';
+	//var uToken = 'KPI6_lB1JFUlzKzo_DFhTt-kPxzqUz63cZQ9mDM87LdnWm_6GSRDdnEYb8-BVUaM';
+	var uToken = localStorage['uToken'];
 	var offset = moment().zone();
+
 
 	/*$('#partnerBlock').hide();*/
 	var cuToken = 'cus_1SaGAoDEDZkRvq';
@@ -23,6 +31,16 @@ $(document).ready(function(){
 		});
 	});
 
+
+	$('#logout').click(function() {
+		authGetCall('http://api.fitstew.com/api/userSignout/',uToken,function(obj) {
+			console.log(obj.status);
+			if(obj.status) {
+				localStorage['uToken'] = "";
+				window.location = "http://web-dev.fitstew.com/tbossert/Beta/index.html";
+			}
+		});
+	});
 
 	/* Reusable functions */
 
@@ -97,7 +115,7 @@ $(document).ready(function(){
 								buildSchedule(wkNum)
 							}
 						} else {
-							$('#classMessage').html('<span class="label label-important">Unable to Schedule</span>');
+							$('#classMessage').html('<span class="label label-important">' + obj.message + '</span>');
 							$('#classMessage').show();
 						}
 					});
