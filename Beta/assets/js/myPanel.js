@@ -10,25 +10,33 @@ $(document).ready(function(){
 	$('#clearSearch').hide();
 	//var uToken = 'KPI6_lB1JFUlzKzo_DFhTt-kPxzqUz63cZQ9mDM87LdnWm_6GSRDdnEYb8-BVUaM';
 	var uToken = localStorage['uToken'];
+	var cuToken = localStorage['cuToken'];
 	var offset = moment().zone();
 
 
 	/*$('#partnerBlock').hide();*/
-	var cuToken = 'cus_1SaGAoDEDZkRvq';
 	$("#fundOver").popover().parent().delegate('#fundButton', 'click', function() {
 		$("#fundButton").hide();
-		var payInfo = new Object();
-		payInfo.amount = $('#fmaAmount').val();
-		payInfo.cToken = cuToken;
-		var payInfoJSON = JSON.stringify(payInfo);
-		authPostCall('http://api.fitstew.com/api/processPayment/',payInfoJSON,uToken,function(obj) {
-			if(obj.status = "success") {
-				$('#fundIcon').html('<i style="color: #57b547;" class="icon-ok icon-large">');
-				updateBalance();
-			} else {
-				$('#fundIcon').html('<i style="color: red;" class="icon-exclamation-sign icon-large">');
-			}
-		});
+		if ($('#fmaAmount').val()) {
+			var payInfo = new Object();
+			payInfo.amount = $('#fmaAmount').val();
+			payInfo.cToken = $('#acbcard').data('cToken');
+			var payInfoJSON = JSON.stringify(payInfo);
+			authPostCall('http://api.fitstew.com/api/processPayment/',payInfoJSON,uToken,function(obj) {
+				if(obj.status = "success") {
+					$('#fundIcon').html('<i style="color: #57b547;" class="icon-ok icon-large">');
+					updateBalance();
+				} else {
+					$('#fundIcon').html('<i style="color: red;" class="icon-exclamation-sign icon-large">');
+				}
+			});
+		} else {
+			$('#fundIcon').html('<i style="color: red;" class="icon-exclamation-sign icon-large">');
+				delay(function() {
+					$('#fundIcon').html("");
+					$("#fundButton").show();
+			})
+		}
 	});
 
 
@@ -181,7 +189,7 @@ $(document).ready(function(){
 	/* Account Modal */
 	var ccTrans = 0;
 	var tempToken = new Object();
-	tempToken.cToken = 'cus_1SaGAoDEDZkRvq';
+	tempToken.cToken = $('#acbcard').data('cToken');
 	$('#acbButtonText').data('func', 'create')
 
 	$('#accountSettings').click(
@@ -232,6 +240,7 @@ $(document).ready(function(){
 	        var token = response['id'];
 	        authPostCall('http://api.fitstew.com/api/' + $('#acbButtonText').data('func') + 'CustomerToken/',ccDataJSON,uToken,function(obj) {
 	        	if(obj.status = 'success') {
+	        		localStorage['cuToken'] = obj.cToken;
 	        		$('#acbResult').html('<i style="color: #57b547;" class="icon-ok icon-2x">');
 	        		getBillingInfo();
 	        	} else {
@@ -360,10 +369,13 @@ $(document).ready(function(){
     	$('#acscity').val(obj[0].city);
     	$('#acsstate').val(obj[0].state);
     	$('#acszipcode').val(obj[0].zipcode);
+    	localStorage['cuToken'] = obj[0].cToken;
    	})
 
     function getBillingInfo() {
-	    tempTokenJSON = JSON.stringify(tempToken);
+    	var ttToken = new Object();
+    	ttToken.cToken = localStorage['cuToken']
+	    tempTokenJSON = JSON.stringify(ttToken);
 	   	authPostCall('http://api.fitstew.com/api/retrieveCustomer/',tempTokenJSON,uToken,function(obj) {
 	   		if(!obj[0].ccard) {
 	   			$('#acbButtonText').html('Save');
@@ -385,6 +397,7 @@ $(document).ready(function(){
 		    	$('#acbexpmonth').attr('placeholder',obj[0].exp_month);
 		    	$('#acbexpyear').attr('placeholder',obj[0].exp_year);
 		    	$('#acbcard').data('cToken', obj[0].cuToken);
+		    	localStorage['cuToken'] = obj[0].cuToken;
 		    }
 	   	})
 	}	
