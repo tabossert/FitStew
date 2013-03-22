@@ -172,6 +172,7 @@ body {
 .nav-tabs > .active > a:hover,
 .nav-tabs > .active > a:focus {
 	border-bottom-color: #00adef;
+	border-color: #00adef;
 	background-color: #00adef;
 	color: white;
 }
