@@ -2,6 +2,7 @@
 body {
 	background:#FFFFFF url('../img/background2.png') no-repeat;
 	background-size:100%;
+	background-attachment: fixed;
 	height: 100%;
 	font-family: "SkolaSans-Regular";
 	font-size: 14px;

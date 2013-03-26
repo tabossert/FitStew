@@ -23,7 +23,7 @@ $(document).ready(function(){
 			payInfo.cToken = $('#acbcard').data('cToken');
 			var payInfoJSON = JSON.stringify(payInfo);
 			authPostCall('http://api.fitstew.com/api/processPayment/',payInfoJSON,uToken,function(obj) {
-				if(obj.status = "success") {
+				if(obj.status == "success") {
 					$('#fundIcon').html('<i style="color: #57b547;" class="icon-ok icon-large">');
 					updateBalance();
 				} else {
