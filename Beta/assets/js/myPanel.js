@@ -45,7 +45,7 @@ $(document).ready(function(){
 			console.log(obj.status);
 			if(obj.status) {
 				localStorage['uToken'] = "";
-				window.location = "http://web-dev.fitstew.com/Beta/index.html";
+				window.location = "http://web-dev.fitstew.com/Beta/";
 			}
 		});
 	});
