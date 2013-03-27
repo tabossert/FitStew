@@ -42,7 +42,7 @@
           	  	  	    <a href="#" data-placement="bottom" data-html="true" data-content="<form><input id='fmaAmount' type='text' class='rounded' placeholder=''/><div id='fundIcon'></div><div id='fundButton' class='panelButton'><div id='amountText'>Fund</div></div></form>" data-trigger="click" rel="popover" id="fundOver"><i class="icon-credit-card icon-large"></i>&nbsp;<span class="text">Fund My Account</span></a>
           	  	  	  </div>
           	  	  	  <div class="qAction">
-          	  	  	    <a title="" href="#"><i class="icon-money icon-large"></i>&nbsp;<span id="balance" class="text">$100.25</span></a>
+          	  	  	    <a title="" href="#"><i class="icon-money icon-large"></i>&nbsp;<span id="balance" class="text">$0.00</span></a>
           	  	  	  </div>
           	  	  	  <div class="qAction">
           	  	  	    <a id="accountSettings"><i class="icon-user icon-large"></i> <span class="text">Account Settings</span></a>
