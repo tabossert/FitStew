@@ -1,7 +1,7 @@
 
 if(localStorage['uToken'] && localStorage['fitTime'] > moment().subtract('minutes', 30).unix()) {
 
-	window.location = "http://localhost/Beta/myPanel";
+	window.location = "http://web-dev.fitstew.com/Beta/myPanel";
 }
 
 $(document).ready(function(){

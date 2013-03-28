@@ -1,7 +1,7 @@
 if(!localStorage['uToken'] || localStorage['fitTime'] < moment().subtract('minutes', 30).unix()) {
 	window.location = "http://web-dev.fitstew.com/Beta/";
 }
-alert(localStorage['fitTime']);
+
 
 $(document).ready(function(){
 
@@ -52,7 +52,7 @@ $(document).ready(function(){
 			console.log(obj.status);
 			if(obj.status) {
 				localStorage['uToken'] = "";
-				window.location = "http://localhost/Beta/";
+				window.location = "http://web-dev.fitstew.com/Beta/";
 			}
 		});
 	});
@@ -70,8 +70,15 @@ $(document).ready(function(){
       setTimeout(function(){ 
          callback(1);
       }, 5000);
+    }
+
+    function updateTimestamp() {
+    	localStorage['fitTime'] = moment().unix();
     }	
 
+    $(document).click(function(e) {
+    		updateTimestamp();
+    });
 
 	/* Date stuff */
 	$('#classMessage').hide();
