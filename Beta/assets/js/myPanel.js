@@ -73,7 +73,11 @@ $(document).ready(function(){
     }
 
     function updateTimestamp() {
-    	localStorage['fitTime'] = moment().unix();
+    	if(localStorage['fitTime'] < moment().subtract('minutes', 30).unix()) {
+    		window.location = "http://web-dev.fitstew.com/Beta/";
+    	} else {
+    		localStorage['fitTime'] = moment().unix();
+    	}
     }	
 
     $(document).click(function(e) {
