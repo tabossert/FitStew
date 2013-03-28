@@ -1,4 +1,9 @@
+if(!localStorage['uToken']) {
+	window.location = "http://web-dev.fitstew.com/Beta/";
+}
+
 $(document).ready(function(){
+
 	/* Settings */
 	var backArr = ['assets/img/background.png','assets/img/background2.jpg','assets/img/background3.jpg','assets/img/background4.jpg','assets/img/background5.jpg'];
 	var rand = backArr[Math.floor(Math.random() * backArr.length)];
@@ -8,10 +13,12 @@ $(document).ready(function(){
 
 	$('#classesBlock').hide();
 	$('#clearSearch').hide();
-	//var uToken = 'KPI6_lB1JFUlzKzo_DFhTt-kPxzqUz63cZQ9mDM87LdnWm_6GSRDdnEYb8-BVUaM';
+
+
 	var uToken = localStorage['uToken'];
 	var cuToken = localStorage['cuToken'];
 	var offset = moment().zone();
+
 
 
 	/*$('#partnerBlock').hide();*/
