@@ -13,6 +13,7 @@
   <script src="assets/js/jquery.ui.custom.js"></script>
   <script src="assets/js/jquery.smooth-scroll.min.js"></script>
   <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/moment.min.js"></script>
   <script src="assets/js/landing.js"></script>
   <!-- MouseStats:Begin -->
   <script type="text/javascript">(function () {
@@ -144,7 +145,8 @@
             success: function (data) {
               console.log(data);
               localStorage['uToken'] = data[0].token;
-              window.location = "http://web-dev.fitstew.com/Beta/myPanel"
+              localStorage['fitTime'] = moment().unix();
+              window.location = "http://localhost/Beta/myPanel"
             },
             error: function (xhr, status, p3, p4) {
                 console.log(xhr);
@@ -175,13 +177,13 @@
               </div>
             </div>
             <div id="socialBlock" class="span2">
-              Follow
+              <!--Follow-->
               <div id="socIcons"> 
                 <!-- <img src="assets/img/fbook_circle.png"> -->
 		<div class="fb-like" data-href="http://www.fitstew.com" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
                 <img src="assets/img/twitter_circle.png">
               </div>
-              <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Us:
+              <!--<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Us:-->
             </div>
             <div class="span7 offset1">
               <ul class="nav nav-tabs lTabs">

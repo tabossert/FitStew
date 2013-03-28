@@ -1,6 +1,7 @@
-if(!localStorage['uToken']) {
+if(!localStorage['uToken'] || localStorage['fitTime'] < moment().subtract('minutes', 30).unix()) {
 	window.location = "http://web-dev.fitstew.com/Beta/";
 }
+alert(localStorage['fitTime']);
 
 $(document).ready(function(){
 
@@ -18,10 +19,9 @@ $(document).ready(function(){
 	var uToken = localStorage['uToken'];
 	var cuToken = localStorage['cuToken'];
 	var offset = moment().zone();
+	var wkNum = 0;
 
 
-
-	/*$('#partnerBlock').hide();*/
 	$("#fundOver").popover().parent().delegate('#fundButton', 'click', function() {
 		$("#fundButton").hide();
 		if ($('#fmaAmount').val()) {
@@ -52,7 +52,7 @@ $(document).ready(function(){
 			console.log(obj.status);
 			if(obj.status) {
 				localStorage['uToken'] = "";
-				window.location = "http://web-dev.fitstew.com/Beta/";
+				window.location = "http://localhost/Beta/";
 			}
 		});
 	});
@@ -490,12 +490,9 @@ $(document).ready(function(){
 		    }
 	    });
 	}
+	
+
 	/* Schedule Block */
-
-
-
-    var wkNum = 0;
-    //var schedjson = jQuery.parseJSON('[{"id": 704,"gymid": 22,"name": "Golds","classid": 21,"service": "Yoga", "gymImage": "golds.jpg", "image": "yoga.png","duration": 30,"datetime": "2013-03-07T16:15:00.000Z"}]');
 
 	function buildSchedule(wkNum) {
 		var week = moment().add('weeks', wkNum)
@@ -820,5 +817,4 @@ $(document).ready(function(){
 			}
 		);
 	}
-
 });
