@@ -69,6 +69,7 @@
 }
 
 #hero {
+	margin-top: 10px;
 	background:#FFFFFF url('../img/hero.png') no-repeat;
 	background-size:100%;
 	height: 100%;
