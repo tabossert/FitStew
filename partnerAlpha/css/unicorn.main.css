@@ -1392,6 +1392,10 @@ form {
 	width: 20% !important;
 }
 
+.form-horizontal .input-small2 {
+	width: 35% !important;
+}
+
 .form-horizontal .input-medium {
 	width: 50% !important;
 }
@@ -1411,6 +1415,18 @@ form {
 .sBox {
 	margin-right: 5px;
 	margin-top: 4px;
+}
+
+.controls {
+	/*width: 200px;*/
+}
+
+.addTime {
+	margin-left: 40px;
+}
+
+.cfTime {
+	/*margin-right: -70px;*/
 }
 
 /**/

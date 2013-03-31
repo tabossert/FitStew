@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>FitStew Admin</title>
+		<title>FitStew Partner Portal</title>
 		<meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
 		<link rel="stylesheet" href="css/fullcalendar.css" />	
 		<!--<link rel="stylesheet" href="css/font-awesome.min.css" />-->
+		<link rel="stylesheet" href="css/bootstrap-timepicker.css" />
 		<link rel="stylesheet" href="css/unicorn.main.css" />
 		<link rel="stylesheet" href="css/unicorn.grey.css" class="skin-color" />
 	</head>
@@ -39,7 +40,7 @@
 			<a href="#" class="visible-phone"><i class="icon icon-home"></i>Dashboard</a>
 			<ul>
 				<li id="home" class="active"><a href="#"><i class="icon icon-home"></i><span>Home</span></a></li>
-				<li id="dashNav"><a href="#"><i class="icon icon-th-large"></i><span>Dashboard</span></a></li>
+				<li id="dashNav"><a href="#"><i class="icon icon-signal"></i><span>Dashboard</span></a></li>
 				<li id="schedNav"><a href="#" class=""><i class="icon icon-calendar"></i><span>Schedule</span></a></li>
 				<li id="classNav"><a href="#" class=""><i class="icon icon-th-list"></i><span>Classes</span></a></li>
 				<li id="locNav"><a href="#" class=""><i class="icon icon-map-marker"></i><span>Location Info</span></a></li>
@@ -140,7 +141,7 @@
 								</div>
 							</li>
 							<li class="popover-tickets">
-								<div class="left peity_line_good"><span>12,6,9,23,14,10,17</span>+70%</div>
+								<div class="left peity_bar_good"><span>12,6,9,23,14,10,17</span>+70%</div>
 								<div class="right">
 									<strong>2968</strong>
 									Kickboxing
@@ -284,15 +285,176 @@
 					</div>
 				</div>
 			</div>
+			<div id="classes" class="container-fluid page">
+				<div class="row-fluid">
+					<div class="span12">
+						<div id="classForm" class="widget-box">
+							<div class="widget-title">
+								<span class="icon">
+									<i class="icon-align-justify"></i>									
+								</span>
+								<h5>Class Add/Edit</h5>
+							</div>
+							<div class="widget-content nopadding">
+								<form action="#" method="get" class="form-horizontal">
+									<div class="control-group">
+										<label class="control-label">Name</label>
+										<div class="controls">
+											<input id="cfName" type="text" class="input-medium" />
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Duration</label>
+										<div class="controls">
+											<input id="cfDuration" type="text" class="input-tiny" />
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Price</label>
+										<div class="controls">
+											<div class="input-prepend input-append">
+  												<span class="add-on">$</span>
+												<input id="cfPrice" type="text" class="input-small2" />
+											</div>
+										</div>
+									</div>									
+									<div class="control-group">
+										<label class="control-label">spots</label>
+										<div class="controls">
+											<input id="cfSpots" type="text" class="input-tiny" />
+										</div>
+									</div>	
+									<div class="control-group">
+										<label class="control-label">Monday</label>
+										<div class="controls controls-row">
+											<a class="addTime"><i class="icon-plus"></i></a>
+											<div id="crMonday" class="timeRow">
+											</div>
+										</div>
+									</div>										
+									<div class="control-group">
+										<label class="control-label">Tuesday</label>
+										<div class="controls controls-row">	
+											<a class="addTime"><i class="icon-plus"></i></a>	
+											<div id="crTuesday" class="timeRow">
+											</div>								
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Wednesday</label>
+										<div class="controls controls-row">
+											<a class="addTime"><i class="icon-plus"></i></a>
+											<div id="crWednesday" class="timeRow">
+											</div>
+										</div>
+									</div>	
+									<div class="control-group">
+										<label class="control-label">Thursday</label>
+										<div class="controls controls-row">
+											<a class="addTime"><i class="icon-plus"></i></a>
+											<div id="crThursday" class="timeRow">
+											</div>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Friday</label>
+										<div class="controls controls-row">
+											<a class="addTime"><i class="icon-plus"></i></a>
+											<div id="crFriday" class="timeRow">
+											</div>
+										</div>
+									</div>										
+									<div class="control-group">
+										<label class="control-label">Saturday</label>
+										<div class="controls controls-row">
+											<a class="addTime"><i class="icon-plus"></i></a>
+											<div id="crSaturday" class="timeRow">
+											</div>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Sunday</label> 
+										<div class="controls controls-row cfRow">
+											<a class="addTime"><i class="icon-plus"></i></a>
+											<div id="crSunday" class="timeRow">
+											</div>											
+										</div>
+									</div>
+
+									<div class="form-actions">
+										<button id="classSave" type="submit" class="btn btn-primary">Save</button>
+									</div>
+								</form>
+							</div>
+						</div>	
+						<button id="classAdd" type="submit" class="btn btn-primary">Add Class</button>
+						<div class="widget-box">
+							<div class="widget-title">
+								<span class="icon"><i class="icon-th-list"></i></span><h5>Classes</h5>
+							</div>
+							<div class="widget-content nopadding">
+								<table id="classTable" class="table table-bordered table-striped table-hover data-table">
+									<thead>
+									<tr>
+									<th></th>
+									<th>Name</th>
+									<th>Duration</th>
+									<th>Price</th>
+									<th>Spots</th>
+									<th>Monday</th>
+									<th>Tuesday</th>
+									<th>Wednesday</th>
+									<th>Thursday</th>
+									<th>Friday</th>
+									<th>Saturday</th>
+									<th>Sunday</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr id="1" class="gradeX">
+									<td><input class="pull-right" id="1" type="checkbox" /></td>
+									<td id="cName">Karate</td>
+									<td id="cDuration">30</td>
+									<td id="cPrice">10</td>
+									<td id="cSpots">30</td>
+									<td id="cMonday">2:00PM 4:00PM</td>
+									<td id="cTuesday">2:00PM 4:00PM</td>
+									<td id="cWednesday">2:00PM 4:00PM</td>
+									<td id="cThursday">2:00PM 4:00PM</td>
+									<td id="cFriday"></td>
+									<td id="cSaturday"></td>
+									<td id="cSunday">2:00PM 4:00PM</td>
+									</tr>
+									<tr id="5" class="gradeC">
+									<td><input class="pull-right" id="5" type="checkbox" /></td>
+									<td id="cName">Yoga</td>
+									<td id="cDuration">30</td>
+									<td id="cPrice">15</td>
+									<td id="cSpots">30</td>
+									<td id="cMonday">2:00PM 4:00PM</td>
+									<td id="cTuesday">2:00PM 4:00PM</td>
+									<td id="cWednesday">2:00PM 4:00PM</td>
+									<td id="cThursday">2:00PM 4:00PM</td>
+									<td id="cFriday">2:00PM 4:00PM</td>
+									<td id="cSaturday">2:00PM 4:00PM</td>
+									<td id="cSunday">2:00PM 4:00PM</td>
+									</tr>
+								  </tbody>
+								</table>  
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<div id="location" class="container-fluid page">
 				<div class="row-fluid">
 					<div class="span12">
 						<div class="widget-box">
 							<div class="widget-title">
 								<span class="icon">
-									<i class="icon-align-justify"></i>									
+									<i class="icon-map-marker"></i>									
 								</span>
-								<h5>Partner Profile</h5>
+								<h5>Partner Location Profile</h5>
 							</div>
 							<div class="widget-content nopadding">
 								<form action="#" method="get" class="form-horizontal">
@@ -305,9 +467,58 @@
 									<div class="control-group">
 										<label class="control-label">State</label>
 										<div class="controls">
-											<select class="input-tiny">
-												<option>CA</option>
-												<option>MI</option>
+											<select class="input-tiny2">
+											  <option value="AK">AK</option>
+											  <option value="AL">AL</option>
+											  <option value="AR">AR</option>
+											  <option value="AZ">AZ</option>
+											  <option value="CA">CA</option>
+											  <option value="CO">CO</option>
+											  <option value="CT">CT</option>
+											  <option value="DC">DC</option>
+											  <option value="DE">DE</option>
+											  <option value="FL">FL</option>
+											  <option value="GA">GA</option>
+											  <option value="HI">HI</option>
+											  <option value="IA">IA</option>
+											  <option value="ID">ID</option>
+											  <option value="IL">IL</option>
+											  <option value="IN">IN</option>
+											  <option value="KS">KS</option>
+											  <option value="KY">KY</option>
+											  <option value="LA">LA</option>
+											  <option value="MA">MA</option>
+											  <option value="MD">MD</option>
+											  <option value="ME">ME</option>
+											  <option value="MI">MI</option>
+											  <option value="MN">MN</option>
+											  <option value="MO">MO</option>
+											  <option value="MS">MS</option>
+											  <option value="MT">MT</option>
+											  <option value="NC">NC</option>
+											  <option value="ND">ND</option>
+											  <option value="NE">NE</option>
+											  <option value="NH">NH</option>
+											  <option value="NJ">NJ</option>
+											  <option value="NM">NM</option>
+											  <option value="NV">NV</option>
+											  <option value="NY">NY</option>
+											  <option value="OH">OH</option>
+											  <option value="OK">OK</option>
+											  <option value="OR">OR</option>
+											  <option value="PA">PA</option>
+											  <option value="RI">RI</option>
+											  <option value="SC">SC</option>
+											  <option value="SD">SD</option>
+											  <option value="TN">TN</option>
+											  <option value="TX">TX</option>
+											  <option value="UT">UT</option>
+											  <option value="VA">VA</option>
+											  <option value="VT">VT</option>
+											  <option value="WA">WA</option>
+											  <option value="WI">WI</option>
+											  <option value="WV">WV</option>
+											  <option value="WY">WY</option>
 											</select>
 										</div>
 									</div>
@@ -344,92 +555,106 @@
 									<div class="control-group">
 										<label class="control-label">Monday</label>
 										<div class="controls controls-row">
-											<select class="span4 input-tiny2">
-												<option>2:00AM</option>
-												<option>2:00PM</option>
-											</select>
-											<select class="span4 input-tiny2">
-												<option>2:00AM</option>
-												<option>2:00PM</option>
-											</select>
+									        Open: 
+									        <div class="input-append bootstrap-timepicker">
+									            <input id="asMondayOpen" type="text" class="input-small2 timepicker">
+									            <span class="add-on"><i class="icon-time"></i></span>
+									        </div>
+									        Close:
+									        <div class="input-append bootstrap-timepicker">
+									            <input id="asMondayClose" type="text" class="input-small2 timepicker">
+									            <span class="add-on"><i class="icon-time"></i></span>
+									        </div>
 										</div>
 									</div>										
 									<div class="control-group">
 										<label class="control-label">Tuesday</label>
 										<div class="controls controls-row">
-											<select class="span4 input-tiny2">
-												<option>2:00AM</option>
-												<option>2:00PM</option>
-											</select>
-											<select class="span4 input-tiny2">
-												<option>2:00AM</option>
-												<option>2:00PM</option>
-											</select>
+											Open: 
+								        	<div class="input-append bootstrap-timepicker">
+									            <input id="asTuesdayOpen" type="text" class="input-small2 timepicker">
+									            <span class="add-on"><i class="icon-time"></i></span>
+									        </div>
+									        Close:
+									        <div class="input-append bootstrap-timepicker">
+									            <input id="asTuesdayClose" type="text" class="input-small2 timepicker">
+									            <span class="add-on"><i class="icon-time"></i></span>
+									        </div>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label">Wednesday</label>
 										<div class="controls controls-row">
-											<select class="span4 input-tiny2">
-												<option>2:00AM</option>
-												<option>2:00PM</option>
-											</select>
-											<select class="span4 input-tiny2">
-												<option>2:00AM</option>
-												<option>2:00PM</option>
-											</select>
+											Open:
+							        		<div class="input-append bootstrap-timepicker">
+									            <input id="asWednesdayOpen" type="text" class="input-small2 timepicker">
+									            <span class="add-on"><i class="icon-time"></i></span>
+									        </div>
+									        Close:
+									        <div class="input-append bootstrap-timepicker">
+									            <input id="asWednesdayClose" type="text" class="input-small2 timepicker">
+									            <span class="add-on"><i class="icon-time"></i></span>
+									        </div>
 										</div>
 									</div>	
 									<div class="control-group">
 										<label class="control-label">Thursday</label>
 										<div class="controls controls-row">
-											<select class="span4 input-tiny2">
-												<option>2:00AM</option>
-												<option>2:00PM</option>
-											</select>
-											<select class="span4 input-tiny2">
-												<option>2:00AM</option>
-												<option>2:00PM</option>
-											</select>
+											Open:
+							        		<div class="input-append bootstrap-timepicker">
+									            <input id="asThursdayOpen" type="text" class="input-small2 timepicker">
+									            <span class="add-on"><i class="icon-time"></i></span>
+									        </div>
+									        Close:
+									        <div class="input-append bootstrap-timepicker">
+									            <input id="asThursdayClose" type="text" class="input-small2 timepicker">
+									            <span class="add-on"><i class="icon-time"></i></span>
+									        </div>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label">Friday</label>
 										<div class="controls controls-row">
-											<select class="span4 input-tiny2">
-												<option>2:00AM</option>
-												<option>2:00PM</option>
-											</select>
-											<select class="span4 input-tiny2">
-												<option>2:00AM</option>
-												<option>2:00PM</option>
-											</select>
+											Open:
+							        		<div class="input-append bootstrap-timepicker">
+									            <input id="asFridayOpen" type="text" class="input-small2 timepicker">
+									            <span class="add-on"><i class="icon-time"></i></span>
+									        </div>
+									        Close:
+									        <div class="input-append bootstrap-timepicker">
+									            <input id="asFridayClose" type="text" class="input-small2 timepicker">
+									            <span class="add-on"><i class="icon-time"></i></span>
+									        </div>
 										</div>
 									</div>										
 									<div class="control-group">
 										<label class="control-label">Saturday</label>
 										<div class="controls controls-row">
-											<select class="span4 input-tiny2">
-												<option>2:00AM</option>
-												<option>2:00PM</option>
-											</select>
-											<select class="span4 input-tiny2">
-												<option>2:00AM</option>
-												<option>2:00PM</option>
-											</select>
+											Open:
+							        		<div class="input-append bootstrap-timepicker">
+									            <input id="asSaturdayOpen" type="text" class="input-small2 timepicker">
+									            <span class="add-on"><i class="icon-time"></i></span>
+									        </div>
+									        Close:
+									        <div class="input-append bootstrap-timepicker">
+									            <input id="asSaturdayClose" type="text" class="input-small2 timepicker">
+									            <span class="add-on"><i class="icon-time"></i></span>
+									        </div>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label">Sunday</label>
 										<div class="controls controls-row">
-											<select class="span4 input-tiny2">
-												<option>2:00AM</option>
-												<option>2:00PM</option>
-											</select>
-											<select class="span4 input-tiny2">
-												<option>2:00AM</option>
-												<option>2:00PM</option>
-											</select>
+											Open:
+							        		<div class="input-append bootstrap-timepicker">
+									            <input id="asSundayOpen" type="text" class="input-small2 timepicker">
+									            <span class="add-on"><i class="icon-time"></i></span>
+									        </div>
+									        Close:
+									        <div class="input-append bootstrap-timepicker">
+									            <input id="asSundayClose" type="text" class="input-small2 timepicker">
+									            <span class="add-on"><i class="icon-time"></i></span>
+									        </div>
 										</div>
 									</div>
 									<div class="form-actions">
@@ -440,9 +665,11 @@
 						</div>						
 					</div>
 				</div>				
-			</div>			
+			</div>	
+			<div id="settings" class="container-fluid page">
 				<div class="row-fluid">
-					<div id="footer" class="span12">
+					<div class="span12">
+						<h1>Nothing to See here</h1>
 					</div>
 				</div>
 			</div>
@@ -461,6 +688,8 @@
             <script src="js/select2.min.js"></script>
             <script src="js/unicorn.js"></script>
             <script src="js/unicorn.dashboard.js"></script>
+            <script src="js/bootstrap-timepicker.js"></script>
             <script src="js/partner.js"></script>
+
 	</body>
 </html>
