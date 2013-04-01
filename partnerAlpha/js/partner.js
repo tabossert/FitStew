@@ -75,10 +75,10 @@ $('#main').show();
 	$('#classAdd').click(function(e) {
 		e.preventDefault();
 		$('#cfName').data('cid', '');
-		$('#cfName').val();
-		$('#cfDuration').val();
-		$('#cfPrice').val();
-		$('#cfSpots').val();
+		$('#cfName').val("");
+		$('#cfDuration').val("");
+		$('#cfPrice').val("");
+		$('#cfSpots').val("");
 		$('#crMonday').html('');
 		$('#crTuesday').html('');
 		$('#crWednesday').html('');

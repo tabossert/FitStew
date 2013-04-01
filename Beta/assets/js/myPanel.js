@@ -408,7 +408,8 @@ $(document).ready(function(){
 		    	$('#acbaddress').attr('placeholder',obj[0].address_line1);
 		    	$('#acbaddress2').attr('placeholder',obj[0].address_line2);
 		    	$('#acbcity').attr('placeholder',obj[0].address_city);
-		    	$('#acbstate').attr('placeholder',obj[0].address_state);
+		    	$('#acbstate').val(obj[0].address_state).attr('selected',true);
+		    	$('#acbstate').css("color", "#999999");
 		    	$('#acbzipcode').attr('placeholder',obj[0].address_zip);
 		    	$('#acbcard').attr('placeholder','xxxxxxxxxxxx' + obj[0].ccard);
 		    	$('#acbcvc').attr('placeholder','xxx');

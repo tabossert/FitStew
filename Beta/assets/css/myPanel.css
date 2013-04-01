@@ -520,7 +520,8 @@ body {
 }
 
 #acsstate, #acbstate {
-	width: 140px;
+	width: 60px;
+	padding-top: 0px;
 }
 
 #acszipcodeCont, #acbzipcodeCont {

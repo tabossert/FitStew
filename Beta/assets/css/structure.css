@@ -200,8 +200,21 @@ input.rounded {
 	outline: 0;
 	-webkit-appearance: none;
 	z-index: 1000;
+}
 
-
+select.rounded {
+	border: 1px solid #57b547;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	-moz-box-shadow: 2px 2px 3px #666;
+	-webkit-box-shadow: 2px 2px 3px #666;
+	box-shadow: 2px 2px 3px #666;
+	font-size: 20px;
+	padding: 4px 7px;
+	outline: 0;
+	-webkit-appearance: none;
+	z-index: 1000;
 }
 .panelButton {
 	background-color: #00adef;
