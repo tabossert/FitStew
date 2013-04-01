@@ -424,6 +424,15 @@ $(document).ready(function(){
 
 	/* API Communication */
 
+	$.ajaxSetup({
+		statusCode: {
+			401: function(){		 
+				// Redirec the to the login page.
+				location.href = "http://web-dev.fitstew.com/";
+			}
+		}
+	});
+
 	function postCall(uri,data,callback) {
 		$.ajax({
 		    type: "POST",
