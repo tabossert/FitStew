@@ -1,5 +1,7 @@
+var url = "http://web-dev.fitstew.com"
+
 if(!localStorage['uToken'] || localStorage['fitTime'] < moment().subtract('minutes', 30).unix()) {
-	window.location = "http://web-dev.fitstew.com/Beta/";
+	window.location = url + "/Beta/";
 }
 
 
@@ -52,7 +54,7 @@ $(document).ready(function(){
 			console.log(obj.status);
 			if(obj.status) {
 				localStorage['uToken'] = "";
-				window.location = "http://web-dev.fitstew.com/Beta/";
+				window.location = url + "/Beta/";
 			}
 		});
 	});
@@ -74,7 +76,7 @@ $(document).ready(function(){
 
     function updateTimestamp() {
     	if(localStorage['fitTime'] < moment().subtract('minutes', 30).unix()) {
-    		window.location = "http://web-dev.fitstew.com/Beta/";
+    		window.location = url + "/Beta/";
     	} else {
     		localStorage['fitTime'] = moment().unix();
     	}
@@ -274,7 +276,7 @@ $(document).ready(function(){
 	}	
 
 
-    function authGetCall(uri,token,callback) {
+    /*function authGetCall(uri,token,callback) {
 		$.ajax({
 		 	beforeSend: function(xhr) {
 			  xhr.setRequestHeader("ltype", "web");
@@ -307,7 +309,7 @@ $(document).ready(function(){
 		        callback(response);
 		    }
 	    });
-	}
+	}*/
 
     $('a[data-toggle="tab"]').on('show', function(e) {
 		$('#' + e.target.id).children('img').attr('src','assets/img/' + $('#' + e.target.id).data('img') + '_white.png');
@@ -424,14 +426,6 @@ $(document).ready(function(){
 
 	/* API Communication */
 
-	$.ajaxSetup({
-		statusCode: {
-			401: function(){		 
-				// Redirec the to the login page.
-				location.href = "http://web-dev.fitstew.com/";
-			}
-		}
-	});
 
 	function postCall(uri,data,callback) {
 		$.ajax({
@@ -461,7 +455,14 @@ $(document).ready(function(){
 		    success: function(response, status, xhr){
 		        console.log(response);
 		        callback(response);
-		    }
+		    },
+		    statusCode: {
+				401: function(){		 
+					// Redirec the to the login page.
+					localStorage['uToken'] = "";
+					window.location = url + "/Beta/";
+				}
+			}
 	    });
 	}
 	 
@@ -491,7 +492,14 @@ $(document).ready(function(){
 		    success: function(response, status, xhr){
 		        console.log(response);
 		        callback(response);
-		    }
+		    },
+		    statusCode: {
+				401: function(){		 
+					// Redirec the to the login page.
+					localStorage['uToken'] = "";
+					window.location = url + "/Beta/";
+				}
+			}
 	    });
 	}
 
@@ -508,7 +516,14 @@ $(document).ready(function(){
 		    success: function(response, status, xhr){
 		        console.log(response);
 		        callback(response);
-		    }
+		    },
+		    statusCode: {
+				401: function(){		 
+					// Redirec the to the login page.
+					localStorage['uToken'] = "";
+					window.location = url + "/Beta/";
+				}
+			}
 	    });
 	}
 	
