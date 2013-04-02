@@ -288,7 +288,7 @@
 			<div id="classes" class="container-fluid page">
 				<div class="row-fluid">
 					<div class="span12">
-						<div id="classForm" class="widget-box">
+						<div id="classSection" class="widget-box">
 							<div class="widget-title">
 								<span class="icon">
 									<i class="icon-plus"></i>									
@@ -296,17 +296,17 @@
 								<h5>Class Add/Edit</h5>
 							</div>
 							<div class="widget-content nopadding">
-								<form action="#" method="get" class="form-horizontal">
+								<form id="classForm" action="#" method="get" class="form-horizontal">
 									<div class="control-group">
 										<label class="control-label">Name</label>
 										<div class="controls">
-											<input id="cfName" type="text" class="input-medium" />
+											<input id="cfName" type="text" class="input-medium required" />
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label">Duration</label>
 										<div class="controls">
-											<input id="cfDuration" type="text" class="input-tiny" />
+											<input id="cfDuration" type="text" class="input-tiny required digits" />
 										</div>
 									</div>
 									<div class="control-group">
@@ -314,14 +314,14 @@
 										<div class="controls">
 											<div class="input-prepend input-append">
   												<span class="add-on">$</span>
-												<input id="cfPrice" type="text" class="input-small2" />
+												<input id="cfPrice" type="text" class="input-small2 required number" />
 											</div>
 										</div>
 									</div>									
 									<div class="control-group">
 										<label class="control-label">spots</label>
 										<div class="controls">
-											<input id="cfSpots" type="text" class="input-tiny" />
+											<input id="cfSpots" type="text" class="input-tiny required digits" />
 										</div>
 									</div>	
 									<div class="control-group">
@@ -457,17 +457,23 @@
 								<h5>Partner Location Profile</h5>
 							</div>
 							<div class="widget-content nopadding">
-								<form action="#" method="get" class="form-horizontal">
+								<form id="locForm" action="#" method="get" class="form-horizontal">
 									<div class="control-group">
 										<label class="control-label">Address</label>
 										<div class="controls">
-											<input type="text" class="input-medium" />
+											<input id="locAddress" type="text" class="input-medium required" />
 										</div>
 									</div>
 									<div class="control-group">
+										<label class="control-label">City</label>
+										<div class="controls">
+											<input id="locCity" type="text" class="input-small required" />
+										</div>
+									</div>									
+									<div class="control-group">
 										<label class="control-label">State</label>
 										<div class="controls">
-											<select class="input-tiny2">
+											<select id="locState" class="input-tiny2">
 											  <option value="AK">AK</option>
 											  <option value="AL">AL</option>
 											  <option value="AR">AR</option>
@@ -525,31 +531,31 @@
 									<div class="control-group">
 										<label class="control-label">Zipcode</label>
 										<div class="controls">
-											<input type="text" class="input-tiny" />
+											<input id="locZipcode" type="text" class="input-tiny required digits" />
 										</div>
 									</div>									
 									<div class="control-group">
 										<label class="control-label">Phone</label>
 										<div class="controls">
-											<input type="text" class="input-small" />
+											<input id="locPhone" type="text" class="input-small required digits" />
 										</div>
 									</div>	
 									<div class="control-group">
 										<label class="control-label">Email</label>
 										<div class="controls">
-											<input type="text" class="input-small" />
+											<input id="locEmail" type="text" class="input-small required email" />
 										</div>
 									</div>										
 									<div class="control-group">
 										<label class="control-label">Facebook</label>
 										<div class="controls">
-											<input type="text" class="input-small" />
+											<input id="locFacebook" type="text" class="input-small" />
 										</div>
 									</div>	
 									<div class="control-group">
 										<label class="control-label">Twitter</label>
 										<div class="controls">
-											<input type="text" class="input-small" />
+											<input id="locTwitter" type="text" class="input-small" />
 										</div>
 									</div>
 									<div class="control-group">
@@ -669,7 +675,47 @@
 			<div id="settings" class="container-fluid page">
 				<div class="row-fluid">
 					<div class="span12">
-						<h1>Nothing to See here</h1>
+						<div class="widget-box">
+							<div class="widget-title">
+								<span class="icon">
+									<i class="icon-cog"></i>									
+								</span>
+								<h5>Partner Account Settings</h5>
+							</div>
+							<div class="widget-content nopadding">
+								<form id="asForm" action="#" method="get" class="form-horizontal">
+									<div class="control-group">
+										<label class="control-label">Disburse Limit</label>
+										<div class="controls">
+											<div class="input-prepend input-append">
+  												<span class="add-on">$</span>
+												<input id="plimit" type="text" class="input-small2 required number" />
+											</div>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Payment Method</label>
+										<div class="controls">
+											<select class="input-small">
+											  <option value="1">check</option>
+											</select>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Disbursement Method</label>
+										<div class="controls">
+											<select class="input-small">
+											  <option value="0">Disburse Limit Hit</option>
+											  <option value="1">Monthly</option>
+											</select>
+										</div>
+									</div>									
+									<div class="form-actions">
+										<button id="infoSave" type="submit" class="btn btn-primary">Save</button>
+									</div>
+								</form>
+							</div>
+						</div>						
 					</div>
 				</div>
 			</div>
@@ -685,6 +731,7 @@
             <script src="js/jquery.peity.min.js"></script>
             <script src="js/fullcalendar.min.js"></script>
             <script src="js/jquery.uniform.js"></script>
+            <script src="js/jquery.validate.js"></script>
             <script src="js/select2.min.js"></script>
             <script src="js/unicorn.js"></script>
             <script src="js/unicorn.dashboard.js"></script>

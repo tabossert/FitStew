@@ -34,7 +34,7 @@ $('#main').show();
 	
 	$('#classNav').click(function() {
 		if(!$(this).hasClass('active')) {
-			$('#classForm').hide();
+			$('#classSection').hide();
 			$('.page').slideUp('slow');
 			$('#sidebar>ul>li.active').removeClass('active');
 			$('#classes').slideDown('slow');
@@ -48,6 +48,28 @@ $('#main').show();
 			$('#sidebar>ul>li.active').removeClass('active');
 			$('#location').slideDown('slow');
 			$(this).addClass('active');
+			$("#locForm").validate({
+				rules:{
+					onfocusout:true,
+					required:{
+						required:true
+					},
+					email:{
+						required:true,
+						email: true
+					}
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.control-group').removeClass('success');
+					$(element).parents('.control-group').addClass('error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.control-group').removeClass('error');
+					$(element).parents('.control-group').addClass('success');
+				}
+			});
 		}
 	});
 
@@ -57,6 +79,24 @@ $('#main').show();
 			$('#sidebar>ul>li.active').removeClass('active');
 			$('#settings').slideDown('slow');
 			$(this).addClass('active');
+			$("#asForm").validate({
+				rules:{
+					onfocusout:true,
+					required:{
+						required:true
+					}
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.control-group').removeClass('success');
+					$(element).parents('.control-group').addClass('error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.control-group').removeClass('error');
+					$(element).parents('.control-group').addClass('success');
+				}
+			});
 		}
 	});
 
@@ -86,7 +126,25 @@ $('#main').show();
 		$('#crFriday').html('');
 		$('#crSaturday').html('');
 		$('#crSunday').html('');
-		$('#classForm').slideDown('slow');
+		$('#classSection').slideDown('slow');
+		$("#classForm").validate({
+			rules:{
+				onfocusout:true,
+				required:{
+					required:true
+				}
+			},
+			errorClass: "help-inline",
+			errorElement: "span",
+			highlight:function(element, errorClass, validClass) {
+				$(element).parents('.control-group').removeClass('success');
+				$(element).parents('.control-group').addClass('error');
+			},
+			unhighlight: function(element, errorClass, validClass) {
+				$(element).parents('.control-group').removeClass('error');
+				$(element).parents('.control-group').addClass('success');
+			}
+		});
 	})
 
 	$('#classTable').find('tr').click( function(){
@@ -95,7 +153,25 @@ $('#main').show();
 		$('#cfDuration').val($(this).find('#cDuration').html());
 		$('#cfPrice').val($(this).find('#cPrice').html());
 		$('#cfSpots').val($(this).find('#cSpots').html());
-		$('#classForm').slideDown('slow');
+		$('#classSection').slideDown('slow');
+		$("#classForm").validate({
+			rules:{
+				onfocusout:true,
+				required:{
+					required:true
+				}
+			},
+			errorClass: "help-inline",
+			errorElement: "span",
+			highlight:function(element, errorClass, validClass) {
+				$(element).parents('.control-group').removeClass('success');
+				$(element).parents('.control-group').addClass('error');
+			},
+			unhighlight: function(element, errorClass, validClass) {
+				$(element).parents('.control-group').removeClass('error');
+				$(element).parents('.control-group').addClass('success');
+			}
+		});
 		var monSplit = $(this).find('#cMonday').html().split(" ");
 		var tueSplit = $(this).find('#cTuesday').html().split(" ");
 		var wedSplit = $(this).find('#cWednesday').html().split(" ");
