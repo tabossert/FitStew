@@ -7,10 +7,42 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
 		<link rel="stylesheet" href="css/fullcalendar.css" />	
-		<!--<link rel="stylesheet" href="css/font-awesome.min.css" />-->
 		<link rel="stylesheet" href="css/bootstrap-timepicker.css" />
+		<link rel="stylesheet" href="css/bootstrap-fileupload.css" />
 		<link rel="stylesheet" href="css/unicorn.main.css" />
 		<link rel="stylesheet" href="css/unicorn.grey.css" class="skin-color" />
+
+		<script src="js/excanvas.min.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-ui.custom.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.flot.min.js"></script>
+        <script src="js/jquery.flot.resize.min.js"></script>
+        <script src="js/jquery.peity.min.js"></script>
+        <script src="js/fullcalendar.min.js"></script>
+        <script src="js/jquery.uniform.js"></script>
+        <script src="js/jquery.validate.js"></script>
+        <script src="js/select2.min.js"></script>
+        <script src="js/unicorn.js"></script>
+        <script src="js/unicorn.dashboard.js"></script>
+        <script src="js/bootstrap-timepicker.js"></script>
+        <script src="js/partner.js"></script>
+        <script src="js/bootstrap-fileupload.js"></script>
+        <script>
+            function readURL(input)
+			{
+				if (input.files && input.files[0])
+				{
+				    var reader = new FileReader();
+				    reader.onload = function (e)
+				    {
+				        var sp = e.target.result.split(',');
+				        $('#fileUp').data('imgEnc',sp[1]);
+				    };
+				    reader.readAsDataURL(input.files[0]);
+				}
+			}
+		</script>
 	</head>
 	<body>
 		
@@ -459,6 +491,19 @@
 							<div class="widget-content nopadding">
 								<form id="locForm" action="#" method="get" class="form-horizontal">
 									<div class="control-group">
+										<label class="control-label">Logo</label>
+										<div class="controls">
+											<div class="fileupload fileupload-new" data-provides="fileupload">
+										  		<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img id="thumb" src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" /></div>
+										  		<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+										  		<div>
+										    		<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input id="fileUp" type="file" onchange="readURL(this);" /></span>
+										    		<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+										  		</div>
+											</div>
+										</div>
+									</div>
+									<div class="control-group">
 										<label class="control-label">Address</label>
 										<div class="controls">
 											<input id="locAddress" type="text" class="input-medium required" />
@@ -540,6 +585,12 @@
 											<input id="locPhone" type="text" class="input-small required digits" />
 										</div>
 									</div>	
+									<div class="control-group">
+										<label class="control-label">Contact Name</label>
+										<div class="controls">
+											<input id="locContact" type="text" class="input-small" />
+										</div>
+									</div>									
 									<div class="control-group">
 										<label class="control-label">Email</label>
 										<div class="controls">
@@ -720,23 +771,5 @@
 				</div>
 			</div>
 		</div>
-		
-
-            <script src="js/excanvas.min.js"></script>
-            <script src="js/jquery.min.js"></script>
-            <script src="js/jquery-ui.custom.min.js"></script>
-            <script src="js/bootstrap.min.js"></script>
-            <script src="js/jquery.flot.min.js"></script>
-            <script src="js/jquery.flot.resize.min.js"></script>
-            <script src="js/jquery.peity.min.js"></script>
-            <script src="js/fullcalendar.min.js"></script>
-            <script src="js/jquery.uniform.js"></script>
-            <script src="js/jquery.validate.js"></script>
-            <script src="js/select2.min.js"></script>
-            <script src="js/unicorn.js"></script>
-            <script src="js/unicorn.dashboard.js"></script>
-            <script src="js/bootstrap-timepicker.js"></script>
-            <script src="js/partner.js"></script>
-
 	</body>
 </html>

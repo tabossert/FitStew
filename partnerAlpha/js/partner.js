@@ -4,6 +4,103 @@ $(document).ready(function(){
 $('.page').hide();
 $('#main').show();
 
+	var uToken = 'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0';
+
+	/* API Communication */
+	function postCall(uri,data,callback) {
+		$.ajax({
+		    type: "POST",
+		    dataType: "json",
+		    contentType: "application/json",
+		    url: uri,
+		    data: data,
+		    success: function(response, status, xhr){
+		        console.log(response);
+		        callback(response);
+		    }
+	    });
+	}
+
+	function authPostCall(uri,data,token,callback) {
+		$.ajax({
+		 	beforeSend: function(xhr) {
+			  xhr.setRequestHeader("ltype", "web");
+			  xhr.setRequestHeader("token", uToken);
+			},
+		    type: "POST",
+		    dataType: "json",
+		    contentType: "application/json",
+		    url: uri,
+		    data: data,
+		    success: function(response, status, xhr){
+		        console.log(response);
+		        callback(response);
+		    }
+	    });
+	}
+	 
+	function getCall(uri,callback) {
+		$.ajax({
+		    type: "GET",
+		    dataType: "json",
+		    contentType: "application/json",
+		    url: uri,
+		    success: function(response, status, xhr){
+		        callback(response);
+		        
+		    }
+	    });    
+	}
+
+    function authGetCall(uri,token,callback) {
+		$.ajax({
+		 	beforeSend: function(xhr) {
+			  xhr.setRequestHeader("ltype", "web");
+			  xhr.setRequestHeader("token", uToken);
+			},
+		    type: "GET",
+		    dataType: "json",
+		    contentType: "application/json",
+		    url: uri,
+		    success: function(response, status, xhr){
+		        console.log(response);
+		        callback(response);
+		    },
+		    statusCode: {
+				401: function(){		 
+					// Redirec the to the login page.
+					localStorage['uToken'] = "";
+					window.location = url + "/Beta/";
+				}
+			}
+	    });
+	}
+
+    function authDeleteCall(uri,token,callback) {
+		$.ajax({
+		 	beforeSend: function(xhr) {
+			  xhr.setRequestHeader("ltype", "web");
+			  xhr.setRequestHeader("token", uToken);
+			},
+		    type: "DELETE",
+		    dataType: "json",
+		    contentType: "application/json",
+		    url: uri,
+		    success: function(response, status, xhr){
+		        console.log(response);
+		        callback(response);
+		    },
+		    statusCode: {
+				401: function(){		 
+					// Redirec the to the login page.
+					localStorage['uToken'] = "";
+					window.location = url + "/Beta/";
+				}
+			}
+	    });
+	}
+
+
 
 	$('#home').click(function() {
 		if(!$(this).hasClass('active')) {
@@ -48,6 +145,18 @@ $('#main').show();
 			$('#sidebar>ul>li.active').removeClass('active');
 			$('#location').slideDown('slow');
 			$(this).addClass('active');
+			getCall('http://api.fitstew.com/api/gymInfo/22',function(obj) {
+				$('#thumb').attr('src',obj[0].image);
+				$('#locAddress').val(obj[0].address);
+				$('#locCity').val(obj[0].city);
+				$('#locState').val(obj[0].state).attr('selected',true);
+				$('#locZipcode').val(obj[0].zipcode);
+				$('#locPhone').val(obj[0].phone);
+				$('#locEmail').val(obj[0].email);
+				$('#locContact').val(obj[0].contact);
+				$('#locFacebook').val(obj[0].facebook);
+				$('#locTwitter').val(obj[0].twitter);
+			})
 			$("#locForm").validate({
 				rules:{
 					onfocusout:true,
@@ -69,7 +178,8 @@ $('#main').show();
 					$(element).parents('.control-group').removeClass('error');
 					$(element).parents('.control-group').addClass('success');
 				}
-			});
+			});	
+			$('.fileupload').fileupload();
 		}
 	});
 
@@ -102,6 +212,24 @@ $('#main').show();
 
 	$('#infoSave').click(function(e) {
 		e.preventDefault();
+		var locInfo = {};
+		locInfo['image'] = $('#fileUp').data('imgEnc');
+		locInfo['address'] = $('#locAddress').val();
+		locInfo['city'] = $('#locCity').val();
+		locInfo['state'] = $('#locState').val();
+		locInfo['zipcode'] = $('#locZipcode').val();
+		locInfo['phone'] = $('#locPhone').val();
+		locInfo['email'] = $('#locEmail').val();
+		locInfo['contact'] = $('#locContact').val();
+		locInfo['facebook'] = $('#locFacebook').val();
+		locInfo['twitter'] = $('#locTwitter').val();
+		locInfoJSON = JSON.stringify(locInfo);
+
+		authPostCall('http://api.fitstew.com/api/updateGymProfile/',locInfoJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+			console.log(obj);
+
+		})
+		console.log($('#fileUp').data('imgEnc'));
 	});
 
 	$('.timepicker').timepicker();
@@ -208,14 +336,5 @@ $('#main').show();
 			$('#crSunday').append('<div class="input-append bootstrap-timepicker cfTime"><input type="text" data-default-time="false" value="' + sunSplit[i] + '" class="input-small2 timepicker"><span class="add-on"><i class="icon-time"></i></span></div>')
 		}
 		$('.timepicker').timepicker();
-		/*$('#cfMonday').val($(this).find('#cMonday').html());
-		$('#cfTuesday').val($(this).find('#cTuesday').html());
-		$('#cfWednesday').val($(this).find('#cWednesday').html());
-		$('#cfThursday').val($(this).find('#cThursday').html());
-		$('#cfFriday').val($(this).find('#cFriday').html());
-		$('#cfSaturday').val($(this).find('#cSaturday').html());
-		$('#cfSunday').val($(this).find('#cSunday').html());)*/
-
-		//alert('You clicked row '+ ($(this).find('input:checkbox:first').attr('id')));
 	});
 });
