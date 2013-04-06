@@ -331,6 +331,7 @@ $('#main').show();
 	$('#infoSave').click(function(e) {
 		e.preventDefault();
 		var locInfo = {};
+		locInfo['gid'] = '22';
 		locInfo['address'] = $('#locAddress').val();
 		locInfo['city'] = $('#locCity').val();
 		locInfo['state'] = $('#locState').val();
