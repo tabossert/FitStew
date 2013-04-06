@@ -443,7 +443,7 @@ $('#main').show();
 		var classObj = {};
 
 		classObj['service'] = $('#cfName').val();
-		classObj['dsecription'] = $('#cfDescription').val();
+		classObj['description'] = $('#cfDescription').val();
 		classObj['duration'] = $('#cfDuration').val();
 		classObj['price'] = $('#cfPrice').val();
 		classObj['spots'] = $('#cfSpots').val();
