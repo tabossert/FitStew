@@ -146,6 +146,7 @@ $('#main').show();
 		$('#classTable').find('tr').click( function(){
 			$('#cfName').data('cid', $(this).attr('id'));
 			$('#cfName').val($(this).find('#cName').html());
+			$('#cfDescription').val($(this).data('desc'));
 			$('#cfDuration').val($(this).find('#cDuration').html());
 			$('#cfPrice').val($(this).find('#cPrice').html());
 			$('#cfSpots').val($(this).find('#cSpots').html());
@@ -210,7 +211,7 @@ $('#main').show();
 	function refreshClasses() {
 		getCall('http://api.fitstew.com/api/getClasses/22',function(obj) {
 			$.each( obj, function( key, value ) {
-				var classRow = '<tr id="' + value.id + '"><td><input class="pull-right" id="' + value.id + '" type="checkbox" /></td><td id="cName">' + value.service + '</td><td id="cDuration">' + value.duration + '</td><td id="cPrice">' + value.price + '</td><td id="cSpots">' + value.spots + '</td><td id="cMonday"></td><td id="cTuesday"></td><td id="cWednesday"></td><td id="cThursday"></td><td id="cFriday"></td><td id="cSaturday"></td><td id="cSunday"></td>';
+				var classRow = '<tr id="' + value.id + '" data-desc="' + value.desc + '"><td><input class="pull-right" id="' + value.id + '" type="checkbox" /></td><td id="cName">' + value.service + '</td><td id="cDuration">' + value.duration + '</td><td id="cPrice">' + value.price + '</td><td id="cSpots">' + value.spots + '</td><td id="cMonday"></td><td id="cTuesday"></td><td id="cWednesday"></td><td id="cThursday"></td><td id="cFriday"></td><td id="cSaturday"></td><td id="cSunday"></td>';
 					classRow = classRow + '</tr>';
 					$('#classHolder').append(classRow);
 				classTimes(value.id,function(classRow) {
@@ -402,6 +403,7 @@ $('#main').show();
 		$('#cfName').val("");
 		$('#cfDuration').val("");
 		$('#cfPrice').val("");
+		$('#cfDescription').val("");
 		$('#cfSpots').val("");
 		$('#crMonday').html('');
 		$('#crTuesday').html('');
