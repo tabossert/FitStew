@@ -507,11 +507,13 @@ $('#main').show();
 			authPostCall('http://api.fitstew.com/api/updateClass/',JSON.stringify(classObj),'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
 				console.log(obj);
 				$('#classSection').slideUp('slow');
+				refreshClasses();
 			});			
 		} else {
 			authPostCall('http://api.fitstew.com/api/addClass/',JSON.stringify(classObj),'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
 				console.log(obj);
 				$('#classSection').slideUp('slow');
+				refreshClasses();
 			});
 		}
 	});
