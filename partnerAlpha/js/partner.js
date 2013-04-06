@@ -227,7 +227,7 @@ $('#main').show();
 					var timeA = "";
 					timeSplit = value.time.split(',');
 					for(i = 0; i < timeSplit.length; i++){
-						timeA = timeA + moment(timeSplit[i],'hh:mm').format('hh:mmA') + ' ';
+						timeA = timeA + moment(timeSplit[i],'hh:mm').format('h:mmA') + ' ';
 						console.log(timeA)
 					}
 					$('#' + cid).children('#c' + value.weekday).html(timeA);
