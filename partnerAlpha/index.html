@@ -26,6 +26,7 @@
         <script src="js/unicorn.js"></script>
         <script src="js/unicorn.dashboard.js"></script>
         <script src="js/bootstrap-timepicker.js"></script>
+        <script src="js/moment.min.js"></script>
         <script src="js/partner.js"></script>
         <script src="js/bootstrap-fileupload.js"></script>
         <script>
@@ -33,9 +34,12 @@
 			{
 				if (input.files && input.files[0])
 				{
+					console.log(input.files[0].name)
+					$('#fileUp').data('imgName', input.files[0].name)
 				    var reader = new FileReader();
 				    reader.onload = function (e)
 				    {
+				    	console.log(e)
 				        var sp = e.target.result.split(',');
 				        $('#fileUp').data('imgEnc',sp[1]);
 				    };
@@ -336,6 +340,12 @@
 										</div>
 									</div>
 									<div class="control-group">
+										<label class="control-label">Description</label>
+										<div class="controls">
+											<input id="cfDescription" type="text" class="input-medium required" />
+										</div>
+									</div>									
+									<div class="control-group">
 										<label class="control-label">Duration</label>
 										<div class="controls">
 											<input id="cfDuration" type="text" class="input-tiny required digits" />
@@ -415,6 +425,7 @@
 
 									<div class="form-actions">
 										<button id="classSave" type="submit" class="btn btn-primary">Save</button>
+										<button id="classCancel" type="submit" class="btn btn-primary">Cancel</button>
 									</div>
 								</form>
 							</div>
@@ -442,8 +453,8 @@
 									<th>Sunday</th>
 									</tr>
 									</thead>
-									<tbody>
-									<tr id="1" class="gradeX">
+									<tbody id="classHolder">
+									<!--<tr id="1">
 									<td><input class="pull-right" id="1" type="checkbox" /></td>
 									<td id="cName">Karate</td>
 									<td id="cDuration">30</td>
@@ -457,7 +468,7 @@
 									<td id="cSaturday"></td>
 									<td id="cSunday">2:00PM 4:00PM</td>
 									</tr>
-									<tr id="5" class="gradeC">
+									<tr id="5">
 									<td><input class="pull-right" id="5" type="checkbox" /></td>
 									<td id="cName">Yoga</td>
 									<td id="cDuration">30</td>
@@ -470,7 +481,7 @@
 									<td id="cFriday">2:00PM 4:00PM</td>
 									<td id="cSaturday">2:00PM 4:00PM</td>
 									<td id="cSunday">2:00PM 4:00PM</td>
-									</tr>
+									</tr>-->
 								  </tbody>
 								</table>  
 							</div>
@@ -740,14 +751,14 @@
 										<div class="controls">
 											<div class="input-prepend input-append">
   												<span class="add-on">$</span>
-												<input id="plimit" type="text" class="input-small2 required number" />
+												<input id="pLimit" type="text" class="input-small2 required number" />
 											</div>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label">Payment Method</label>
 										<div class="controls">
-											<select class="input-small">
+											<select id="pMethod" class="input-small">
 											  <option value="1">check</option>
 											</select>
 										</div>
@@ -755,14 +766,14 @@
 									<div class="control-group">
 										<label class="control-label">Disbursement Method</label>
 										<div class="controls">
-											<select class="input-small">
+											<select id="dMethod" class="input-small">
 											  <option value="0">Disburse Limit Hit</option>
 											  <option value="1">Monthly</option>
 											</select>
 										</div>
 									</div>									
 									<div class="form-actions">
-										<button id="infoSave" type="submit" class="btn btn-primary">Save</button>
+										<button id="settingsSave" type="submit" class="btn btn-primary">Save</button>
 									</div>
 								</form>
 							</div>
