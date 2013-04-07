@@ -5,6 +5,7 @@ $('.page').hide();
 $('#main').show();
 
 	var uToken = 'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0';
+	var offset = moment().zone();
 	var dayNames = new Array("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday");
 
 	/* API Communication */
@@ -143,80 +144,85 @@ $('#main').show();
 
 
 	function classTable() {
-		$('#classTable').find('tr').click( function(){
-			$('#cfName').data('cid', $(this).attr('id'));
-			$('#cfName').val($(this).find('#cName').html());
-			$('#cfDescription').val($(this).data('desc'));
-			$('#cfDuration').val($(this).find('#cDuration').html());
-			$('#cfPrice').val($(this).find('#cPrice').html());
-			$('#cfSpots').val($(this).find('#cSpots').html());
-			$('#classSection').slideDown('slow');
-			$("#classForm").validate({
-				rules:{
-					onfocusout:true,
-					required:{
-						required:true
+		$('#classTable').find('tr').click( function(e){
+			if(!$(e.target).closest('input[type="checkbox"]').length > 0) {
+				$('#cfName').data('cid', $(this).attr('id'));
+				$('#cfName').val($(this).find('#cName').html());
+				$('#cfDescription').val($(this).data('desc'));
+				$('#cfDuration').val($(this).find('#cDuration').html());
+				$('#cfPrice').val($(this).find('#cPrice').html());
+				$('#cfSpots').val($(this).find('#cSpots').html());
+				$('#classSection').slideDown('slow');
+				$("#classForm").validate({
+					rules:{
+						onfocusout:true,
+						required:{
+							required:true
+						}
+					},
+					errorClass: "help-inline",
+					errorElement: "span",
+					highlight:function(element, errorClass, validClass) {
+						$(element).parents('.control-group').removeClass('success');
+						$(element).parents('.control-group').addClass('error');
+					},
+					unhighlight: function(element, errorClass, validClass) {
+						$(element).parents('.control-group').removeClass('error');
+						$(element).parents('.control-group').addClass('success');
 					}
-				},
-				errorClass: "help-inline",
-				errorElement: "span",
-				highlight:function(element, errorClass, validClass) {
-					$(element).parents('.control-group').removeClass('success');
-					$(element).parents('.control-group').addClass('error');
-				},
-				unhighlight: function(element, errorClass, validClass) {
-					$(element).parents('.control-group').removeClass('error');
-					$(element).parents('.control-group').addClass('success');
+				});
+				var monSplit = $(this).find('#cMonday').html().split(" ");
+				var tueSplit = $(this).find('#cTuesday').html().split(" ");
+				var wedSplit = $(this).find('#cWednesday').html().split(" ");
+				var thuSplit = $(this).find('#cThursday').html().split(" ");
+				var friSplit = $(this).find('#cFriday').html().split(" ");
+				var satSplit = $(this).find('#cSaturday').html().split(" ");
+				var sunSplit = $(this).find('#cSunday').html().split(" ");
+				$('#crMonday').html('');
+				$('#crTuesday').html('');
+				$('#crWednesday').html('');
+				$('#crThursday').html('');
+				$('#crFriday').html('');
+				$('#crSaturday').html('');
+				$('#crSunday').html('');
+				for(i = 0; i < monSplit.length; i++){
+					$('#crMonday').append('<div class="input-append bootstrap-timepicker cfTime"><input type="text" data-default-time="false" value="' + monSplit[i] + '" class="input-small2 timepicker"><span class="add-on"><i class="icon-time"></i></span></div>')
 				}
-			});
-			var monSplit = $(this).find('#cMonday').html().split(" ");
-			var tueSplit = $(this).find('#cTuesday').html().split(" ");
-			var wedSplit = $(this).find('#cWednesday').html().split(" ");
-			var thuSplit = $(this).find('#cThursday').html().split(" ");
-			var friSplit = $(this).find('#cFriday').html().split(" ");
-			var satSplit = $(this).find('#cSaturday').html().split(" ");
-			var sunSplit = $(this).find('#cSunday').html().split(" ");
-			$('#crMonday').html('');
-			$('#crTuesday').html('');
-			$('#crWednesday').html('');
-			$('#crThursday').html('');
-			$('#crFriday').html('');
-			$('#crSaturday').html('');
-			$('#crSunday').html('');
-			for(i = 0; i < monSplit.length; i++){
-				$('#crMonday').append('<div class="input-append bootstrap-timepicker cfTime"><input type="text" data-default-time="false" value="' + monSplit[i] + '" class="input-small2 timepicker"><span class="add-on"><i class="icon-time"></i></span></div>')
+				for(i = 0; i < tueSplit.length; i++){
+					$('#crTuesday').append('<div class="input-append bootstrap-timepicker cfTime"><input type="text" data-default-time="false" value="' + tueSplit[i] + '" class="input-small2 timepicker"><span class="add-on"><i class="icon-time"></i></span></div>')
+				}
+				for(i = 0; i < wedSplit.length; i++){
+					$('#crWednesday').append('<div class="input-append bootstrap-timepicker cfTime"><input type="text" data-default-time="false" value="' + wedSplit[i] + '" class="input-small2 timepicker"><span class="add-on"><i class="icon-time"></i></span></div>')
+				}
+				for(i = 0; i < thuSplit.length; i++){
+					$('#crThursday').append('<div class="input-append bootstrap-timepicker cfTime"><input type="text" data-default-time="false" value="' + thuSplit[i] + '" class="input-small2 timepicker"><span class="add-on"><i class="icon-time"></i></span></div>')
+				}
+				for(i = 0; i < friSplit.length; i++){
+					$('#crFriday').append('<div class="input-append bootstrap-timepicker cfTime"><input type="text" data-default-time="false" value="' + friSplit[i] + '" class="input-small2 timepicker"><span class="add-on"><i class="icon-time"></i></span></div>')
+				}
+				for(i = 0; i < satSplit.length; i++){
+					$('#crSaturday').append('<div class="input-append bootstrap-timepicker cfTime"><input type="text" data-default-time="false" value="' + satSplit[i] + '" class="input-small2 timepicker"><span class="add-on"><i class="icon-time"></i></span></div>')
+				}
+				for(i = 0; i < sunSplit.length; i++){
+					$('#crSunday').append('<div class="input-append bootstrap-timepicker cfTime"><input type="text" data-default-time="false" value="' + sunSplit[i] + '" class="input-small2 timepicker"><span class="add-on"><i class="icon-time"></i></span></div>')
+				}
+				$('.timepicker').timepicker();
 			}
-			for(i = 0; i < tueSplit.length; i++){
-				$('#crTuesday').append('<div class="input-append bootstrap-timepicker cfTime"><input type="text" data-default-time="false" value="' + tueSplit[i] + '" class="input-small2 timepicker"><span class="add-on"><i class="icon-time"></i></span></div>')
-			}
-			for(i = 0; i < wedSplit.length; i++){
-				$('#crWednesday').append('<div class="input-append bootstrap-timepicker cfTime"><input type="text" data-default-time="false" value="' + wedSplit[i] + '" class="input-small2 timepicker"><span class="add-on"><i class="icon-time"></i></span></div>')
-			}
-			for(i = 0; i < thuSplit.length; i++){
-				$('#crThursday').append('<div class="input-append bootstrap-timepicker cfTime"><input type="text" data-default-time="false" value="' + thuSplit[i] + '" class="input-small2 timepicker"><span class="add-on"><i class="icon-time"></i></span></div>')
-			}
-			for(i = 0; i < friSplit.length; i++){
-				$('#crFriday').append('<div class="input-append bootstrap-timepicker cfTime"><input type="text" data-default-time="false" value="' + friSplit[i] + '" class="input-small2 timepicker"><span class="add-on"><i class="icon-time"></i></span></div>')
-			}
-			for(i = 0; i < satSplit.length; i++){
-				$('#crSaturday').append('<div class="input-append bootstrap-timepicker cfTime"><input type="text" data-default-time="false" value="' + satSplit[i] + '" class="input-small2 timepicker"><span class="add-on"><i class="icon-time"></i></span></div>')
-			}
-			for(i = 0; i < sunSplit.length; i++){
-				$('#crSunday').append('<div class="input-append bootstrap-timepicker cfTime"><input type="text" data-default-time="false" value="' + sunSplit[i] + '" class="input-small2 timepicker"><span class="add-on"><i class="icon-time"></i></span></div>')
-			}
-			$('.timepicker').timepicker();
 		});
 	}
 
 	function refreshClasses() {
 		getCall('http://api.fitstew.com/api/getClasses/22',function(obj) {
+			$('#classHolder').find('tr').remove();
 			$.each( obj, function( key, value ) {
-				var classRow = '<tr id="' + value.id + '" data-desc="' + value.desc + '"><td><input class="pull-right" id="' + value.id + '" type="checkbox" /></td><td id="cName">' + value.service + '</td><td id="cDuration">' + value.duration + '</td><td id="cPrice">' + value.price + '</td><td id="cSpots">' + value.spots + '</td><td id="cMonday"></td><td id="cTuesday"></td><td id="cWednesday"></td><td id="cThursday"></td><td id="cFriday"></td><td id="cSaturday"></td><td id="cSunday"></td>';
-					classRow = classRow + '</tr>';
-					$('#classHolder').append(classRow);
-				classTimes(value.id,function(classRow) {
-					classTable();
-				});
+				if(obj.status !== 'failed') {
+					var classRow = '<tr id="' + value.id + '" data-desc="' + value.desc + '"><td class="classCheck"><input class="pull-right" id="' + value.id + '" type="checkbox" /></td><td id="cName">' + value.service + '</td><td id="cDuration">' + value.duration + '</td><td id="cPrice">' + value.price + '</td><td id="cSpots">' + value.spots + '</td><td id="cMonday"></td><td id="cTuesday"></td><td id="cWednesday"></td><td id="cThursday"></td><td id="cFriday"></td><td id="cSaturday"></td><td id="cSunday"></td>';
+						classRow = classRow + '</tr>';
+						$('#classHolder').append(classRow);
+					classTimes(value.id,function(classRow) {
+						classTable();
+					});
+				}
 			}); 
 		});
 	}
@@ -228,7 +234,8 @@ $('#main').show();
 					var timeA = "";
 					timeSplit = value.time.split(',');
 					for(i = 0; i < timeSplit.length; i++){
-						timeA = timeA + moment(timeSplit[i],'hh:mm').format('h:mmA') + ' ';
+						timeA = timeA + moment(timeSplit[i], 'hh:mm').subtract('minutes',offset).local().format('h:mmA') + ' ';
+						//moment(timeSplit[i],'hh:mm').format('h:mmA') + ' ';
 						console.log(timeA)
 					}
 					$('#' + cid).children('#c' + value.weekday).html(timeA);
@@ -439,6 +446,17 @@ $('#main').show();
 		$('#classSection').slideUp('slow');
 	});
 
+
+	$('#classDel').click(function(e) {
+		e.preventDefault();
+		$("#classTable input:checked").each(function() {
+		    authDeleteCall('http://api.fitstew.com/api/deleteClass/'+this.id,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+		    	console.log(obj);
+		    	refreshClasses();
+		    });
+		});
+	});
+
 	$('#classSave').click(function(e) {
 		e.preventDefault();
 		var dayObj = {};
@@ -461,43 +479,43 @@ $('#main').show();
 
 		$('#crMonday').find('.timepicker').each(function(index) {
 			if($(this).val()) {
-				monTimeArr.push(moment($(this).val(),'hh:mm A').format('hh:mm'));
+				monTimeArr.push(moment($(this).val(),'hh:mm A').add('minutes',offset).format('HH:mm'));
 			}
 		});
 		dayObj['Monday'] = monTimeArr;
 		$('#crTuesday').find('.timepicker').each(function(index) {
 			if($(this).val()) {
-				tueTimeArr.push(moment($(this).val(),'hh:mm A').format('hh:mm'));
+				tueTimeArr.push(moment($(this).val(),'hh:mm A').add('minutes',offset).format('HH:mm'));
 			}
 		});
 		dayObj['Tuesday'] = tueTimeArr;		
 		$('#crWednesday').find('.timepicker').each(function(index) {
 			if($(this).val()) {
-				wedTimeArr.push(moment($(this).val(),'hh:mm A').format('hh:mm'));
+				wedTimeArr.push(moment($(this).val(),'hh:mm A').add('minutes',offset).format('HH:mm'));
 			}
 		});
 		dayObj['Wednesday'] = wedTimeArr;
 		$('#crThursday').find('.timepicker').each(function(index) {
 			if($(this).val()) {
-				thuTimeArr.push(moment($(this).val(),'hh:mm A').format('hh:mm'));
+				thuTimeArr.push(moment($(this).val(),'hh:mm A').add('minutes',offset).format('HH:mm'));
 			}
 		});
 		dayObj['Thursday'] = thuTimeArr;
 		$('#crFriday').find('.timepicker').each(function(index) {
 			if($(this).val()) {
-				friTimeArr.push(moment($(this).val(),'hh:mm A').format('hh:mm'));
+				friTimeArr.push(moment($(this).val(),'hh:mm A').add('minutes',offset).format('HH:mm'));
 			}
 		});
 		dayObj['Friday'] = friTimeArr;
 		$('#crSaturday').find('.timepicker').each(function(index) {
 			if($(this).val()) {
-				satTimeArr.push(moment($(this).val(),'hh:mm A').format('hh:mm'));
+				satTimeArr.push(moment($(this).val(),'hh:mm A').add('minutes',offset).format('HH:mm'));
 			}
 		});
 		dayObj['Saturday'] = satTimeArr;
 		$('#crSunday').find('.timepicker').each(function(index) {
 			if($(this).val()) {
-				sunTimeArr.push(moment($(this).val(),'hh:mm A').format('hh:mm'));
+				sunTimeArr.push(moment($(this).val(),'hh:mm A').add('minutes',offset).format('HH:mm'));
 			}
 		});
 		dayObj['Sunday'] = sunTimeArr;
