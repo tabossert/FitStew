@@ -234,6 +234,9 @@ $('#main').show();
 				editable: false,
 				events: obj,
 			 	eventClick: function(calEvent, jsEvent, view) {
+			 		$('#classMod').slideDown('slow');
+			 		$('#cschDuration').val(calEvent.duration);
+			 		$('#cschSpots').val(calEvent.spots);
 			 		var scidObj = {}
 			 		scidObj['classid'] = calEvent.cid;
 			 		scidObj['datetime'] = calEvent.dat + ' ' + calEvent.time;
@@ -269,10 +272,12 @@ $('#main').show();
 
 	$('#schedNav').click(function() {
 		if(!$(this).hasClass('active')) {
+			$('#classMod').hide();
 			$('.page').slideUp('slow');
 			$('#sidebar>ul>li.active').removeClass('active');
 			$('#schedule').slideDown('slow');
 			$(this).addClass('active');
+			$('#schPartic').find('#partWidg').remove();
 			buildCal('month');
 		}
 	});
