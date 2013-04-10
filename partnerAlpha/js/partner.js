@@ -131,8 +131,8 @@ $('#main').show();
 		});		
 	}
 
-	function loadNextClasses(offset) {
-		$('#main').find('.row-fluid').remove();
+	function loadNextClasses(elem,offset) {
+		$('#' + elem).find('.row-fluid').remove();
 		var nextObj = {};
 		//nextObj['weekdayStart'] = moment().utc().format('dddd');
 		nextObj['start'] = moment().utc().format('YYYY-MM-DD HH:mm');
@@ -150,9 +150,9 @@ $('#main').show();
 					console.log(classObj);
 					getParticipants(value.id,classObjJSON, function(inner) {
 						widg = widg + inner + '</tr></tbody></table></div></div></div></div>';
-						$('#main').append(widg);
+						$('#' + elem).append(widg);
 
-						$("#main input[type=checkbox]").click(function(){
+						$('#' + elem + ' input[type=checkbox]').click(function(){
 							checkinObj = {};
 							checkinObj['userid'] = $(this).data('uid');
 							checkinObj['sid'] = $(this).data('sid');
@@ -174,7 +174,7 @@ $('#main').show();
 
 
 
-	loadNextClasses(24);
+	loadNextClasses('main',24);
 
 	function loadCal(period,callback) {
 		if(period == 'day') {
@@ -207,6 +207,8 @@ $('#main').show();
 						timeObj['end'] = moment(dat + tim).add('minutes', value.duration).format('YYYY-MM-DD HH:mm:ss');
 						timeObj['dat'] = moment(dat).format('YYYY-MM-DD');
 						timeObj['time'] = value.time;
+						timeObj['duration'] = value.duration;
+						timeObj['spots'] = value.spots;
 						timeObj['allDay'] = false;
 						eventArr.push(timeObj);
 					}
@@ -232,7 +234,25 @@ $('#main').show();
 				editable: false,
 				events: obj,
 			 	eventClick: function(calEvent, jsEvent, view) {
-	 		 		alert(calEvent.start + ',' + calEvent.dat + ',' + calEvent.time);
+			 		var scidObj = {}
+			 		scidObj['classid'] = calEvent.cid;
+			 		scidObj['datetime'] = calEvent.dat + ' ' + calEvent.time;
+			 		scidObjJSON = JSON.stringify(scidObj);
+			 		$('#schPartic').find('#partWidg').remove();
+					authPostCall('http://api.fitstew.com/api/getSCID/',scidObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+			 			if(obj.status !== 'failed') {
+					 		var classObj = {};
+							classObj['classid'] = obj[0].id;
+							classObjJSON = JSON.stringify(classObj);
+							console.log(obj[0].id);
+							getParticipants(calEvent.cid,classObjJSON, function(inner) {
+				 		 		//alert(calEvent.start + ',' + calEvent.dat + ',' + calEvent.time);
+								var widg = '<div id="partWidg" class="span6 offset3"><div class="widget-box"><div class="widget-title"><h5>Class Participants</h5></div><div class="widget-content nopadding"><table class="table table-bordered table-striped table-hover data-table"><thead><tr><th>Check-In</th><th>Name</th></tr></thead><tbody><tr>';
+								widg = widg + inner + '</tr></tbody></table></div></div></div></div>';
+								$('#schPartic').append(widg);
+							});
+						}
+					});
 	 		 	}
 			});
 		});
