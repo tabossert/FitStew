@@ -53,7 +53,7 @@ $(document).ready(function(){
     });	
     
     // === Calendar === //    
-    var date = new Date();
+    /*var date = new Date();
 	var d = date.getDate();
 	var m = date.getMonth();
 	var y = date.getFullYear();
@@ -85,7 +85,7 @@ $(document).ready(function(){
 				allDay: false
 			}
 		]
-	});
+	});*/
 
     // === Popovers === //    
     var placement = 'bottom';

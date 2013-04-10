@@ -113,6 +113,131 @@ $('#main').show();
 		}
 	});
 
+
+	function getParticipants(cid,classObj,callback) {
+		authPostCall('http://api.fitstew.com/api/getClassParticipants/',classObj,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+			console.log(classObj[0].classid)
+			var inner = "";
+			$.each( obj, function( key, value ) {
+				console.log(value)
+				if(value.checkin == 1) {
+					checked = "checked";
+				} else {
+					checked = "";
+				}
+				inner = inner + '<tr><td><input class="pull-right checkin" type="checkbox" data-cid="' + cid + '" data-sid="' + value.sid + '" data-uid="' + value.id + '" ' + checked + ' /></td><td>' + value.first_name + ' ' + value.last_name + '</td></tr>';
+			});
+			callback(inner)
+		});		
+	}
+
+	function loadNextClasses(offset) {
+		$('#main').find('.row-fluid').remove();
+		var nextObj = {};
+		//nextObj['weekdayStart'] = moment().utc().format('dddd');
+		nextObj['start'] = moment().utc().format('YYYY-MM-DD HH:mm');
+		nextObj['end'] = moment().add('hours', 20).utc().format('YYYY-MM-DD HH:mm');
+		//nextObj['weekedayEnd'] = moment().add('hours', 20).utc().format('dddd');
+		nextObjJSON = JSON.stringify(nextObj);
+
+		authPostCall('http://api.fitstew.com/api/getNextClasses/',nextObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+			if(obj.status !== 'failed') {
+				$.each( obj, function( key, value ) {
+					var widg = '<div class="row-fluid"><div class="span6 offset3"><div class="widget-box"><div class="widget-title"><h5>' + value.service + ' ' + moment(value.datetime).format('h:mm A') + '</h5></div><div class="widget-content nopadding"><table class="table table-bordered table-striped table-hover data-table"><thead><tr><th>Check-In</th><th>Name</th></tr></thead><tbody><tr>';
+					var classObj = {};
+					classObj['classid'] = value.id;
+					classObjJSON = JSON.stringify(classObj);
+					console.log(classObj);
+					getParticipants(value.id,classObjJSON, function(inner) {
+						widg = widg + inner + '</tr></tbody></table></div></div></div></div>';
+						$('#main').append(widg);
+
+						$("#main input[type=checkbox]").click(function(){
+							checkinObj = {};
+							checkinObj['userid'] = $(this).data('uid');
+							checkinObj['sid'] = $(this).data('sid');
+							checkinObj['cid'] = $(this).data('cid');
+							checkinObjJSON = JSON.stringify(checkinObj);
+							if ($(this).attr("checked") == "checked"){
+								authPostCall('http://api.fitstew.com/api/userCheckinByGym/',checkinObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+								});
+							} else {
+								authPostCall('http://api.fitstew.com/api/deleteCheckinByGym/',checkinObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+								});
+							}
+						});
+					});
+				});
+			}
+		});
+	}	
+
+
+
+	loadNextClasses(24);
+
+	function loadCal(period,callback) {
+		if(period == 'day') {
+			var dayz = 1;
+			var cDate = moment();
+		} else if(period == 'week') {
+			var dayz = 7;
+			var cDate = moment();
+		} else if(period == 'month') {
+			var dayz = moment().daysInMonth();
+			var cDate = moment().date(1);
+		}
+		console.log(dayz);
+		console.log(cDate);
+		var checkinObj= {};
+		var eventArr = [];
+		checkinObj['test'] = "test";
+		checkinObjJSON = JSON.stringify(checkinObj);
+		authPostCall('http://api.fitstew.com/api/gymSchedule/',checkinObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+			for(var i = 0;i < dayz;i++) {
+				var d = moment(cDate).add('days', i).format('dddd');
+				$.each( obj, function( key, value ) {
+					if(value.weekday == d) {
+						var timeObj = {}
+						var dat = moment(cDate).add('days', i).format('YYYY-MM-DD ');
+						var tim = moment(value.time,'hh:mm').subtract('minutes', offset).format('hh:mm:ss');
+						timeObj['cid'] = value.id;
+						timeObj['title'] = value.service;
+						timeObj['start'] = dat + tim;
+						timeObj['end'] = moment(dat + tim).add('minutes', value.duration).format('YYYY-MM-DD HH:mm:ss');
+						timeObj['dat'] = moment(dat).format('YYYY-MM-DD');
+						timeObj['time'] = value.time;
+						timeObj['allDay'] = false;
+						eventArr.push(timeObj);
+					}
+				});
+			}
+			callback(eventArr);
+		});
+	}
+
+	function buildCal(period) {
+	    var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+		
+		loadCal(period,function(obj) {
+			$('.calendar').fullCalendar({
+				header: {
+					left: 'prev,next',
+					center: 'title',
+					right: 'month,basicWeek,basicDay'
+				},
+				editable: false,
+				events: obj,
+			 	eventClick: function(calEvent, jsEvent, view) {
+	 		 		alert(calEvent.start + ',' + calEvent.dat + ',' + calEvent.time);
+	 		 	}
+			});
+		});
+	}
+
 	$('#dashNav').click(function() {
 		if(!$(this).hasClass('active')) {
 			$('.page').slideUp('slow');
@@ -128,6 +253,7 @@ $('#main').show();
 			$('#sidebar>ul>li.active').removeClass('active');
 			$('#schedule').slideDown('slow');
 			$(this).addClass('active');
+			buildCal('month');
 		}
 	});
 	
@@ -171,13 +297,13 @@ $('#main').show();
 						$(element).parents('.control-group').addClass('success');
 					}
 				});
-				var monSplit = $(this).find('#cMonday').html().split(" ");
-				var tueSplit = $(this).find('#cTuesday').html().split(" ");
-				var wedSplit = $(this).find('#cWednesday').html().split(" ");
-				var thuSplit = $(this).find('#cThursday').html().split(" ");
-				var friSplit = $(this).find('#cFriday').html().split(" ");
-				var satSplit = $(this).find('#cSaturday').html().split(" ");
-				var sunSplit = $(this).find('#cSunday').html().split(" ");
+				var monSplit = $(this).find('#cMonday').html().split(",");
+				var tueSplit = $(this).find('#cTuesday').html().split(",");
+				var wedSplit = $(this).find('#cWednesday').html().split(",");
+				var thuSplit = $(this).find('#cThursday').html().split(",");
+				var friSplit = $(this).find('#cFriday').html().split(",");
+				var satSplit = $(this).find('#cSaturday').html().split(",");
+				var sunSplit = $(this).find('#cSunday').html().split(",");
 				$('#crMonday').html('');
 				$('#crTuesday').html('');
 				$('#crWednesday').html('');
@@ -204,6 +330,7 @@ $('#main').show();
 					$('#crSaturday').append('<div class="input-append bootstrap-timepicker cfTime"><input type="text" data-default-time="false" value="' + satSplit[i] + '" class="input-small2 timepicker"><span class="add-on"><i class="icon-time"></i></span></div>')
 				}
 				for(i = 0; i < sunSplit.length; i++){
+					console.log(sunSplit[i])
 					$('#crSunday').append('<div class="input-append bootstrap-timepicker cfTime"><input type="text" data-default-time="false" value="' + sunSplit[i] + '" class="input-small2 timepicker"><span class="add-on"><i class="icon-time"></i></span></div>')
 				}
 				$('.timepicker').timepicker();
@@ -234,9 +361,11 @@ $('#main').show();
 					var timeA = "";
 					timeSplit = value.time.split(',');
 					for(i = 0; i < timeSplit.length; i++){
-						timeA = timeA + moment(timeSplit[i], 'hh:mm').subtract('minutes',offset).local().format('h:mmA') + ' ';
-						//moment(timeSplit[i],'hh:mm').format('h:mmA') + ' ';
-						console.log(timeA)
+						if(i == 0) {
+							timeA = timeA + moment(timeSplit[i], 'hh:mm').subtract('minutes',offset).local().format('h:mm A');
+						} else {
+							timeA = timeA + ',' + moment(timeSplit[i], 'hh:mm').subtract('minutes',offset).local().format('h:mm A');
+						}
 					}
 					$('#' + cid).children('#c' + value.weekday).html(timeA);
 				} 
