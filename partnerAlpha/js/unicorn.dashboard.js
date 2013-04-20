@@ -10,7 +10,7 @@ $(document).ready(function(){
 	unicorn.peity();
 	
 	// === Prepare the chart data ===/
-	var sin = [], cos = [];
+	/*var sin = [], cos = [];
     for (var i = 0; i < 14; i += 0.5) {
         sin.push([i, Math.sin(i)]);
         cos.push([i, Math.cos(i)]);
@@ -50,7 +50,7 @@ $(document).ready(function(){
 				});
             previousPoint = null;           
         }   
-    });	
+    });	*/
     
     // === Calendar === //    
     /*var date = new Date();
@@ -88,7 +88,7 @@ $(document).ready(function(){
 	});*/
 
     // === Popovers === //    
-    var placement = 'bottom';
+    /*var placement = 'bottom';
     var trigger = 'hover';
     var html = true;
 
@@ -115,8 +115,8 @@ $(document).ready(function(){
        content: '<span class="content-big">2968</span> <span class="content-small">All Tickets</span><br /><span class="content-big">48</span> <span class="content-small">New Tickets</span><br /><span class="content-big">495</span> <span class="content-small">Solved</span>',
        trigger: trigger,
        html: html   
-    });
-});
+    });*/
+})
 
 
 unicorn = {

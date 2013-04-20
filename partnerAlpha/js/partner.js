@@ -7,6 +7,8 @@ $('#main').show();
 	var uToken = 'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0';
 	var offset = moment().zone();
 	var dayNames = new Array("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday");
+	var apiUrl = 'http://localhost:81/'
+	//var url = 'http://api.fitstew.com/'
 
 	/* API Communication */
 	function postCall(uri,data,callback) {
@@ -115,7 +117,7 @@ $('#main').show();
 
 
 	function getParticipants(cid,classObj,callback) {
-		authPostCall('http://api.fitstew.com/api/getClassParticipants/',classObj,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+		authPostCall(apiUrl + 'api/getClassParticipants/',classObj,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
 			console.log(classObj[0].classid)
 			var inner = "";
 			$.each( obj, function( key, value ) {
@@ -140,7 +142,7 @@ $('#main').show();
 		//nextObj['weekedayEnd'] = moment().add('hours', 20).utc().format('dddd');
 		nextObjJSON = JSON.stringify(nextObj);
 
-		authPostCall('http://api.fitstew.com/api/getNextClasses/',nextObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+		authPostCall(apiUrl + 'api/getNextClasses/',nextObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
 			if(obj.status !== 'failed') {
 				$.each( obj, function( key, value ) {
 					var widg = '<div class="row-fluid"><div class="span6 offset3"><div class="widget-box"><div class="widget-title"><h5>' + value.service + ' ' + moment(value.datetime).format('h:mm A') + '</h5></div><div class="widget-content nopadding"><table class="table table-bordered table-striped table-hover data-table"><thead><tr><th>Check-In</th><th>Name</th></tr></thead><tbody><tr>';
@@ -159,7 +161,7 @@ $('#main').show();
 							checkinObj['cid'] = $(this).data('cid');
 							checkinObjJSON = JSON.stringify(checkinObj);
 							if ($(this).attr("checked") == "checked"){
-								authPostCall('http://api.fitstew.com/api/userCheckinByGym/',checkinObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+								authPostCall(apiUrl + 'api/userCheckinByGym/',checkinObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
 								});
 							} else {
 								authPostCall('http://api.fitstew.com/api/deleteCheckinByGym/',checkinObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
@@ -176,8 +178,8 @@ $('#main').show();
 
 	loadNextClasses('main',24);
 
-	function loadCal(period,callback) {
-		if(period == 'day') {
+	function loadCal(start,end,callback) {
+		/*if(period == 'day') {
 			var dayz = 1;
 			var cDate = moment();
 		} else if(period == 'week') {
@@ -186,14 +188,19 @@ $('#main').show();
 		} else if(period == 'month') {
 			var dayz = moment().daysInMonth();
 			var cDate = moment().date(1);
-		}
+		}*/
+		var dayz = moment(start).daysInMonth();
+		var cDate = moment(start).date(1);
+
+
 		console.log(dayz);
 		console.log(cDate);
-		var checkinObj= {};
+		var schedObj = {};
 		var eventArr = [];
-		checkinObj['test'] = "test";
-		checkinObjJSON = JSON.stringify(checkinObj);
-		authPostCall('http://api.fitstew.com/api/gymSchedule/',checkinObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+		schedObj['start'] = moment(start).utc().format('YYYY-MM')
+		schedObj['end'] = moment(start).utc().add('months', 1).format('YYYY-MM')
+		schedObjJSON = JSON.stringify(schedObj);
+		authPostCall(apiUrl + 'api/gymSchedule/',schedObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
 			for(var i = 0;i < dayz;i++) {
 				var d = moment(cDate).add('days', i).format('dddd');
 				$.each( obj, function( key, value ) {
@@ -224,15 +231,20 @@ $('#main').show();
 		var m = date.getMonth();
 		var y = date.getFullYear();
 		
-		loadCal(period,function(obj) {
+		//loadCal(period,function(obj) {
 			$('.calendar').fullCalendar({
+				events: function(start, end, callback) {
+					loadCal(start,end,function(obj) {
+						callback(obj);
+					});
+				},
 				header: {
 					left: 'prev,next',
 					center: 'title',
 					right: 'month,basicWeek,basicDay'
 				},
 				editable: false,
-				events: obj,
+				//events: obj,
 			 	eventClick: function(calEvent, jsEvent, view) {
 			 		$('#classMod').slideDown('slow');
 			 		$('#cschDuration').val(calEvent.duration);
@@ -242,14 +254,13 @@ $('#main').show();
 			 		scidObj['datetime'] = calEvent.dat + ' ' + calEvent.time;
 			 		scidObjJSON = JSON.stringify(scidObj);
 			 		$('#schPartic').find('#partWidg').remove();
-					authPostCall('http://api.fitstew.com/api/getSCID/',scidObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+					authPostCall(apiUrl + 'api/getSCID/',scidObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
 			 			if(obj.status !== 'failed') {
 					 		var classObj = {};
 							classObj['classid'] = obj[0].id;
 							classObjJSON = JSON.stringify(classObj);
 							console.log(obj[0].id);
 							getParticipants(calEvent.cid,classObjJSON, function(inner) {
-				 		 		//alert(calEvent.start + ',' + calEvent.dat + ',' + calEvent.time);
 								var widg = '<div id="partWidg" class="span6 offset3"><div class="widget-box"><div class="widget-title"><h5>Class Participants</h5></div><div class="widget-content nopadding"><table class="table table-bordered table-striped table-hover data-table"><thead><tr><th>Check-In</th><th>Name</th></tr></thead><tbody><tr>';
 								widg = widg + inner + '</tr></tbody></table></div></div></div></div>';
 								$('#schPartic').append(widg);
@@ -258,7 +269,7 @@ $('#main').show();
 					});
 	 		 	}
 			});
-		});
+		//});
 	}
 
 	$('#dashNav').click(function() {
@@ -267,6 +278,8 @@ $('#main').show();
 			$('#sidebar>ul>li.active').removeClass('active');
 			$('#dashboard').slideDown('slow');
 			$(this).addClass('active');
+			popuQuickStats();
+			popuGraph();
 		}
 	});
 
@@ -364,7 +377,7 @@ $('#main').show();
 	}
 
 	function refreshClasses() {
-		getCall('http://api.fitstew.com/api/getClasses/22',function(obj) {
+		getCall(apiUrl + 'api/getClasses/22',function(obj) {
 			$('#classHolder').find('tr').remove();
 			$.each( obj, function( key, value ) {
 				if(obj.status !== 'failed') {
@@ -406,7 +419,7 @@ $('#main').show();
 			$('#sidebar>ul>li.active').removeClass('active');
 			$('#location').slideDown('slow');
 			$(this).addClass('active');
-			getCall('http://api.fitstew.com/api/gymInfo/22',function(obj) {
+			getCall(apiUrl + 'api/gymInfo/22',function(obj) {
 				$('#thumb').attr('src',obj[0].image);
 				$('#locAddress').val(obj[0].address);
 				$('#locCity').val(obj[0].city);
@@ -464,7 +477,7 @@ $('#main').show();
 			$('#sidebar>ul>li.active').removeClass('active');
 			$('#settings').slideDown('slow');
 			$(this).addClass('active');
-			authGetCall('http://api.fitstew.com/api/disbursement/','D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+			authGetCall(apiUrl + 'api/disbursement/','D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
 				$('#pLimit').val(obj[0].paylimit);
 				$('#pMethod').val(obj[0].paymenttype).attr('selected',true);
 				$('#dMethod').val(obj[0].type).attr('selected',true);
@@ -525,11 +538,11 @@ $('#main').show();
 		imgObj['image'] = $('#fileUp').data('imgEnc');
 		imgObjJSON = JSON.stringify(imgObj);
 
-		authPostCall('http://api.fitstew.com/api/addGymImage/',imgObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+		authPostCall(apiUrl + 'api/addGymImage/',imgObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
 			console.log(obj);
 		});
 
-		authPostCall('http://api.fitstew.com/api/updateGymProfile/',locInfoJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+		authPostCall(apiUrl + 'api/updateGymProfile/',locInfoJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
 			console.log(obj);
 
 		})
@@ -544,7 +557,7 @@ $('#main').show();
 		disObj['type'] = $('#dMethod').val();
 		disObjJSON = JSON.stringify(disObj);
 
-		authPostCall('http://api.fitstew.com/api/updateDisbursement/',disObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+		authPostCall(apiUrl + 'api/updateDisbursement/',disObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
 			console.log(obj);
 		});		
 
@@ -604,7 +617,7 @@ $('#main').show();
 	$('#classDel').click(function(e) {
 		e.preventDefault();
 		$("#classTable input:checked").each(function() {
-		    authDeleteCall('http://api.fitstew.com/api/deleteClass/'+this.id,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+		    authDeleteCall(apiUrl + 'api/deleteClass/'+this.id,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
 		    	console.log(obj);
 		    	refreshClasses();
 		    });
@@ -679,17 +692,241 @@ $('#main').show();
 
 		if($('#cfName').data('cid')) {
 			classObj['classid'] = $('#cfName').data('cid');
-			authPostCall('http://api.fitstew.com/api/updateClass/',JSON.stringify(classObj),'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+			authPostCall(apiUrl + 'api/updateClass/',JSON.stringify(classObj),'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
 				console.log(obj);
 				$('#classSection').slideUp('slow');
 				refreshClasses();
 			});			
 		} else {
-			authPostCall('http://api.fitstew.com/api/addClass/',JSON.stringify(classObj),'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+			authPostCall(apiUrl + 'api/addClass/',JSON.stringify(classObj),'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
 				console.log(obj);
 				$('#classSection').slideUp('slow');
 				refreshClasses();
 			});
 		}
 	});
+
+	//Analytics
+	function calcPerc(num1,num2,callback) {
+		var perc = ((num2 - num1) / num2) * 100;
+		callback(Math.round(perc));
+	}
+
+	function setGraphs() {
+		$(".peity_bar_good").peity("bar", {
+			colour: "#459D1C"
+		});	
+		$(".peity_bar_bad").peity("bar", {
+			colour: "#BA1E20"
+		});	
+		$(".peity_bar_neutral").peity("bar", {
+			colour: "#757575"
+		});	
+	}
+
+	function setPopovers() {
+	    // === Popovers === //    
+	    var placement = 'bottom';
+	    var trigger = 'hover';
+	    var html = true;
+
+	    $('.popover-visits').popover({
+	       placement: placement,
+	       content: '<span class="content-big">36094</span> <span class="content-small">Total Visits</span><br /><span class="content-big">220</span> <span class="content-small">Visits Today</span><br /><span class="content-big">200</span> <span class="content-small">Visits Yesterday</span><br /><span class="content-big">5677</span> <span class="content-small">Visits in This Month</span>',
+	       trigger: trigger,
+	       html: html   
+	    });
+	    $('.popover-users').popover({
+	       placement: placement,
+	       content: '<span class="content-big">1433</span> <span class="content-small">Total Users</span><br /><span class="content-big">0</span> <span class="content-small">Registered Today</span><br /><span class="content-big">0</span> <span class="content-small">Registered Yesterday</span><br /><span class="content-big">16</span> <span class="content-small">Registered Last Week</span>',
+	       trigger: trigger,
+	       html: html   
+	    });
+	    $('.popover-orders').popover({
+	       placement: placement,
+	       content: '<span class="content-big">8650</span> <span class="content-small">Total Orders</span><br /><span class="content-big">29</span> <span class="content-small">Pending Orders</span><br /><span class="content-big">32</span> <span class="content-small">Orders Today</span><br /><span class="content-big">64</span> <span class="content-small">Orders Yesterday</span>',
+	       trigger: trigger,
+	       html: html   
+	    });
+	    $('.popover-tickets').popover({
+	       placement: placement,
+	       content: '<span class="content-big">2968</span> <span class="content-small">All Tickets</span><br /><span class="content-big">48</span> <span class="content-small">New Tickets</span><br /><span class="content-big">495</span> <span class="content-small">Solved</span>',
+	       trigger: trigger,
+	       html: html   
+	    });
+	}
+
+	function popuQuickStats() {
+		// === Popovers === //    
+	    var placement = 'bottom';
+	    var trigger = 'hover';
+	    var html = true;
+
+	    // === Stat Objects === //
+		var queryObject = {};
+		queryObject['start'] = '2013-01-01 00:00:00';
+		queryObject['end'] = '2014-01-01 00:00:00';
+		authPostCall(apiUrl + 'api/barbell/pspwp/',JSON.stringify(queryObject),'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+			var prevRevTot = 0;
+			var curRevTot = 0;
+			var prevVisTot = 0;
+			var curVisTot = 0;
+			var prevVieTot = 0;
+			var curVieTot = 0;
+			var i = 0;
+			var dataRevArr = [];
+			var dataVisArr = [];
+			var dataVieArr = [];
+			$.each( obj, function( key, value ) {
+				if(i < 1) {
+					prevRevTot = prevRevTot + value.reservations;
+					prevVisTot = prevVisTot + value.visits;
+					prevVieTot = prevVieTot + value.views;
+					i++;
+				} else {
+					curRevTot = curRevTot + value.reservations;
+					curVisTot = curVisTot + value.visits;
+					curVieTot = curVieTot + value.views;
+					dataRevArr.push(value.reservations);
+					dataVisArr.push(value.visits);
+					dataVieArr.push(value.views);
+					i++;
+				}
+			});
+
+			$('#reservData').html(dataRevArr.toString());
+			$('#visitsData').html(dataVisArr.toString());
+			$('#viewsData').html(dataVieArr.toString());
+
+			calcPerc(prevRevTot,curRevTot,function(result) {
+				if(result > 0) {
+					$('#reservData').addClass('peity_bar_good');
+					$('#reservAvg').addClass('pos');
+					$('#reservAvg').html('+' + result + '%');
+				} else {
+					$('#reservData').addClass('peity_bar_bad');
+					$('#reservAvg').addClass('neg');
+					$('#reservAvg').html(result + '%');
+				}
+				$('#reservTot').html(curRevTot);
+			})
+
+			calcPerc(prevVisTot,curVisTot,function(result) {
+				if(result > 0) {
+					$('#visitsData').addClass('peity_bar_good');
+					$('#visitsAvg').addClass('pos');
+					$('#visitsAvg').html('+' + result + '%');
+				} else {
+					$('#visitsData').addClass('peity_bar_bad');
+					$('#visitsAvg').addClass('neg');
+					$('#visitsAvg').html(result + '%');
+				}
+				$('#visitsTot').html(curVisTot);
+			})
+
+			calcPerc(prevVieTot,curVieTot,function(result) {
+				if(result > 0) {
+					$('#viewsData').addClass('peity_bar_good');
+					$('#viewsAvg').addClass('pos');
+					$('#viewsAvg').html('+' + result + '%');
+				} else {
+					$('#viewsData').addClass('peity_bar_bad');
+					$('#viewsAvg').addClass('neg');
+					$('#viewsAvg').html(result + '%');
+				}
+				$('#viewsTot').html(curVieTot);
+			})
+			setGraphs();
+			/*calcPerc(prevRevTot,curRevTot,function(result) {
+				if(result > 1) {
+					$('#reservDiv').addClass('peity_bar_good');
+					setGraphs();
+					$('#reservAvg').html('+' + result);
+				} else {
+					$('#reservDiv').addClass('peity_bar_bad');
+					setGraphs();
+					$('#reservAvg').html('-' + result);
+				}
+
+			})*/
+
+		});
+	}
+
+
+	function popuGraph() {
+
+		var queryObject = {};
+		queryObject['start'] = '2013-01-01 00:00:00';
+		queryObject['end'] = '2014-01-01 00:00:00';
+		authPostCall(apiUrl + 'api/barbell/psptp/',JSON.stringify(queryObject),'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {		
+
+			var allArr = [];
+			var resArr = [];
+			var visArr = [];
+			var vieArr = [];
+
+			$.each( obj, function( key, value ) {
+				allArr.push(value.reservations);
+				allArr.push(value.visits);
+				allArr.push(value.views);
+				resArr.push([moment(value.dt,'YYYY-MM-DD').unix() * 1000, value.reservations]);
+				visArr.push([moment(value.dt,'YYYY-MM-DD').unix() * 1000, value.visits]);
+				vieArr.push([moment(value.dt,'YYYY-MM-DD').unix() * 1000, value.views]);
+			});
+			var max = Math.max.apply(Math, allArr);
+			var max = max + (max / 5);
+
+			// === Make chart === //
+	    	var plot = $.plot($(".chart"),
+	           [ { data: resArr, label: "Reservations", color: "#BA1E20"}, { data: visArr, label: "Visits",color: "#459D1C" }, { data: vieArr, label: "Views",color: "#0000CC" } ], {
+	               series: {
+	                   lines: { show: true, fill: true },
+	                   points: { show: true }
+	               },
+	               grid: { hoverable: true, clickable: true },
+	               yaxis: { min: 0, max: max },
+	               xaxis: {
+					    mode: "time",
+					    timeformat: "%m/%d/%y"
+					}
+			   });
+
+			// === Point hover in chart === //
+		    var previousPoint = null;
+		    $(".chart").bind("plothover", function (event, pos, item) {
+				
+		        if (item) {
+		            if (previousPoint != item.dataIndex) {
+		                previousPoint = item.dataIndex;
+		                
+		                $('#tooltip').fadeOut(200,function(){
+							$(this).remove();
+						});
+		                var x = item.datapoint[0].toFixed(2),
+							y = item.datapoint[1].toFixed(2);
+		                    
+		                fitstew.flot_tooltip(item.pageX, item.pageY,Math.round(y) + ' ' + item.series.label);
+		            }
+		            
+		        } else {
+					$('#tooltip').fadeOut(200,function(){
+							$(this).remove();
+						});
+		            previousPoint = null;           
+		        }   
+		    })
+	    });
+	}
+	fitstew = {
+		// === Tooltip for flot charts === //
+		flot_tooltip: function(x, y, contents) {
+				
+		$('<div id="tooltip">' + contents + '</div>').css( {
+			top: y + 5,
+			left: x + 5
+			}).appendTo("body").fadeIn(200);
+		}
+	}
+
 });

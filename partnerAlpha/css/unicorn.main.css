@@ -1361,6 +1361,20 @@ div.dataTables_wrapper .ui-widget-header {
     float: right;
 }
 
+
+/* Dashboard stuff by Trevor */
+.pos {
+	color: #459D1C;
+}
+
+.neg {
+	color: #BA1E20;
+}
+
+.neut {
+	color: #757575;
+}
+
 /* Forms */
 form {
 	margin-bottom: 0;
