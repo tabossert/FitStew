@@ -7,7 +7,7 @@ $('#main').show();
 	var uToken = 'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0';
 	var offset = moment().zone();
 	var dayNames = new Array("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday");
-	var apiUrl = 'http://localhost:81/'
+	var apiUrl = 'http://api.fitstew.com/'
 	//var url = 'http://api.fitstew.com/'
 
 	/* API Communication */
