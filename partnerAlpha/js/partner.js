@@ -564,11 +564,16 @@ $('#main').show();
 	});
 
 	$('.timepicker').timepicker();
+	$('.datepicker').datepicker();
 
 	$('.addTime').click(function(e) {
 		e.preventDefault();
 		$(this).parent().find('.timeRow').append('<div class="input-append bootstrap-timepicker cfTime"><input type="text" data-default-time="false" class="input-small2 timepicker"><span class="add-on"><i class="icon-time"></i></span></div>');
 		$('.timepicker').timepicker();
+	});
+
+	$('#updateStats').click(function() {
+		popuGraph();
 	});
 
 	$('#classAdd').click(function(e) {
@@ -857,8 +862,13 @@ $('#main').show();
 	function popuGraph() {
 
 		var queryObject = {};
-		queryObject['start'] = '2013-01-01 00:00:00';
-		queryObject['end'] = '2014-01-01 00:00:00';
+		if($('#statStart').val().length == 0) {
+			queryObject['start'] = moment().subtract('days', 8).utc().format('YYYY-MM-DD');
+			queryObject['end'] = moment().utc().format('YYYY-MM-DD');
+		} else {
+			queryObject['start'] = moment($('#statStart').val()).subtract('days', 8).utc().format('YYYY-MM-DD');
+			queryObject['end'] = moment($('#statEnd').val()).utc().format('YYYY-MM-DD');
+		}
 		authPostCall(apiUrl + 'api/barbell/psptp/',JSON.stringify(queryObject),'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {		
 
 			var allArr = [];
