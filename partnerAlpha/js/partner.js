@@ -861,15 +861,26 @@ $('#main').show();
 
 	function popuGraph() {
 
+		var q = 'psptp';
+		var ty = 'day';
+		var timeF = "%m/%d/%y"
 		var queryObject = {};
 		if($('#statStart').val().length == 0) {
 			queryObject['start'] = moment().subtract('days', 8).utc().format('YYYY-MM-DD');
 			queryObject['end'] = moment().utc().format('YYYY-MM-DD');
 		} else {
-			queryObject['start'] = moment($('#statStart').val()).subtract('days', 8).utc().format('YYYY-MM-DD');
-			queryObject['end'] = moment($('#statEnd').val()).utc().format('YYYY-MM-DD');
+			if($('#statStart').val() == $('#statEnd').val()) {
+				q = 'psph';
+				ty = 'hour';
+				var timeF = '%I %P'
+				queryObject['start'] = moment($('#statStart').val()).utc().format('YYYY-MM-DD');
+				queryObject['end'] = moment($('#statEnd').val()).add('days', 1).utc().format('YYYY-MM-DD');
+			} else {
+				queryObject['start'] = moment($('#statStart').val()).utc().format('YYYY-MM-DD');
+				queryObject['end'] = moment($('#statEnd').val()).utc().format('YYYY-MM-DD');
+			}
 		}
-		authPostCall(apiUrl + 'api/barbell/psptp/',JSON.stringify(queryObject),'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {		
+		authPostCall(apiUrl + 'api/barbell/' + q,JSON.stringify(queryObject),'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {		
 
 			var allArr = [];
 			var resArr = [];
@@ -880,10 +891,17 @@ $('#main').show();
 				allArr.push(value.reservations);
 				allArr.push(value.visits);
 				allArr.push(value.views);
-				resArr.push([moment(value.dt,'YYYY-MM-DD').unix() * 1000, value.reservations]);
-				visArr.push([moment(value.dt,'YYYY-MM-DD').unix() * 1000, value.visits]);
-				vieArr.push([moment(value.dt,'YYYY-MM-DD').unix() * 1000, value.views]);
+				if(ty == 'day') {
+					resArr.push([moment(value.dt,'YYYY-MM-DD').utc().unix() * 1000, value.reservations]);
+					visArr.push([moment(value.dt,'YYYY-MM-DD').utc().unix() * 1000, value.visits]);
+					vieArr.push([moment(value.dt,'YYYY-MM-DD').utc().unix() * 1000, value.views]);
+				} else {
+					resArr.push([moment(value.dt).utc().unix() * 1000, value.reservations]);
+					visArr.push([moment(value.dt).utc().unix() * 1000, value.visits]);
+					vieArr.push([moment(value.dt).utc().unix() * 1000, value.views]);					
+				}
 			});
+
 			var max = Math.max.apply(Math, allArr);
 			var max = max + (max / 5);
 
@@ -898,7 +916,8 @@ $('#main').show();
 	               yaxis: { min: 0, max: max },
 	               xaxis: {
 					    mode: "time",
-					    timeformat: "%m/%d/%y"
+					    timeformat: timeF,
+					    timezone: "browser"
 					}
 			   });
 
