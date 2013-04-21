@@ -769,8 +769,8 @@ $('#main').show();
 
 	    // === Stat Objects === //
 		var queryObject = {};
-		queryObject['start'] = '2013-01-01 00:00:00';
-		queryObject['end'] = '2014-01-01 00:00:00';
+		queryObject['start'] = moment().subtract('days', 14).utc().format('YYYY-MM-DD');
+		queryObject['end'] = moment().utc().format('YYYY-MM-DD');
 		authPostCall(apiUrl + 'api/barbell/pspwp/',JSON.stringify(queryObject),'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
 			var prevRevTot = 0;
 			var curRevTot = 0;
