@@ -30,7 +30,6 @@ $(document).ready(function(){
 			var payInfo = new Object();
 			payInfo.amount = $('#fmaAmount').val();
 			payInfo.cToken = cuToken;
-			//$('#acbcard').data('cToken');
 			var payInfoJSON = JSON.stringify(payInfo);
 			authPostCall('http://api.fitstew.com/api/processPayment/',payInfoJSON,uToken,function(obj) {
 				if(obj.status == "success") {
@@ -55,6 +54,7 @@ $(document).ready(function(){
 			console.log(obj.status);
 			if(obj.status) {
 				localStorage['uToken'] = "";
+				localStorage['cuToken'] = "";
 				window.location = url + "/Beta/";
 			}
 		});
@@ -391,6 +391,7 @@ $(document).ready(function(){
     	$('#acsstate').val(obj[0].state);
     	$('#acszipcode').val(obj[0].zipcode);
     	localStorage['cuToken'] = obj[0].cToken;
+    	cuToken = obj[0].cToken;
    	})
 
     function getBillingInfo() {
