@@ -29,7 +29,8 @@ $(document).ready(function(){
 		if ($('#fmaAmount').val()) {
 			var payInfo = new Object();
 			payInfo.amount = $('#fmaAmount').val();
-			payInfo.cToken = $('#acbcard').data('cToken');
+			payInfo.cToken = cuToken;
+			//$('#acbcard').data('cToken');
 			var payInfoJSON = JSON.stringify(payInfo);
 			authPostCall('http://api.fitstew.com/api/processPayment/',payInfoJSON,uToken,function(obj) {
 				if(obj.status == "success") {
