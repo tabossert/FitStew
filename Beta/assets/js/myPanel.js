@@ -8,7 +8,7 @@ if(!localStorage['uToken'] || localStorage['fitTime'] < moment().subtract('minut
 $(document).ready(function(){
 
 	/* Settings */
-	var backArr = ['assets/img/background.png','assets/img/background2.jpg','assets/img/background3.jpg','assets/img/background4.jpg','assets/img/background5.jpg'];
+	var backArr = ['assets/img/background1.png','assets/img/background2.png'];
 	var rand = backArr[Math.floor(Math.random() * backArr.length)];
 
 	$('body').css('background', "url('" + rand + "') no-repeat;");
