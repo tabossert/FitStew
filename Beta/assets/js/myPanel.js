@@ -561,7 +561,7 @@ $(document).ready(function(){
 				$.each(schedjson, function(key, value) {
 					if(moment(value.datetime).format('YYYY-MM-DD') == moment(sdayofweek).format('YYYY-MM-DD')) {
 						console.log(moment(value.datetime).format('YYYY-MM-DD'));
-						$('#s' + dayNames[d]).children('.eventCont').append('<div class="event" data-sid="' + value.id + '" data-cid="' + value.classid + '"><div class="container-fluid"><div class="row-fluid"><div class="span12"><div class="row-fluid"><div class="schTime span6 offset2">' + moment(value.datetime).format('hh:mm') + '</div><div class="schDel span2 offset2">X</div></div></div><div class="row-fluid"><div class="schImages span6"><img src="' + value.gymImage + '"></div><div class="schImages span6"><img src="assets/img/schedule/' + value.image + '"></div></div><div class="row-fluid"><div class="schName">' + value.service + '</div></div></div></div>');
+						$('#s' + dayNames[d]).children('.eventCont').append('<div class="event" data-sid="' + value.id + '" data-cid="' + value.classid + '" data-scid="' + value.sclassid + '"><div class="container-fluid"><div class="row-fluid"><div class="span12"><div class="row-fluid"><div class="schTime span6 offset2">' + moment(value.datetime).format('hh:mm') + '</div><div class="schDel span2 offset2">X</div></div></div><div class="row-fluid"><div class="schImages span6"><img src="' + value.gymImage + '"></div><div class="schImages span6"><img src="assets/img/schedule/' + value.image + '"></div></div><div class="row-fluid"><div class="schName">' + value.service + '</div></div></div></div>');
 						console.log(moment(value.datetime).format('hh:mm'));
 					}
 				});
