@@ -1,784 +1,391 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>FitStew Partner Portal</title>
-		<meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="css/bootstrap.min.css" />
-		<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
-		<link rel="stylesheet" href="css/fullcalendar.css" />	
-		<link rel="stylesheet" href="css/bootstrap-timepicker.css" />
-		<link rel="stylesheet" href="css/bootstrap-fileupload.css" />
-		<link rel="stylesheet" href="css/unicorn.main.css" />
-		<link rel="stylesheet" href="css/unicorn.grey.css" class="skin-color" />
+  <head>
+  	<title>FitStew.com</title>
+	<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="assets/css/bootstrap-responsive.min.css" />
+	<link rel="stylesheet" href="assets/css/structure.css" />
+	<link rel="stylesheet" href="assets/css/landing2.css" />
 
-		<script src="js/excanvas.min.js"></script>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/jquery-ui.custom.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.flot.min.js"></script>
-        <script src="js/jquery.flot.time.js"></script>
-        <script src="js/jquery.flot.resize.min.js"></script>
-        <script src="js/jquery.peity.min.js"></script>
-        <script src="js/fullcalendar.min.js"></script>
-        <script src="js/jquery.uniform.js"></script>
-        <script src="js/jquery.validate.js"></script>
-        <script src="js/select2.min.js"></script>
-        <script src="js/unicorn.js"></script>
-        <script src="js/unicorn.dashboard.js"></script>
-        <script src="js/bootstrap-timepicker.js"></script>
-        <script src="js/bootstrap-datepicker.js"></script>
-        <script src="js/moment.min.js"></script>
-        <script src="js/partner.js"></script>
-        <script src="js/bootstrap-fileupload.js"></script>
-        <script>
-            function readURL(input)
-			{
-				if (input.files && input.files[0])
-				{
-					console.log(input.files[0].name)
-					$('#fileUp').data('imgName', input.files[0].name)
-				    var reader = new FileReader();
-				    reader.onload = function (e)
-				    {
-				    	console.log(e)
-				        var sp = e.target.result.split(',');
-				        $('#fileUp').data('imgEnc',sp[1]);
-				    };
-				    reader.readAsDataURL(input.files[0]);
-				}
-			}
-		</script>
-	</head>
-	<body>
-		
-		
-		<div id="header">
-			<div id="logo"><a href="./index.html"><img src="img/logo.png"></a></div>	
-		</div>
-		
+  <script src="assets/js/jquery-1.8.3.js"></script>
+  <script src="assets/js/jquery.ui.custom.js"></script>
+  <script src="assets/js/jquery.smooth-scroll.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/moment.min.js"></script>
+  <script src="assets/js/landing.js"></script>
+  <!-- MouseStats:Begin -->
+  <script type="text/javascript">(function () {
+    if(document.getElementById('MouseStatsTrackingScript') == undefined) {
+    var mousestats_script = document.createElement('script');
+    mousestats_script.type = 'text/javascript';
+    mousestats_script.id = 'MouseStatsTrackingScript';
+    mousestats_script.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www2') + '.mousestats.com/js/5/3/5315539080367605604.js?' + (new Date().getTime());
+    mousestats_script.async = true;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(mousestats_script);
+    } })();
+  </script>
+<!-- MouseStats:End -->
 
-		<!--<div id="user-nav" class="navbar navbar-inverse">
-            <ul class="nav btn-group">
-                <li class="btn btn-inverse" ><a title="" href="#"><i class="icon icon-user"></i> <span class="text">Profile</span></a></li>
-                <li class="btn btn-inverse dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a class="sAdd" title="" href="#">new message</a></li>
-                        <li><a class="sInbox" title="" href="#">inbox</a></li>
-                        <li><a class="sOutbox" title="" href="#">outbox</a></li>
-                        <li><a class="sTrash" title="" href="#">trash</a></li>
-                    </ul>
+<!-- FB Stuff -->
+
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    // init the FB JS SDK
+    FB.init({
+      appId      : '402151409818124', // App ID from the App Dashboard
+      channelUrl : '//web-dev.fitstew.com/channel.html', // Channel File for x-domain communication
+      status     : true, // check the login status upon init?
+      cookie     : true, // set sessions cookies to allow your server to access the session?
+      xfbml      : true  // parse XFBML tags on this page?
+    });
+
+    // Additional initialization code such as adding Event Listeners goes here
+
+  };
+
+  // Load the SDK's source Asynchronously
+  // Note that the debug version is being actively developed and might 
+  // contain some type checks that are overly strict. 
+  // Please report such bugs using the bugs tool.
+  (function(d, debug){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
+     ref.parentNode.insertBefore(js, ref);
+   }(document, /*debug*/ false));
+</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=402151409818124";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- FB stuff -->
+  <script type="text/javascript">
+  (function () {
+    if (typeof window.janrain !== 'object') window.janrain = {};
+    window.janrain.settings = {};
+
+    janrain.settings.tokenAction = 'event';
+    janrain.settings.type = 'modal';
+    janrain.settings.linkClass = 'janrainEngage';
+
+
+    function isReady() { janrain.ready = true; };
+    if (document.addEventListener) {
+        document.addEventListener("DOMContentLoaded", isReady, false);
+    } else {
+        window.attachEvent('onload', isReady);
+    }
+
+    var e = document.createElement('script');
+    e.type = 'text/javascript';
+    e.id = 'janrainAuthWidget';
+
+    if (document.location.protocol === 'https:') {
+        e.src = 'https://rpxnow.com/js/lib/zunefittesting/engage.js';
+    } else {
+        e.src = 'http://widget-cdn.rpxnow.com/js/lib/zunefittesting/engage.js';
+    }
+
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(e, s);
+    })();
+
+
+
+    function janrainWidgetOnload() {
+    janrain.events.onProviderLoginStart.addHandler(function () {
+        console.log('Login Start!');
+    });
+    janrain.events.onProviderLoginComplete.addHandler(function (response) {
+        console.log('Login complete!');
+        console.log('response.provider = ' + response.provider);
+    });
+    janrain.events.onProviderLoginError.addHandler(function (response) {
+        console.log('Login Error!');
+        console.log('response.err.code = ' + response.err.code);
+        console.log('response.err.msg = ' + response.err.msg);
+        console.log('response.origin = ' + response.origin);
+        console.log('response.state = ' + response.state);
+    });
+    janrain.events.onProviderLoginSuccess.addHandler(function (something) {
+        console.log('Login Succcess!');
+    });
+    janrain.events.onReturnExperienceFound.addHandler(function (response) {
+        console.log('Return Experience Found!');
+        console.log('response.name = ' + response.name);
+        console.log('response.returnProvider = ' + response.returnProvider);
+        console.log('response.welcomeName = ' + response.welcomeName);
+    });
+    janrain.events.onProviderLoginToken.addHandler(function (response) {
+        console.log('Provider Login Token Returned!');
+        console.log('response.token = ' + response.token);
+        var tok = new Object();
+        tok.token = response.token;
+        tokJSON = JSON.stringify(tok);
+
+        $.ajax({
+          beforeSend: function(xhr) {
+            xhr.setRequestHeader("ltype", "web");
+            xhr.setRequestHeader("token", response.token);
+          },
+            url: "http://api.fitstew.com/api/userSignup/",
+            type: "post",
+            data: tok,
+            dataType: "json",
+            success: function (data) {
+              console.log(data);
+              localStorage['uToken'] = data[0].token;
+              localStorage['fitTime'] = moment().unix();
+              window.location = "http://web-dev.fitstew.com/myPanel"
+            },
+            error: function (xhr, status, p3, p4) {
+                console.log(xhr);
+                console.log(status);
+                console.log(p3);
+            }
+        });
+    });
+  }
+  </script>
+  </head>
+  <body>
+    <div id="lHeader">
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <div class="span10 offset1">
+            <div class="span4">
+              <div class="logo">
+                <img src="assets/img/logo.png">
+              </div>
+            </div>
+            <div class="span5 offset3 topBlock">
+              <div id="socialBlock" class="span6">
+                <!--Follow-->
+                <div id="socIcons span12"> 
+                  <!-- <img src="assets/img/fbook_circle.png"> -->
+                  <div class="fb-like span6 fbshelve socright" data-href="http://www.fitstew.com" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false"></div>
+                  <div class="span6">
+                    <img class="socright" src="assets/img/twitter_circle.png">
+                  </div>
+                </div>
+                <!--<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Us:-->
+              </div>
+              <div id="loginBlock" class="span5">
+                <div class="row-fluid">
+                  <a id="uLogin" class="janrainEngage loginLink" href="#">User Sign-on</a>
+                </div>
+                <div class="row-fluid">
+                  <a id="pLogin" class="loginLink" href="http://web-dev.fitstew.com/login.html">Gym Sign-on</a>
+                </div>
+              </div>
+            </div>
+            <div class="span7 offset1">
+              <ul class="nav nav-tabs lTabs">
+                <li class="active">
+                  <a href="index.html">Home</a>
                 </li>
-                <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
-                <li class="btn btn-inverse"><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
-            </ul>
-        </div>-->
-            
-		<div id="sidebar">
-			<a href="#" class="visible-phone"><i class="icon icon-home"></i>Dashboard</a>
-			<ul>
-				<li id="home" class="active"><a href="#"><i class="icon icon-home"></i><span>Home</span></a></li>
-				<li id="dashNav"><a href="#"><i class="icon icon-signal"></i><span>Dashboard</span></a></li>
-				<li id="schedNav"><a href="#" class=""><i class="icon icon-calendar"></i><span>Schedule</span></a></li>
-				<li id="classNav"><a href="#" class=""><i class="icon icon-th-list"></i><span>Classes</span></a></li>
-				<li id="locNav"><a href="#" class=""><i class="icon icon-map-marker"></i><span>Location Info</span></a></li>
-				<li id="settingsNav"><a href="#" class=""><i class="icon icon-cog"></i><span>Account Settings</span></a></li>
-				<li id="logoutNav"><a href="#" class=""><i class="icon icon-share-alt"></i><span>Logout</span></a></li>
-			</ul>
-		
-		</div>
-
-		
-		<div id="content">
-			<!--<div id="content-header">
-				<h1>Dashboard</h1>
-			</div>-->
-			<div id="main" class="container-fluid page">
-			</div>
-			<div id="dashboard" class="container-fluid page">
-				<div class="row-fluid">
-					<div class="span4 offset4" style="text-align: center;"><strong>Week Stats</strong></div>
-					<div class="span12 center" style="text-align: center;">					
-						<ul class="stat-boxes">
-							<li class="popover-reserv">
-								<div id="reservDiv" class="left"><span id="reservData">1,1,1,1,1,1,1</span><span id="reservAvg">0%</span></div>
-								<div class="right">
-									<strong id="reservTot">000</strong>
-									Reservations
-								</div>
-							</li>
-							<li class="popover-visits">
-								<div id="visitsDiv" class="left"><span id="visitsData">1,1,1,1,1,1,1</span><span id="visitsAvg">0%</span></div>
-								<div class="right">
-									<strong id="visitsTot">000</strong>
-									Visits
-								</div>
-							</li>
-							<li class="popover-views">
-								<div id="viewsDiv" class="left"><span id="viewsData">1,1,1,1,1,1,1</span><span id="viewsAvg">0%</span></div>
-								<div class="right">
-									<strong id="viewsTot">000</strong>
-									Views
-								</div>
-							</li>
-							<!--<li class="popover-tickets">
-								<div class="left"><span>1,1,1,1,1,1,1</span>+0%</div>
-								<div class="right">
-									<strong>000</strong>
-									Kickboxing
-								</div>
-							</li>-->
-						</ul>
-					</div>	
-				</div>
-				<div class="row-fluid">
-					<div class="span12">
-						<div class="widget-box">
-							<div class="widget-title"><span class="icon"><i class="icon-signal"></i></span><h5>Partner Stats</h5><div class="buttons"><a href="#" id="updateStats" class="btn btn-mini"><i class="icon-refresh"></i> Update Stats</a></div></div>
-							<div class="widget-content">
-								<div class="row-fluid">
-										<div class="control-group span3 offset3">
-											<label class="control-label">Start</label>
-											<div class="controls">
-												<input id="statStart" type="text" class="datepicker input-medium required" />
-											</div>
-										</div>
-										<div class="control-group span3">
-											<label class="control-label">End</label>
-											<div class="controls">
-												<input id="statEnd" type="text" class="datepicker input-medium required" />
-											</div>
-										</div>
-								</div>
-								<div class="row-fluid">
-								<!--<div class="span4">
-									<ul class="site-stats">
-										<li><i class="icon-user"></i> <strong>1433</strong> <small>Total Users</small></li>
-										<li><i class="icon-arrow-right"></i> <strong>16</strong> <small>New Users (last week)</small></li>
-										<li class="divider"></li>
-										<li><i class="icon-shopping-cart"></i> <strong>259</strong> <small>Total Shop Items</small></li>
-										<li><i class="icon-tag"></i> <strong>8650</strong> <small>Total Orders</small></li>
-										<li><i class="icon-repeat"></i> <strong>29</strong> <small>Pending Orders</small></li>
-									</ul>
-								</div>-->
-								<div class="span10 offset1">
-									<div class="chart"></div>
-								</div>	
-								</div>							
-							</div>
-						</div>					
-					</div>
-				</div>
-				<!--<div class="row-fluid">
-					<div class="span6">
-						<div class="widget-box">
-							<div class="widget-title"><span class="icon"><i class="icon-file"></i></span><h5>Recent Posts</h5><span title="54 total posts" class="label label-info tip-left">54</span></div>
-							<div class="widget-content nopadding">
-								<ul class="recent-posts">
-									<li>
-										<div class="user-thumb">
-											<img width="40" height="40" alt="User" src="img/demo/av2.jpg">
-										</div>
-										<div class="article-post">
-											<span class="user-info"> By: neytiri on 2 Aug 2012, 09:27 AM, IP: 186.56.45.7 </span>
-											<p>
-												<a href="#">Vivamus sed auctor nibh congue, ligula vitae tempus pharetra...</a>
-											</p>
-											<a href="#" class="btn btn-primary btn-mini">Edit</a> <a href="#" class="btn btn-success btn-mini">Publish</a> <a href="#" class="btn btn-danger btn-mini">Delete</a>
-										</div>
-									</li>
-									<li>
-										<div class="user-thumb">
-											<img width="40" height="40" alt="User" src="img/demo/av3.jpg">
-										</div>
-										<div class="article-post">
-											<span class="user-info"> By: john on on 24 Jun 2012, 04:12 PM, IP: 192.168.24.3 </span>
-											<p>
-												<a href="#">Vivamus sed auctor nibh congue, ligula vitae tempus pharetra...</a>
-											</p>
-											<a href="#" class="btn btn-primary btn-mini">Edit</a> <a href="#" class="btn btn-success btn-mini">Publish</a> <a href="#" class="btn btn-danger btn-mini">Delete</a>
-										</div>
-									</li>
-									<li>
-										<div class="user-thumb">
-											<img width="40" height="40" alt="User" src="img/demo/av1.jpg">
-										</div>
-										<div class="article-post">
-											<span class="user-info"> By: michelle on 22 Jun 2012, 02:44 PM, IP: 172.10.56.3 </span>
-											<p>
-												<a href="#">Vivamus sed auctor nibh congue, ligula vitae tempus pharetra...</a>
-											</p>
-											<a href="#" class="btn btn-primary btn-mini">Edit</a> <a href="#" class="btn btn-success btn-mini">Publish</a> <a href="#" class="btn btn-danger btn-mini">Delete</a>
-										</div>
-									</li>
-									<li class="viewall">
-										<a title="View all posts" class="tip-top" href="#"> + View all + </a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="span6">
-						<div class="widget-box">
-							<div class="widget-title"><span class="icon"><i class="icon-comment"></i></span><h5>Recent Comments</h5><span title="88 total comments" class="label label-info tip-left">88</span></div>
-							<div class="widget-content nopadding">
-								<ul class="recent-comments">
-									<li>
-										<div class="user-thumb">
-											<img width="40" height="40" alt="User" src="img/demo/av1.jpg">
-										</div>
-										<div class="comments">
-											<span class="user-info"> User: michelle on IP: 172.10.56.3 </span>
-											<p>
-												<a href="#">Vivamus sed auctor nibh congue, ligula vitae tempus pharetra...</a>
-											</p>
-											<a href="#" class="btn btn-primary btn-mini">Edit</a> <a href="#" class="btn btn-success btn-mini">Approve</a> <a href="#" class="btn btn-warning btn-mini">Mark as spam</a> <a href="#" class="btn btn-danger btn-mini">Delete</a>
-										</div>
-									</li>
-									<li>
-										<div class="user-thumb">
-											<img width="40" height="40" alt="User" src="img/demo/av3.jpg">
-										</div>
-										<div class="comments">
-											<span class="user-info"> User: john on IP: 192.168.24.3 </span>
-											<p>
-												<a href="#">Vivamus sed auctor nibh congue, ligula vitae tempus pharetra...</a>
-											</p>
-											<a href="#" class="btn btn-primary btn-mini">Edit</a> <a href="#" class="btn btn-success btn-mini">Approve</a> <a href="#" class="btn btn-warning btn-mini">Mark as spam</a> <a href="#" class="btn btn-danger btn-mini">Delete</a>
-										</div>
-									</li>
-									<li>
-										<div class="user-thumb">
-											<img width="40" height="40" alt="User" src="img/demo/av2.jpg">
-										</div>
-										<div class="comments">
-											<span class="user-info"> User: neytiri on IP: 186.56.45.7 </span>
-											<p>
-												<a href="#">Vivamus sed auctor nibh congue, ligula vitae tempus pharetra...</a>
-											</p>
-											<a href="#" class="btn btn-primary btn-mini">Edit</a> <a href="#" class="btn btn-success btn-mini">Approve</a> <a href="#" class="btn btn-warning btn-mini">Mark as spam</a> <a href="#" class="btn btn-danger btn-mini">Delete</a>
-										</div>
-									</li>
-									<li class="viewall">
-										<a title="View all comments" class="tip-top" href="#"> + View all + </a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>-->
-			</div>
-			<div id="schedule" class="container-fluid page">
-				<div id="schPartic" class="row-fluid"></div>
-				<div id="classMod" class="row-fluid">
-					<div class="span6 offset3">
-						<div class="widget-box">
-							<div class="widget-title">
-								<span class="icon">
-									<i class="icon-calendar"></i>									
-								</span>
-								<h5>Modify Scheduled Class</h5>
-							</div>
-							<div class="widget-content nopadding">
-								<form id="classForm" action="#" method="get" class="form-horizontal">
-									<div class="control-group">
-										<label class="control-label">Duration</label>
-										<div class="controls">
-											<input id="cschDuration" type="text" class="input-medium required digits" />
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Spots</label>
-										<div class="controls">
-											<input id="cschSpots" type="text" class="input-medium required digits" />
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Cancel</label>
-										<div class="controls">
-											<input id="cschCancel" type="checkbox" />
-										</div>
-									</div>
-									<div class="form-actions">
-										<button id="cschSave" type="submit" class="btn btn-primary">Save</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row-fluid">
-					<div class="span12">
-						<div class="widget-box widget-calendar">
-							<div class="widget-title"><span class="icon"><i class="icon-calendar"></i></span><h5>Calendar</h5></div>
-							<div class="widget-content nopadding">
-								<div class="calendar"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div id="classes" class="container-fluid page">
-				<div class="row-fluid">
-					<div class="span12">
-						<div id="classSection" class="widget-box">
-							<div class="widget-title">
-								<span class="icon">
-									<i class="icon-plus"></i>									
-								</span>
-								<h5>Class Add/Edit</h5>
-							</div>
-							<div class="widget-content nopadding">
-								<form id="classForm" action="#" method="get" class="form-horizontal">
-									<div class="control-group">
-										<label class="control-label">Name</label>
-										<div class="controls">
-											<input id="cfName" type="text" class="input-medium required" />
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Description</label>
-										<div class="controls">
-											<input id="cfDescription" type="text" class="input-medium required" />
-										</div>
-									</div>									
-									<div class="control-group">
-										<label class="control-label">Duration</label>
-										<div class="controls">
-											<input id="cfDuration" type="text" class="input-tiny required digits" />
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Price</label>
-										<div class="controls">
-											<div class="input-prepend input-append">
-  												<span class="add-on">$</span>
-												<input id="cfPrice" type="text" class="input-small2 required number" />
-											</div>
-										</div>
-									</div>									
-									<div class="control-group">
-										<label class="control-label">spots</label>
-										<div class="controls">
-											<input id="cfSpots" type="text" class="input-tiny required digits" />
-										</div>
-									</div>	
-									<div class="control-group">
-										<label class="control-label">Monday</label>
-										<div class="controls controls-row">
-											<a class="addTime"><i class="icon-plus"></i></a>
-											<div id="crMonday" class="timeRow">
-											</div>
-										</div>
-									</div>										
-									<div class="control-group">
-										<label class="control-label">Tuesday</label>
-										<div class="controls controls-row">	
-											<a class="addTime"><i class="icon-plus"></i></a>	
-											<div id="crTuesday" class="timeRow">
-											</div>								
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Wednesday</label>
-										<div class="controls controls-row">
-											<a class="addTime"><i class="icon-plus"></i></a>
-											<div id="crWednesday" class="timeRow">
-											</div>
-										</div>
-									</div>	
-									<div class="control-group">
-										<label class="control-label">Thursday</label>
-										<div class="controls controls-row">
-											<a class="addTime"><i class="icon-plus"></i></a>
-											<div id="crThursday" class="timeRow">
-											</div>
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Friday</label>
-										<div class="controls controls-row">
-											<a class="addTime"><i class="icon-plus"></i></a>
-											<div id="crFriday" class="timeRow">
-											</div>
-										</div>
-									</div>										
-									<div class="control-group">
-										<label class="control-label">Saturday</label>
-										<div class="controls controls-row">
-											<a class="addTime"><i class="icon-plus"></i></a>
-											<div id="crSaturday" class="timeRow">
-											</div>
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Sunday</label> 
-										<div class="controls controls-row cfRow">
-											<a class="addTime"><i class="icon-plus"></i></a>
-											<div id="crSunday" class="timeRow">
-											</div>											
-										</div>
-									</div>
-
-									<div class="form-actions">
-										<button id="classSave" type="submit" class="btn btn-primary">Save</button>
-										<button id="classCancel" type="submit" class="btn btn-primary">Cancel</button>
-									</div>
-								</form>
-							</div>
-						</div>	
-						<button id="classAdd" type="submit" class="btn btn-primary">Add Class</button>
-						<div class="widget-box">
-							<div class="widget-title">
-								<span class="icon"><i class="icon-th-list"></i></span><h5>Classes</h5>
-							</div>
-							<div class="widget-content nopadding">
-								<table id="classTable" class="table table-bordered table-striped table-hover data-table">
-									<thead>
-									<tr>
-									<th></th>
-									<th>Name</th>
-									<th>Duration</th>
-									<th>Price</th>
-									<th>Spots</th>
-									<th>Monday</th>
-									<th>Tuesday</th>
-									<th>Wednesday</th>
-									<th>Thursday</th>
-									<th>Friday</th>
-									<th>Saturday</th>
-									<th>Sunday</th>
-									</tr>
-									</thead>
-									<tbody id="classHolder">
-									<!--<tr id="1">
-									<td><input class="pull-right" id="1" type="checkbox" /></td>
-									<td id="cName">Karate</td>
-									<td id="cDuration">30</td>
-									<td id="cPrice">10</td>
-									<td id="cSpots">30</td>
-									<td id="cMonday">2:00PM 4:00PM</td>
-									<td id="cTuesday">2:00PM 4:00PM</td>
-									<td id="cWednesday">2:00PM 4:00PM</td>
-									<td id="cThursday">2:00PM 4:00PM</td>
-									<td id="cFriday"></td>
-									<td id="cSaturday"></td>
-									<td id="cSunday">2:00PM 4:00PM</td>
-									</tr>
-									<tr id="5">
-									<td><input class="pull-right" id="5" type="checkbox" /></td>
-									<td id="cName">Yoga</td>
-									<td id="cDuration">30</td>
-									<td id="cPrice">15</td>
-									<td id="cSpots">30</td>
-									<td id="cMonday">2:00PM 4:00PM</td>
-									<td id="cTuesday">2:00PM 4:00PM</td>
-									<td id="cWednesday">2:00PM 4:00PM</td>
-									<td id="cThursday">2:00PM 4:00PM</td>
-									<td id="cFriday">2:00PM 4:00PM</td>
-									<td id="cSaturday">2:00PM 4:00PM</td>
-									<td id="cSunday">2:00PM 4:00PM</td>
-									</tr>-->
-								  </tbody>
-								</table>  
-							</div>
-						</div>
-						<button id="classDel" type="submit" class="btn btn-primary">Delete</button>
-					</div>
-				</div>
-			</div>
-			<div id="location" class="container-fluid page">
-				<div class="row-fluid">
-					<div class="span12">
-						<div class="widget-box">
-							<div class="widget-title">
-								<span class="icon">
-									<i class="icon-map-marker"></i>									
-								</span>
-								<h5>Partner Location Profile</h5>
-							</div>
-							<div class="widget-content nopadding">
-								<form id="locForm" action="#" method="get" class="form-horizontal">
-									<div class="control-group">
-										<label class="control-label">Logo</label>
-										<div class="controls">
-											<div class="fileupload fileupload-new" data-provides="fileupload">
-										  		<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img id="thumb" src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" /></div>
-										  		<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
-										  		<div>
-										    		<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input id="fileUp" type="file" onchange="readURL(this);" /></span>
-										    		<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
-										  		</div>
-											</div>
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Address</label>
-										<div class="controls">
-											<input id="locAddress" type="text" class="input-medium required" />
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">City</label>
-										<div class="controls">
-											<input id="locCity" type="text" class="input-small required" />
-										</div>
-									</div>									
-									<div class="control-group">
-										<label class="control-label">State</label>
-										<div class="controls">
-											<select id="locState" class="input-tiny2">
-											  <option value="AK">AK</option>
-											  <option value="AL">AL</option>
-											  <option value="AR">AR</option>
-											  <option value="AZ">AZ</option>
-											  <option value="CA">CA</option>
-											  <option value="CO">CO</option>
-											  <option value="CT">CT</option>
-											  <option value="DC">DC</option>
-											  <option value="DE">DE</option>
-											  <option value="FL">FL</option>
-											  <option value="GA">GA</option>
-											  <option value="HI">HI</option>
-											  <option value="IA">IA</option>
-											  <option value="ID">ID</option>
-											  <option value="IL">IL</option>
-											  <option value="IN">IN</option>
-											  <option value="KS">KS</option>
-											  <option value="KY">KY</option>
-											  <option value="LA">LA</option>
-											  <option value="MA">MA</option>
-											  <option value="MD">MD</option>
-											  <option value="ME">ME</option>
-											  <option value="MI">MI</option>
-											  <option value="MN">MN</option>
-											  <option value="MO">MO</option>
-											  <option value="MS">MS</option>
-											  <option value="MT">MT</option>
-											  <option value="NC">NC</option>
-											  <option value="ND">ND</option>
-											  <option value="NE">NE</option>
-											  <option value="NH">NH</option>
-											  <option value="NJ">NJ</option>
-											  <option value="NM">NM</option>
-											  <option value="NV">NV</option>
-											  <option value="NY">NY</option>
-											  <option value="OH">OH</option>
-											  <option value="OK">OK</option>
-											  <option value="OR">OR</option>
-											  <option value="PA">PA</option>
-											  <option value="RI">RI</option>
-											  <option value="SC">SC</option>
-											  <option value="SD">SD</option>
-											  <option value="TN">TN</option>
-											  <option value="TX">TX</option>
-											  <option value="UT">UT</option>
-											  <option value="VA">VA</option>
-											  <option value="VT">VT</option>
-											  <option value="WA">WA</option>
-											  <option value="WI">WI</option>
-											  <option value="WV">WV</option>
-											  <option value="WY">WY</option>
-											</select>
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Zipcode</label>
-										<div class="controls">
-											<input id="locZipcode" type="text" class="input-tiny required digits" />
-										</div>
-									</div>									
-									<div class="control-group">
-										<label class="control-label">Phone</label>
-										<div class="controls">
-											<input id="locPhone" type="text" class="input-small required digits" />
-										</div>
-									</div>	
-									<div class="control-group">
-										<label class="control-label">Contact Name</label>
-										<div class="controls">
-											<input id="locContact" type="text" class="input-small" />
-										</div>
-									</div>									
-									<div class="control-group">
-										<label class="control-label">Email</label>
-										<div class="controls">
-											<input id="locEmail" type="text" class="input-small required email" />
-										</div>
-									</div>										
-									<div class="control-group">
-										<label class="control-label">Facebook</label>
-										<div class="controls">
-											<input id="locFacebook" type="text" class="input-small" />
-										</div>
-									</div>	
-									<div class="control-group">
-										<label class="control-label">Twitter</label>
-										<div class="controls">
-											<input id="locTwitter" type="text" class="input-small" />
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Monday</label>
-										<div class="controls controls-row">
-									        Open: 
-									        <div class="input-append bootstrap-timepicker">
-									            <input id="asMondayOpen" type="text" class="input-small2 timepicker">
-									            <span class="add-on"><i class="icon-time"></i></span>
-									        </div>
-									        Close:
-									        <div class="input-append bootstrap-timepicker">
-									            <input id="asMondayClose" type="text" class="input-small2 timepicker">
-									            <span class="add-on"><i class="icon-time"></i></span>
-									        </div>
-										</div>
-									</div>										
-									<div class="control-group">
-										<label class="control-label">Tuesday</label>
-										<div class="controls controls-row">
-											Open: 
-								        	<div class="input-append bootstrap-timepicker">
-									            <input id="asTuesdayOpen" type="text" class="input-small2 timepicker">
-									            <span class="add-on"><i class="icon-time"></i></span>
-									        </div>
-									        Close:
-									        <div class="input-append bootstrap-timepicker">
-									            <input id="asTuesdayClose" type="text" class="input-small2 timepicker">
-									            <span class="add-on"><i class="icon-time"></i></span>
-									        </div>
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Wednesday</label>
-										<div class="controls controls-row">
-											Open:
-							        		<div class="input-append bootstrap-timepicker">
-									            <input id="asWednesdayOpen" type="text" class="input-small2 timepicker">
-									            <span class="add-on"><i class="icon-time"></i></span>
-									        </div>
-									        Close:
-									        <div class="input-append bootstrap-timepicker">
-									            <input id="asWednesdayClose" type="text" class="input-small2 timepicker">
-									            <span class="add-on"><i class="icon-time"></i></span>
-									        </div>
-										</div>
-									</div>	
-									<div class="control-group">
-										<label class="control-label">Thursday</label>
-										<div class="controls controls-row">
-											Open:
-							        		<div class="input-append bootstrap-timepicker">
-									            <input id="asThursdayOpen" type="text" class="input-small2 timepicker">
-									            <span class="add-on"><i class="icon-time"></i></span>
-									        </div>
-									        Close:
-									        <div class="input-append bootstrap-timepicker">
-									            <input id="asThursdayClose" type="text" class="input-small2 timepicker">
-									            <span class="add-on"><i class="icon-time"></i></span>
-									        </div>
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Friday</label>
-										<div class="controls controls-row">
-											Open:
-							        		<div class="input-append bootstrap-timepicker">
-									            <input id="asFridayOpen" type="text" class="input-small2 timepicker">
-									            <span class="add-on"><i class="icon-time"></i></span>
-									        </div>
-									        Close:
-									        <div class="input-append bootstrap-timepicker">
-									            <input id="asFridayClose" type="text" class="input-small2 timepicker">
-									            <span class="add-on"><i class="icon-time"></i></span>
-									        </div>
-										</div>
-									</div>										
-									<div class="control-group">
-										<label class="control-label">Saturday</label>
-										<div class="controls controls-row">
-											Open:
-							        		<div class="input-append bootstrap-timepicker">
-									            <input id="asSaturdayOpen" type="text" class="input-small2 timepicker">
-									            <span class="add-on"><i class="icon-time"></i></span>
-									        </div>
-									        Close:
-									        <div class="input-append bootstrap-timepicker">
-									            <input id="asSaturdayClose" type="text" class="input-small2 timepicker">
-									            <span class="add-on"><i class="icon-time"></i></span>
-									        </div>
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Sunday</label>
-										<div class="controls controls-row">
-											Open:
-							        		<div class="input-append bootstrap-timepicker">
-									            <input id="asSundayOpen" type="text" class="input-small2 timepicker">
-									            <span class="add-on"><i class="icon-time"></i></span>
-									        </div>
-									        Close:
-									        <div class="input-append bootstrap-timepicker">
-									            <input id="asSundayClose" type="text" class="input-small2 timepicker">
-									            <span class="add-on"><i class="icon-time"></i></span>
-									        </div>
-										</div>
-									</div>
-									<div class="form-actions">
-										<button id="infoSave" type="submit" class="btn btn-primary">Save</button>
-									</div>
-								</form>
-							</div>
-						</div>						
-					</div>
-				</div>				
-			</div>	
-			<div id="settings" class="container-fluid page">
-				<div class="row-fluid">
-					<div class="span12">
-						<div class="widget-box">
-							<div class="widget-title">
-								<span class="icon">
-									<i class="icon-cog"></i>									
-								</span>
-								<h5>Partner Account Settings</h5>
-							</div>
-							<div class="widget-content nopadding">
-								<form id="asForm" action="#" method="get" class="form-horizontal">
-									<div class="control-group">
-										<label class="control-label">Disburse Limit</label>
-										<div class="controls">
-											<div class="input-prepend input-append">
-  												<span class="add-on">$</span>
-												<input id="pLimit" type="text" class="input-small2 required number" />
-											</div>
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Payment Method</label>
-										<div class="controls">
-											<select id="pMethod" class="input-small">
-											  <option value="1">check</option>
-											</select>
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label">Disbursement Method</label>
-										<div class="controls">
-											<select id="dMethod" class="input-small">
-											  <option value="0">Disburse Limit Hit</option>
-											  <option value="1">Monthly</option>
-											</select>
-										</div>
-									</div>									
-									<div class="form-actions">
-										<button id="settingsSave" type="submit" class="btn btn-primary">Save</button>
-									</div>
-								</form>
-							</div>
-						</div>						
-					</div>
-				</div>
-			</div>
-		</div>
-	</body>
-</html>
+                <li><a id="hiwtab" href="#hiw">How it Works</a></li>
+                <li><a href="#">Locations</a></li>
+                <li><a href="#">About Us</a></li>
+              </ul> 
+            </div>             
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="hero">
+      <div class="fluid-container">
+        <div class="row-fluid">
+          <div id="heroBlock" class="span3 offset7">
+            <div class="heroMess">
+              Multiple Workout Types
+            </div>
+            <img src="assets/img/multiplewt.png">
+            <div class="heroBreak">
+            </div>
+            <div class="heroMess">
+              Multiple Locations
+            </div>
+            <img src="assets/img/locmap.png">
+            <div class="heroBreak">
+            </div>            
+          </div>
+        </div>
+      </div>
+      <div id="heroOverlay">
+        <div class="fluid-container">
+          <div class="row-fluid">
+            <div id="heroOverlayTitle" class="span4 offset1">
+              Take the pain out of<br> gym memberships
+            </div>
+            <div id="heroOverlayMess" class="span5 offset1">
+              FitStew lets you work out as often as you want, and only pay when you
+              go to the gym.  There are never any long-term commitments or contracts,
+              hidden fees, or stressful cancellations.  No pain, all gain.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="hiw">
+      <div class="fluid-container">
+        <div id="hiwHeader" class="row-fluid">
+          <div id="slo" class="span8 offset2">
+            <div class="span3 offset1">
+              <img class="hiwArr" src="assets/img2/leftArr.png">
+            </div>
+            <div class="span5 hiwtext">
+              How does it work?
+            </div>
+            <div class="span3">
+              <img class="hiwArr" src="assets/img2/rightArr.png">
+            </div>
+          </div>
+        </div>
+        <div id="hiwcont" class="row-fluid">
+          <div class="span10 offset1">
+            <div class="span5 nuhiw">
+              <div id="nuheader">
+                <div class="span7">
+                  <div id="nuheadertext">
+                    Gym Goers
+                  </div>
+                </div>
+                <div class="span2">
+                  <a class="hiwbutton nubutton hiwheaderbutton janrainEngage" href="#">Sign Up</a>
+                </div>
+              </div>
+              <div class="row-fluid">
+                <div class="span7 offset1 hiwrow">
+                  <div class="row-fluid majorText green">
+                    Step 1
+                  </div>
+                  <div class="row-fluid minorText">
+                    Create your account
+                  </div> 
+                </div>
+                <div class="span4 hiwrowimg">
+                  <img src="assets/img2/ustep1.png">
+                </div>
+              </div>
+              <div class="row-fluid">
+                <div class="span7 offset1 hiwrow">
+                  <div class="row-fluid majorText green">
+                    Step 2
+                  </div>
+                  <div class="row-fluid minorText">
+                    Find a gym in your area
+                  </div>
+                </div>
+                <div class="span4 hiwrowimg">
+                  <img src="assets/img2/ustep2.png">
+                </div>
+              </div>
+              <div class="row-fluid">
+                <div class="span7 offset1 hiwrow">
+                  <div class="row-fluid majorText green">
+                    Step 3
+                  </div>
+                  <div class="row-fluid minorText">
+                    Check the class schedule and reserve your spot
+                  </div>
+                </div>
+                <div class="span4 hiwrowimg">
+                  <img src="assets/img2/ustep3.png">
+                </div>
+              </div>
+              <div class="row-fluid hiwbuttonrow">
+                <div class="span4 offset3">
+                  <a class="hiwbutton nubutton hiwsignup janrainEngage" href="#">Sign Up</a>
+                </div>
+              </div>
+            </div>
+            <div class="span2">
+            </div>
+            <div class="span5 nghiw">
+              <div id="ngheader">
+                <div class="span7">
+                  <div id="ngheadertext">
+                    Gym Owners
+                  </div>
+                </div>
+                <div class="span2">
+                  <a class="hiwbutton ngbutton hiwheaderbutton janrainEngage" href="#">Join</a>
+                </div>
+              </div>
+              <div class="row-fluid">
+                <div class="span7 offset1 hiwrow">
+                  <div class="row-fluid majorText blue">
+                    Step 1
+                  </div>
+                  <div class="row-fluid minorText">
+                    Create your account
+                  </div> 
+                </div>
+                <div class="span4 hiwrowimg">
+                  <img src="assets/img2/gstep1.png">
+                </div>
+              </div>
+              <div class="row-fluid">
+                <div class="span7 offset1 hiwrow">
+                  <div class="row-fluid majorText blue">
+                    Step 2
+                  </div>
+                  <div class="row-fluid minorText">
+                    Build your profile page and share your class schedules
+                  </div>
+                </div>
+                <div class="span4 hiwrowimg">
+                  <img src="assets/img2/gstep2.png">
+                </div>
+              </div>
+              <div class="row-fluid">
+                <div class="span7 offset1 hiwrow">
+                  <div class="row-fluid majorText blue">
+                    Step 3
+                  </div>
+                  <div class="row-fluid minorText">
+                    Sit back and let the customers come to you.  It's that easy!
+                  </div>
+                </div>
+                <div class="span4 hiwrowimg">
+                  <img src="assets/img2/gstep3.png">
+                </div>
+              </div>
+              <div class="row-fluid hiwbuttonrow">
+                <div class="span4 offset3">
+                  <a class="hiwbutton ngbutton hiwsignup janrainEngage" href="#">Join</a>
+                </div>
+              </div>              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footBar">
+      <div class="row-fluid">
+        <div class="span12 footer">
+          <div id="footImage">
+            <img src='assets/img/logo.png'>
+          </div>
+          <div id="footLinks">
+            <a href="index.html#hiw">How it works</a>&nbsp;|&nbsp;<a href="#">Locations</a>&nbsp;|&nbsp;<a href="#">Contact Us</a>&nbsp;|&nbsp;<a href="#">Faq</a>&nbsp;|&nbsp;<a href="#">Privacy Policy</a>&nbsp;|&nbsp;<a href="#">Site Map</a>
+          </div>
+          <div id="footCopy">
+            &copy 2013 FitStew.  All Rights Reserved.  Use of this website constitutes acceptance of the FitStew Terms and Conditions and Privacy Policy. 
+          </div>
+        </div>
+      </div>
+    </div>  
+  </body>
+  </html>

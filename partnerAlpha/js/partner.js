@@ -1,11 +1,15 @@
-
+var url = "http://partner.fitstew.com"
+if(!localStorage['pToken']) {
+	window.location = url + "/partner/login.html";
+}
 
 $(document).ready(function(){
 $('.page').hide();
 $('#main').show();
 
-	var uToken = 'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0';
+	var uToken = localStorage['pToken'];
 	var offset = moment().zone();
+	var pid = localStorage['pid'];
 	var dayNames = new Array("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday");
 	var apiUrl = 'http://api.fitstew.com/'
 	//var url = 'http://api.fitstew.com/'
@@ -28,7 +32,6 @@ $('#main').show();
 	function authPostCall(uri,data,token,callback) {
 		$.ajax({
 		 	beforeSend: function(xhr) {
-			  xhr.setRequestHeader("ltype", "web");
 			  xhr.setRequestHeader("token", uToken);
 			},
 		    type: "POST",
@@ -59,7 +62,6 @@ $('#main').show();
     function authGetCall(uri,token,callback) {
 		$.ajax({
 		 	beforeSend: function(xhr) {
-			  xhr.setRequestHeader("ltype", "web");
 			  xhr.setRequestHeader("token", uToken);
 			},
 		    type: "GET",
@@ -73,8 +75,8 @@ $('#main').show();
 		    statusCode: {
 				401: function(){		 
 					// Redirec the to the login page.
-					localStorage['uToken'] = "";
-					window.location = url + "/Beta/";
+					localStorage['pToken'] = "";
+					window.location = url + "/partner/login.html";
 				}
 			}
 	    });
@@ -83,7 +85,6 @@ $('#main').show();
     function authDeleteCall(uri,token,callback) {
 		$.ajax({
 		 	beforeSend: function(xhr) {
-			  xhr.setRequestHeader("ltype", "web");
 			  xhr.setRequestHeader("token", uToken);
 			},
 		    type: "DELETE",
@@ -97,14 +98,24 @@ $('#main').show();
 		    statusCode: {
 				401: function(){		 
 					// Redirec the to the login page.
-					localStorage['uToken'] = "";
-					window.location = url + "/Beta/";
+					localStorage['pToken'] = "";
+					window.location = url + "/partner/login.html";
 				}
 			}
 	    });
 	}
 
 
+
+	$('#logoutNav').click(function() {
+		authGetCall('http://api.fitstew.com/api/gymLogout/',uToken,function(obj) {
+			if(obj.status) {
+				localStorage['pToken'] = "";
+				localStorage['pid'] = "";		
+				window.location = "http://partner.fitstew.com/partner/login.html";
+			}
+		});
+	});
 
 	$('#home').click(function() {
 		if(!$(this).hasClass('active')) {
@@ -117,7 +128,7 @@ $('#main').show();
 
 
 	function getParticipants(cid,classObj,callback) {
-		authPostCall(apiUrl + 'api/getClassParticipants/',classObj,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+		authPostCall(apiUrl + 'api/getClassParticipants/',classObj,uToken,function(obj) {
 			console.log(classObj[0].classid)
 			var inner = "";
 			$.each( obj, function( key, value ) {
@@ -142,7 +153,7 @@ $('#main').show();
 		//nextObj['weekedayEnd'] = moment().add('hours', 20).utc().format('dddd');
 		nextObjJSON = JSON.stringify(nextObj);
 
-		authPostCall(apiUrl + 'api/getNextClasses/',nextObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+		authPostCall(apiUrl + 'api/getNextClasses/',nextObjJSON,uToken,function(obj) {
 			if(obj.status !== 'failed') {
 				$.each( obj, function( key, value ) {
 					var widg = '<div class="row-fluid"><div class="span6 offset3"><div class="widget-box"><div class="widget-title"><h5>' + value.service + ' ' + moment(value.datetime).format('h:mm A') + '</h5></div><div class="widget-content nopadding"><table class="table table-bordered table-striped table-hover data-table"><thead><tr><th>Check-In</th><th>Name</th></tr></thead><tbody><tr>';
@@ -161,10 +172,10 @@ $('#main').show();
 							checkinObj['cid'] = $(this).data('cid');
 							checkinObjJSON = JSON.stringify(checkinObj);
 							if ($(this).attr("checked") == "checked"){
-								authPostCall(apiUrl + 'api/userCheckinByGym/',checkinObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+								authPostCall(apiUrl + 'api/userCheckinByGym/',checkinObjJSON,uToken,function(obj) {
 								});
 							} else {
-								authPostCall('http://api.fitstew.com/api/deleteCheckinByGym/',checkinObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+								authPostCall('http://api.fitstew.com/api/deleteCheckinByGym/',checkinObjJSON,uToken,function(obj) {
 								});
 							}
 						});
@@ -200,7 +211,7 @@ $('#main').show();
 		schedObj['start'] = moment(start).utc().format('YYYY-MM')
 		schedObj['end'] = moment(start).utc().add('months', 1).format('YYYY-MM')
 		schedObjJSON = JSON.stringify(schedObj);
-		authPostCall(apiUrl + 'api/gymSchedule/',schedObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+		authPostCall(apiUrl + 'api/gymSchedule/',schedObjJSON,uToken,function(obj) {
 			for(var i = 0;i < dayz;i++) {
 				var d = moment(cDate).add('days', i).format('dddd');
 				$.each( obj, function( key, value ) {
@@ -254,7 +265,7 @@ $('#main').show();
 			 		scidObj['datetime'] = calEvent.dat + ' ' + calEvent.time;
 			 		scidObjJSON = JSON.stringify(scidObj);
 			 		$('#schPartic').find('#partWidg').remove();
-					authPostCall(apiUrl + 'api/getSCID/',scidObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+					authPostCall(apiUrl + 'api/getSCID/',scidObjJSON,uToken,function(obj) {
 			 			if(obj.status !== 'failed') {
 					 		var classObj = {};
 							classObj['classid'] = obj[0].id;
@@ -285,6 +296,7 @@ $('#main').show();
 
 	$('#schedNav').click(function() {
 		if(!$(this).hasClass('active')) {
+		        $('.calendar').empty();
 			$('#classMod').hide();
 			$('.page').slideUp('slow');
 			$('#sidebar>ul>li.active').removeClass('active');
@@ -305,6 +317,31 @@ $('#main').show();
 			$(this).addClass('active');
 		}
 	});
+
+	$('#employeeNav').click(function() {
+		if(!$(this).hasClass('active')) {
+			$('.page').slideUp('slow');
+			$('#sidebar>ul>li.active').removeClass('active');
+			refreshEmployees()
+			$('#employees').slideDown('slow');
+			$(this).addClass('active');
+		}
+	});
+
+
+	function refreshEmployees() {
+		getAuthCall(apiUrl + 'api/getEmployees/' + pid,function(obj) {
+			$('#employeeHolder').find('tr').remove();
+			$.each( obj, function( key, value ) {
+				if(obj.status !== 'failed') {
+					var employeeRow = '<tr id="' + value.id + '"><td class="classCheck"><input class="pull-right" id="' + value.id + '" type="checkbox" /></td><td id="eName">' + value.first_name + ' ' + value.last_name + '</td><td id="eTitle">' + value.title + '</td><td id="eRole">' + value.role + '</td>';
+						employeeRow = employeeRow + '</tr>';
+					$('#employeeHolder').append(employeeRow);
+					//classTable();
+				}
+			}); 
+		});		
+	}
 
 
 	function classTable() {
@@ -377,7 +414,7 @@ $('#main').show();
 	}
 
 	function refreshClasses() {
-		getCall(apiUrl + 'api/getClasses/22',function(obj) {
+		getCall(apiUrl + 'api/getClasses/' + pid,function(obj) {
 			$('#classHolder').find('tr').remove();
 			$.each( obj, function( key, value ) {
 				if(obj.status !== 'failed') {
@@ -419,7 +456,7 @@ $('#main').show();
 			$('#sidebar>ul>li.active').removeClass('active');
 			$('#location').slideDown('slow');
 			$(this).addClass('active');
-			getCall(apiUrl + 'api/gymInfo/22',function(obj) {
+			getCall(apiUrl + 'api/gymInfo/' + pid,function(obj) {
 				$('#thumb').attr('src',obj[0].image);
 				$('#locAddress').val(obj[0].address);
 				$('#locCity').val(obj[0].city);
@@ -477,7 +514,7 @@ $('#main').show();
 			$('#sidebar>ul>li.active').removeClass('active');
 			$('#settings').slideDown('slow');
 			$(this).addClass('active');
-			authGetCall(apiUrl + 'api/disbursement/','D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+			authGetCall(apiUrl + 'api/disbursement/',uToken,function(obj) {
 				$('#pLimit').val(obj[0].paylimit);
 				$('#pMethod').val(obj[0].paymenttype).attr('selected',true);
 				$('#dMethod').val(obj[0].type).attr('selected',true);
@@ -506,7 +543,7 @@ $('#main').show();
 	$('#infoSave').click(function(e) {
 		e.preventDefault();
 		var locInfo = {};
-		locInfo['gid'] = '22';
+		locInfo['gid'] = pid;
 		locInfo['address'] = $('#locAddress').val();
 		locInfo['city'] = $('#locCity').val();
 		locInfo['state'] = $('#locState').val();
@@ -538,11 +575,11 @@ $('#main').show();
 		imgObj['image'] = $('#fileUp').data('imgEnc');
 		imgObjJSON = JSON.stringify(imgObj);
 
-		authPostCall(apiUrl + 'api/addGymImage/',imgObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+		authPostCall(apiUrl + 'api/addGymImage/',imgObjJSON,uToken,function(obj) {
 			console.log(obj);
 		});
 
-		authPostCall(apiUrl + 'api/updateGymProfile/',locInfoJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+		authPostCall(apiUrl + 'api/updateGymProfile/',locInfoJSON,uToken,function(obj) {
 			console.log(obj);
 
 		})
@@ -557,7 +594,7 @@ $('#main').show();
 		disObj['type'] = $('#dMethod').val();
 		disObjJSON = JSON.stringify(disObj);
 
-		authPostCall(apiUrl + 'api/updateDisbursement/',disObjJSON,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+		authPostCall(apiUrl + 'api/updateDisbursement/',disObjJSON,uToken,function(obj) {
 			console.log(obj);
 		});		
 
@@ -622,7 +659,7 @@ $('#main').show();
 	$('#classDel').click(function(e) {
 		e.preventDefault();
 		$("#classTable input:checked").each(function() {
-		    authDeleteCall(apiUrl + 'api/deleteClass/'+this.id,'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+		    authDeleteCall(apiUrl + 'api/deleteClass/'+this.id,uToken,function(obj) {
 		    	console.log(obj);
 		    	refreshClasses();
 		    });
@@ -697,13 +734,13 @@ $('#main').show();
 
 		if($('#cfName').data('cid')) {
 			classObj['classid'] = $('#cfName').data('cid');
-			authPostCall(apiUrl + 'api/updateClass/',JSON.stringify(classObj),'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+			authPostCall(apiUrl + 'api/updateClass/',JSON.stringify(classObj),uToken,function(obj) {
 				console.log(obj);
 				$('#classSection').slideUp('slow');
 				refreshClasses();
 			});			
 		} else {
-			authPostCall(apiUrl + 'api/addClass/',JSON.stringify(classObj),'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+			authPostCall(apiUrl + 'api/addClass/',JSON.stringify(classObj),uToken,function(obj) {
 				console.log(obj);
 				$('#classSection').slideUp('slow');
 				refreshClasses();
@@ -771,7 +808,7 @@ $('#main').show();
 		var queryObject = {};
 		queryObject['start'] = moment().subtract('days', 14).utc().format('YYYY-MM-DD');
 		queryObject['end'] = moment().utc().format('YYYY-MM-DD');
-		authPostCall(apiUrl + 'api/barbell/pspwp/',JSON.stringify(queryObject),'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {
+		authPostCall(apiUrl + 'api/barbell/pspwp/',JSON.stringify(queryObject),uToken,function(obj) {
 			var prevRevTot = 0;
 			var curRevTot = 0;
 			var prevVisTot = 0;
@@ -880,7 +917,7 @@ $('#main').show();
 				queryObject['end'] = moment($('#statEnd').val()).utc().format('YYYY-MM-DD');
 			}
 		}
-		authPostCall(apiUrl + 'api/barbell/' + q,JSON.stringify(queryObject),'D8XYJMbtQpfLd7XiDFGWQye8DEkFCdF_VzHh9OxI8Ao5ZGLv2V9lQ7Dlh0pvIBy0',function(obj) {		
+		authPostCall(apiUrl + 'api/barbell/' + q,JSON.stringify(queryObject),uToken,function(obj) {		
 
 			var allArr = [];
 			var resArr = [];
