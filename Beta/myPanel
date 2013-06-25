@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<title>FitStew myPanel</title>
+	<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="assets/css/bootstrap-responsive.min.css" />
+  <link rel="stylesheet" href="assets/css/datepicker.css" />
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="assets/css/structure.css" />
+	<link rel="stylesheet" href="assets/css/myPanel.css" />
+
+	<script src="assets/js/jquery-1.8.3.js"></script>
+  <script src="assets/js/jquery.ui.custom.js"></script>
+  <script src="assets/js/jquery.smooth-scroll.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/bootstrap-datepicker.js"></script>
+  <script src="assets/js/jquery.hoverIntent.js"></script>
+  <script src="assets/js/moment.min.js"></script>
+  <script src="https://js.stripe.com/v1/"></script>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&.js"></script>
+  <script src="assets/js/gmaps.js"></script>
+  <script src="assets/js/myPanel.js"></script>
+  </head>
+  <body>
+    <div id="headerCont" class="container-fluid">
+      <div class="row-fluid">
+        <div class="span12">
+          <div class="row-fluid">
+          	<div class="span10 offset1 cBlock">
+          	  <div class="header">
+          	  	<div class="row-fluid">
+          	  	  <div class="span4">
+          	  	    <div class="logo">
+          	  	      <img src="assets/img/logo.png">
+          	  	    </div>
+          	  	  </div>
+          	  	  <div class="span6 offset2">
+          	  	  	<div class="qBar">
+          	  	  	  <div class="qAction">
+          	  	  	    <a href="#" data-placement="bottom" data-html="true" data-content="<form><input id='fmaAmount' type='text' class='rounded' placeholder=''/><div id='fundIcon'></div><div id='fundButton' class='panelButton'><div id='amountText'>Fund</div></div></form>" data-trigger="click" rel="popover" id="fundOver"><i class="icon-credit-card icon-large"></i>&nbsp;<span class="text">Fund My Account</span></a>
+          	  	  	  </div>
+          	  	  	  <div class="qAction">
+          	  	  	    <a title="" href="#"><i class="icon-money icon-large"></i>&nbsp;<span id="balance" class="text">$0.00</span></a>
+          	  	  	  </div>
+          	  	  	  <div class="qAction">
+          	  	  	    <a id="accountSettings"><i class="icon-user icon-large"></i> <span class="text">Account Settings</span></a>
+          	  	  	  </div>
+          	  	  	  <div class="qAction">
+          	  	  	    <a id="logout" title="" href="#"><i class="icon-signout icon-large"></i> <span class="text">Logout</span></a>
+          	  	  	  </div>         	  	  	            	  	  	  
+          	  	  	</div>
+          	  	  </div>
+          	  	</div>
+          	  </div>
+          	</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="break"></div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+      	<div class="span12">
+          <div class="row-fluid">
+          	<div class="span10 offset1 cBlock">
+          	  <div id="searchBlock">
+          	  	<div class="row-fluid">
+          	  	  <div class="span10 offset1">
+          	  	    <div id="searchTitle">
+          	  	      Find Your Preferred Classes!
+          	  	    </div>
+          	  	    <div id="searchBar">
+          	  	      <div class="row-fluid">
+          	  	      	<div class="span5">
+          	  	          <div id="termsBox" class="searchBox">
+                            <input class="rounded searchInput" id="terms" data-terms="" placeholder="Enter Classes">
+          	  	          </div>
+          	  	        </div>
+          	  	        <div class="span2">
+          	  	          <div id="distanceBox" class="searchBox">
+                            <input class="rounded" id="distance" data-placement="bottom" rel="tooltip" title="Required" placeholder="X Miles" >
+          	  	          </div>
+          	  	        </div>
+          	  	        <div class="span3">
+          	  	          <div id="locationBox" class="searchBox">
+                            <input class="rounded searchInput" id="location" data-placement="bottom" rel="tooltip" title="Required" placeholder="Location">
+          	  	          </div>
+          	  	        </div>
+          	  	        <div class="span2">
+          	  	          <div id="searchButton" class="searchBox panelButton">
+                            <div id="searchText">
+                              Search
+                            </div>
+          	  	          </div>
+          	  	        </div>          	  	    
+          	  	      </div>
+          	  	    </div>
+          	  	  </div>
+          	  	</div>
+          	  </div>
+          	  <div class="break2"></div>
+              <div id="clearSearch">
+                <div id="clearButton" class="clearButton panelButton">
+                  Clear Search
+                </div>
+              </div>
+          	  <div id="classesBlock">
+          	  	<div class="row-fluid">
+                  <div id="partnerName" class="span6">
+                  </div>
+                </div>
+                <div class="row-fluid">
+          	  	  <div class="span2 infoBlock">
+                    <div id="partnerLogo">
+                    </div>
+          	  	  </div>
+          	  	  <div class="span3 infoBlock">
+                    <div id="phone" class="contact">
+                      <div class="span2 contactImage">
+                        <img src="assets/img/phone.png">
+                      </div>
+                      <div id="phoneFill" class="span10 contactText">
+                      </div>
+                    </div>
+                    <div id="email" class="contact">
+                      <div class="span2 contactImage">
+                        <img src="assets/img/email.png">
+                      </div>
+                      <div id="emailFill" class="span10 contactText">
+                      </div>                    
+                    </div>
+                    <div id="facebook" class="contact">
+                      <div class="span2 contactImage">
+                        <img src="assets/img/facebook.png">
+                      </div>
+                      <div id="fbFill" class="span10 contactText">
+                      </div>
+                    </div>
+                    <div id="twitter" class="contact">
+                      <div class="span2 contactImage">
+                        <img src="assets/img/twitter.png">
+                      </div>
+                      <div id="twitterFill" class="span10 contactText">
+                      </div>                      
+                    </div>                                                                                
+          	  	  </div>          	  	  
+          	  	  <div class="span4 infoBlock">
+                    <div id="addr" class="pAddress"></div>
+                    <div id="addr2" class="pAddress"></div>
+                    <div id="map" class='map'></div>
+          	  	  </div>
+          	  	  <div class="span3 infoBlock">
+                    <div id="partnerHours">
+                      <div id="mondayHours" class="partnerDay">
+                      </div>
+                      <div id="tuesdayHours" class="partnerDay">
+                      </div>
+                      <div id="wednesdayHours" class="partnerDay">
+                      </div>
+                      <div id="thursdayHours" class="partnerDay">
+                      </div>
+                      <div id="fridayHours" class="partnerDay">
+                      </div>
+                      <div id="saturdayHours" class="partnerDay">
+                      </div>   
+                      <div id="sundayHours" class="partnerDay">
+                      </div>                                                                                   
+                    </div>
+          	  	  </div>
+          	  	</div>
+          	  	<div class="row-fluid classContainer">
+                  <div id="myCarousel" class="carousel slide">
+                    <div class="carousel-inner">
+                    </div>
+                  </div>
+          	  	</div>
+          	  </div>
+          	  <div id="partnerBlock">
+          	  	<div id="partnerCards" class="row-fluid">
+          	  	</div>     	  	
+          	  </div>
+          	  <div id="scheduleBlock">
+          	  	<div class="monthCont">
+          	  	  <div class="row-fluid">
+          	  	  	<div class="span1">
+          	  	  	  <div id="monthIcon">
+                        <img src="assets/img/calIcon.png">
+                      </div>
+          	  	  	</div>
+          	  	    <div class="span1 offset2">
+          	  	  	  <div class="flip"></div>
+                        <img id="prevMonth" src="assets/img/lArrow.png">
+          	  	    </div>
+          	  	    <div class="span3">
+          	  	  	  <div id="sMonth" class="month">
+          	  	  	  </div>
+          	  	    </div>
+          	  	    <div class="span1">
+          	  	  	  <div class="flip"></div>
+                        <img id="nextMonth" src="assets/img/rArrow.png">
+          	  	    </div>
+          	  	  </div>
+          	  	</div>
+          	  	<div class="row-fluid">
+                  <div id="prevWeek">
+                    <img src="assets/img/lWeek.png">
+                  </div>
+                  <div id="daysCont">
+          	  	    <div id="sMonday" class="dayCont">
+          	  	      <div class="weekday">
+          	  	  	    Monday
+          	  	      </div>
+          	  	      <div class="dayNum">
+          	  	      </div>
+          	  	      <div class="eventCont">
+          	  	      </div>
+          	  	    </div>
+          	  	    <div id="sTuesday" class="dayCont">
+          	  	      <div class="weekday">
+          	  	  	    Tuesday
+          	  	      </div>
+          	  	      <div class="dayNum">
+          	  	      </div>
+          	  	      <div class="eventCont">
+          	  	      </div>
+          	  	    </div>
+          	  	    <div id="sWednesday" class="dayCont">
+          	  	      <div class="weekday">
+          	  	  	    Wednesday
+          	  	      </div>
+          	  	      <div class="dayNum">
+          	  	      </div>
+          	  	      <div class="eventCont">
+          	  	      </div>
+          	  	    </div>
+          	  	    <div id="sThursday" class="dayCont">
+          	  	      <div class="weekday">
+          	  	  	    Thursday
+          	  	      </div>
+          	  	      <div class="dayNum">
+          	  	      </div>
+          	  	      <div class="eventCont">
+          	  	      </div>
+          	  	    </div>          	  	  
+          	  	    <div id="sFriday" class="dayCont">
+          	  	      <div class="weekday">
+          	  	  	    Friday
+          	  	      </div>
+          	  	      <div class="dayNum">
+          	  	      </div>
+          	  	      <div class="eventCont">
+          	  	      </div>
+          	  	    </div>
+          	  	    <div id="sSaturday" class="dayCont">
+          	  	      <div class="weekday">
+          	  	  	    Saturday
+          	  	      </div>
+          	  	      <div class="dayNum">
+          	  	      </div>
+          	  	      <div class="eventCont">
+          	  	      </div>
+          	  	    </div>
+          	  	    <div id="sSunday" class="dayCont">
+          	  	      <div class="weekday">
+          	  	  	    Sunday
+          	  	      </div>
+          	  	      <div class="dayNum">
+          	  	      </div>
+          	  	      <div class="eventCont">
+          	  	      </div>
+          	  	    </div>
+                    <div id="nextWeek">
+                      <img src="assets/img/rWeek.png">
+                    </div>
+          	  	  </div>
+          	    </div>
+              </div>
+          	</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="accountModal" class="modal hide fade classModal" tabindex="-1" role="dialog" aria-labelledby="accountModal" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+        <div class="container-fluid">
+          <div id="navRow" class="row-fluid">
+            <div class="span4">
+              <h3 id="myModalLabel">Account Settings</h3>
+            </div>
+            <div class="span4 offset4">
+              <ul class="nav nav-tabs acsTabs" data-tabs="tabs">
+                <li class="acsTab active">
+                  <a data-toggle="tab" class="tabs" id="acsUser" data-img="gears" href="#user"><img src="assets/img/gears_white.png">User</a>
+                </li>
+                <li class="acsTab">
+                  <a data-toggle="tab" class="tabs" id="acsBilling" data-img="money" href="#billing"><img src="assets/img/money_blue.png">Billing</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <div class="row-fluid">
+            <div class="span12">
+              <div id="my-tab-content" class="tab-content">
+                <div class="tab-pane active" id="user">
+                  <form action="#" method="post" class="form-horizontal">
+                    <div id="acsCont" class="row-fluid">
+                      <div class="span4">
+                        <div id="leftForm">
+                          <div id="acsemailCont" class="control-group">
+                            <label class="control-label acsform">Email</label>
+                            <div class="controls">
+                              <input class="rounded" type="text" name="acsemail" id="acsemail" />
+                            </div>
+                          </div>                          
+                          <div id="acsfnameCont" class="control-group">
+                            <label class="control-label acsform">First Name</label>
+                            <div class="controls">
+                              <input class="rounded" type="text" name="acsfname" id="acsfname" />
+                            </div>
+                          </div>
+                          <div id="acslnameCont" class="control-group">
+                            <label class="control-label acsform">Last Name</label>
+                            <div class="controls">
+                              <input class="rounded" type="text" name="acslname" id="acslname" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="span4">
+                        <div id="midForm">
+                          <div id="acsaddressCont" class="control-group">
+                          <label class="control-label acsform">Address</label>
+                          <div class="controls">
+                            <input class="rounded" type="text" name="acsaddress" id="acsaddress" />
+                          </div>
+                          </div>
+                          <div id="acsaddress2Cont" class="control-group">
+                            <label class="control-label acsform">Address 2</label>
+                            <div class="controls">
+                              <input class="rounded" type="text" name="acsaddress2" id="acsaddress2" />
+                            </div>
+                          </div>                       
+                          <div id="acscityCont" class="control-group">
+                            <label class="control-label acsform">City</label>
+                            <div class="controls">
+                              <input class="rounded" type="text" name="acscity" id="acscity" />
+                            </div>
+                          </div> 
+                          <div id="acsstateCont" class="control-group">
+                            <label class="control-label acsform">State</label>
+                            <div class="controls">
+                              <select class="rounded" id="acsstate">
+                                <option value="AK">AK</option>
+                                <option value="AL">AL</option>
+                                <option value="AR">AR</option>
+                                <option value="AZ">AZ</option>
+                                <option value="CA">CA</option>
+                                <option value="CO">CO</option>
+                                <option value="CT">CT</option>
+                                <option value="DC">DC</option>
+                                <option value="DE">DE</option>
+                                <option value="FL">FL</option>
+                                <option value="GA">GA</option>
+                                <option value="HI">HI</option>
+                                <option value="IA">IA</option>
+                                <option value="ID">ID</option>
+                                <option value="IL">IL</option>
+                                <option value="IN">IN</option>
+                                <option value="KS">KS</option>
+                                <option value="KY">KY</option>
+                                <option value="LA">LA</option>
+                                <option value="MA">MA</option>
+                                <option value="MD">MD</option>
+                                <option value="ME">ME</option>
+                                <option value="MI">MI</option>
+                                <option value="MN">MN</option>
+                                <option value="MO">MO</option>
+                                <option value="MS">MS</option>
+                                <option value="MT">MT</option>
+                                <option value="NC">NC</option>
+                                <option value="ND">ND</option>
+                                <option value="NE">NE</option>
+                                <option value="NH">NH</option>
+                                <option value="NJ">NJ</option>
+                                <option value="NM">NM</option>
+                                <option value="NV">NV</option>
+                                <option value="NY">NY</option>
+                                <option value="OH">OH</option>
+                                <option value="OK">OK</option>
+                                <option value="OR">OR</option>
+                                <option value="PA">PA</option>
+                                <option value="RI">RI</option>
+                                <option value="SC">SC</option>
+                                <option value="SD">SD</option>
+                                <option value="TN">TN</option>
+                                <option value="TX">TX</option>
+                                <option value="UT">UT</option>
+                                <option value="VA">VA</option>
+                                <option value="VT">VT</option>
+                                <option value="WA">WA</option>
+                                <option value="WI">WI</option>
+                                <option value="WV">WV</option>
+                                <option value="WY">WY</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>  
+                      </div>
+                      <div class="span4">
+                        <div id="rightForm">
+                          <div id="acszipcodeCont" class="control-group">
+                            <label class="control-label acsform">Zipcode</label>
+                            <div class="controls">
+                              <input class="rounded" type="text" name="acslzipcode" id="acszipcode" />
+                            </div>
+                          </div>
+                          <div id="acsButton" class="panelButton">
+                            <div id="acsButtonText">
+                              Save
+                            </div>
+                          </div>
+                          <div id="acsResult" class="acResult"></div>                          
+                        </div>
+                      </div>                      
+                    </div>
+                  </form>
+                </div>
+                <div class="tab-pane" id="billing">
+                  <form action="#" method="post" class="form-horizontal">
+                    <div id="acsCont" class="row-fluid">
+                      <div class="span4">
+                        <div id="acbnameCont" class="control-group">
+                          <label class="control-label acsform">Name</label>
+                          <div class="controls">
+                            <input class="rounded acbinput" type="text" name="acbname" id="acbname" placeholder="" />
+                          </div>
+                        </div>
+                        <div id="acbCardCont" class="control-group">
+                          <label class="control-label acsform">Credit Card</label>
+                          <div class="controls">
+                            <input class="rounded acbinput" type="text" name="acbcard" id="acbcard" placeholder="" />
+                          </div>
+                        </div>
+                        <div id="acbexpdateCont" class="control-group">
+                          <label class="control-label acsform">EXP Date</label>
+                          <div class="controls">
+                            <input class="rounded acbinput" type="text" name="acbexpmonth" id="acbexpmonth" placeholder="" />&nbsp;&nbsp;/&nbsp;&nbsp;
+                            <input class="rounded acbinput" type="text" name="acbexpyear" id="acbexpyear" placeholder="" />
+                          </div>
+                        </div>                        
+                        <div id="acbcidCont" class="control-group">
+                          <label class="control-label acsform">CVC</label>
+                          <div class="controls">
+                            <input class="rounded acbinput" type="text" name="acbcvc" id="acbcvc" placeholder="" />
+                          </div>
+                        </div>
+                        <div id="acbCopyButton" class="panelButton">
+                          <div id="acsButtonText">
+                            Copy User Info
+                          </div>
+                        </div>                         
+                      </div>
+                      <div class="span4">
+                        <div id="midForm">
+                          <div id="acbaddressCont" class="control-group">
+                          <label class="control-label acsform">Address</label>
+                          <div class="controls">
+                            <input class="rounded acbinput" type="text" name="acbaddress" id="acbaddress" placeholder="" />
+                          </div>
+                          </div>
+                          <div id="acbaddress2Cont" class="control-group">
+                            <label class="control-label acsform">Address 2</label>
+                            <div class="controls">
+                              <input class="rounded acbinput" type="text" name="acbaddress2" id="acbaddress2" placeholder="" />
+                            </div>
+                          </div>                       
+                          <div id="acbcityCont" class="control-group">
+                            <label class="control-label acsform">City</label>
+                            <div class="controls">
+                              <input class="rounded acbinput" type="text" name="acbcity" id="acbcity" placeholder="" />
+                            </div>
+                          </div> 
+                          <div id="acbstateCont" class="control-group">
+                            <label class="control-label acsform">State</label>
+                            <div class="controls">
+                              <select class="rounded acbinput" id="acbstate">
+                                <option value="AK">AK</option>
+                                <option value="AL">AL</option>
+                                <option value="AR">AR</option>
+                                <option value="AZ">AZ</option>
+                                <option value="CA">CA</option>
+                                <option value="CO">CO</option>
+                                <option value="CT">CT</option>
+                                <option value="DC">DC</option>
+                                <option value="DE">DE</option>
+                                <option value="FL">FL</option>
+                                <option value="GA">GA</option>
+                                <option value="HI">HI</option>
+                                <option value="IA">IA</option>
+                                <option value="ID">ID</option>
+                                <option value="IL">IL</option>
+                                <option value="IN">IN</option>
+                                <option value="KS">KS</option>
+                                <option value="KY">KY</option>
+                                <option value="LA">LA</option>
+                                <option value="MA">MA</option>
+                                <option value="MD">MD</option>
+                                <option value="ME">ME</option>
+                                <option value="MI">MI</option>
+                                <option value="MN">MN</option>
+                                <option value="MO">MO</option>
+                                <option value="MS">MS</option>
+                                <option value="MT">MT</option>
+                                <option value="NC">NC</option>
+                                <option value="ND">ND</option>
+                                <option value="NE">NE</option>
+                                <option value="NH">NH</option>
+                                <option value="NJ">NJ</option>
+                                <option value="NM">NM</option>
+                                <option value="NV">NV</option>
+                                <option value="NY">NY</option>
+                                <option value="OH">OH</option>
+                                <option value="OK">OK</option>
+                                <option value="OR">OR</option>
+                                <option value="PA">PA</option>
+                                <option value="RI">RI</option>
+                                <option value="SC">SC</option>
+                                <option value="SD">SD</option>
+                                <option value="TN">TN</option>
+                                <option value="TX">TX</option>
+                                <option value="UT">UT</option>
+                                <option value="VA">VA</option>
+                                <option value="VT">VT</option>
+                                <option value="WA">WA</option>
+                                <option value="WI">WI</option>
+                                <option value="WV">WV</option>
+                                <option value="WY">WY</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>  
+                      </div>
+                      <div class="span4">
+                        <div id="rightForm">
+                          <div id="acbzipcodeCont" class="control-group">
+                            <label class="control-label acsform">Zipcode</label>
+                            <div class="controls">
+                              <input class="rounded acbinput" type="text" name="acbzipcode" id="acbzipcode" placeholder="" />
+                            </div>
+                          </div>
+                          <div id="acbButton" class="panelButton">
+                            <div id="acbButtonText">
+                              Save
+                            </div>
+                          </div>
+                          <div id="acbResult" class="acResult"></div>
+                          <div id="acbError"></div>                          
+                        </div>
+                      </div>                      
+                    </div>
+                  </form>                    
+                </div>
+              </div>
+            </div>            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="classModal" class="modal hide fade classModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div id="classModalHeader" class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+            <h3 id="classModalLabel"></h3>
+          </div>
+          <div id="modal-body" class="modal-body">
+            <div class="modalCont">
+              <div id="classInstructor">Instructor Name</div>
+            <div id="classSched"></div>
+            </div>
+            <div class="modalCont">
+              <div id="classDesc">
+              </div>
+              <div id="scheduler">
+                <div id="schedulerDate">
+                  <div>Select Date</div>
+                <input type="text" class="span4" value id="dpd" size="16">
+                <div id="classMessage"><span class="label label-success">Class Scheduled</span></div>
+                </div>
+                <div id="schedulerTime">
+                  <div>Select Time</div>
+                  <select id="timeMenu" width="100px" style="width:100px">
+                  </select>
+                  <div id="addschButton" class="panelButton">
+                    <div id="addschButtonText">
+                      Add to my schedule
+                    </div>
+                  </div> 
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+    <div id="deleteModal" class="modal hide fade classModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div id="classModalHeader" class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+        <h3 id="classModalLabel"></h3>
+      </div>
+      <div id="modal-body" class="modal-body">
+        <div class="modalCont">
+          <div class="container-fluid">
+            <div class="row-fluid">
+              <div id="delMess" class="span7 offset1">
+                Confirm removal from your schedule
+              </div>
+              <div id="delschButton" class="panelButton span4">
+                <div id="delschButtonText">
+                  Delete
+                </div> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footBar">
+      <div class="overLine">
+        <div class="midLine">
+          <div class="midLineText">
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <div class="span12 footer">
+            <div id="footLinks">
+              <a href="#">How it works</a>&nbsp;|&nbsp;<a href="#">Locations</a>&nbsp;|&nbsp;<a href="#">Contact Us</a>&nbsp;|&nbsp;<a href="#">Faq</a>&nbsp;|&nbsp;<a href="#">Privacy Policy</a>&nbsp;|&nbsp;<a href="#">Site Map</a>
+            </div>
+            <div id="footCopy">
+              &copy 2013 FitStew. All Rights Reserved
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

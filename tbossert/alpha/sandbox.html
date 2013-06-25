@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>FitStew Admin</title>
+		<meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+		<link rel="stylesheet" href="../fancybox/source/jquery.fancybox.css?v=2.1.4" type="text/css" media="screen" />
+		<link rel="stylesheet" href="../fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+		<link rel="stylesheet" href="../fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+		<link rel="stylesheet" href="css/fitstew.main.css" />
+		<link rel="stylesheet" href="css/fitstew-theme.css" class="skin-color"/>
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+	
+        <script src="js/jquery-latest.js"></script>
+        <script src="js/jquery.ui.custom.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/moment.min.js"></script>
+		<script type="text/javascript" src="../fancybox/source/jquery.fancybox.pack.js?v=2.1.4"></script>
+		<script type="text/javascript" src="../fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+		<script type="text/javascript" src="../fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.5"></script>
+		<script type="text/javascript" src="../fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+        <script src="js/calendar.js"></script>
+        <script src="js/fitstew.js"></script>
+    </head>
+    <body class="bodycon">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span12">
+          <div id="header">
+          </div>
+          <div id="user-nav" class="navbar navbar-inverse">
+            <ul class="nav btn-group">
+              <li class="btn btn-inverse dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle" ><i class="icon-credit-card icon-2x"></i> <span class="text">Fund My Account</span> <b class="caret"></b></a>
+              	<div class="dropdown-menu">
+                	<form action="#" method="post" class="form-horizontal">
+	                	 <fieldset class='textbox' style="padding:10px">
+		                	 <input style="margin-top: 8px; width: 60px" type="text" id="amount" placeholder="20.00" />
+		                	 <input class="btn-primary" name="fund" id="fund" type="submit" value="Fund" />
+		                 </fieldset>
+	                </form> 
+                </div>
+              </li>
+              <li class="btn btn-inverse" ><a title="" href="#"><i class="icon-money icon-2x"></i> <span class="text">$100.25</span></a></li>
+              <li class="btn btn-inverse" ><a class="formbox" data-fancybox-type="iframe" rel="group" href="accountDetails.html"><i class="icon-user icon-2x"></i> <span class="text">Account Settings</span></a></li>
+              <li class="btn btn-inverse" ><a title="" href="login.html"><i class="icon-signout icon-2x"></i> <span class="text">Logout</span></a></li>
+            </ul>
+            <div id="search">
+					<input id="classes" data-placement="bottom" rel="tooltip" title="Optional" class="input-large" name="classes" type="text"  placeholder="Enter Classes">
+					<input name="distance" type="text" data-placement="bottom" rel="tooltip" title="Required" class="input-medium" placeholder="X Miles">
+					<input name="location" type="text" data-placement="bottom" rel="tooltip" title="Required" class="input-medium" placeholder="Location"/>
+					<button id="searchCG" type="submit" class="tip-right" title="Search"><i class="icon-search btn-inverse"></i></button>
+				</div>
+          </div>
+          <div id="alert-area"></div>
+          <div class="row-fluid">
+          	<div class="span12 offset8">
+          	</div>
+          </div>
+          <div class="row-fluid">
+            <div class="span11 offset1" id="container">
+	          <div class="row-fluid">
+		        <div class="span9">
+		          <div id="sched" class="blockholder">
+			              <div id="searchCalendar" class="calendar">
+	  <div id="searchCalcontainer" class="calcontainer">
+	    <div id="typeToggle">
+		  <div class="btn-group">
+			<button class="btn">Gym</button>
+			<button class="btn">Class</button>
+			<button id="close" class="btn">Close</button>
+		  </div>
+		</div>
+		<div id="range">
+		  <div class="btn-group">
+			<button id="searchWeekbut" class="btn">Week</button>
+			<button id="searchMonthbut" class="btn">Month</button>
+		  </div>	
+		</div>				
+	  </div>
+	  <div id="searchCalheader" class="calheader">
+	    <h2>
+		  <div id="searchCalDate">
+		  </div>
+		</h2>
+	  </div>	
+	  <div class="calcat" id="searchCalcat"></div>	
+	  <div id="searchDaysweek" class="daysweek">
+	    <!--<div id="previous" class="dayweek btn"><p>Previous</p></div>-->
+		<div id="Monday" class="dayweek"><p>Monday</p></div>
+		<div id="Tuesday" class="dayweek"><p>Tuesday</p></div>
+		<div id="Wednesday" class="dayweek"><p>Wednesday</p></div>
+		<div id="Thursday" class="dayweek"><p>Thursday</p></div>
+		<div id="Friday" class="dayweek"><p>Friday</p></div>
+		<div id="Saturday" class="dayweek"><p>Saturday</p></div>
+		<div id="Sunday" class="dayweek brn"><p>Sunday</p></div>
+		<!--<div id="next" class="dayweek btn brn"><p>Next</p></div>-->
+	  </div>
+	  <div id="searchDaycal" class="daycal"></div>				
+	</div>	
+			          
+		          </div>
+			      <div class="blockholder">
+				      	<div id="schedCalendar" class="calendar">
+		<div id="schedCalcontainer" class="calcontainer">
+			<div id="typeToggle">
+				<div class="btn-group">
+					<button class="btn">Gym</button>
+					<button class="btn">Class</button>
+				 </div>
+			</div>
+			<div id="range">
+				<div class="btn-group">
+					<button id="schedWeekbut" class="btn">Week</button>
+				 	<button id="schedMonthbut" class="btn">Month</button>
+			 	</div>	
+			</div>				
+		</div>
+		<div id="schedCalheader" class="calheader">
+			<h2>
+				<div id="schedCalDate">
+				</div>
+			</h2>
+		</div>	
+		<div class="calcat" id="schedCalcat"></div>	
+		<div id="schedDaysweek" class="daysweek">
+			<!--<div id="previous" class="dayweek btn"><p>Previous</p></div>-->
+			<div id="Monday" class="dayweek"><p>Monday</p></div>
+			<div id="Tuesday" class="dayweek"><p>Tuesday</p></div>
+			<div id="Wednesday" class="dayweek"><p>Wednesday</p></div>
+			<div id="Thursday" class="dayweek"><p>Thursday</p></div>
+			<div id="Friday" class="dayweek"><p>Friday</p></div>
+			<div id="Saturday" class="dayweek"><p>Saturday</p></div>
+			<div id="Sunday" class="dayweek brn bun"><p>Sunday</p></div>
+			<!--<div id="next" class="dayweek btn brn"><p>Next</p></div>-->
+		</div>
+		<div id="schedDaycal" class="daycal"></div>				
+	      </div>	
+			</div>	
+			    </div>
+			    <div class="span1">
+			      <div id="rightblocks">
+				    <div class="blockright"></div>
+				    <div class="blockright"></div>
+			      </div>
+	            </div>
+              </div>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</body>
+</html>

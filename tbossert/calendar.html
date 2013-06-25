@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<link href="assets/css/bootstrap.css" rel="stylesheet">
+		<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+		<link rel="stylesheet" href="fancybox/source/jquery.fancybox.css?v=2.1.4" type="text/css" media="screen" />
+		<link rel="stylesheet" href="fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+		<link rel="stylesheet" href="fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="assets/css/calendarStyle.css">
+
+		<title>Calendar</title>
+		<script type="text/javascript" src="assets/js/jquery-latest.js"></script>
+		<script type="text/javascript" src="assets/js/jquery-ui-1.8.20.custom.min.js"></script>
+		<script type="text/javascript" src="assets/js/moment.min.js"></script>
+		<script type="text/javascript" src="fancybox/source/jquery.fancybox.pack.js?v=2.1.4"></script>
+		<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+		<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.5"></script>
+		<script type="text/javascript" src="fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+		<script type="text/javascript" src="assets/js/fitStew.js"></script>
+		<script type="text/javascript" src="assets/js/calendar.js"></script>
+
+   		<script type="text/javascript">
+
+			function initMenu() {
+				var block = $(".dayp");
+					block.addClass("clickable");
+					block.hover(function(){window.status = $(this)}, function(){window.status = ""});
+				
+				/*$('.open').hide();
+				block.click(
+					function() {
+						$(this).parents('div:eq(0)').find('.open').slideToggle('fast');	
+					}
+				);*/}
+			
+
+			$(document).ready(function() {
+				initMenu();
+			});
+   		</script>		
+	
+	</head>
+	<body>
+		<div id="calendar">					
+			<div id="calcontainer">
+				<div id="typeToggle">
+					<div class="btn-group">
+					  <button class="btn">Gym</button>
+					  <button class="btn">Class</button>
+					</div>
+				</div>
+				<div id="range">
+					<div class="btn-group">
+					  <button id="weekbut" class="btn">Week</button>
+					  <button id="monthbut" class="btn">Month</button>
+					</div>					
+				</div>
+				<div id="calheader">
+					<h2>
+						<div id="calDate">
+						</div>
+					</h2>
+				</div>	
+					<div class="coda-slider" id="calcat">
+					</div>		
+				<div id="daysweek">
+					<div id="previous" class="dayweek btn"><p>Previous</p></div>
+					<div id="Monday" class="dayweek"><p>Monday</p></div>
+					<div id="Tuesday" class="dayweek"><p>Tuesday</p></div>
+					<div id="Wednesday" class="dayweek"><p>Wednesday</p></div>
+					<div id="Thursday" class="dayweek"><p>Thursday</p></div>
+					<div id="Friday" class="dayweek"><p>Friday</p></div>
+					<div id="Saturday" class="dayweek"><p>Saturday</p></div>
+					<div id="Sunday" class="dayweek"><p>Sunday</p></div>
+					<div id="next" class="dayweek btn brn"><p>Next</p></div>
+				</div>
+				<div id="daycal">
+				</div>				
+			</div>								
+		</div>	
+	</div>
+	</body>
+</html>
