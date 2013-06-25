@@ -1,0 +1,106 @@
+@font-face {
+	font-family: SkolaSans-Black;
+	src: url('../font/SkolaSans-Black.otf');
+}
+
+@font-face {
+	font-family: SkolaSans-Bold;
+	src: url('../font/SkolaSans-Bold.otf');
+}
+
+@font-face {
+	font-family: SkolaSans-Light;
+	src: url('../font/SkolaSans-Light.otf');
+}
+
+@font-face {
+	font-family: SkolaSans-Medium;
+	src: url('../font/SkolaSans-Medium.otf');
+}
+
+@font-face {
+	font-family: SkolaSans-Regular;
+	src: url('../font/SkolaSans-Regular.otf');
+}
+
+/* HTML elements */
+body {
+
+}
+
+/* Header CSS rules */
+#headerCont {
+	background:rgba(255,255,255,0.5);
+}
+
+.header {
+	height:80px;
+}
+
+/* Logo */
+.logo {
+	height: 80px;
+	width: 100%;
+}
+
+
+/* Footer CSS rules */
+#footCopy {
+	text-align: center;
+	font-family: "SkolaSans-Regular";
+	font-size: 12px;
+	color: grey;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+
+input:-moz-placeholder{
+  color: #57b547;
+}
+input:-ms-input-placeholder{
+  color: #57b547;
+}
+input:-webkit-input-placeholder{
+  color: #57b547;
+}
+
+input.rounded {
+	border: 1px solid #57b547;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	-moz-box-shadow: 2px 2px 3px #666;
+	-webkit-box-shadow: 2px 2px 3px #666;
+	box-shadow: 2px 2px 3px #666;
+	font-size: 20px;
+	padding: 4px 7px;
+	outline: 0;
+	-webkit-appearance: none;
+	z-index: 1000;
+}
+
+select.rounded {
+	border: 1px solid #57b547;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	-moz-box-shadow: 2px 2px 3px #666;
+	-webkit-box-shadow: 2px 2px 3px #666;
+	box-shadow: 2px 2px 3px #666;
+	font-size: 20px;
+	padding: 4px 7px;
+	outline: 0;
+	-webkit-appearance: none;
+	z-index: 1000;
+}
+.panelButton {
+	background-color: #00adef;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	font-family: "SkolaSans-Bold";
+	font-size: 14px;
+	color: white;
+	text-align: center;
+}
