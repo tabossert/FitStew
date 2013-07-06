@@ -364,7 +364,9 @@ body {
 }
 
 #classesBlock .classContainer .cCard .className {
-	margin-top: 5px;
+	margin-top: 10px;
+	margin-right: 2px;
+	margin-left: 2px;
 	text-align: center;
 	font-family: "SkolaSans-Regular";
 	font-size: 18px;
@@ -578,7 +580,7 @@ body {
 .classModal {
 	width: auto;
 	height: auto;
-	left: 45%;
+	left: 30%;
 	border-color: #57b547;
 	border-width: 3px;
 	border-radius: 15px;
@@ -606,10 +608,9 @@ body {
 
 #classModal #modal-body .modalCont {
 	position: relative;
-	float: left;
 	margin-left: 10px;
 	margin-right: 10px;
-	height: 250px;
+	height: auto;
 	width: 285px;
 	background-color: white;
 }
@@ -623,17 +624,19 @@ body {
 }
 
 .modalCont #classInstructor {
-	text-align: center;
+	margin-left: 75px;
 	font-family: "SkolaSans-Bold";
 	font-size: 14px;
 }
 
 .modalCont #classDesc {
-	margin-top: 40px;
 	height: 60px;
+	width: 400px;
 	overflow: hidden;
-	font-family: "SkolaSans-Bold";
+	font-family: "SkolaSans-regular";
 	font-size: 14px;
+	margin-left: 75px;
+	margin-bottom: 20px;
 }
 
 .modalCont #classSched {
@@ -732,4 +735,78 @@ body {
 	margin-top: 5px;
 	float: left;
 	height: 80px;
+}
+
+#carCont {
+	width: 850px;
+	margin-left: 75px;
+	margin-right: 75px;
+}
+
+.timeCard {
+	height: 100px;
+	width: 100px;
+	border: solid 2px white;
+	border-radius: 15px;
+	background-color: #57b547;
+	float: left;
+}
+
+.cWkdy {
+	margin-top: 5px;
+	height: 20px;
+	text-align: center;
+	font-family: "SkolaSans-Medium";
+	font-size: 18px;
+	color: white;
+}
+
+/*#cDom {
+	margin-top: 5px;
+	height: 30px;
+	font-family: "SkolaSans-Bold";
+	font-size: 38px;
+	text-align: center;
+	color: white;
+}*/
+
+.cDTime {
+	margin-top: 5px;
+	height: 30px;
+	font-family: "SkolaSans-Bold";
+	font-size: 22px;
+	text-align: center;
+	color: white;	
+}
+
+.cMon {
+	margin-top: 0px;
+	height: 20px;
+	text-align: center;
+	font-family: "SkolaSans-Medium";
+	font-size: 14px;
+	color: white;
+}
+
+.cStat {
+	margin-top: 5px;
+	text-align: center;
+	font-family: "SkolaSans-Medium";
+	font-size: 14px;
+	color: white;	
+}
+
+#schLabel {
+	text-align: center;
+	font-family: "SkolaSans-Medium";
+	font-size: 18px;
+}
+
+.scheduled {
+	background-color: #00adef;
+
+}
+
+.sfull {
+	background-color: red;
 }

@@ -4,14 +4,16 @@
   	<title>FitStew.com</title>
 	<meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="assets/css/bootstrap-responsive.min.css" />
-	<link rel="stylesheet" href="assets/css/csstructure.css" />
-	<link rel="stylesheet" href="assets/css/comingsoon.css" />
+	<link rel="stylesheet" href="bootstrap.min.css" />
+	<link rel="stylesheet" href="bootstrap-responsive.min.css" />
+	<link rel="stylesheet" href="csstructure.css" />
+	<link rel="stylesheet" href="comingsoon.css" />
 
-  <script src="assets/js/jquery-1.8.3.js"></script>
-  <script src="assets/js/jquery.ui.custom.js"></script>
-  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="jquery-1.8.3.js"></script>
+  <script src="jquery.ui.custom.js"></script>
+  <script src="bootstrap.min.js"></script>
+  <script src="cs.js"></script>
+
   <!-- MouseStats:Begin -->
   <script type="text/javascript">(function () {
     if(document.getElementById('MouseStatsTrackingScript') == undefined) {
@@ -33,7 +35,7 @@
           <div class="span10 offset1">
             <div class="span4">
               <div class="logo">
-                <img src="assets/img/logo.png">
+                <img src="logo.png">
               </div>
             </div>           
           </div>
@@ -47,17 +49,15 @@
             <div class="notifyMess">
               Signup to be notified when our service is available in your area
             </div>
-            <div class="row-fluid">
+            <div id="signuprow" class="row-fluid">
               <div id="emailHold" class="span6">
-                <input class="rounded" id="emailIn" placeholder="Email Address">
+                <input class="rounded required email" id="emailIn" placeholder="Email Address">
               </div>
               <div id="zipHold" class="span3">
-                <input class="rounded" id="zipIn" placeholder="Zipcode">
+                <input class="rounded required digits" id="zipIn" placeholder="Zipcode">
               </div>
               <div id="nButton" class="panelButton span2">
-                <div id="nButtonText">
-                  Submit
-                </div>
+                Submit
               </div>
             </div>
           </div>          
@@ -65,13 +65,13 @@
             <div class="heroMess">
               Multiple Workout Types
             </div>
-            <img src="assets/img/multiplewt.png">
+            <img src="multiplewt.png">
             <div class="heroBreak">
             </div>
             <div class="heroMess">
               Multiple Locations
             </div>
-            <img src="assets/img/locmap.png">
+            <img src="locmap.png">
             <div class="heroBreak">
             </div>            
           </div>

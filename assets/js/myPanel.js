@@ -1,4 +1,5 @@
-var url = "http://web-dev.fitstew.com"
+var url = "http://localhost"
+var apiUrl = 'http://dev.fitstew.com/'
 
 if(!localStorage['uToken'] || localStorage['fitTime'] < moment().subtract('minutes', 30).unix()) {
 	window.location = url + "/";
@@ -6,6 +7,10 @@ if(!localStorage['uToken'] || localStorage['fitTime'] < moment().subtract('minut
 
 
 $(document).ready(function(){
+
+	$('.modal').on('show', function () {
+    	$('.modal-body',this).css({width:'auto',height:'auto', 'max-height':'100%'});
+	});
 
 	/* Settings */
 	var backArr = ['assets/img/background1.png','assets/img/background2.png'];
@@ -22,6 +27,7 @@ $(document).ready(function(){
 	var cuToken = localStorage['cuToken'];
 	var offset = moment().zone();
 	var wkNum = 0;
+	var scidCache = [];
 
 
 	$("#fundOver").popover().parent().delegate('#fundButton', 'click', function() {
@@ -31,7 +37,7 @@ $(document).ready(function(){
 			payInfo.amount = $('#fmaAmount').val();
 			payInfo.cToken = cuToken;
 			var payInfoJSON = JSON.stringify(payInfo);
-			authPostCall('http://api.fitstew.com/api/processPayment/',payInfoJSON,uToken,function(obj) {
+			authPostCall(apiUrl + 'api/processPayment/',payInfoJSON,uToken,function(obj) {
 				if(obj.status == "success") {
 					$('#fundIcon').html('<i style="color: #57b547;" class="icon-ok icon-large">');
 					updateBalance();
@@ -50,7 +56,7 @@ $(document).ready(function(){
 
 
 	$('#logout').click(function() {
-		authGetCall('http://api.fitstew.com/api/userSignout/',uToken,function(obj) {
+		authGetCall(apiUrl + 'api/userSignout/',uToken,function(obj) {
 			console.log(obj.status);
 			if(obj.status) {
 				localStorage['uToken'] = "";
@@ -63,7 +69,7 @@ $(document).ready(function(){
 	/* Reusable functions */
 
 	function updateBalance() {
-		authGetCall('http://api.fitstew.com/api/balance/',uToken,function(obj) {
+		authGetCall(apiUrl + 'api/balance/',uToken,function(obj) {
 			$('#balance').html('$' + obj[0].balance);
 		});		
 	}
@@ -127,14 +133,14 @@ $(document).ready(function(){
 			console.log(dataCon);
 			if($('#dpd').val() && moment($('#dpd').val()).isValid()); {
 				if(moment($('#timeMenu :selected').text()).isValid()); {
-					authPostCall('http://api.fitstew.com/api/addEvent/',dataCon,uToken,function(obj) {
+					authPostCall(apiUrl + 'api/addEvent/',dataCon,uToken,function(obj) {
 						if(obj.status == 'success') {
 							$('#classMessage').html('<span class="label label-success">Class Scheduled</span>');
 							$('#classMessage').show();
 							var schSid = obj.sid;
 							if($('#classModal').data('sid')) {
 								var dataCon = '{"sid": ' + $('#classModal').data('sid') + '}';
-								authPostCall('http://api.fitstew.com/api/deleteEvent/',dataCon,uToken,function(obj) {
+								authPostCall(apiUrl + 'api/deleteEvent/',dataCon,uToken,function(obj) {
 									$('#classModal').data('sid', schSid);
 									updateBalance();
 									buildSchedule(wkNum)
@@ -159,22 +165,22 @@ $(document).ready(function(){
 
    timeClick();
 
-
     var sli = 0;
     $('.carousel').carousel({
 	   interval: false
     });
    
-    $('#myCarousel').bind('slide', function(e){ 
+    $('#classCarousel').bind('slide', function(e){ 
    	   sli = 1;
     });
    
-    $('#myCarousel').bind('slid', function(e){ 
+    $('#classCarousel').bind('slid', function(e){ 
    	   sli = 0;
-   	   $('.item:first').remove();
+   	   $('.cItems:first').remove();
     });
 
 	$('#sSunday').css("border", "0");
+
 
 
 	var intentConfig = {    
@@ -259,7 +265,7 @@ $(document).ready(function(){
 	    	ccData.cuToken = $('#acbcard').data('cToken');
 	    	var ccDataJSON = JSON.stringify(ccData);
 	        var token = response['id'];
-	        authPostCall('http://api.fitstew.com/api/' + $('#acbButtonText').data('func') + 'CustomerToken/',ccDataJSON,uToken,function(obj) {
+	        authPostCall(apiUrl + 'api/' + $('#acbButtonText').data('func') + 'CustomerToken/',ccDataJSON,uToken,function(obj) {
 	        	if(obj.status = 'success') {
 	        		localStorage['cuToken'] = obj.cToken;
 	        		$('#acbResult').html('<i style="color: #57b547;" class="icon-ok icon-2x">');
@@ -339,7 +345,7 @@ $(document).ready(function(){
 
     	var userDataJSON = JSON.stringify(userData);
 
-    	authPostCall('http://api.fitstew.com/api/updateUserPreferences/',userDataJSON,uToken,function(obj) {
+    	authPostCall(apiUrl + 'api/updateUserPreferences/',userDataJSON,uToken,function(obj) {
     		if(obj.status == 'success') {
     			$('#acsResult').html('<i style="color: #57b547;" class="icon-ok icon-2x">');
     		} else {
@@ -381,7 +387,7 @@ $(document).ready(function(){
 
 
 
-    authGetCall('http://api.fitstew.com/api/userPreferences/',uToken,function(obj) {
+    authGetCall(apiUrl + 'api/userPreferences/',uToken,function(obj) {
     	$('#acsemail').val(obj[0].email);
     	$('#acsfname').val(obj[0].first_name);
     	$('#acslname').val(obj[0].last_name);
@@ -394,11 +400,12 @@ $(document).ready(function(){
     	cuToken = obj[0].cToken;
    	})
 
+
     function getBillingInfo() {
     	var ttToken = new Object();
     	ttToken.cToken = localStorage['cuToken']
 	    tempTokenJSON = JSON.stringify(ttToken);
-	   	authPostCall('http://api.fitstew.com/api/retrieveCustomer/',tempTokenJSON,uToken,function(obj) {
+	   	authPostCall(apiUrl + 'api/retrieveCustomer/',tempTokenJSON,uToken,function(obj) {
 	   		if(!obj[0].ccard) {
 	   			$('#acbButtonText').html('Save');
 	   			$('#acbButtonText').data('func', 'create')
@@ -529,6 +536,14 @@ $(document).ready(function(){
 	    });
 	}
 	
+	function refreshSCIDCache() {
+		authGetCall(apiUrl + 'api/getUserSCID/',uToken,function(scidjson) {
+			scidCache = [];
+			$.each(scidjson, function(key, value) {
+				scidCache.push(value.sclassid)
+			});
+		});
+	}
 
 	/* Schedule Block */
 
@@ -549,8 +564,10 @@ $(document).ready(function(){
 		schData.end = moment(edayofweek).format('YYYY-MM-DD');
 		schDataJSON = JSON.stringify(schData);
 
-		authPostCall('http://api.fitstew.com/api/userSchedule/',schDataJSON,uToken,function(schedjson) {
+		refreshSCIDCache();
+		
 
+		authPostCall(apiUrl + 'api/userSchedule/',schDataJSON,uToken,function(schedjson) {
 			$('.event').remove();
 			var dayNames = new Array("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday");
 			$('#sMonth').html(today);
@@ -588,7 +605,7 @@ $(document).ready(function(){
 
 	$('#delschButton').click(function() {
 		var dataCon = '{"sid": ' + $('#deleteModal').data('sid') + '}';
-		authPostCall('http://api.fitstew.com/api/deleteEvent/',dataCon,uToken,function(obj) {
+		authPostCall(apiUrl + 'api/deleteEvent/',dataCon,uToken,function(obj) {
 			$('#deleteModal').data('sid');
 			$('#deleteModal').modal('hide')
 			updateBalance();
@@ -665,7 +682,7 @@ $(document).ready(function(){
 				$('#location').tooltip('show');
 			} else {
 				$('#classesBlock').slideUp('slow');
-				$('.carousel-inner').empty();
+				$('#classCarouselInner').empty();
 				$('.pCard').remove();
 				
 				var data = '{';
@@ -713,7 +730,7 @@ $(document).ready(function(){
     function buildCards(data) {
     	$('#searchButton').click(false);
     	// Perform POST call to send params and get back results
-     	postCall('http://api.fitstew.com/api/gymSearchAdvanced/',data, function(obj) {
+     	postCall(apiUrl + 'api/gymSearchAdvanced/',data, function(obj) {
        		// Loop through each result and create card
        		if(!obj.status) {
 		   		$.each( obj, function( key, value ) {
@@ -733,9 +750,9 @@ $(document).ready(function(){
     // This function retrieves classes for a fitness center builds each class card 
 	function buildClassCards(gid,search,callback) {
    		//Create carasol placeholder
-     	var inner = '<div class="item">';
+     	var inner = '<div class="item cItems">';
      	// Perform GET call to retreive class info
-     	getCall('http://api.fitstew.com/api/getClasses/' + gid + '/?search=' + search,function(obj) {
+     	getCall(apiUrl + 'api/getClasses/' + gid + '/?search=' + search,function(obj) {
         	// Loop through each class and create card
    	 		$.each( obj, function( key, value ) {
 	 			inner = inner + '<div class="cCard"><div class="className" data-cid="' + value.id + '">' + value.service + '</div><img src=assets/img/classes/' + value.image + '></div>';
@@ -747,47 +764,76 @@ $(document).ready(function(){
     };
 
 
-   function modalBuild(cid,sid,callback) {
-   $('#addSuccess').hide();
-    //Here We get the info for the class in question and it's fitness center
-    getCall('http://api.fitstew.com/api/getClass/' + cid,function(obj) {
-    	$.each( obj, function( key, value ) {
-   			$('#classModalLabel').html(value.service);
-   			$('#classModal').data('cid', cid);
-   			$('#dpd').val("");
-   			if(sid !== "") {
-   				$('#classModal').data('sid', sid);
-   				$('#addschButtonText').html('Reschedule');
-   			} else {
-   				$('#classModal').removeData('sid');
-   				$('#addschButtonText').html('Add to my schedule');
-   			}
-  			$('#classInstructor').html('Instructor: ' + value.instructor);
-  			$('#classDesc').html(value.desc);
-  			 			
-   		});
-   	});
-   	// Then we get the times for the class in question
-    getCall('http://api.fitstew.com/api/getClassTimes/' + cid,function(obj) {
-    	$('.day').remove();
-    	$.each( obj, function( key, value ) {
-    		var sched = "";
-    		console.log(value);
-    		if(value.time) {
-    		  sched = sched + '<div class="day" id="' + value.weekday + '" data-time="' + value.time + '"><div class="weekday">' + value.weekday + '</div>';
-    		  var timeArr = value.time.split(',');
-    			$.each(timeArr, function(key, time) {
-    				console.log(time);
-	    			sched = sched + '<div class="time">' + moment(time, 'hh:mm').subtract('minutes',offset).local().format('h:mmA') + '</div>';
-	    		});
-    		}
-    		sched = sched + '</div>';
-    		$('#classSched').append(sched);
-   		});
-   		console.log($('#myModal').data('cid'));
-   		callback(10);
-   	});
-   };
+	function modalBuild(cid,sid,callback) {
+	    $('#addSuccess').hide();
+	    //Here We get the info for the class in question and it's fitness center
+	    getCall(apiUrl + 'api/getClass/' + cid,function(obj) {
+	    	$.each( obj, function( key, value ) {
+	   			$('#classModalLabel').html(value.service);
+	   			$('#classModal').data('cid', cid);
+	   			$('#dpd').val("");
+	   			/*if(sid !== "") {
+	   				$('#classModal').data('sid', sid);
+	   				$('#addschButtonText').html('Reschedule');
+	   			} else {
+	   				$('#classModal').removeData('sid');
+	   				$('#addschButtonText').html('Add to my schedule');
+	   			}*/
+	  			$('#classInstructor').html('Instructor: ' + value.instructor);
+	  			$('#classDesc').html(value.desc);
+	  			 			
+	   		});
+	   	});
+	   	// 
+	    getCall(apiUrl + 'api/getUpcomingClasses/' + cid,function(obj) {
+	    	$('.schItem').remove();
+	    	var schCnt = 0;
+	    	var totCnt = 0;
+	    	var schRow = '<div class="item schItem active">';
+	    	$.each( obj, function( key, value ) {
+	    		totCnt++;
+	    		if(schCnt < 8) {
+	    			if($.inArray(value.scid, scidCache) == -1) {
+	    				if(value.openCount < 1 && value.openCount !== null) {
+	    					schRow = schRow + '<div class="timeCard sfull" data-scid="' + value.scid + '" data-datetime="' + moment(value.datetime).format('YYYY-MM-DD HH:mm:ss') + '"><div class="row-fluid cStat">Class Full</div><div class="row-fluid cWkdy">' + moment(value.datetime).format('ddd') + '</div><div class="cDTime">2:00PM</div><div class="row-fluid cMon">' + moment(value.datetime).format('MMM DD') + '</div></div>';
+	    				} else {	
+	    					schRow = schRow + '<div class="timeCard" data-scid="' + value.scid + '" data-datetime="' + moment(value.datetime).format('YYYY-MM-DD HH:mm:ss') + '"><div class="row-fluid cStat"></div><div class="row-fluid cWkdy">' + moment(value.datetime).format('ddd') + '</div><div class="cDTime">2:00PM</div><div id="cMon" class="row-fluid cMon">' + moment(value.datetime).format('MMM DD') + '</div></div>';	    				
+	    				}
+	    			} else {			
+	    				schRow = schRow + '<div class="timeCard scheduled" data-scid="' + value.scid + '" data-datetime="' + moment(value.datetime).format('YYYY-MM-DD HH:mm:ss') + '"><div class="row-fluid cStat">Scheduled</div><div class="row-fluid cWkdy">' + moment(value.datetime).format('ddd') + '</div><div class="cDTime">2:00PM</div><div class="row-fluid cMon">' + moment(value.datetime).format('MMM DD') + '</div></div>';
+	    			}
+	    			schCnt++;
+	    		} else {
+	    			schRow = schRow + '</div>';
+	    			$('#schCarouselInner').append(schRow);
+	    			schRow = '<div class="item schItem">';
+	    			schCnt = 0;
+	    		}
+	    	});
+	    	schRow = schRow + '</div>';
+	    	$('#schCarouselInner').append(schRow);
+	   		if(totCnt > 7) {
+	   			$('.carousel-control').show();
+	   		} else {
+	   			$('.carousel-control').hide();
+	   		}
+	   		$('.timeCard').click(function() {
+	   			var thi = $(this);
+	   			dataCon = {};
+	   			dataCon['scid'] = $(this).data('scid');
+	   			dataCon['datetime'] = $(this).data('datetime');
+				authPostCall(apiUrl + 'api/addEvent/',JSON.stringify(dataCon),uToken,function(obj) {
+					if(obj.status == 'success') {
+						$(thi).addClass("scheduled");
+						$(thi).find('.cStat').html('Scheduled');
+						refreshSCIDCache();
+					}
+				});
+	   		})
+	   		callback(10);
+	   	});
+    };
+
 
     function profileBuild() {
    	   $('#partnerName').html($('.bactive').children('.pName').data('name'));
@@ -817,8 +863,8 @@ $(document).ready(function(){
 							$('div').removeClass('bactive');
 							$(this).addClass('bactive');
 							buildClassCards($(this).children('.pName').data('gid'),$(this).children('.pMatch').html(),function(res) {
-								$('.carousel-inner').append(res);
-								$('.carousel').carousel('next');
+								$('#classCarouselInner').append(res);
+								$('#classCarousel').carousel('next');
 								profileBuild();
 								$('.cCard').click(
 									function() {
@@ -835,8 +881,8 @@ $(document).ready(function(){
 				} else {
 					$(this).addClass('bactive');
 					buildClassCards($(this).children('.pName').data('gid'),$(this).children('.pMatch').html(),function(res) {
-						$('.carousel-inner').append(res);
-						$('.item').addClass('active');
+						$('#classCarouselInner').append(res);
+						$('.cItems').addClass('active');
 						$('#profileBlock').slideDown('slow');
 						$('#classesBlock').slideDown('slow');
 						profileBuild();

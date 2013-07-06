@@ -394,3 +394,60 @@
 	font-family: "SkolaSans-Bold";
 	font-size: 16px;
 }
+
+
+@media (max-width: 480px) {
+	#logoSpan {
+		width: 100px;
+	}
+
+	.socright {
+		width: 50px !important;
+	}
+
+	#topBlock {
+		width: 100px;
+		height: 40px;
+		float: none;
+	}
+
+	.lTabs {
+		visibility: hidden;
+	}
+
+	#lHeader {
+		height: 100px;
+	}
+
+	.logo {
+		width: 100px;
+		margin-top: 0px;
+	}
+
+	#hero {
+		visibility: hidden;
+		/*background-size: 150%;*/
+	}
+
+	#heroBlock {
+		visibility: hidden;
+		/*width: 200px;
+		margin-left: 150px;
+		margin-top: 0px;*/
+	}
+
+	.heroimg {
+		/*width: 100px;
+		margin-left: 40px;*/
+		visibility: hidden;
+	}
+
+	.heroMess {
+		font-size: 12px;
+	}
+
+	.heroBreak {
+		width: 120px;
+		margin-left: 40px;
+	}
+}

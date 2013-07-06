@@ -1,0 +1,66 @@
+
+@font-face {
+	font-family: SkolaSans-Black;
+	src: url('../font/SkolaSans-Black.otf');
+}
+
+@font-face {
+	font-family: SkolaSans-Bold;
+	src: url('../font/SkolaSans-Bold.otf');
+}
+
+@font-face {
+	font-family: SkolaSans-Light;
+	src: url('../font/SkolaSans-Light.otf');
+}
+
+@font-face {
+	font-family: SkolaSans-Medium;
+	src: url('../font/SkolaSans-Medium.otf');
+}
+
+@font-face {
+	font-family: SkolaSans-Regular;
+	src: url('../font/SkolaSans-Regular.otf');
+}
+
+#carCont {
+	width: 400px;
+	margin-left: 100px;
+	margin-right: 100px;
+}
+
+.timeCard {
+	height: 100px;
+	width: 100px;
+	border: solid 2px white;
+	border-radius: 15px;
+	background-color: #57b547;
+}
+
+#cWkdy {
+	margin-top: 10px;
+	height: 20px;
+	text-align: center;
+	font-family: "SkolaSans-Medium";
+	font-size: 18px;
+	color: white;
+}
+
+#cDom {
+	margin-top: 10px;
+	height: 30px;
+	font-family: "SkolaSans-Bold";
+	font-size: 38px;
+	text-align: center;
+	color: white;
+}
+
+#cMon {
+	margin-top: 10px;
+	height: 20px;
+	text-align: center;
+	font-family: "SkolaSans-Medium";
+	font-size: 14px;
+	color: white;
+}
