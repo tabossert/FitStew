@@ -1,14 +1,23 @@
-<!DOCTYPE html>
+<!DOCTYPE html itemscope itemtype="http://schema.org/Product">
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en" itemscope itemtype="http://schema.org/Product"> <!--<![endif]-->
 <head>
 
 	<!-- 	Head Mandatory Metas 	-->
 	<meta charset="utf-8">
 	<title>FitStew</title>
-	<meta name="description" content="Pay As You Go Fitness">
+	<meta name="title" content="Pay As You Go Fitness" />
+	<meta name="description" content="Changing the way you do fitness" />
+	<meta property="og:url" content="http://www.fitstew.com/" />
+	<meta property="og:title" content="Pay As You Go Fitness" />
+	<meta property="og:description" content="Changing the way you do fitness" />
+	<meta property="og:image" content="images/sharelogo.png" />
+	<meta itemprop="name" content="Pay As You Go Fitness">
+	<meta itemprop="description" content="Changing the way you do fitness">
+	<meta itemprop="image" content="http://www.fitstew.com/images/sharelogo.png">
+
 
 	<!-- 	Mobile Specific Metas 	-->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -29,7 +38,20 @@
 	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
 	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
-	
+
+	<!-- MouseStats:Begin -->
+	<script type="text/javascript">(function () {
+	if(document.getElementById('MouseStatsTrackingScript') == undefined) {
+	var mousestats_script = document.createElement('script');
+	mousestats_script.type = 'text/javascript';
+	mousestats_script.id = 'MouseStatsTrackingScript';
+	mousestats_script.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www2') + '.mousestats.com/js/5/0/5082559080466998486.js?' + Math.floor(new Date().getTime()/600000);
+	mousestats_script.async = true;
+	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(mousestats_script);
+	} })();
+	</script>
+	<!-- MouseStats:End -->
+
 </head>
 <body>
 
@@ -40,13 +62,8 @@
 			
 			<div class="container">
 			
-				<div id="logo">
 				
-					<img src="images/logo.png" />
-				
-				</div>
-				
-				<h1>Pay As You Go Fitness</h1>
+				<img id="tag_line" src="images/tagline3.png">
 				
 				<div class="slider_nav">
 					
@@ -70,9 +87,7 @@
 							</p>
 						</form>
 							
-						<div id="subscription-submitted">
-						
-							<p>We will let you know when FitStew is available</p>                                  
+						<div id="subscription-submitted">                                  
 								
 						</div> <!--	END OF SUBSCRIPTION-SENT-OK-->
 						
@@ -91,30 +106,22 @@
 				</div> <!--	END OF CONTENT-SLIDER -->
 			
 			</div> <!--	END OF CONTAINER -->
-			
-			
-			<!--<div class="tw-icon-top"></div>
-			
-			<div class="twitter-container">
-			
-				<div id="twitter-ticker">
-				
-					<ul id="tweets" class="tweets"></ul>
-			
-				</div> <!--	END OF TWITTER-TICKER	-->
-				
-				<!--<div class="tw-icon-bottom"></div>
-			
-			</div> <!--	END OF TWITTER-CONTAINER -->
 				
 			<div class="container">
 			
 				<ul class="social">
-					<a href="#facebook"><li class="social facebook"><span class="icon-facebook"></span></li></a>
-					<a href="#twitter"><li class="social twitter"><span class="icon-twitter"></span></li></a>
-					<a href="#googleplus"><li class="social googleplus"><span class="icon-google-plus-2"></span></li></a>
-					<a href="#tumblr"><li class="social tumblr"><span class="icon-tumblr"></span></li></a>
+					<a href="https://www.facebook.com/sharer.php?s=100&p[url]=http://www.fitstew.com/&p[images][0]=http://www.fitstew.com/images/fbsharelogo2.png&p[title]=Pay As You Go Fitness&p[summary]=Changing the way you do fitness" class="popup"><li class="social facebook"><span class="icon-facebook"></span></li></a>
+					<a href="http://twitter.com/share?text=Changing the way you do fitness" class="popup"><li class="social twitter"><span class="icon-twitter"></span></li></a>
+					<a href="https://plus.google.com/share?url=http://www.FitStew.com/" class="popup"><li class="social googleplus"><span class="icon-google-plus-2"></span></li></a>
+					<a href="http://www.tumblr.com/share/link?url=http%3A%2F%2Fwww.fitstew.com&name=Pay%20As%20You%20Go%20Fitness&description=Changing%20the%20way%20you%20do%20fitness" class="popup"><li class="social tumblr"><span class="icon-tumblr"></span></li></a>
+					<a href="http://pinterest.com/pin/create/bookmarklet/?media=http%3A%2F%2Fwww.fitstew.com%2Fimages%2Fsharelogo.png&url=http%3A%2F%2Fwww.FitStew.com%2Fcs%2F&is_video=false&description=Changing the way you do fitness" class="popup"><li class="social pinterest"><span class="icon-pinterest"></span></li></a>
 				</ul>
+
+				<div id="logo">
+				
+					<img src="images/logo.png" />
+				
+				</div>
 									
 			</div> <!--	END OF CONTAINER -->
 				
@@ -141,6 +148,7 @@
 	<script src="js/jquery.validate.min.js"></script>
 	<script src="js/jquery.placeholder.min.js"></script>
 	<script src="js/script.js"></script>
+
 
 </body>
 </html>

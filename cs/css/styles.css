@@ -223,7 +223,7 @@ h4 {
 ************************************************************/
 
 html { 
-  background: url('../images/brown_bg.png') no-repeat center center fixed; 
+  background: url('../images/ScratchBG_blue1.jpg') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -260,7 +260,7 @@ html, body {
 }
 
 /***********************************************************
-3. HEADER (LOGO & H1)
+3. HEADER AND LOGO
 ************************************************************/
 
 #logo {
@@ -270,7 +270,7 @@ html, body {
 }
 
 #logo img {
-	padding-top: 48px;
+	padding-bottom: 48px;
 	width: 100%;
 	height: 100%;
 }
@@ -281,6 +281,10 @@ h1 {
 	opacity: 0.6;
 }
 
+#tag_line {
+	padding-top: 20px;
+}
+
 /***********************************************************
 4. CONTENT-SLIDER
 ************************************************************/
@@ -288,7 +292,7 @@ h1 {
 .slider_nav {
 	width: 200px;
 	height: 100px;
-	margin: 48px auto 0px;
+	margin: 0px auto 0px;
 	background: url('../images/navigation.png') no-repeat center center; 
 	opacity: 0.1;
 	transition: all 0.5s;
@@ -377,13 +381,15 @@ h1 {
 	font-family: 'Raleway', sans-serif;
 	font-size: 24px;
 	line-height: 30px;
-	opacity: 0.6;
+	opacity: 0.9;
 	text-shadow: 0px 1px 0px rgba(255,255,255,0.4);
+	padding-top: 40px;
 }
 
 #reasons {
 	width: 60%;
-	margin-left: 23%;
+	height: 250px;
+	margin-left: 20%;
 }
 
 .mini-img img {
@@ -403,6 +409,7 @@ h1 {
 
 .animation-wrapper {
 	margin-top: 24px;
+	padding-top: 40px;
 	width: 100%;
 	height: 100%;
 	text-align: center;
@@ -437,6 +444,10 @@ input[type="text"] {
 	-o-box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.25), inset 0px 1px 0px rgba(0, 0, 0, 0.25);
 	-ms-box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.25), inset 0px 1px 0px rgba(0, 0, 0, 0.25);
 	box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.25), inset 0px 1px 0px rgba(0, 0, 0, 0.25);
+}
+
+.input_error {
+	border: 2px solid red !important;
 }
 
 label.error {
@@ -561,7 +572,7 @@ footer p {
 	font-family: 'Raleway', sans-serif;
 	font-size: 18px;
 	line-height: 24px;
-	padding: 30px 0px 6px;
+	padding: 0px 0px 6px;
 	opacity: 0.6;
 	text-shadow: 0px 1px 0px rgba(255,255,255,0.4);	
 }

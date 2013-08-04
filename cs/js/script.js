@@ -2,6 +2,11 @@ $(document).ready(function() {
 	// make placeholders work for IE too
 	$('input').placeholder();
 
+	var backArr = ['tagline1.png','tagline3.png'];
+	var rand = backArr[Math.floor(Math.random() * backArr.length)];
+
+	$('#tag_line').attr('src', 'images/' + rand);
+
 	function PostCall(uri,data,callback) {
 		$.ajax({
 		 	beforeSend: function(xhr) {
@@ -17,6 +22,23 @@ $(document).ready(function() {
 			}
 	    });
 	}	
+
+    $('.popup').click(function(event) {
+    	var width  = 575,
+        height = 400,
+        left   = ($(window).width()  - width)  / 2,
+        top    = ($(window).height() - height) / 2,
+        url    = this.href,
+        opts   = 'status=1' +
+                 ',width='  + width  +
+                 ',height=' + height +
+                 ',top='    + top    +
+                 ',left='   + left;
+    
+    	window.open(url, 'twitter', opts);
+ 
+    	return false;
+  	});
 
 	$.getJSON("http://smart-ip.net/geoip-json?callback=?", function(data) {
 		client_city = data.city;
@@ -41,7 +63,7 @@ $(document).ready(function() {
 		fx:      'scrollHorz',
 		prev: '.small_previous',
 		next: '.small_next',
-		timeout : 5000,
+		timeout : 10000,
 		pause: true,
 	});
 	/************************************************/
@@ -60,15 +82,20 @@ $(document).ready(function() {
 	/************************************************/
 	//validation for subscription form
 	$("#form-subscribe").validate({ 
-		errorPlacement: function(error, element) {},
+		errorPlacement: function(error, element) {
+			$('#form-subscribe-email').addClass('input_error');
+		},
 		submitHandler: function(form) {
+			pauseSlider();
+			$('#form-subscribe-email').removeClass('input_error');
 			var regObj = {};
 			regObj['email'] = $('#form-subscribe-email').val();
 			regObj['city'] = client_city;
 			regObj['state'] = client_state;
-			PostCall("http://api.fitstew.com/api/registerUser/", JSON.stringify(regObj), function() {
+			PostCall("http://api.fitstew.com/api/registerUser/", JSON.stringify(regObj), function(retObj) {
 				$("#form-subscribe").each(function() {
 					this.reset();
+					$("#subscription-submitted").html("<p>" + retObj.message + "</p>");
 					$("#form-subscribe").fadeOut(1000, function() {
 						$("#subscription-submitted").fadeIn(1000);
 					});
@@ -77,5 +104,10 @@ $(document).ready(function() {
 		} 
 	});
 	/************************************************/
+
+	function pauseSlider() {
+		content_slider.cycle('paused');
+		$('.small_play_pause').removeClass('small_pause').addClass('small_play');
+	}
 	
 });
