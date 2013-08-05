@@ -92,7 +92,7 @@ $(document).ready(function() {
 			regObj['email'] = $('#form-subscribe-email').val();
 			regObj['city'] = client_city;
 			regObj['state'] = client_state;
-			PostCall("http://api.fitstew.com/api/registerUser/", JSON.stringify(regObj), function(retObj) {
+			PostCall("https://api.fitstew.com/api/registerUser/", JSON.stringify(regObj), function(retObj) {
 				$("#form-subscribe").each(function() {
 					this.reset();
 					$("#subscription-submitted").html("<p>" + retObj.message + "</p>");
