@@ -53,6 +53,21 @@
 				
 				<img id="tag_line" src="images/tagline3.png">
 				
+				<div class="email-wrapper">
+					
+					<form id="form-subscribe" name="form-subscribe" action="/" method="post" class="form-subscribe">
+						<p>
+							<input type="email" name="form-subscribe-email" id="form-subscribe-email" class="required email" placeholder="Email Address" />
+							<input type="submit" id="submit-subscription" class="form-subscribe-submit" value="Get notified" />
+						</p>
+					</form>
+							
+					<div id="subscription-submitted">                                  
+								
+					</div> <!--	END OF SUBSCRIPTION-SENT-OK-->
+						
+				</div> <!--	END OF EMAIL-WRAPPER -->
+
 				<div class="slider_nav">
 					
 					<div class="small_previous"></div>
@@ -64,33 +79,18 @@
 				</div>
 								
 				<div id="content-slider">
-					
-					
-					<div class="animation-wrapper">
-					
-						<form id="form-subscribe" name="form-subscribe" action="/" method="post" class="form-subscribe">
-							<p>
-								<input type="email" name="form-subscribe-email" id="form-subscribe-email" class="required email" placeholder="Email Address" />
-								<input type="submit" id="submit-subscription" class="form-subscribe-submit" value="Get notified" />
-							</p>
-						</form>
-							
-						<div id="subscription-submitted">                                  
-								
-						</div> <!--	END OF SUBSCRIPTION-SENT-OK-->
-						
-					</div> <!--	END OF ANIMATION-WRAPPER -->
-					
-					<div id="reasons" class="mini-img">
-						<img src="images/multiplewt.png">&nbsp;<p>Multiple Workouts</p>
-						<img src="images/locmap.png">&nbsp;<p>Multiple Locations</p>
-					</div>
 
 					<div id="description">
 					
 						<p>You can work out as little or as much as you want and only pay when you go to the gym.  With FitStew there are never any long term commitments or contracts.</p>
 					
-					</div>		
+					</div>	
+
+					<div id="reasons" class="mini-img">
+						<img src="images/multiplewt.png">&nbsp;<p>Multiple Workouts</p>
+						<img src="images/locmap.png">&nbsp;<p>Multiple Locations</p>
+					</div>
+						
 				</div> <!--	END OF CONTENT-SLIDER -->
 			
 			</div> <!--	END OF CONTAINER -->
@@ -157,6 +157,10 @@
   	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
   	ga('create', 'UA-42950011-1', 'fitstew.com');
   	ga('send', 'pageview');
+
+	</script>
+</body>
+</html>
 
 	</script>
 </body>

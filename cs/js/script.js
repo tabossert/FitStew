@@ -63,7 +63,7 @@ $(document).ready(function() {
 		fx:      'scrollHorz',
 		prev: '.small_previous',
 		next: '.small_next',
-		timeout : 10000,
+		timeout : 5000,
 		pause: true,
 	});
 	/************************************************/
