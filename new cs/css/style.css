@@ -1,0 +1,12 @@
+/* -------------------------------------------------------------- 
+  
+   style.css
+   
+   * Includes all the necessary stylesheets in 
+   	the desired order.
+   
+-------------------------------------------------------------- */
+
+@import url(reset.css);
+@import url(main.css);
+@import url(devices.css);

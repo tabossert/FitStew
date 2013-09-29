@@ -1,0 +1,78 @@
+/* Retina Display */
+@media all and (min-width: 1921px),
+	   all and (min-device-width: 1921px) { 
+	   
+	body { 	background-image: url(https://d6765bf455236641f48e-79df71b9236f99dd732434060ab2387a.ssl.cf2.rackcdn.com/images/mt@2880.jpg) }
+	
+	
+	/* === Icons Section === */
+	#social > li > a.fb 		 { background-image: url(https://d6765bf455236641f48e-79df71b9236f99dd732434060ab2387a.ssl.cf2.rackcdn.com/images/icons/facebook@1.5x.png) }
+	#social > li > a.twitter 	 { background-image: url(https://d6765bf455236641f48e-79df71b9236f99dd732434060ab2387a.ssl.cf2.rackcdn.com/images/icons/twitter@1.5x.png) }
+	#social > li > a.gplus 		 { background-image: url(https://d6765bf455236641f48e-79df71b9236f99dd732434060ab2387a.ssl.cf2.rackcdn.com/images/icons/g+@1.5x.png) }
+	#social > li > a.tumblr		 { background-image: url(https://d6765bf455236641f48e-79df71b9236f99dd732434060ab2387a.ssl.cf2.rackcdn.com/images/icons/tumblr@1.5x.png) }
+	#social > li > a.pinterest 	 { background-image: url(https://d6765bf455236641f48e-79df71b9236f99dd732434060ab2387a.ssl.cf2.rackcdn.com/images/icons/pinterest@1.5x.png) }
+}
+
+@media all and (max-width: 1920px),
+	   all and (max-device-width: 1920px) { 
+
+	body { background-image: url(https://d6765bf455236641f48e-79df71b9236f99dd732434060ab2387a.ssl.cf2.rackcdn.com/images/mt@1920.jpg) }		  
+}
+
+@media all and (max-width: 1440px),
+	   all and (max-device-width: 1440px) {
+
+	body { background-image: url(https://d6765bf455236641f48e-79df71b9236f99dd732434060ab2387a.ssl.cf2.rackcdn.com/images/mt@1440.jpg) }	   
+}
+
+@media all and (max-width: 1024px),
+	   all and (max-device-width: 1024px) {
+
+	body { background-image: url(https://d6765bf455236641f48e-79df71b9236f99dd732434060ab2387a.ssl.cf2.rackcdn.com/images/mt@1024.jpg) }
+	
+
+	#communication { width: 100% }
+	#countdown { 
+		margin: 0 auto 50px;
+		cursor: default; 
+	}
+	
+	
+	#communication { 
+		margin: 0 auto;
+		height: 130px
+	}
+}
+
+@media all and (max-width: 768px),
+	   all and (max-device-width: 768px) {
+
+	body { background-image: url(https://d6765bf455236641f48e-79df71b9236f99dd732434060ab2387a.ssl.cf2.rackcdn.com/images/mt@768.jpg) }
+ 
+}
+
+@media all and (max-width: 480px),
+	   all and (max-device-width: 480px) {
+
+	body {
+		background-image: url(https://d6765bf455236641f48e-79df71b9236f99dd732434060ab2387a.ssl.cf2.rackcdn.com/images/mt@480.jpg);
+		background-color: #333;
+		background-attachment:inherit;
+	}
+	
+	header { padding: 40px 0 }
+	header a { font-size: 3em }
+	
+	#communication { 
+		margin: 20px auto 0;
+		height: auto;
+	}
+	
+	#social > li { opacity: 1 }
+	#whats { display: none !important }
+}
+
+@media all and (min-width: 480px) and (max-width: 480px) and (orientation:landscape),
+	   all and (min-device-width: 480px) and (max-device-width: 480px) and (orientation:landscape) {
+	#countdown > div.n { padding: 25px }
+}
